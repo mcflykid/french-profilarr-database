@@ -1,0 +1,9 @@
+name: FR - MULTI.VFF
+description: Identifie les releases avec piste originale et vraie piste française (VFF, VOF, etc.).
+conditions:
+  - name: MULTI
+    type: release_title
+    pattern: FR - Regex MULTI
+  - name: VFF
+    type: release_title
+    pattern: FR - Regex VFF
