@@ -1,0 +1,61 @@
+name: FR - Films 1080p
+tags:
+- 1080p
+- French
+upgradesAllowed: true
+minCustomFormatScore: 20000
+upgradeUntilScore: 888888
+minScoreIncrement: 1
+custom_formats:
+# === Langue ===
+- name: FR - MULTI.VF2
+  score: 60000
+- name: FR - MULTI.VFF
+  score: 50000
+- name: FR - VF2
+  score: 40000
+- name: FR - VFF
+  score: 30000
+- name: FR - VOSTFR
+  score: 10000
+
+# === L'interdiction globale ===
+- name: FR - Blockers (Sources/Teams/Encodes)
+  score: -999999
+
+# === Source + Résolution ===
+- name: 1080p Bluray
+  score: 300000
+- name: 1080p WEB-DL
+  score: 295000
+- name: 1080p WEBRip
+  score: 280000
+
+# === Codec (Priorité compatibilité, x265 pénalisé) ===
+- name: x265
+  score: -2000
+- name: h265
+  score: -2000
+
+# === Blockers de base TRaSH ===
+- name: Remux
+  score: -999999
+- name: Full Disc
+  score: -999999
+- name: Lossless Audio
+  score: -999999
+
+qualities:
+- id: -1
+  name: 1080p Quality
+  qualities:
+  - id: 10
+    name: Bluray-1080p
+  - id: 9
+    name: WEBDL-1080p
+  - id: 11
+    name: WEBRip-1080p
+upgrade_until:
+  id: -1
+  name: 1080p Quality
+language: any
