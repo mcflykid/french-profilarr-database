@@ -1,0 +1,2 @@
+name: Repack3 Regex
+pattern: \b(PROPER[ ._-]?3|REPACK[ ._-]?3|RERIP[ ._-]?3|V4)\b
