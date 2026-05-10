@@ -1,0 +1,5 @@
+name: Repack2
+conditions:
+  - name: Repack
+    type: release_title
+    pattern: Repack2 Regex
