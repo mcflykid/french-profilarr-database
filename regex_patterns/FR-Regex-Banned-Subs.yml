@@ -1,0 +1,2 @@
+name: FR - Regex Banned Subs
+pattern: \b(FASTSUB)\b
