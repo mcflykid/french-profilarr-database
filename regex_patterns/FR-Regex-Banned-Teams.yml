@@ -1,0 +1,2 @@
+name: FR - Regex Banned Teams
+pattern: \b(k0RE|TFA|Firesoul64|Amen|BOUC|BOUBA|Wawacity)\b
