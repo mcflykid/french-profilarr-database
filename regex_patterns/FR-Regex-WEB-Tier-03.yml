@@ -1,0 +1,2 @@
+name: FR - Regex WEB Tier 03
+pattern: \b(NOGRP|NOTAG)\b
