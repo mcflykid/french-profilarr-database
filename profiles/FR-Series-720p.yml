@@ -1,0 +1,68 @@
+name: FR - Series 720p
+tags:
+- 720p
+- French
+- tv
+upgradesAllowed: true
+minCustomFormatScore: 20000
+upgradeUntilScore: 888888
+minScoreIncrement: 1
+custom_formats:
+# === Langue ===
+- name: FR - MULTI.VF2
+  score: 60000
+- name: FR - MULTI.VFF
+  score: 50000
+- name: FR - VF2
+  score: 40000
+- name: FR - VFF
+  score: 30000
+- name: FR - VOSTFR
+  score: 10000
+
+# === L'interdiction globale ===
+- name: FR - Blockers (Sources/Teams/Encodes)
+  score: -999999
+
+# === Source + Résolution ===
+- name: 720p Bluray
+  score: 300000
+- name: 720p WEB-DL
+  score: 295000
+- name: 720p WEBRip
+  score: 280000
+
+# === Audio (Lossy prioritaire) ===
+- name: AAC
+  score: 1000
+- name: AC3
+  score: 800
+
+# === Blockers de base ===
+- name: Remux
+  score: -999999
+- name: Lossless Audio
+  score: -999999
+- name: 1080p Bluray
+  score: -999999
+- name: 1080p WEB-DL
+  score: -999999
+- name: 2160p Bluray
+  score: -999999
+
+qualities:
+- id: -2
+  name: 720p Quality
+  qualities:
+  - id: 8
+    name: Bluray-720p
+  - id: 6
+    name: WEBDL-720p
+  - id: 7
+    name: WEBRip-720p
+  - id: 2
+    name: HDTV-720p
+upgrade_until:
+  id: -2
+  name: 720p Quality
+language: any
