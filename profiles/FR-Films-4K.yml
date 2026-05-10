@@ -57,6 +57,14 @@ custom_formats:
 - name: x264 (2160p)
   score: -999999
 
+# === REPACKS (Priorité aux versions corrigées) ===
+- name: Repack3
+  score: 8
+- name: Repack2
+  score: 7
+- name: Repack1
+  score: 6
+
 qualities:
 - id: -4
   name: 2160p Quality
