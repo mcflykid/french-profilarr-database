@@ -1,0 +1,6 @@
+name: FR - VFF
+description: Identifie les releases avec vraie VF uniquement.
+conditions:
+  - name: VFF
+    type: release_title
+    pattern: FR - Regex VFF
