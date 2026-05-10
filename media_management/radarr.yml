@@ -1,5 +1,0 @@
-rename_movies: true
-replace_illegal_characters: true
-colon_replacement_format: dash
-folder_format: "{Movie Title} ({Release Year}) {imdb-{ImdbId}}"
-movie_naming_format: "{Movie Title} ({Release Year}) {imdb-{ImdbId}} [{Custom_Format_List} {Quality_Full} {Media_Info_VideoCodec} {Media_Info_AudioCodec} {Media_Info_AudioChannels}]"
