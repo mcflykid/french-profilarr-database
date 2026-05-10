@@ -1,0 +1,5 @@
+name: FR - UHD Bluray Tier 02
+conditions:
+  - name: Groupes
+    type: release_title
+    pattern: FR - Regex UHD Bluray Tier 02
