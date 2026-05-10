@@ -1,0 +1,5 @@
+name: FR - WEB Tier 02
+conditions:
+  - name: Groupes
+    type: release_title
+    pattern: FR - Regex WEB Tier 02
