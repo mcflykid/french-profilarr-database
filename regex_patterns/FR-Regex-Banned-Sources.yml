@@ -1,0 +1,2 @@
+name: FR - Regex Banned Sources
+pattern: \b(CAM|HD[ \-]?CAM|TS|HD[ \-]?TS|TELESYNC|PDVD|SCR|SCREENER|DVDSCR|DDC|MD)\b
