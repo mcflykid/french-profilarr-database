@@ -1,0 +1,5 @@
+name: FR - HD Bluray Tier 01
+conditions:
+  - name: Groupes
+    type: release_title
+    pattern: FR - Regex HD Bluray Tier 01
