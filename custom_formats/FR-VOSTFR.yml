@@ -1,0 +1,6 @@
+name: FR - VOSTFR
+description: Identifie les releases sous-titrées FR sans piste audio FR.
+conditions:
+  - name: VOSTFR
+    type: release_title
+    pattern: FR - Regex VOSTFR
