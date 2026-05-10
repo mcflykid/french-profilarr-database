@@ -1,6 +1,6 @@
 radarr:
-  propersRepacks: doNotPrefer
+  propersRepacks: preferAndUpgrade
   enableMediaInfo: true
 sonarr:
-  propersRepacks: doNotPrefer
+  propersRepacks: preferAndUpgrade
   enableMediaInfo: true
