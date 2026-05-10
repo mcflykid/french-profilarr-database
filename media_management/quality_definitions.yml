@@ -1,0 +1,101 @@
+radarr:
+  type: movie
+  Bluray-2160p:
+    min: 0
+    max: 400
+    preferred: 250
+  Remux-2160p:
+    min: 0
+    max: 400
+    preferred: 350
+  WEBDL-2160p:
+    min: 0
+    max: 400
+    preferred: 150
+  WEBRip-2160p:
+    min: 0
+    max: 400
+    preferred: 150
+  Bluray-1080p:
+    min: 0
+    max: 150
+    preferred: 80
+  Remux-1080p:
+    min: 0
+    max: 200
+    preferred: 120
+  WEBDL-1080p:
+    min: 0
+    max: 150
+    preferred: 60
+  WEBRip-1080p:
+    min: 0
+    max: 150
+    preferred: 60
+  Bluray-720p:
+    min: 0
+    max: 100
+    preferred: 40
+  WEBDL-720p:
+    min: 0
+    max: 100
+    preferred: 30
+  WEBRip-720p:
+    min: 0
+    max: 100
+    preferred: 30
+
+sonarr:
+  type: series
+  Bluray-2160p:
+    min: 0
+    max: 400
+    preferred: 250
+  Bluray-2160p Remux:
+    min: 0
+    max: 400
+    preferred: 350
+  WEBDL-2160p:
+    min: 0
+    max: 400
+    preferred: 150
+  WEBRip-2160p:
+    min: 0
+    max: 400
+    preferred: 150
+  Bluray-1080p:
+    min: 0
+    max: 150
+    preferred: 80
+  Bluray-1080p Remux:
+    min: 0
+    max: 200
+    preferred: 120
+  WEBDL-1080p:
+    min: 0
+    max: 150
+    preferred: 60
+  WEBRip-1080p:
+    min: 0
+    max: 150
+    preferred: 60
+  HDTV-1080p:
+    min: 0
+    max: 150
+    preferred: 50
+  Bluray-720p:
+    min: 0
+    max: 100
+    preferred: 40
+  WEBDL-720p:
+    min: 0
+    max: 100
+    preferred: 30
+  WEBRip-720p:
+    min: 0
+    max: 100
+    preferred: 30
+  HDTV-720p:
+    min: 0
+    max: 100
+    preferred: 30
