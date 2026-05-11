@@ -1,5 +1,10 @@
 name: TrueHD Atmos
+description: Identifie le format TrueHD Atmos.
+tags: []
 conditions:
-  - name: Audio
+  - name: TrueHD Atmos
     type: release_title
-    pattern: TrueHD Atmos Regex
+    negate: false
+    required: false
+    regex: TrueHD Atmos Regex
+tests: []
