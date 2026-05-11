@@ -1,4 +1,4 @@
-name: FR - Regex HD Bluray Tier 01
+name: FR - Tier 01
 description: Détecte les teams de Tier 1 (Elite) d'après la charte
 pattern: \b(TFA|FW|FORWARD|THESYNDICATE|TyHD|Slay3R|AMEN|BOUBA|BOUC|OZEF|QTZ|GKS|KAAZA|TayTO|M@x|B@tman)\b
 tests: []
