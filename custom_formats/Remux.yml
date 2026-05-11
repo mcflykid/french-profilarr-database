@@ -1,0 +1,5 @@
+name: Remux
+conditions:
+  - name: Source
+    type: release_title
+    pattern: Remux Regex
