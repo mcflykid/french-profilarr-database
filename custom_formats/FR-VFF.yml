@@ -1,6 +1,10 @@
 name: FR - VFF
-description: Identifie les releases avec vraie VF uniquement.
+description: Identifie les releases VFF uniques.
+tags: []
 conditions:
   - name: VFF
     type: release_title
-    pattern: FR - Regex VFF
+    negate: false
+    required: false
+    regex: FR - Regex VFF
+tests: []
