@@ -1,5 +1,10 @@
 name: x264 (2160p)
+description: Cible le codec x264 utilisé en résolution 4K UHD.
+tags: []
 conditions:
-  - name: Codec et Res
+  - name: x264 4K
     type: release_title
-    pattern: x264 4K Regex
+    negate: false
+    required: false
+    regex: x264 4K Regex
+tests: []
