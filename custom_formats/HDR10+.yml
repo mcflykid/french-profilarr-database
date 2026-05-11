@@ -1,0 +1,5 @@
+name: HDR10+
+conditions:
+  - name: HDR
+    type: release_title
+    pattern: HDR10+ Regex
