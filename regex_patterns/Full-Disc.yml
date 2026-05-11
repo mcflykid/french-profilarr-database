@@ -1,2 +1,4 @@
 name: Full Disc Regex
+description: Détecte les structures de disques complètes (ISO/BDMV)
 pattern: \b(ISO|BDMV|VIDEO_TS)\b
+tests: []
