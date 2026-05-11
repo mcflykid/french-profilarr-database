@@ -1,6 +1,10 @@
 name: FR - VF2
-description: Identifie les releases contenant VFF et VFQ (sans piste originale).
+description: Identifie les releases VF2 uniques.
+tags: []
 conditions:
   - name: VF2
     type: release_title
-    pattern: FR - Regex VF2
+    negate: false
+    required: false
+    regex: FR - Regex VF2
+tests: []
