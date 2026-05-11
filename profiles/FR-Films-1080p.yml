@@ -19,30 +19,34 @@ custom_formats:
 - name: FR - VOSTFR
   score: 10000
 
-# === L'interdiction globale ===
+# === Groupes FR ===
+- name: FR - HD Bluray Tier 01
+  score: 1800
+- name: FR - HD Bluray Tier 02
+  score: 1750
+- name: FR - WEB Tier 01
+  score: 1700
+- name: FR - WEB Tier 02
+  score: 1650
+- name: FR - WEB Tier 03
+  score: 1600
+- name: FR - Scene Groups
+  score: 1500
+
+# === REPACKS ===
+- name: Repack3
+  score: 8
+- name: Repack2
+  score: 7
+- name: Repack1
+  score: 6
+
+# === Blockers Globaux ===
 - name: FR - Blockers (Sources/Teams/Encodes)
   score: -999999
-
-# === Source + Résolution ===
-- name: 1080p Bluray
-  score: 300000
-- name: 1080p WEB-DL
-  score: 295000
-- name: 1080p WEBRip
-  score: 280000
-
-# === Codec (Priorité compatibilité, x265 pénalisé) ===
-- name: x265
-  score: -2000
-- name: h265
-  score: -2000
-
-# === Blockers de base TRaSH ===
 - name: Remux
   score: -999999
 - name: Full Disc
-  score: -999999
-- name: Lossless Audio
   score: -999999
 
 qualities:
