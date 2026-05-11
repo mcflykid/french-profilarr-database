@@ -68,6 +68,8 @@ custom_formats:
   score: -999999
 - name: x264 (2160p)
   score: -999999
+- name: AV1
+  score: -999999
 
 qualities:
 - id: -4
