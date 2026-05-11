@@ -6,5 +6,5 @@ conditions:
     type: release_title
     negate: false
     required: false
-    regex: FR - Regex VOSTFR
+    pattern: FR - Regex VOSTFR
 tests: []
