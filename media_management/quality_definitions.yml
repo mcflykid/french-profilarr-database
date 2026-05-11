@@ -1,99 +1,99 @@
 qualityDefinitions:
   radarr:
-    Bluray-2160p:
-      min: 0
-      max: 400
-      preferred: 250
-    Remux-2160p:
-      min: 0
-      max: 400
-      preferred: 350
-    WEBDL-2160p:
-      min: 0
-      max: 400
-      preferred: 150
-    WEBRip-2160p:
-      min: 0
-      max: 400
-      preferred: 150
     Bluray-1080p:
-      min: 0
       max: 150
+      min: 0
       preferred: 80
-    Remux-1080p:
+    Bluray-2160p:
+      max: 400
       min: 0
-      max: 200
-      preferred: 120
-    WEBDL-1080p:
-      min: 0
-      max: 150
-      preferred: 60
-    WEBRip-1080p:
-      min: 0
-      max: 150
-      preferred: 60
+      preferred: 250
     Bluray-720p:
-      min: 0
       max: 100
+      min: 0
       preferred: 40
+    Remux-1080p:
+      max: 200
+      min: 0
+      preferred: 120
+    Remux-2160p:
+      max: 400
+      min: 0
+      preferred: 350
+    WEBDL-1080p:
+      max: 150
+      min: 0
+      preferred: 60
+    WEBDL-2160p:
+      max: 400
+      min: 0
+      preferred: 150
     WEBDL-720p:
-      min: 0
       max: 100
+      min: 0
       preferred: 30
-    WEBRip-720p:
+    WEBRip-1080p:
+      max: 150
       min: 0
+      preferred: 60
+    WEBRip-2160p:
+      max: 400
+      min: 0
+      preferred: 150
+    WEBRip-720p:
       max: 100
+      min: 0
       preferred: 30
   sonarr:
-    Bluray-2160p:
-      min: 0
-      max: 400
-      preferred: 250
-    Bluray-2160p Remux:
-      min: 0
-      max: 400
-      preferred: 350
-    WEBDL-2160p:
-      min: 0
-      max: 400
-      preferred: 150
-    WEBRip-2160p:
-      min: 0
-      max: 400
-      preferred: 150
     Bluray-1080p:
-      min: 0
       max: 150
+      min: 0
       preferred: 80
     Bluray-1080p Remux:
-      min: 0
       max: 200
+      min: 0
       preferred: 120
-    WEBDL-1080p:
+    Bluray-2160p:
+      max: 400
       min: 0
-      max: 150
-      preferred: 60
-    WEBRip-1080p:
+      preferred: 250
+    Bluray-2160p Remux:
+      max: 400
       min: 0
-      max: 150
-      preferred: 60
-    HDTV-1080p:
-      min: 0
-      max: 150
-      preferred: 50
+      preferred: 350
     Bluray-720p:
-      min: 0
       max: 100
+      min: 0
       preferred: 40
-    WEBDL-720p:
+    HDTV-1080p:
+      max: 150
       min: 0
-      max: 100
-      preferred: 30
-    WEBRip-720p:
-      min: 0
-      max: 100
-      preferred: 30
+      preferred: 50
     HDTV-720p:
-      min: 0
       max: 100
+      min: 0
+      preferred: 30
+    WEBDL-1080p:
+      max: 150
+      min: 0
+      preferred: 60
+    WEBDL-2160p:
+      max: 400
+      min: 0
+      preferred: 150
+    WEBDL-720p:
+      max: 100
+      min: 0
+      preferred: 30
+    WEBRip-1080p:
+      max: 150
+      min: 0
+      preferred: 60
+    WEBRip-2160p:
+      max: 400
+      min: 0
+      preferred: 150
+    WEBRip-720p:
+      max: 100
+      min: 0
       preferred: 30
