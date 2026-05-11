@@ -1,2 +1,4 @@
 name: TrueHD Regex
+description: Détecte la présence de Dolby TrueHD classique
 pattern: \b(TrueHD)\b
+tests: []
