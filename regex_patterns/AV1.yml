@@ -1,2 +1,4 @@
 name: AV1 Regex
+description: Détecte le codec AV1
 pattern: \b(AV1)\b
+tests: []
