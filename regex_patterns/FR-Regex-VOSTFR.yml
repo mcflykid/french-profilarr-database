@@ -1,2 +1,4 @@
 name: FR - Regex VOSTFR
-pattern: \b(VOSTFR|VOST)\b
+description: Détecte le tag VOSTFR ou Subfrench
+pattern: \b(VOSTFR|SUBFRENCH)\b
+tests: []
