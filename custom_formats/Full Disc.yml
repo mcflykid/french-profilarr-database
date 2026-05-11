@@ -1,5 +1,10 @@
 name: Full Disc
+description: Identifie les structures de disques complètes à bannir.
+tags: []
 conditions:
-  - name: Source
+  - name: Full Disc
     type: release_title
-    pattern: Full Disc Regex
+    negate: false
+    required: false
+    regex: Full Disc Regex
+tests: []
