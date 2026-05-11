@@ -1,2 +1,4 @@
 name: Dolby Vision Regex
+description: Détecte la présence de Dolby Vision (DV/DoVi)
 pattern: \b(DV|DoVi|Dolby[ ._-]?Vision)\b
+tests: []
