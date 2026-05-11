@@ -1,2 +1,4 @@
 name: Repack1 Regex
+description: Détecte les corrections de niveau 1 (Repack, Proper, V2)
 pattern: \b(PROPER|REAL[ ._-]?PROPER|REPACK|FIX|RERIP|V2)\b
+tests: []
