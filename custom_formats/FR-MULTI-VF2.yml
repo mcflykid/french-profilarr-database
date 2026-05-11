@@ -1,9 +1,15 @@
 name: FR - MULTI.VF2
-description: Identifie les releases avec piste originale et les deux pistes FR (VFF + VFQ).
+description: Identifie les releases MULTI avec piste VF2.
+tags: []
 conditions:
   - name: MULTI
     type: release_title
-    pattern: FR - Regex MULTI
+    negate: false
+    required: true
+    regex: FR - Regex MULTI
   - name: VF2
     type: release_title
-    pattern: FR - Regex VF2
+    negate: false
+    required: true
+    regex: FR - Regex VF2
+tests: []
