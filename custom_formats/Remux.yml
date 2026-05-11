@@ -1,5 +1,10 @@
 name: Remux
+description: Identifie et cible les versions Remux.
+tags: []
 conditions:
-  - name: Source
+  - name: Remux
     type: release_title
-    pattern: Remux Regex
+    negate: false
+    required: false
+    regex: Remux Regex
+tests: []
