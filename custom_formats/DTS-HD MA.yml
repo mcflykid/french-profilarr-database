@@ -1,0 +1,5 @@
+name: DTS-HD MA
+conditions:
+  - name: Audio
+    type: release_title
+    pattern: DTS-HD MA Regex
