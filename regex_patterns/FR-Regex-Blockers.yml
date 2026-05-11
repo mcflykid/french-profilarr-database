@@ -1,1 +1,4 @@
-a remplir
+name: FR - Regex Blockers
+description: Détecte les groupes bannis de la charte
+pattern: \b(k0RE|Firesoul64|Wawacity)\b
+tests: []
