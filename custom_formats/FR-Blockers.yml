@@ -6,5 +6,5 @@ conditions:
     type: release_title
     negate: false
     required: false
-    regex: FR - Regex Blockers
+    pattern: FR - Regex Blockers
 tests: []
