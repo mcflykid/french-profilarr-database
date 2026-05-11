@@ -1,0 +1,5 @@
+name: Dolby Vision
+conditions:
+  - name: HDR
+    type: release_title
+    pattern: Dolby Vision Regex
