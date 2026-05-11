@@ -1,5 +1,10 @@
 name: DTS-HD MA
+description: Identifie le format DTS-HD Master Audio.
+tags: []
 conditions:
-  - name: Audio
+  - name: DTS-HD MA
     type: release_title
-    pattern: DTS-HD MA Regex
+    negate: false
+    required: false
+    regex: DTS-HD MA Regex
+tests: []
