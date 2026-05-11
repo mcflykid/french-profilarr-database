@@ -1,0 +1,2 @@
+name: x264 4K Regex
+pattern: \b(x264|h264|AVC)\b.*\b(2160p|4K|UHD)\b|\b(2160p|4K|UHD)\b.*\b(x264|h264|AVC)\b
