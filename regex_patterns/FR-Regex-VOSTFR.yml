@@ -1,4 +1,4 @@
-name: FR - Regex VOSTFR
+name: FR-Regex-VOSTFR
 description: Détecte le tag VOSTFR ou Subfrench
 pattern: \b(VOSTFR|SUBFRENCH)\b
 tests: []
