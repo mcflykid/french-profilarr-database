@@ -6,5 +6,5 @@ conditions:
     type: release_title
     negate: false
     required: false
-    regex: Remux Regex
+    pattern: Remux Regex
 tests: []
