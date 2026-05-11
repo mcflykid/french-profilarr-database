@@ -1,2 +1,4 @@
 name: HDR10 Regex
+description: Détecte la présence de HDR10 standard
 pattern: \b(HDR10)\b
+tests: []
