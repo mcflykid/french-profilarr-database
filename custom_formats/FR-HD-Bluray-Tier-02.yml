@@ -1,5 +1,10 @@
 name: FR - HD Bluray Tier 02
+description: Applique un score bonus aux groupes d'encodage de Tier 1.
+tags: []
 conditions:
-  - name: Groupes
+  - name: Tier 01
     type: release_title
+    negate: false
+    required: false
     pattern: FR - Regex HD Bluray Tier 02
+tests: []
