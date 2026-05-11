@@ -6,5 +6,5 @@ conditions:
     type: release_title
     negate: false
     required: false
-    regex: Repack1 Regex
+    pattern: Repack1 Regex
 tests: []
