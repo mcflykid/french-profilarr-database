@@ -1,2 +1,4 @@
 name: Remux Regex
+description: Détecte les versions Remux (Source intacte)
 pattern: \b(Remux)\b
+tests: []
