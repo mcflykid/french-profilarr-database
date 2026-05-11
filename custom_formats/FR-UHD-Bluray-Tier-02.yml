@@ -1,5 +1,10 @@
 name: FR - UHD Bluray Tier 02
+description: Applique un score bonus aux groupes d'encodage de Tier 2.
+tags: []
 conditions:
-  - name: Groupes
+  - name: Tier 02
     type: release_title
-    pattern: FR - Regex UHD Bluray Tier 02
+    negate: false
+    required: false
+    regex: FR - Regex UHD Bluray Tier 02
+tests: []
