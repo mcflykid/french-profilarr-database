@@ -1,6 +1,10 @@
 name: FR - VOSTFR
-description: Identifie les releases sous-titrées FR sans piste audio FR.
+description: Identifie les releases en version originale sous-titrée française.
+tags: []
 conditions:
   - name: VOSTFR
     type: release_title
-    pattern: FR - Regex VOSTFR
+    negate: false
+    required: false
+    regex: FR - Regex VOSTFR
+tests: []
