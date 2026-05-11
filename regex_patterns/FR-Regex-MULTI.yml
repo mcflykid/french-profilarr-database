@@ -1,2 +1,4 @@
 name: FR - Regex MULTI
+description: Détecte le tag MULTI dans les titres
 pattern: \b(MULTI)\b
+tests: []
