@@ -1,4 +1,4 @@
-name: FR - Regex VFF
+name: FR-Regex-VFF
 description: Détecte le tag VFF ou TrueFrench
 pattern: \b(VFF|TRUEFRENCH)\b
 tests: []
