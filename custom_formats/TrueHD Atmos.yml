@@ -6,5 +6,5 @@ conditions:
     type: release_title
     negate: false
     required: false
-    regex: TrueHD Atmos Regex
+    pattern: TrueHD Atmos Regex
 tests: []
