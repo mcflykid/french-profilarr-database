@@ -1,0 +1,5 @@
+name: DTS:X
+conditions:
+  - name: Audio
+    type: release_title
+    pattern: DTS-X Regex
