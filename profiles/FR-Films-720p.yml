@@ -40,6 +40,8 @@ custom_formats:
   score: -999999
 - name: Remux
   score: -999999
+- name: AV1
+  score: -999999
 
 qualities:
 - id: -2
