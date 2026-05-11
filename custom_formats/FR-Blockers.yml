@@ -1,18 +1,10 @@
 name: FR - Blockers (Sources/Teams/Encodes)
-description: Bloque globalement les mauvaises sources, teams bannies, VFQ et mauvais encodages pour les trackers FR.
+description: Formats et teams d'encodages médiocres à bloquer.
+tags: []
 conditions:
-  - name: Sources
+  - name: Blockers
     type: release_title
-    pattern: FR - Regex Banned Sources
-  - name: Encodes
-    type: release_title
-    pattern: FR - Regex Banned Encodes
-  - name: Subs
-    type: release_title
-    pattern: FR - Regex Banned Subs
-  - name: Teams
-    type: release_title
-    pattern: FR - Regex Banned Teams
-  - name: VFQ
-    type: release_title
-    pattern: FR - Regex VFQ
+    negate: false
+    required: false
+    regex: FR - Regex Blockers
+tests: []
