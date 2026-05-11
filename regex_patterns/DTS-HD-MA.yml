@@ -1,0 +1,2 @@
+name: DTS-HD MA Regex
+pattern: \b(DTS[ ._-]?HD([ ._-]?MA)?)\b
