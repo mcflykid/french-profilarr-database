@@ -6,5 +6,5 @@ conditions:
     type: release_title
     negate: false
     required: false
-    regex: DTS-X Regex
+    pattern: DTS-X Regex
 tests: []
