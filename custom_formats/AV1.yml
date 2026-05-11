@@ -6,5 +6,5 @@ conditions:
     type: release_title
     negate: false
     required: false
-    regex: AV1 Regex
+    pattern: AV1 Regex
 tests: []
