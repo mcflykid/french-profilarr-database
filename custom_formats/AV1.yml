@@ -1,5 +1,10 @@
 name: AV1
+description: Identifie le codec vidéo AV1 à bloquer.
+tags: []
 conditions:
-  - name: Codec
+  - name: AV1
     type: release_title
-    pattern: AV1 Regex
+    negate: false
+    required: false
+    regex: AV1 Regex
+tests: []
