@@ -1,5 +1,10 @@
 name: Repack1
+description: Identifie les corrections de type Repack ou Proper.
+tags: []
 conditions:
-  - name: Repack
+  - name: Repack1
     type: release_title
-    pattern: Repack1 Regex
+    negate: false
+    required: false
+    regex: Repack1 Regex
+tests: []
