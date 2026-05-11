@@ -1,0 +1,2 @@
+name: Full Disc Regex
+pattern: \b(ISO|BDMV|VIDEO_TS)\b
