@@ -6,5 +6,5 @@ conditions:
     type: release_title
     negate: false
     required: false
-    pattern: FR - Regex VF2
+    pattern: FR-Regex-VF2
 tests: []
