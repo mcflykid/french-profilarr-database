@@ -1,4 +1,0 @@
-name: FR - Regex WEB Tier 03
-description: Détecte les teams de Tier 3 (Qualité et Scène) d'après la charte
-pattern: \b(NOGRP|NOTAG)\b
-tests: []
