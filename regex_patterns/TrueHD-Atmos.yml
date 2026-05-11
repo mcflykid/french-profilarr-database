@@ -1,2 +1,4 @@
 name: TrueHD Atmos Regex
+description: Détecte la présence de Dolby TrueHD Atmos
 pattern: \b(TrueHD[ ._-]?Atmos|Atmos[ ._-]?TrueHD)\b
+tests: []
