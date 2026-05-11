@@ -8,21 +8,21 @@ upgradeUntilScore: 888888
 minScoreIncrement: 1
 custom_formats:
 # === Langue ===
-- name: FR - MULTI.VF2
+- name: FR-MULTI-VF2
   score: 60000
-- name: FR - MULTI.VFF
+- name: FR-MULTI-VFF
   score: 50000
-- name: FR - VF2
+- name: FR-VF2
   score: 40000
-- name: FR - VFF
+- name: FR-VFF
   score: 30000
-- name: FR - VOSTFR
+- name: FR-VOSTFR
   score: 10000
 
 # === Groupes FR ===
-- name: FR - Tier 01
+- name: FR-Tier-01
   score: 1800
-- name: FR - Tier 02
+- name: FR-Tier-02
   score: 1700
 
 # === REPACKS ===
@@ -34,7 +34,7 @@ custom_formats:
   score: 6
 
 # === Blockers Globaux ===
-- name: FR - Blockers (Sources/Teams/Encodes)
+- name: FR-Blockers
   score: -999999
 - name: Remux
   score: -999999
