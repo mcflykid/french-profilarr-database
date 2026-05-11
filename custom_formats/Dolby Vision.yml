@@ -1,5 +1,10 @@
 name: Dolby Vision
+description: Identifie les releases encodées en Dolby Vision.
+tags: []
 conditions:
-  - name: HDR
+  - name: Dolby Vision
     type: release_title
-    pattern: Dolby Vision Regex
+    negate: false
+    required: false
+    regex: Dolby Vision Regex
+tests: []
