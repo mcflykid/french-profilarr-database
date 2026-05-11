@@ -6,10 +6,10 @@ conditions:
     type: release_title
     negate: false
     required: true
-    regex: FR - Regex MULTI
+    pattern: FR - Regex MULTI
   - name: VF2
     type: release_title
     negate: false
     required: true
-    regex: FR - Regex VF2
+    pattern: FR - Regex VF2
 tests: []
