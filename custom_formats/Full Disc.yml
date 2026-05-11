@@ -1,0 +1,5 @@
+name: Full Disc
+conditions:
+  - name: Source
+    type: release_title
+    pattern: Full Disc Regex
