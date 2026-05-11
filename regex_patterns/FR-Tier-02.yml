@@ -1,4 +1,4 @@
-name: FR - Regex HD Bluray Tier 02
+name: FR - Tier 02
 description: Détecte les teams de Tier 2 (Qualité et Scène) d'après la charte
 pattern: \b(ENIGMA|NEOSTARK|HYPERION|TOXIC|N3ZUKO|J4CK|Maxadonf|D4RK|R3MIX|Themouche|SUPERFLU|TLC|LKT|ZTM|TMB|TSR|COCAIN|ATE|LOST|PRESTiGE|GORE|MULTiPLY|VENUE|DREAM|UTT|AJP)\b
 tests: []
