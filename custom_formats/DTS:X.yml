@@ -1,5 +1,10 @@
 name: DTS:X
+description: Identifie le format DTS:X.
+tags: []
 conditions:
-  - name: Audio
+  - name: DTS:X
     type: release_title
-    pattern: DTS-X Regex
+    negate: false
+    required: false
+    regex: DTS-X Regex
+tests: []
