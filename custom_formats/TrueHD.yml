@@ -1,5 +1,10 @@
 name: TrueHD
+description: Identifie le format TrueHD classique.
+tags: []
 conditions:
-  - name: Audio
+  - name: TrueHD
     type: release_title
-    pattern: TrueHD Regex
+    negate: false
+    required: false
+    regex: TrueHD Regex
+tests: []
