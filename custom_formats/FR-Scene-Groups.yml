@@ -1,5 +1,0 @@
-name: FR - Scene Groups
-conditions:
-  - name: Groupes
-    type: release_title
-    pattern: FR - Regex Scene
