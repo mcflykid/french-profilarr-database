@@ -1,2 +1,4 @@
 name: Repack3 Regex
+description: Détecte les corrections de niveau 3 (V4)
 pattern: \b(PROPER[ ._-]?3|REPACK[ ._-]?3|RERIP[ ._-]?3|V4)\b
+tests: []
