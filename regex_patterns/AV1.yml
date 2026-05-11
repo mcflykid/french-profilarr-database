@@ -1,0 +1,2 @@
+name: AV1 Regex
+pattern: \b(AV1)\b
