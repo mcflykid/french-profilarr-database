@@ -1,0 +1,5 @@
+name: TrueHD
+conditions:
+  - name: Audio
+    type: release_title
+    pattern: TrueHD Regex
