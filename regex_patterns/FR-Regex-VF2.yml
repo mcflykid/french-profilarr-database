@@ -1,2 +1,4 @@
 name: FR - Regex VF2
-pattern: \b(VF2)\b
+description: Détecte le tag VF2 ou VFQ
+pattern: \b(VF2|VFQ)\b
+tests: []
