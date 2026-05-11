@@ -1,2 +1,4 @@
 name: DTS-X Regex
+description: Détecte la présence de DTS:X
 pattern: \b(DTS[ ._-]?X)\b
+tests: []
