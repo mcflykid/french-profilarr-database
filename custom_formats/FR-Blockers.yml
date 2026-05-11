@@ -1,4 +1,4 @@
-name: FR - Blockers (Sources/Teams/Encodes)
+name: FR-Blockers
 description: Formats et teams d'encodages médiocres à bloquer.
 tags: []
 conditions:
@@ -6,5 +6,5 @@ conditions:
     type: release_title
     negate: false
     required: false
-    pattern: FR - Regex Blockers
+    pattern: FR-Regex-Blockers
 tests: []
