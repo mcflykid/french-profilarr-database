@@ -1,0 +1,2 @@
+name: DTS-X Regex
+pattern: \b(DTS[ ._-]?X)\b
