@@ -6,7 +6,7 @@ conditions:
     type: release_title
     negate: false
     required: true
-    pattern: FR - Regex MULTI
+    pattern: FR-Regex-MULTI
   - name: VF2
     type: release_title
     negate: false
