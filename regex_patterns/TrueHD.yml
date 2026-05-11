@@ -1,0 +1,2 @@
+name: TrueHD Regex
+pattern: \b(TrueHD)\b
