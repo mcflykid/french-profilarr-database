@@ -6,5 +6,5 @@ conditions:
     type: release_title
     negate: false
     required: false
-    regex: DTS-HD MA Regex
+    pattern: DTS-HD MA Regex
 tests: []
