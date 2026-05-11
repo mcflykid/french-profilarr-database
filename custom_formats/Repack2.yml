@@ -1,5 +1,10 @@
 name: Repack2
+description: Identifie les corrections de type V3.
+tags: []
 conditions:
-  - name: Repack
+  - name: Repack2
     type: release_title
-    pattern: Repack2 Regex
+    negate: false
+    required: false
+    regex: Repack2 Regex
+tests: []
