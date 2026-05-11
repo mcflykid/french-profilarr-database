@@ -1,0 +1,5 @@
+name: AV1
+conditions:
+  - name: Codec
+    type: release_title
+    pattern: AV1 Regex
