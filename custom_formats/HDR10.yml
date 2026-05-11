@@ -1,5 +1,10 @@
 name: HDR10
+description: Identifie les releases encodées en HDR10 standard.
+tags: []
 conditions:
-  - name: HDR
+  - name: HDR10
     type: release_title
-    pattern: HDR10 Regex
+    negate: false
+    required: false
+    regex: HDR10 Regex
+tests: []
