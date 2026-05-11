@@ -6,5 +6,5 @@ conditions:
     type: release_title
     negate: false
     required: false
-    regex: x264 4K Regex
+    pattern: x264 4K Regex
 tests: []
