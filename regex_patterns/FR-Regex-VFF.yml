@@ -1,2 +1,4 @@
 name: FR - Regex VFF
-pattern: \b(VFF|VOF|TRUEFRENCH|VFI|VFB)\b
+description: Détecte le tag VFF ou TrueFrench
+pattern: \b(VFF|TRUEFRENCH)\b
+tests: []
