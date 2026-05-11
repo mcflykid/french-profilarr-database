@@ -1,2 +1,4 @@
 name: DTS-HD MA Regex
+description: Détecte la présence de DTS-HD Master Audio
 pattern: \b(DTS[ ._-]?HD([ ._-]?MA)?)\b
+tests: []
