@@ -1,36 +1,15 @@
-# ============================================================================
-# Format personnalisé — VF2 / VFQ seul
-# ----------------------------------------------------------------------------
-# Détecte VF2 ou VFQ sans exiger MULTI. Peut matcher des releases Québec ou
-# double VF selon le naming ; combiner avec les scores du profil pour la politique VFQ.
-# ============================================================================
 name: FR-VF2
-description: >
-  Release avec VF2 ou VFQ dans le titre (sans condition MULTI ici). À utiliser avec les scores du
-  profil pour favoriser ou limiter la VFQ selon votre politique (France vs Québec).
+description: Détecte la présence d'un tag VF2, VFQ ou VOQ dans le titre, sans exiger MULTI.
+  Couvre les doublages québécois (VFQ, VOQ ex. releases QTZ) ou « second doublage français »
+  (VF2). À combiner avec les scores de profil pour ajuster la politique VFQ/VOQ selon
+  la cible (France vs Québec).
 tags:
-  - Language
-  - French
-  - Scene-FR
-# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
-# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
+- Language
+- French
 conditions:
-  - name: VF2
-    type: release_title
-    negate: false
-    required: false
-    pattern: FR-Regex-VF2
-# Tests : titres factices au format v1 (`id`, `input`, `expected`).
-tests:
-  - id: 1
-    input: Film.Quebec.2020.VF2.WEBRip.1080p.AAC2.0.x264-TayTO
-    expected: true
-  - id: 2
-    input: Emission.S05E10.VFQ.HDTV.1080p.MPEG2-TSR
-    expected: true
-  - id: 3
-    input: Film.2017.VFF.BluRay.1080p.DTS-HD.MA.5.1.x264-TFA
-    expected: false
-  - id: 4
-    input: Film.2025.MULTI.VFF.2160p.UHD.BluRay.x265-GKS
-    expected: false
+- name: VF2
+  negate: false
+  pattern: FR-Regex-VF2
+  required: true
+  type: release_title
+tests: []

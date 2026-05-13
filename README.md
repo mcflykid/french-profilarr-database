@@ -1,80 +1,98 @@
 # french-profilarr-database
 
-Configuration **Profilarr v1** (Radarr / Sonarr) orientée **scène FR stricte** pour les usages proches des trackers privés (**C411**, **La Cale**, **Gemini**).
+Configuration **Profilarr v1** (Radarr / Sonarr) orientée **scène FR stricte**
+pour les trackers privés francophones (**C411**, **La Cale**, **Gemini**, **YGGtorrent**).
 
-Ce dépôt centralise :
-- la détection des releases via regex,
-- la logique métier via custom formats,
-- les règles de scoring via profils,
-- les contraintes de gestion média (tailles, naming, options).
+Ce dépôt est un **fork allégé et adapté** de
+[Dictionarry-Hub/database](https://github.com/Dictionarry-Hub/database) :
+- la base technique (audio, codec, HDR, sources, streamers) vient de l'officiel ;
+- la couche métier FR (langue, teams, blockers, repack consolidé) est **propre au projet**
+  et préfixée `FR-` pour bien la distinguer.
 
-L'objectif est d'automatiser la sélection de releases en priorisant :
-1. la **langue FR**,
-2. la **qualité technique utile** (HDR/audio),
-3. la **fiabilité des groupes**,
-4. le **respect des contraintes de poids/compatibilité**.
+Objectif : automatiser la sélection de releases en priorisant dans l'ordre
+1. la **langue FR** (MULTI VF2 > MULTI VFF > VF2 > VFF > VOSTFR),
+2. la **qualité technique utile** (HDR, audio premium, codec efficient),
+3. la **fiabilité des groupes** (teams FR Tier 1 / 2 / 3),
+4. le **respect des contraintes** (compatibilité matériel, charte tracker, seeding).
 
 ---
 
-## Compatibilité importante (Profilarr v1)
+## Convention de nommage : `FR-` = à nous
 
-Ce dépôt est structuré pour **Profilarr v1**.
+| Préfixe | Origine | Exemples |
+|---|---|---|
+| **`FR-*`** | **Propre au projet** — logique métier scène FR | `FR-Regex-VFF`, `FR-Blockers`, `FR-Tier-01`, `FR-Repack` |
+| *autre* | Importé / aligné Dictionarry officiel | `Atmos`, `Dolby Vision`, `x265`, `AAC`, `IMAX` |
 
-- Dans `regex_patterns/`, les tests utilisent le schéma v1 :
-  - `id`
-  - `input`
-  - `expected`
-- Dans `custom_formats/`, utiliser le schéma de test v1 également :
-  - `id`
-  - `input`
-  - `expected`
-  - (des champs supplémentaires calculés par l'UI peuvent exister, par ex. `conditionResults`, `lastRun`, `passes`)
+**Nom de fichier :** chaque `regex_patterns/*.yml` et `custom_formats/*.yml` a un
+stem **identique** au champ YAML `name:` (espaces, `+` et parenthèses inclus) — même
+convention que le dépôt Dictionarry.
 
-Si le schéma est mélangé, l'UI Profilarr peut afficher `Unexpected Error`.
+Si tu modifies un fichier officiel pour l'adapter au marché FR, **renomme-le `FR-...`**
+(fichier **et** `name:`) et mets à jour les références dans les profils / conditions.
+
+---
+
+## Compatibilité Profilarr v1
+
+- Schéma `regex_patterns/*` : `name`, `pattern`, `description`, `tags`, `tests`
+- Schéma `custom_formats/*` : `name`, `description`, `tags`, `conditions`, `tests`
+- Schéma test (les 2 dossiers) : `id`, `input`, `expected` (`tests: []` autorisé)
+- Profils : `name`, `description`, `tags`, `upgradesAllowed`, `minCustomFormatScore`,
+  `upgradeUntilScore`, `minScoreIncrement`, `custom_formats`, `qualities`,
+  `upgrade_until`, `language`
+
+Mélanger les schémas v1 et v2 dans `tests:` peut afficher `Unexpected Error` dans l'UI.
 
 ---
 
 ## Ce qui est strict vs éditorial
 
 ### Strict (à ne pas casser)
-- Schéma des tests `regex_patterns/` : `id`, `input`, `expected`.
-- Schéma des tests `custom_formats/` : `id`, `input`, `expected` (avec éventuels champs UI additionnels).
+- Schéma des tests `regex_patterns/` et `custom_formats/` : `id`, `input`, `expected`.
 - Références valides :
   - `custom_formats.conditions[].pattern` -> `regex_patterns.name`
   - `profiles.custom_formats[].name` -> `custom_formats.name`
-- YAML valide dans tous les dossiers importés (`regex_patterns`, `custom_formats`, `profiles`, `media_management`).
+- YAML valide dans tous les dossiers importés.
+- Hiérarchie langue **strictement décroissante** :
+  `FR-MULTI-VF2 > FR-MULTI-VFF > FR-VF2 > FR-VFF > FR-VOSTFR`.
 
-### Éditorial (modifiable selon votre politique)
-- Listes teams (`FR-Tier-01`, `FR-Tier-02`) et blocklist (`FR-Blockers`).
+### Éditorial (modifiable selon ta politique)
+- Listes teams `FR-Tier-01`, `FR-Tier-02`, `FR-Tier-03` et blocklist `FR-Blockers`.
 - Pondération fine des bonus/malus (hors hiérarchie langue).
-- Choix de compatibilité matériel (ex : malus AV1, exclusion Remux/Full Disc selon profil).
+- Choix de compatibilité matériel (ex : malus AV1, exclusion Remux/Full Disc).
+- Liste des streamers à scorer (NF, AMZN, DSNP, ATVP, etc.).
 
 ---
 
 ## Structure du dépôt
 
-### `regex_patterns/`
-Bibliothèque de motifs regex nommés.
-Chaque fichier contient :
-- `name`
-- `description`
-- `pattern`
-- `tests` (format v1)
+### `regex_patterns/` (64 fichiers)
+Motifs regex nommés. Détectent : langue, codecs, HDR, audio, source, edition,
+teams (FR + patterns internationaux pour traçabilité), repacks, blockers.
 
-Rôle : détecter des éléments dans le titre (langue, codecs, tags, groupes, repacks, etc.).
+Fichiers **propres au projet** (préfixe `FR-`) :
+- `FR-Regex-VFF`, `FR-Regex-VF2`, `FR-Regex-MULTI`, `FR-Regex-VOSTFR`
+- `FR-Regex-Blockers`, `FR-Regex-HDLight`, `FR-Regex-4KLight`, `FR-Regex-Hybrid`
+- `FR-Regex-Streamers-Premium`, `FR-Regex-Streamers-Standard`, `FR-Regex-Atmos-Bundle`
+- `FR-Tier-01`, `FR-Tier-02`, `FR-Tier-03`, `FR-Repack`
 
-### `custom_formats/`
-Règles consommées par Radarr/Sonarr.
-Chaque custom format référence une ou plusieurs regex via le champ `pattern` dans les conditions.
+### `custom_formats/` (59 fichiers)
+Règles consommées par Radarr/Sonarr. Chaque custom format référence une regex
+via `conditions[].pattern`.
 
-Rôle : transformer des détections regex en signaux de scoring exploitables par les profils.
+Custom formats **propres au projet** :
+- Langue : `FR-VFF`, `FR-VF2`, `FR-VOSTFR`, `FR-MULTI-VFF`, `FR-MULTI-VF2`
+- Scène : `FR-Blockers`, `FR-Tier-01`, `FR-Tier-02`, `FR-Tier-03`, `FR-Repack`,
+  `FR-HDLight`, `FR-4KLight`, `FR-Hybrid`, `FR-Streamer-Premium`, `FR-Streamer-Standard`
 
-### `profiles/`
-Profils FR films/séries (720p / 1080p / 4K / Any).
-Rôle : hiérarchiser le score final (langue > qualité > teams > repacks > exclusions).
+### `profiles/` (7 fichiers)
+Profils FR films/séries — **tous préfixés `FR-`** :
+- `FR-Films-720p`, `FR-Films-1080p`, `FR-Films-4K`, `FR-Films-Any`
+- `FR-Series-720p`, `FR-Series-1080p`, `FR-Series-4K`
 
 ### `media_management/`
-- `quality_definitions.yml` : bornes min/max/preferred par qualité
+- `quality_definitions.yml` : bornes min/max/preferred (Radarr max ≤ 2000, Sonarr max ≤ 1000)
 - `naming.yml` : templates de nommage
 - `misc.yml` : options techniques annexes
 
@@ -82,86 +100,93 @@ Rôle : hiérarchiser le score final (langue > qualité > teams > repacks > excl
 
 ## Philosophie de scoring
 
-### Priorité linguistique
-L'ordre logique est :
-- `FR-MULTI-VF2`
-- `FR-MULTI-VFF`
-- `FR-VF2`
-- `FR-VFF`
-- `FR-VOSTFR`
+### Hiérarchie langue (priorité absolue)
+| Custom Format | Score |
+|---|---|
+| `FR-MULTI-VF2` | 100000 |
+| `FR-MULTI-VFF` | 90000 |
+| `FR-VF2` | 70000 |
+| `FR-VFF` | 60000 |
+| `FR-VOSTFR` | 20000 (= `minCustomFormatScore`) |
 
-Les écarts de score sont volontaires pour empêcher qu'un bonus secondaire (team/HDR/repack) dépasse la langue.
+Les écarts sont **volontairement grands** pour qu'aucun bonus secondaire
+(team, HDR, audio, repack) ne fasse basculer la priorité linguistique.
 
-### Teams FR
-- `FR-Tier-01` : bonus plus élevé
-- `FR-Tier-02` : bonus légèrement inférieur
+### Teams FR (scores types dans les profils films/séries)
+- `FR-Tier-01` : +2000
+- `FR-Tier-02` : +1500
+- `FR-Tier-03` : +1000
 
-But : départager des releases de langue équivalente.
+### Bonus techniques (variable selon profil)
+- HDR : Dolby Vision > HDR10+ > HDR10 > HDR (poids fort en 4K, modéré en 1080p)
+- Audio premium : Atmos / TrueHD / DTS-X / DTS-HD MA / DTS-HD HRA / DTS-ES /
+  Dolby Digital + / Dolby Digital / FLAC / PCM / Opus / AAC
+- Codec : x265 / h265 (+), VP9 / Xvid (-)
+- Édition : IMAX / IMAX Enhanced / Theatrical / Special Edition
+- Source 4K : UHD Bluray / UHD Bluray (Efficient)
+- Streamers : `FR-Streamer-Premium` (Netflix, Prime, Disney+, Apple TV+, HBO Max/Max, Paramount+)
+  et `FR-Streamer-Standard` (NOW, Crunchyroll, iTunes WEB)
+- Séries : Season Pack, Extras, TV Extras
+- `FR-Repack` : bonus unique pour releases corrigées (PROPER / REPACK / RERIP / REAL)
 
-### Technique (4K)
-Sur profils 4K, bonus dédiés :
-- Dolby Vision / HDR10+ / HDR10
-- TrueHD Atmos / DTS:X / TrueHD / DTS-HD MA
+### Exclusions fortes (score -999999)
+- `FR-Blockers` (groupes bannis, NVENC/QSV/AMF, incohérences codec)
+- `AV1` (compatibilité matériel)
+- `Upscale` / `Upscaled` (faux upscales / IA)
+- `Remux`, `Full Disc` (sauf `FR-Films-Any`)
+- `x264 (2160p)` (4K uniquement, incohérence charte C411)
 
-### Exclusions
-Selon les profils, exclusions fortes via score très négatif :
-- `FR-Blockers`
-- `Remux`
-- `Full Disc`
-- `x264 (2160p)`
-- `AV1`
-
-> Note : le blocage AV1 est un choix de compatibilité matérielle dans ce dépôt. Il peut diverger de certaines politiques tracker.
-
----
-
-## Convention d'annotations (uniformisation)
-
-Tous les fichiers YAML suivent la même logique de lecture :
-- bannière de tête,
-- description explicite,
-- commentaires fonctionnels courts,
-- tests présents et contextualisés.
-
-Dans `custom_formats/` :
-- commentaire standard expliquant la référence regex,
-- commentaire sur la logique des conditions quand nécessaire (`required`, `negate`).
-
-Dans `profiles/` :
-- commentaires par section (langue, teams, audio/HDR, repacks, exclusions).
+> `FR-Films-Any` est **volontairement permissif** : il accepte Remux / Full Disc
+> pour servir de filet de sécurité quand le 1080p/4K strict ne trouve rien.
 
 ---
 
 ## Limites connues
 
 - Les tests regex reposent uniquement sur le **titre de release**.
-- Les validations réelles de bitrate/profil DV/audio piste ne sont pas garanties par le titre seul.
-- Les listes teams/blockers sont éditoriales et doivent évoluer avec la scène et les règles tracker.
+- Pas de garantie sur les paramètres réels (bitrate, profil DV, piste audio).
+- Les listes teams/blockers FR sont éditoriales : à entretenir avec la scène.
+- 7 regex officielles utilisent des lookbehinds variables (Python OK, Ruby refuse) —
+  fonctionnel dans Profilarr (Python).
 
 ---
 
 ## Maintenance recommandée
 
-Ordre de travail conseillé :
+Ordre de travail :
 1. `README.md`
 2. `media_management/quality_definitions.yml`
-3. `regex_patterns/`
-4. `custom_formats/`
-5. `profiles/`
+3. `regex_patterns/` (vérifier les FR-* d'abord)
+4. `custom_formats/` (vérifier les FR-* d'abord)
+5. `profiles/` (FR-* uniquement)
 
 À chaque changement :
-- vérifier le schéma des tests,
-- vérifier la cohérence des noms (`pattern` ↔ regex existante),
+- vérifier le schéma des tests v1,
+- vérifier la cohérence des références (`pattern` ↔ regex, `name` ↔ custom),
 - valider le YAML avant import Profilarr.
 
 ---
 
 ## Checklist avant import Profilarr
 
-- Valider que tous les fichiers YAML sont parseables.
-- Vérifier que les tests `regex_patterns` utilisent `id/input/expected`.
-- Vérifier que les tests `custom_formats` utilisent `id/input/expected`.
-- Vérifier que tous les `pattern` de `custom_formats` existent dans `regex_patterns`.
-- Vérifier que tous les `name` de `profiles.custom_formats` existent dans `custom_formats`.
-- Contrôler la hiérarchie langue (`FR-MULTI-VF2 > FR-MULTI-VFF > FR-VF2 > FR-VFF > FR-VOSTFR`) sur chaque profil.
-- Contrôler que `FR-Films-Any` reste volontairement permissif (ne pas le durcir par défaut).
+- [ ] Tous les fichiers YAML sont parseables.
+- [ ] Les tests `regex_patterns` utilisent `id/input/expected` (ou `tests: []`).
+- [ ] Les tests `custom_formats` utilisent `id/input/expected` (ou `tests: []`).
+- [ ] Tous les `pattern` de `custom_formats` existent dans `regex_patterns`.
+- [ ] Tous les `name` de `profiles.custom_formats` existent dans `custom_formats`.
+- [ ] Hiérarchie langue respectée :
+      `FR-MULTI-VF2 > FR-MULTI-VFF > FR-VF2 > FR-VFF > FR-VOSTFR`.
+- [ ] `FR-Films-Any` permissif (pas d'exclusion Remux / Full Disc).
+- [ ] Profils 4K excluent `x264 (2160p)`, `AV1`, `Remux`, `Full Disc`.
+- [ ] Profils 1080p / 720p excluent `Remux`, `AV1`.
+- [ ] `quality_definitions.yml` respecte `max ≤ 2000` (Radarr) et `max ≤ 1000` (Sonarr).
+
+---
+
+## Origine et crédits
+
+- Base technique : [Dictionarry-Hub/database](https://github.com/Dictionarry-Hub/database)
+  (audio, codec, HDR, sources, streamers, edition).
+- Couche FR : **propre au projet** — préfixée `FR-*`, basée sur la charte C411 et
+  les usages observés sur La Cale / Gemini / YGGtorrent.
+- Profils 100% personnels : 7 profils FR films + séries (720p / 1080p / 4K / Any).

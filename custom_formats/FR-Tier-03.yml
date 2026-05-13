@@ -1,0 +1,15 @@
+name: FR-Tier-03
+description: Bonus qualité pour les teams Tier 3 (G3 Archiviste + G4 Aspirant P2P
+  de la liste officielle C411 + groupes observés régulièrement sur les releases C411).
+  Bonus inférieur aux Tier 1 et Tier 2 mais suffisant pour identifier une release
+  d'origine FR scène/uploader régulier.
+tags:
+- Release Group
+- French
+conditions:
+- name: Tier 03
+  negate: false
+  pattern: FR-Tier-03
+  required: true
+  type: release_title
+tests: []

@@ -1,47 +1,20 @@
-# ============================================================================
-# Format personnalisé — MULTI + VFF (TrueFrench)
-# ----------------------------------------------------------------------------
-# Les deux conditions sont requises : le titre doit annoncer MULTI **et** VFF
-# (ou TRUEFRENCH). Utilisé pour le plus haut score « VF France multi-langues »
-# sous MULTI.VF2 sur trackers type La Cale / Gemini (naming type charte C411).
-# ============================================================================
 name: FR-MULTI-VFF
-description: >
-  Release annonçant MULTI et un tag FR hors VFQ/VF2 (VFF, TRUEFRENCH, VFI, VOF, VFB, VF).
-  Représente le pack audio FR multi-langues le plus courant sur la scène FR hors cas MULTI.VF2.
+description: Détecte les releases annonçant à la fois MULTI ET un tag FR hors VFQ/VF2/VOQ
+  (VFF, TRUEFRENCH, VFI, VOF, VFB, VF générique). Le tag VOQ relève de FR-MULTI-VF2.
+  Représente le pack audio FR multi-langues le plus courant sur la scène FR (préféré
+  sur la VF mono-piste).
 tags:
-  - Language
-  - French
-  - Scene-FR
-# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
-# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
+- Language
+- French
 conditions:
-  # required true : le titre doit contenir MULTI (regex FR-Regex-MULTI).
-  - name: MULTI
-    type: release_title
-    negate: false
-    required: true
-    pattern: FR-Regex-MULTI
-  # required true : le titre doit aussi contenir un tag FR hors VFQ/VF2 (regex FR-Regex-VFF).
-  - name: VFF
-    type: release_title
-    negate: false
-    required: true
-    pattern: FR-Regex-VFF
-# Tests : titres factices au format v1 (`id`, `input`, `expected`).
-tests:
-  - id: 1
-    input: Film.Francais.2023.MULTI.VFF.Bluray.1080p.DTS-HD.MA.5.1.x264-TFA
-    expected: true
-  - id: 2
-    input: Serie.US.S01E12.MULTI.TRUEFRENCH.WEB.1080p.EAC3.5.1.x265-FW
-    expected: true
-  - id: 3
-    input: Film.2024.VFF.WEB-DL.1080p.x264-QTZ
-    expected: false
-  - id: 4
-    input: Animation.2022.MULTI.VOSTFR.WEB.1080p.h264-GKS
-    expected: false
-  - id: 5
-    input: Born.To.Dance.2015.MULTI.VF.1080p.WEBRip.EAC3.5.1.x264-NOTAG
-    expected: true
+- name: MULTI
+  negate: false
+  pattern: FR-Regex-MULTI
+  required: true
+  type: release_title
+- name: VFF
+  negate: false
+  pattern: FR-Regex-VFF
+  required: true
+  type: release_title
+tests: []

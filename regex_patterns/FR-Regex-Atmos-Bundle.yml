@@ -1,0 +1,18 @@
+name: FR-Regex-Atmos-Bundle
+pattern: '(?:(?i)\bATMOS\b|DDPA(\b|\d)|\bTrue[ .-]?HDA[ .-]?[57]\.1)'
+description: Regroupe les motifs officiels Atmos + variante BroadcastTheNet (TrueHD.A 5.1
+  / 7.1) pour un seul fichier projet — remplace Atmos et BTN Atmos.
+tags:
+- Audio
+- Dolby
+- French
+tests:
+- id: 1
+  input: The Last of Us S01 2160p MAX WEB-DL DDP 5.1 Atmos DV HDR H.265-FLUX
+  expected: true
+- id: 2
+  input: The.Last.of.Us.S01.2160p.UHD.BluRay.Remux.TrueHDA7.1.H.265-PmP
+  expected: true
+- id: 3
+  input: Film.2024.1080p.WEB-DL.DD.5.1.x264-GROUP
+  expected: false

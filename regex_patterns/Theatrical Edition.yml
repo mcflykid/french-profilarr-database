@@ -1,0 +1,9 @@
+name: Theatrical Edition
+pattern: ^(.*?)(\d{4})(.*?)\b(theatrical)\b
+description: >-
+  Matches any type of theatrical edition.
+
+  - Ensures that `Theatrical` comes after the year so that movies with 'Theatrical` in the title are not matched
+tags:
+- Edition
+tests: []

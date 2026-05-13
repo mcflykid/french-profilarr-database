@@ -1,18 +1,30 @@
-# ============================================================================
-# Motif regex — Scène FR (C411 / La Cale / Gemini)
-# ----------------------------------------------------------------------------
-# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
-# ============================================================================
 name: FR-Regex-VF2
-description: Détecte VF2 ou VFQ dans le titre de release.
-pattern: (?i)\b(VF2|VFQ)\b
+pattern: (?i)\b(VF2|VFQ|VOQ)\b
+description: Détecte les tags audio VF2, VFQ ou VOQ (Québec / québécois, ex. releases
+  QTZ « Version originale québécoise »). Adapté aux trackers FR (C411, La Cale, Gemini,
+  YGGtorrent).
+tags:
+- Language
+- French
 tests:
-  - id: 1
-    input: Film.2021.MULTI.VF2.UHD.2160p.DoVi.HDR10Plus.x265-TFA
-    expected: true
-  - id: 2
-    input: Serie.S03E10.VFQ.WEB.1080p.EAC3.5.1.h264-FW
-    expected: true
-  - id: 3
-    input: Film.2018.MULTI.VFF.Bluray.1080p.DTS.5.1.x264-AMEN
-    expected: false
+- id: 1
+  input: Film.2021.MULTI.VF2.UHD.2160p.DoVi.HDR10Plus.x265-TFA
+  expected: true
+- id: 2
+  input: Serie.S03E10.VFQ.WEB.1080p.EAC3.5.1.h264-FW
+  expected: true
+- id: 3
+  input: Film.2024.MULTi.VF2.WEB-DL.1080p.h264-TFA
+  expected: true
+- id: 4
+  input: Incendies.2010.VOQ.2160p.BluRay.DDP.x265-QTZ
+  expected: true
+- id: 5
+  input: Film.2022.MULTI.VOQ.2160p.BluRay.x265-QTZ
+  expected: true
+- id: 6
+  input: Film.2018.MULTI.VFF.Bluray.1080p.DTS.5.1.x264-AMEN
+  expected: false
+- id: 7
+  input: Film.2024.VOSTFR.WEB-DL.1080p.x264-TEAM
+  expected: false

@@ -1,0 +1,13 @@
+name: Atmos
+description: Détecte Dolby Atmos (titre DDPA / ATMOS) et la convention Atmos BTN / TrueHD.A
+  5.1–7.1 via la regex projet FR-Regex-Atmos-Bundle.
+tags:
+- Audio
+- Dolby
+conditions:
+- name: Atmos (bundle)
+  negate: false
+  pattern: FR-Regex-Atmos-Bundle
+  required: true
+  type: release_title
+tests: []

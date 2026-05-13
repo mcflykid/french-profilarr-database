@@ -1,0 +1,16 @@
+name: FR-Streamer-Premium
+description: Détecte les principaux streamers premium (Netflix, Amazon Prime, Disney+,
+  Apple TV+, HBO Max, Max, Paramount+) via une regex projet unique FR-Regex-Streamers-Premium.
+  Note — sur trackers FR (C411 / La Cale / Gemini / YGGtorrent), les tags streamers
+  sont souvent omis dans le titre, donc ce bonus matchera surtout les releases scènes
+  internationales (FRA + foreign).
+tags:
+- Streaming Service
+- French
+conditions:
+- name: Streamers premium
+  negate: false
+  pattern: FR-Regex-Streamers-Premium
+  required: true
+  type: release_title
+tests: []

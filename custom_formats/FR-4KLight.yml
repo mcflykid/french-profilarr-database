@@ -1,0 +1,16 @@
+name: FR-4KLight
+description: Détecte le tag 4KLight (Bluray 4K UHD allégé, qualité préservée avec
+  taille réduite). Format de référence sur C411 — particulièrement les releases QTZ
+  et Erotelemo. À privilégier fortement sur les profils 4K (cible « cinéma maison »
+  avec stockage raisonnable).
+tags:
+- Source
+- French
+- '4K'
+conditions:
+- name: 4KLight
+  negate: false
+  pattern: FR-Regex-4KLight
+  required: true
+  type: release_title
+tests: []

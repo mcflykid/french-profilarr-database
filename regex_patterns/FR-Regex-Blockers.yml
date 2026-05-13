@@ -1,33 +1,42 @@
-# ============================================================================
-# Motif regex — Scène FR (C411 / La Cale / Gemini)
-# ----------------------------------------------------------------------------
-# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
-# ============================================================================
 name: FR-Regex-Blockers
-description: Détecte les groupes blacklistés et les incohérences techniques majeures selon la charte C411.
-pattern: (?i)\b(k0RE|Firesoul64|Wawacity)\b|\b(NVENC|QSV|AMF)\b|(?=.*\b(REMUX|BDMV|ISO)\b)(?=.*\b(x26[45]|h26[45])\b)
+pattern: (?i)\b(k0RE|Wawacity|YIFY|YTS|RARBG|FGT|GalaxyRG|GalaxyTV|MeGusta|ETRG|ION10|TGx|WAVES|NoGRP|NoGroup|ATTKC|SUJAIDR|LAMA|TimeStrike|Pahe|TBS|EVO|RMTeam|ETHEL|Telly|playSD|playWEB)\b|\b(NVENC|QSV|AMF)\b|(?=.*\b(REMUX|BDMV|ISO)\b)(?=.*\b(x26[45]|h26[45])\b)
+description: 'Liste noire scène FR (C411, La Cale, Gemini, YGGtorrent) — groupes
+  bannis internationaux à basse réputation (YIFY, FGT, GalaxyRG, etc.), encodeurs
+  GPU interdits (NVENC, QSV, AMF) et incohérences techniques majeures (REMUX / BDMV
+  / ISO combinés à x264 / x265 / h264 / h265). NB — Firesoul64 retiré car team officielle
+  C411 G3 (Archiviste).'
+tags:
+- Release Group
+- French
+- Banned
 tests:
-  - id: 1
-    input: Film.2015.FRENCH.BDRip.x264-k0RE
-    expected: true
-  - id: 2
-    input: Pack.Serie.VOSTFR.x264-Wawacity
-    expected: true
-  - id: 3
-    input: Film.2023.MULTI.VFF.UHD.2160p.DTS-X.x265-TFA
-    expected: false
-  - id: 4
-    input: WALL.E.2008.MULTI.VFF.2160p.UHD.BluRay.REMUX.DV.HDR10PLUS.TrueHD.7.1.x265-NOTAG
-    expected: true
-  - id: 5
-    input: WALL.E.2008.MULTI.VFF.2160p.UHD.BluRay.REMUX.DV.HDR10PLUS.TrueHD.7.1.HEVC-NOTAG
-    expected: false
-  - id: 6
-    input: Film.2024.MULTI.VFF.1080p.WEBRip.H264.NVENC-TEAM
-    expected: true
-  - id: 7
-    input: Film.2024.MULTI.VFF.1080p.WEBRip.H264-TEAM
-    expected: false
-  - id: 8
-    input: WALL.E.2008.MULTI.VFF.1080p.BluRay.ISO.DTS.5.1.H264-NOTAG
-    expected: true
+- id: 1
+  input: Film.2015.FRENCH.BDRip.x264-k0RE
+  expected: true
+- id: 2
+  input: Pack.Serie.VOSTFR.x264-Wawacity
+  expected: true
+- id: 3
+  input: Film.2024.MULTI.VFF.1080p.WEBRip.H264.NVENC-TEAM
+  expected: true
+- id: 4
+  input: WALL.E.2008.MULTI.VFF.2160p.UHD.BluRay.REMUX.DV.HDR10PLUS.TrueHD.7.1.x265-NOTAG
+  expected: true
+- id: 5
+  input: Film.2024.YIFY.1080p.WEB-DL.x264
+  expected: true
+- id: 6
+  input: Film.2024.1080p.WEB-DL.x264-FGT
+  expected: true
+- id: 7
+  input: Film.2023.MULTI.VFF.UHD.2160p.DTS-X.x265-TFA
+  expected: false
+- id: 8
+  input: WALL.E.2008.MULTI.VFF.2160p.UHD.BluRay.REMUX.DV.HDR10PLUS.TrueHD.7.1.HEVC-NOTAG
+  expected: false
+- id: 9
+  input: Film.2024.MULTI.VFF.1080p.WEBRip.H264-TEAM
+  expected: false
+- id: 10
+  input: Anime.S01E04.VOSTFR.1080p.BDRip.AAC.x264-Firesoul64
+  expected: false

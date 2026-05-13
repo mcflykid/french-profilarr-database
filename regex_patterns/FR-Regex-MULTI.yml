@@ -1,24 +1,24 @@
-# ============================================================================
-# Motif regex — Scène FR (C411 / La Cale / Gemini)
-# ----------------------------------------------------------------------------
-# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
-# ============================================================================
 name: FR-Regex-MULTI
-description: Détecte le tag MULTI / MULTi (plusieurs langues audio) dans le titre.
 pattern: (?i)\b(MULTI)\b
+description: Détecte le tag MULTI (plusieurs pistes audio dans la release). Insensible
+  à la casse pour couvrir MULTI / MULTi / multi. Évite les faux positifs sur les mots
+  contenant « multi » par limites de mot.
+tags:
+- Language
+- French
 tests:
-  - id: 1
-    input: Film.2022.MULTI.VFF.UHD.2160p.WEB-DL.h265-GKS
-    expected: true
-  - id: 2
-    input: Serie.S02E01.FRENCH.MULTI.1080p.WEB.h264-QTZ
-    expected: true
-  - id: 3
-    input: Film.2019.VFF.BDRip.1080p.x264-OZEF
-    expected: false
-  - id: 4
-    input: Film.2024.MULTi.VF2.WEB-DL.1080p.h264-TFA
-    expected: true
-  - id: 5
-    input: MultiVerse.2024.1080p.WEB-DL.x265-GROUP
-    expected: false
+- id: 1
+  input: Film.2022.MULTI.VFF.UHD.2160p.WEB-DL.h265-GKS
+  expected: true
+- id: 2
+  input: Serie.S02E01.FRENCH.MULTI.1080p.WEB.h264-QTZ
+  expected: true
+- id: 3
+  input: Film.2024.MULTi.VF2.WEB-DL.1080p.h264-TFA
+  expected: true
+- id: 4
+  input: Film.2019.VFF.BDRip.1080p.x264-OZEF
+  expected: false
+- id: 5
+  input: MultiVerse.2024.1080p.WEB-DL.x265-GROUP
+  expected: false

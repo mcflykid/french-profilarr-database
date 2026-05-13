@@ -1,0 +1,29 @@
+name: FR-Regex-4KLight
+pattern: (?i)\b4K[ ._-]?Light\b
+description: Détecte le tag 4KLight (Bluray 4K UHD allégé, qualité visuelle préservée
+  avec taille réduite). Référence sur la scène FR (C411 / La Cale / Gemini / YGGtorrent),
+  particulièrement les releases QTZ et Erotelemo réputées pour leur qualité d'encodage
+  4KLight.
+tags:
+- Source
+- French
+- '4K'
+tests:
+- id: 1
+  input: Trois.couleurs.Blanc.1994.VOF.2160p.BluRay.4KLight.DV.AC3.5.1.x265-QTZ
+  expected: true
+- id: 2
+  input: Film.2024.MULTI.VFF.2160p.UHD.BluRay.4K.Light.HDR10.x265-QTZ
+  expected: true
+- id: 3
+  input: Film.2024.MULTI.VFF.2160p.UHD.BluRay.4K-Light.HDR10.x265-Erotelemo
+  expected: true
+- id: 4
+  input: Caught.Stealing.2025.MULTI.VF2.2160p.WEB.DV.HDR10Plus.AC3.5.1.H265-Slay3R
+  expected: false
+- id: 5
+  input: Captain.America.First.Avenger.2011.MULTi.VF2.2160p.HYBRID.UHD.BluRay.REMUX.DV.HDR10.TrueHD.7.1.HEVC-TTK
+  expected: false
+- id: 6
+  input: 1917.2019.MULTI.VFF.2160p.BluRay.4KLight.HDR10Plus.TrueHD.7.1.Atmos.x265-QTZ
+  expected: true

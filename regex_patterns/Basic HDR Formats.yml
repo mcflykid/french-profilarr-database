@@ -1,0 +1,8 @@
+name: Basic HDR Formats
+pattern: (?:(?<=^(?!.*\b(HLG|PQ|SDR)(\b|\d)).*?)HDR)|\b(dv(?![ .](HLG|SDR))|dovi|dolby[ .]?vision)\b
+description: Matches Dolby Vision OR HDR10. Needed to better match UHD Blurays
+tags:
+- Enhancement
+- Colour Grade
+- HDR
+tests: []

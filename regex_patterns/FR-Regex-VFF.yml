@@ -1,30 +1,46 @@
-# ============================================================================
-# Motif regex — Scène FR (C411 / La Cale / Gemini)
-# ----------------------------------------------------------------------------
-# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
-# ============================================================================
 name: FR-Regex-VFF
-description: Détecte les tags FR hors VFQ/VF2 (VFF, TRUEFRENCH, VFI, VOF, VFB, VF) dans le titre.
 pattern: (?i)\b(VFF|TRUEFRENCH|VFI|VOF|VFB|VF(?!Q|2))\b
+description: Détecte les tags audio français hors VFQ/VF2/VOQ (VFF, TRUEFRENCH, VFI,
+  VOF, VFB, VF générique). Le tag VOQ (version originale québécoise, ex. QTZ) est traité
+  via FR-Regex-VF2 pour la même priorité que VFQ. Conforme à la scène FR stricte (C411,
+  La Cale, Gemini, YGGtorrent).
+tags:
+- Language
+- French
 tests:
-  - id: 1
-    input: Film.2023.MULTI.VFF.Bluray.1080p.DTS-HD.MA.5.1.x264-TFA
-    expected: true
-  - id: 2
-    input: Serie.S01E04.TRUEFRENCH.WEB.720p.x264-FW
-    expected: true
-  - id: 3
-    input: Film.2020.VFQ.WEB-DL.1080p.h264-AMEN
-    expected: false
-  - id: 4
-    input: Film.2022.MULTI.VFI.WEB-DL.1080p.h264-TEAM
-    expected: true
-  - id: 5
-    input: Sept.Ecossais.Du.Texas.1966.MULTI.VF.1080p.WEBRip.AC3.2.0.x264-NOTAG
-    expected: true
-  - id: 6
-    input: The.Bear.S04.MULTI.VOF.1080p.WEB.EAC3.5.1.H264-TFA
-    expected: true
-  - id: 7
-    input: Twisters.2024.VFB.2160p.WEB.HDR.EAC3.5.1.H265-FW
-    expected: true
+- id: 1
+  input: Film.2023.MULTI.VFF.Bluray.1080p.DTS-HD.MA.5.1.x264-TFA
+  expected: true
+- id: 2
+  input: Serie.S01E04.TRUEFRENCH.WEB.720p.x264-FW
+  expected: true
+- id: 3
+  input: Film.2022.MULTI.VFI.WEB-DL.1080p.h264-TEAM
+  expected: true
+- id: 4
+  input: The.Bear.S04.MULTI.VOF.1080p.WEB.EAC3.5.1.H264-TFA
+  expected: true
+- id: 5
+  input: Twisters.2024.VFB.2160p.WEB.HDR.EAC3.5.1.H265-FW
+  expected: true
+- id: 6
+  input: Sept.Ecossais.Du.Texas.1966.MULTI.VF.1080p.WEBRip.AC3.2.0.x264-NOTAG
+  expected: true
+- id: 7
+  input: Film.2020.VFQ.WEB-DL.1080p.h264-AMEN
+  expected: false
+- id: 8
+  input: Serie.S03E10.VF2.WEB.1080p.EAC3.5.1.h264-FW
+  expected: false
+- id: 9
+  input: Film.2024.VOSTFR.WEB-DL.1080p.x264-TEAM
+  expected: false
+- id: 10
+  input: Top.Gun.1986.MULTI.VFI.2160p.BluRay.DolbyVision.Atmos.5.1.x265-QTZ
+  expected: true
+- id: 11
+  input: Uncharted.2022.MULTI.VFF.2160p.BluRay.DV.EAC3.7.1.x265-QTZ
+  expected: true
+- id: 12
+  input: Incendies.2010.VOQ.2160p.BluRay.DDP.x265-QTZ
+  expected: false

@@ -1,0 +1,22 @@
+name: Atmos (Missing)
+description: Attempts to match releases which have Atmos (TrueHD 7.1) that don't label it correctly.
+tags:
+- Audio
+- Dolby
+conditions:
+- name: TrueHD
+  negate: false
+  pattern: TrueHD
+  required: true
+  type: release_title
+- name: 7.1 Surround
+  negate: false
+  pattern: 7.1 Surround
+  required: true
+  type: release_title
+- name: Pas Atmos (ni BTN)
+  negate: true
+  pattern: FR-Regex-Atmos-Bundle
+  required: true
+  type: release_title
+tests: []

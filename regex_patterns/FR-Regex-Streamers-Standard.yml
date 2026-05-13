@@ -1,0 +1,18 @@
+name: FR-Regex-Streamers-Standard
+pattern: '(?i)(?:\bnow\b[ ._-]web[ ._-]?(?:dl|rip)?\b|\[(?:NOW)\b|\b(?:NOW)\]|\b(?:C(?:runchy)?[ .-]?R(?:oll)?)\b|\b(?:it|itunes)\b(?=[ ._-]web[ ._-]?(?:dl|rip)\b)|\[(?:iT)\b|\b(?:iT)\])'
+description: Regroupe NOW / Sky, Crunchyroll et iTunes (WEB) en une seule regex projet
+  — remplace 5 fichiers séparés. Insensible à la casse sur l’ensemble du motif pour
+  coller aux tags fréquents (NOW.WEB-DL).
+tags:
+- Streaming Service
+- French
+tests:
+- id: 1
+  input: Show.S01E01.NOW.WEB-DL.x264-GROUP
+  expected: true
+- id: 2
+  input: Some.Movie.1080p.IT.WEB-DL.DDP5.1.x264-GROUP
+  expected: true
+- id: 3
+  input: The 1975-iTunes Music Festival London (2013)-CONVERT-1080p-x264
+  expected: false

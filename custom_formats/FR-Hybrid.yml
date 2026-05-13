@@ -1,0 +1,16 @@
+name: FR-Hybrid
+description: Détecte le tag HYBRID (Bluray hybride — vidéo et audio sélectionnées
+  parmi plusieurs sources pour atteindre la meilleure qualité possible). Source premium
+  sur scène FR, courante en UHD BluRay. Bonus modéré pour identification d'un encodage
+  haut de gamme.
+tags:
+- Source
+- French
+- Enhancement
+conditions:
+- name: HYBRID
+  negate: false
+  pattern: FR-Regex-Hybrid
+  required: true
+  type: release_title
+tests: []

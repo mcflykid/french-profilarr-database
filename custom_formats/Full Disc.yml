@@ -1,29 +1,36 @@
-# ============================================================================
-# Format personnalisé — Full disc (ISO / BDMV / VIDEO_TS)
-# ----------------------------------------------------------------------------
-# Pénalité pour structures disque complètes non souhaitées en bibliothèque type Plex.
-# ============================================================================
 name: Full Disc
-description: >
-  Détecte ISO, BDMV ou VIDEO_TS dans le titre. Sert à éviter les packs disque complets inadaptés
-  au renommage simple et souvent mal vus sur les trackers FR pour le stockage domestique.
-tags: []
-# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
-# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
+description: 'Matches the ''Full Disc'' regex pattern and negates any remuxes / encodes. '
+tags:
+- Storage
 conditions:
-  - name: Full Disc
-    type: release_title
-    negate: false
-    required: false
-    pattern: Full Disc Regex
-# Tests : titres factices au format v1 (`id`, `input`, `expected`).
-tests:
-  - id: 1
-    input: Film.2009.MULTI.VFF.COMPLETE.BLURAY.VIDEO_TS.DVD9-TLC
-    expected: true
-  - id: 2
-    input: Jeu.Video.2011.MULTI.FULL.ISO.BluRay-LOST
-    expected: true
-  - id: 3
-    input: Film.2024.MULTI.VFF.mkv.BDRip.1080p.x264-AMEN
-    expected: false
+- name: Full Disc
+  negate: false
+  pattern: Full Disc
+  required: true
+  type: release_title
+- name: Not WEB-DL
+  negate: true
+  required: true
+  source: web_dl
+  type: source
+- name: Not WEBRip
+  negate: true
+  required: true
+  source: webrip
+  type: source
+- name: Not Remux
+  negate: true
+  pattern: Remux
+  required: true
+  type: release_title
+- name: Not x264
+  negate: true
+  pattern: x264
+  required: true
+  type: release_title
+- name: Not x265
+  negate: true
+  pattern: x265
+  required: true
+  type: release_title
+tests: []

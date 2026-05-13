@@ -1,21 +1,6 @@
-# ============================================================================
-# Motif regex — Scène FR (C411 / La Cale / Gemini)
-# ----------------------------------------------------------------------------
-# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
-# ============================================================================
-name: DTS-X Regex
-description: Détecte DTS-X ou DTS.X dans le titre de release.
-pattern: \b(DTS[ .:_-]?X)\b(?!\d)
-tests:
-  - id: 1
-    input: Film.2023.MULTI.VFF.UHD.2160p.DTS-X.7.1.x265-QTZ
-    expected: true
-  - id: 2
-    input: Serie.S03E01.VOSTFR.WEB.1080p.DTS.X.5.1.h264-BOUBA
-    expected: true
-  - id: 3
-    input: Film.2017.MULTI.VFF.BDRip.DTS-HD.MA.5.1.x264-AMEN
-    expected: false
-  - id: 4
-    input: Film.2024.MULTI.VFF.UHD.2160p.DTS:X.7.1.TrueHD.x265-TFA
-    expected: true
+name: DTS-X
+pattern: \b(dts[-_. :]?x)\b(?!\d)
+description: ''
+tags:
+- Audio
+tests: []

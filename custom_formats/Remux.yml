@@ -1,29 +1,16 @@
-# ============================================================================
-# Format personnalisé — Remux
-# ----------------------------------------------------------------------------
-# Score fortement négatif sur profils où le remux est interdit (poids / charte).
-# ============================================================================
 name: Remux
-description: >
-  Détecte le mot Remux dans le titre (source quasi brute). Pénalité pour alignement avec les usages
-  de seeding et de taille sur trackers privés francophones lorsque vous ne voulez pas de remux.
-tags: []
-# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
-# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
+description: Matches Remux as a codec, not a source. Either h265 or h264.
+tags:
+- Storage
 conditions:
-  - name: Remux
-    type: release_title
-    negate: false
-    required: false
-    pattern: Remux Regex
-# Tests : titres factices au format v1 (`id`, `input`, `expected`).
-tests:
-  - id: 1
-    input: Film.2018.MULTI.VFF.UHD.2160p.Bluray.Remux.DTS-X.TrueHD.7.1-FW
-    expected: true
-  - id: 2
-    input: Serie.UK.S02E01.MULTI.VFF.COMPLETE.BLURAY.Remux.DTS-HD.MA-QTZ
-    expected: true
-  - id: 3
-    input: Film.2020.MULTI.VFF.WEB-DL.1080p.EAC3.5.1.h264-TFA
-    expected: false
+- name: Remux
+  negate: false
+  pattern: Remux
+  required: true
+  type: release_title
+- name: Not DVD
+  negate: true
+  required: true
+  source: dvd
+  type: source
+tests: []

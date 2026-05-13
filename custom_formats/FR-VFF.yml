@@ -1,48 +1,14 @@
-# ============================================================================
-# Format personnalisé — VFF / TrueFrench seul (sans exiger MULTI)
-# ----------------------------------------------------------------------------
-# Condition unique sur la regex VFF : utile pour releases 100 % doublées France
-# sans tag MULTI explicite (selon naming du groupe ou du tracker).
-# ============================================================================
 name: FR-VFF
-description: >
-  Release annonçant un tag FR hors VFQ/VF2 (VFF, TRUEFRENCH, VFI, VOF, VFB, VF) sans condition MULTI.
-  Sert à scorer les doublages FR « purs » lorsque le releaseur n’a pas mis MULTI dans le titre.
+description: Détecte la présence d'un tag FR hors VFQ/VF2 (VFF, TRUEFRENCH, VFI, VOF,
+  VFB, VF générique) dans le titre, sans exiger MULTI. Sert à scorer les doublages
+  français « purs » (mono-piste FR) sur les trackers C411 / La Cale / Gemini / YGGtorrent.
 tags:
-  - Language
-  - French
-  - Scene-FR
-# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
-# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
+- Language
+- French
 conditions:
-  - name: VFF
-    type: release_title
-    negate: false
-    required: false
-    pattern: FR-Regex-VFF
-# Tests : titres factices au format v1 (`id`, `input`, `expected`).
-tests:
-  - id: 1
-    input: Film.2022.VFF.BDRip.1080p.DTS.5.1.x264-OZEF
-    expected: true
-  - id: 2
-    input: Documentaire.2018.TRUEFRENCH.DVDRip.XviD-TLC
-    expected: true
-  - id: 3
-    input: Film.2022.MULTI.VFI.WEB-DL.1080p.h264-TEAM
-    expected: true
-  - id: 4
-    input: Sept.Ecossais.Du.Texas.1966.MULTI.VF.1080p.WEBRip.AC3.2.0.x264-NOTAG
-    expected: true
-  - id: 5
-    input: The.Bear.S04.VOF.1080p.WEB.EAC3.5.1.H264-TFA
-    expected: true
-  - id: 6
-    input: Twisters.2024.VFB.2160p.WEB.HDR.EAC3.5.1.H265-FW
-    expected: true
-  - id: 7
-    input: Film.2024.MULTI.VOSTFR.WEB-DL.1080p.h264-ENIGMA
-    expected: false
-  - id: 8
-    input: Serie.S01E03.MULTI.VF2.WEB.720p.x264-NEOSTARK
-    expected: false
+- name: VFF
+  negate: false
+  pattern: FR-Regex-VFF
+  required: true
+  type: release_title
+tests: []

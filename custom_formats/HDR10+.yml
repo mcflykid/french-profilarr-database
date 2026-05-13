@@ -1,29 +1,27 @@
-# ============================================================================
-# Format personnalisé — HDR10+
-# ----------------------------------------------------------------------------
-# HDR dynamique annoncé ; distinct de HDR10 seul via la regex HDR10+ Regex.
-# ============================================================================
 name: HDR10+
-description: >
-  Détecte HDR10+ ou HDR10Plus dans le titre. Bonus intermédiaire entre HDR10 et Dolby Vision sur les
-  profils 4K orientés matériel HDR moderne.
-tags: []
-# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
-# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
+description: Matches the 'HDR10+' Regex Pattern
+tags:
+- Colour Grade
+- HDR
 conditions:
-  - name: HDR10+
-    type: release_title
-    negate: false
-    required: false
-    pattern: HDR10+ Regex
-# Tests : titres factices au format v1 (`id`, `input`, `expected`).
-tests:
-  - id: 1
-    input: Film.2023.MULTI.VFF.UHD.2160p.HDR10Plus.DTS-X.x265-QTZ
-    expected: true
-  - id: 2
-    input: Serie.S01E12.VOSTFR.WEBRip.1080p.HDR10+.EAC3.5.1.h264-GKS
-    expected: true
-  - id: 3
-    input: Film.2019.MULTI.VFF.Bluray.1080p.HDR10.DTS-HD.MA.5.1.x264-TFA
-    expected: false
+- name: HDR10+
+  negate: false
+  pattern: HDR10+
+  required: true
+  type: release_title
+- name: Not SDR
+  negate: true
+  pattern: SDR
+  required: true
+  type: release_title
+- name: Not PQ
+  negate: true
+  pattern: PQ
+  required: true
+  type: release_title
+- name: Not HLG
+  negate: true
+  pattern: HLG
+  required: true
+  type: release_title
+tests: []

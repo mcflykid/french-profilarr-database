@@ -1,15 +1,15 @@
 # ============================================================================
-# Sonarr — Séries 1080p (scène FR, La Cale / Gemini, logique type C411)
+# Sonarr — Séries 1080p (scène FR : C411 / La Cale / Gemini / YGGtorrent)
 # ----------------------------------------------------------------------------
-# Même philosophie que FR-Films-1080p : langue FR prioritaire, teams, repacks,
-# exclusion remux / full disc / AV1. Les qualités incluent HDTV-1080p car les
-# séries FR passent souvent par du TV cap avant WEB/Bluray.
+# Profil principal séries 1080p : langue FR, audio premium, codec efficient,
+# édition légère, streamers. Exclut Remux / AV1 / Upscaled. Inclut HDTV-1080p
+# pour TV cap. Bonus Season Pack.
 # ============================================================================
 name: FR-Series-1080p
 description: >
-  Profil Sonarr 1080p pour séries sur trackers francophones stricts (La Cale, Gemini, esprit C411).
-  Priorise MULTI/VFF/VF2/VOSTFR, bonus teams Tier 1–2, repacks, et bloque remux, disque complet
-  et AV1. Inclut Bluray, WEB et HDTV 1080p dans le groupe de qualité cible.
+  Profil Sonarr 1080p pour séries sur trackers francophones (La Cale, Gemini, YGGtorrent, esprit C411).
+  Priorise langue FR, teams Tier 1-2, audio premium, codec efficient (x265/h265).
+  Inclut HDTV-1080p pour TV cap. Bonus Season Pack. Bloque Remux, Full Disc, AV1, Upscaled.
 tags:
 - 1080p
 - French
@@ -19,33 +19,110 @@ minCustomFormatScore: 20000
 upgradeUntilScore: 888888
 minScoreIncrement: 1
 custom_formats:
-# --- Langue ---
+# === Langue ===
 - name: FR-MULTI-VF2
-  score: 60000
+  score: 100000
 - name: FR-MULTI-VFF
-  score: 50000
+  score: 90000
 - name: FR-VF2
-  score: 40000
+  score: 70000
 - name: FR-VFF
-  score: 30000
+  score: 60000
 - name: FR-VOSTFR
-  score: 10000
+  score: 20000
 
-# --- Teams FR ---
+# === Teams FR ===
 - name: FR-Tier-01
-  score: 1800
+  score: 2000
 - name: FR-Tier-02
-  score: 1700
+  score: 1500
+- name: FR-Tier-03
+  score: 1000
 
-# --- Repacks (corrections d’épisodes / saisons) ---
-- name: Repack3
-  score: 8
-- name: Repack2
-  score: 7
-- name: Repack1
-  score: 6
+# === Audio premium ===
+- name: Atmos
+  score: 500
+- name: Atmos (Missing)
+  score: -50
+- name: TrueHD
+  score: 400
+- name: TrueHD (Missing)
+  score: -30
+- name: DTS-X
+  score: 500
+- name: DTS-HD MA
+  score: 350
+- name: DTS-HD HRA
+  score: 250
+- name: DTS-ES
+  score: 200
+- name: DTS
+  score: 130
+- name: Dolby Digital +
+  score: 200
+- name: Dolby Digital
+  score: 100
+- name: AAC
+  score: 40
+- name: FLAC
+  score: 250
+- name: PCM
+  score: 200
+- name: Opus
+  score: 80
 
-# --- Exclusions ---
+# === Codec ===
+- name: x265
+  score: 250
+- name: h265
+  score: 220
+- name: VP9
+  score: -200
+- name: VVC
+  score: 50
+- name: Xvid
+  score: -500
+
+# === HDR (rare en 1080p) ===
+- name: Dolby Vision
+  score: 1000
+- name: HDR10+
+  score: 500
+- name: HDR10
+  score: 300
+- name: HDR
+  score: 200
+
+# === Source/Édition séries ===
+- name: Internal
+  score: 50
+- name: Season Pack
+  score: 50
+- name: Extras
+  score: 30
+- name: TV Extras
+  score: 30
+
+# === Repacks ===
+
+# === Streamers (consolidés) ===
+
+
+- name: FR-Streamer-Premium
+  score: 80
+- name: FR-Streamer-Standard
+  score: 50
+
+# === HDLight (Bluray allégé scène FR) ===
+- name: FR-HDLight
+  score: 60
+
+
+# === Hybrid (Bluray hybride premium) ===
+- name: FR-Hybrid
+  score: 200
+
+# === Exclusions fortes ===
 - name: FR-Blockers
   score: -999999
 - name: Remux
@@ -54,6 +131,12 @@ custom_formats:
   score: -999999
 - name: AV1
   score: -999999
+- name: Upscaled
+  score: -999999
+
+# === Repack (releases corrigées : PROPER/REPACK/RERIP/REAL) ===
+- name: FR-Repack
+  score: 75
 
 qualities:
 - id: -1

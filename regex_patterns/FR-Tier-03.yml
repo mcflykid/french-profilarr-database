@@ -1,0 +1,48 @@
+name: FR-Tier-03
+pattern: \b(TLC|DN55|Dramas[ ._]?For[ ._]?Ever|DFE|KAF|NYX|raf66|Raf66|HazzAnim|prem|FIST|Fist|Macolive|GISMO65|ZEKEY|FIRESOUL64|Firesoul64|PokemonFansub|FANKAI|PiCKLES|KPORAL|ACKER|TG7|STORiES|RiFiFi|DRIVE|AuriA|STIF|FUTE69|higgsboson|Alicia|BOONA33|RedROses|jdjo69|Luju|hyhyho|Chachou6768|TTK|Kaoru111|PARISTOCAT|tlub|ztgold|UKDHD|ZatNik07|Dixcents|Sicario|XSHD)\b
+description: Teams Tier 3 (G3 Archiviste + G4 Aspirant P2P de la liste officielle
+  C411) + groupes observés régulièrement sur les releases C411 (uploaders réguliers,
+  groupes 4K spécialisés, références 1080p Light). Liste élargie avec les groupes
+  vus sur captures 4K (TTK, Kaoru111, PARISTOCAT, tlub, ztgold, UKDHD, ZatNik07, Dixcents,
+  Sicario) et XSHD (référence 1080p Light citée sur Planète Warez).
+tags:
+- Release Group
+- French
+- Tier-03
+tests:
+- id: 1
+  input: Film.2024.MULTI.VFF.WEB-DL.1080p.x264-TLC
+  expected: true
+- id: 2
+  input: Serie.S02E03.VOSTFR.WEB.1080p.x264-NYX
+  expected: true
+- id: 3
+  input: Anime.S01E04.VOSTFR.1080p.BDRip.AAC.x264-Firesoul64
+  expected: true
+- id: 4
+  input: Captain.America.First.Avenger.2011.MULTi.VF2.2160p.HYBRID.UHD.BluRay.REMUX.DV.HDR10.TrueHD.7.1.HEVC-TTK
+  expected: true
+- id: 5
+  input: Sueurs.Froides.1958.MULTI.VFF.2160p.UHD.Bluray.ISO.HDR10.DTS.2.0.HEVC-Kaoru111
+  expected: true
+- id: 6
+  input: Philadelphia.1993.MULTI.VF2.2160p.UHD.BLURAY.REMUX.HDR.ATMOS.TrueHD.7.1.HEVC-PARISTOCAT
+  expected: true
+- id: 7
+  input: Showgirls.1995.MULTI.VFF.2160p.WEBRip.EAC3.5.1.x265-UKDHD
+  expected: true
+- id: 8
+  input: Rambo.First.Blood.1982.MULTI.VFF.2160p.BluRay.DV.HDR10.DTS.HD.MA.5.1.HEVC-Dixcents
+  expected: true
+- id: 9
+  input: L.Impasse.1993.MULTI.VFF.2160p.UHD.BLURAY.REMUX.HDR10PLUS.DTS.HD.MA.7.1.HEVC-Sicario
+  expected: true
+- id: 10
+  input: Film.2024.MULTI.VFF.1080p.BluRay.HDLight.x265-XSHD
+  expected: true
+- id: 11
+  input: Film.2024.MULTI.VFF.1080p.WEB-DL.x264-TFA
+  expected: false
+- id: 12
+  input: Film.2024.MULTI.VFF.1080p.WEB-DL.x264-UNKNOWN
+  expected: false

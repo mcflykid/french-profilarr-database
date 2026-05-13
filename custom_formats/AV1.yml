@@ -1,29 +1,12 @@
-# ============================================================================
-# Format personnalisé — AV1 (pénalité)
-# ----------------------------------------------------------------------------
-# Politique dépôt : compat lecture ; peut diverger d’une charte C411 autorisant AV1.
-# ============================================================================
 name: AV1
-description: >
-  Détecte AV1 dans le titre pour l’exclure ou le fortement pénaliser sur les profils ciblés
-  (téléviseurs / box sans décodeur matériel fiable). À retirer des profils si vous adoptez AV1 C411.
-tags: []
-# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
-# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
+description: Matches the 'AV1' Regex Pattern
+tags:
+- Codec
+- Bleeding Edge
 conditions:
-  - name: AV1
-    type: release_title
-    negate: false
-    required: false
-    pattern: AV1 Regex
-# Tests : titres factices au format v1 (`id`, `input`, `expected`).
-tests:
-  - id: 1
-    input: Film.2025.MULTI.VFF.UHD.2160p.WEB-DL.AV1.DDP5.1-GKS
-    expected: true
-  - id: 2
-    input: Serie.S04E02.VOSTFR.WEB.1080p.AV1.OPUS-NEOSTARK
-    expected: true
-  - id: 3
-    input: Film.2022.MULTI.VFF.UHD.2160p.WEB-DL.h265.EAC3.5.1-QTZ
-    expected: false
+- name: AV1
+  negate: false
+  pattern: AV1
+  required: true
+  type: release_title
+tests: []

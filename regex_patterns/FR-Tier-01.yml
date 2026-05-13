@@ -1,18 +1,32 @@
-# ============================================================================
-# Motif regex — Scène FR (C411 / La Cale / Gemini)
-# ----------------------------------------------------------------------------
-# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
-# ============================================================================
 name: FR-Tier-01
-description: Détecte les teams Tier 1 (élite) de la scène FR.
-pattern: \b(TFA|FW|FORWARD|THESYNDICATE|TyHD|Slay3R|AMEN|BOUBA|BOUC|OZEF|QTZ|GKS|KAAZA|TayTO|M@x|B@tman)\b
+pattern: \b(TFA|FORWARD|FW|THESYNDiCATE|TyHD|Slay3R|AMEN|BOUBA|BOUC|OZEF|QTZ|Erotelemo)\b
+description: Teams Tier 1 (élite + Vétéran G1) — liste officielle C411 et références
+  4KLight de la scène FR. Top du tracker (TFA, FORWARD/FW, THESYNDiCATE, TyHD, Slay3R)
+  + Vétérans G1 (AMEN, BOUBA, BOUC, OZEF) + références 4KLight (QTZ, Erotelemo) citées
+  régulièrement comme références qualité sur Planète Warez et autres communautés FR.
+tags:
+- Release Group
+- French
+- Tier-01
 tests:
-  - id: 1
-    input: Film.2024.MULTI.VFF.UHD.2160p.DoVi.HDR10.DTS-X.x265-QTZ
-    expected: true
-  - id: 2
-    input: Serie.S01E01.VOSTFR.WEB.1080p.h264-FW
-    expected: true
-  - id: 3
-    input: Film.2020.MULTI.VFF.BDRip.x264-ENIGMA
-    expected: false
+- id: 1
+  input: Film.2024.MULTI.VFF.UHD.2160p.DoVi.HDR10.DTS-X.x265-TFA
+  expected: true
+- id: 2
+  input: Serie.S01E01.VOSTFR.WEB.1080p.h264-FW
+  expected: true
+- id: 3
+  input: Trois.couleurs.Blanc.1994.VOF.2160p.BluRay.4KLight.DV.AC3.5.1.x265-QTZ
+  expected: true
+- id: 4
+  input: Film.2024.MULTI.VFF.2160p.UHD.BluRay.4KLight.HDR10.x265-Erotelemo
+  expected: true
+- id: 5
+  input: Caught.Stealing.2025.MULTI.VF2.2160p.WEB.DV.HDR10Plus.AC3.5.1.H265-Slay3R
+  expected: true
+- id: 6
+  input: Film.2024.MULTI.VFF.1080p.WEB-DL.x264-ENIGMA
+  expected: false
+- id: 7
+  input: Film.2024.MULTI.VFF.1080p.WEB-DL.x264-UNKNOWN
+  expected: false

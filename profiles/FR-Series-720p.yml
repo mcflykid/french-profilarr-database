@@ -1,14 +1,14 @@
 # ============================================================================
-# Sonarr — Séries 720p (scène FR, La Cale / Gemini)
+# Sonarr — Séries 720p (scène FR : C411 / La Cale / Gemini / YGGtorrent)
 # ----------------------------------------------------------------------------
-# Flux légers ou anciennes saisons : mêmes règles langue/team que le 1080p,
-# sans Full Disc (peu pertinent en 720p TV), avec remux et AV1 bloqués.
+# Profil léger pour séries 720p (TV cap fréquent). Langue FR prioritaire,
+# audio modéré, exclusions Remux / AV1 / Upscaled. Bonus Season Pack.
 # ============================================================================
 name: FR-Series-720p
 description: >
-  Profil Sonarr 720p pour séries sur trackers francophones (La Cale, Gemini, esprit C411).
-  Hiérarchie langue identique au 1080p ; bonus teams et repacks ; bloque remux et AV1.
-  Qualités Bluray/WEB/HDTV 720p activées dans le groupe cible.
+  Profil Sonarr 720p pour séries sur trackers francophones (La Cale, Gemini, YGGtorrent, esprit C411).
+  Priorise langue FR, bonus teams Tier 1-2, audio modéré, codec efficient. Inclut HDTV-720p
+  pour TV cap, bonus Season Pack. Bloque Remux, AV1, Upscaled.
 tags:
 - 720p
 - French
@@ -18,39 +18,91 @@ minCustomFormatScore: 20000
 upgradeUntilScore: 888888
 minScoreIncrement: 1
 custom_formats:
-# --- Langue ---
+# === Langue ===
 - name: FR-MULTI-VF2
-  score: 60000
+  score: 100000
 - name: FR-MULTI-VFF
-  score: 50000
+  score: 90000
 - name: FR-VF2
-  score: 40000
+  score: 70000
 - name: FR-VFF
-  score: 30000
+  score: 60000
 - name: FR-VOSTFR
-  score: 10000
+  score: 20000
 
-# --- Teams FR ---
+# === Teams FR ===
 - name: FR-Tier-01
-  score: 1800
+  score: 2000
 - name: FR-Tier-02
-  score: 1700
+  score: 1500
+- name: FR-Tier-03
+  score: 1000
 
-# --- Repacks ---
-- name: Repack3
-  score: 8
-- name: Repack2
-  score: 7
-- name: Repack1
-  score: 6
+# === Audio ===
+- name: Atmos
+  score: 200
+- name: TrueHD
+  score: 180
+- name: DTS-X
+  score: 180
+- name: DTS-HD MA
+  score: 150
+- name: Dolby Digital +
+  score: 100
+- name: Dolby Digital
+  score: 60
+- name: AAC
+  score: 40
+- name: FLAC
+  score: 130
 
-# --- Exclusions ---
+# === Codec ===
+- name: x265
+  score: 220
+- name: h265
+  score: 200
+- name: Xvid
+  score: -200
+
+# === Source/Édition séries ===
+- name: Internal
+  score: 30
+- name: Season Pack
+  score: 50
+- name: Extras
+  score: 30
+- name: TV Extras
+  score: 30
+
+# === Repacks ===
+
+# === Streamers (consolidés) ===
+
+
+- name: FR-Streamer-Premium
+  score: 50
+- name: FR-Streamer-Standard
+  score: 30
+
+# === HDLight (Bluray allégé scène FR) ===
+- name: FR-HDLight
+  score: 50
+
+# === Exclusions ===
 - name: FR-Blockers
   score: -999999
 - name: Remux
   score: -999999
+- name: Full Disc
+  score: -999999
 - name: AV1
   score: -999999
+- name: Upscaled
+  score: -999999
+
+# === Repack (releases corrigées : PROPER/REPACK/RERIP/REAL) ===
+- name: FR-Repack
+  score: 50
 
 qualities:
 - id: -2

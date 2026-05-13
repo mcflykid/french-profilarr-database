@@ -1,0 +1,22 @@
+name: FR-Regex-Hybrid
+pattern: (?i)\bHYBRID\b
+description: Détecte le tag HYBRID (Bluray hybride — mix de plusieurs sources Bluray
+  pour obtenir la meilleure piste vidéo/audio). Source haut de gamme reconnue sur
+  la scène FR, fréquente en UHD BluRay.
+tags:
+- Source
+- French
+- Enhancement
+tests:
+- id: 1
+  input: Captain.America.First.Avenger.2011.MULTi.VF2.2160p.HYBRID.UHD.BluRay.REMUX.DV.HDR10.TrueHD.7.1.HEVC-TTK
+  expected: true
+- id: 2
+  input: Alien.1979.HYBRID.2160p.BluRay.REMUX.HEVC.DV-HDR10Plus.DTS-HD.MA.5.1
+  expected: true
+- id: 3
+  input: Film.2024.MULTI.VFF.2160p.UHD.BluRay.REMUX.DV.HDR10.HEVC-TFA
+  expected: false
+- id: 4
+  input: Caught.Stealing.2025.MULTI.VF2.2160p.WEB.DV.HDR10Plus.AC3.5.1.H265-Slay3R
+  expected: false

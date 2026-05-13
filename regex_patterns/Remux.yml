@@ -1,18 +1,11 @@
-# ============================================================================
-# Motif regex — Scène FR (C411 / La Cale / Gemini)
-# ----------------------------------------------------------------------------
-# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
-# ============================================================================
-name: Remux Regex
-description: Détecte le mot Remux dans le titre de release.
-pattern: \b(Remux)\b
-tests:
-  - id: 1
-    input: Film.2018.MULTI.VFF.UHD.2160p.Bluray.Remux.DTS-X.TrueHD.7.1-FW
-    expected: true
-  - id: 2
-    input: Serie.UK.S01.COMPLETE.BLURAY.Remux.DD5.1-GKS
-    expected: true
-  - id: 3
-    input: Film.2022.MULTI.VFF.WEB-DL.1080p.EAC3.5.1.h264-TFA
-    expected: false
+name: Remux
+pattern: Remux
+description: A remux is a digital video file that maintains the exact quality of the original source (like a Blu-ray or DVD) by copying the video and audio streams without re-encoding them, essentially
+  creating a perfect 1:1 copy. Think of it like carefully transferring the contents of a Blu-ray disc into a more convenient container file format (typically MKV), similar to pouring fine wine from its
+  bottle into a decanter without changing the wine itself.
+tags:
+- Codec
+- h264
+- h265
+- Lossless
+tests: []

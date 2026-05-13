@@ -1,61 +1,138 @@
 # ============================================================================
-# Radarr — Films 1080p (scène FR, trackers La Cale / Gemini, logique type C411)
+# Radarr — Films 1080p (scène FR : C411 / La Cale / Gemini / YGGtorrent)
 # ----------------------------------------------------------------------------
-# Ce profil pilote l’upgrade automatique vers du 1080p « propre » : priorité aux
-# doublages FR (MULTI, VFF, VF2), bonus aux teams réputées, petits bonus aux
-# repacks pour corriger sans casser la hiérarchie langue.
-# minCustomFormatScore (20 000) : impose au minimum une release reconnue comme
-# FR exploitable (typiquement VOSTFR ou mieux) avant d’accepter le grab.
-# upgradeUntilScore (888 888) : laisse monter jusqu’aux scores langue max.
-# Remux / Full Disc / AV1 : pénalisés pour coller aux usages seeding / chartes.
+# Profil principal 1080p : langue FR, teams FR, audio premium, codec efficient,
+# édition (IMAX/Theatrical/Special), streamers. Exclut Remux / Full Disc / AV1
+# pour limiter taille et privilégier compatibilité matériel.
 # ============================================================================
 name: FR-Films-1080p
 description: >
-  Profil Radarr 1080p pour films sur trackers francophones stricts (La Cale, Gemini, esprit C411).
-  Priorise la langue (MULTI VF2 > MULTI VFF > VF2 > VFF > VOSTFR), récompense les teams FR Tier 1–2,
-  favorise les repacks mineurs, et bloque remux, disque complet et AV1 pour limiter poids inutile
-  et problèmes de lecture sur le matériel courant.
+  Profil Radarr 1080p pour films sur trackers francophones (La Cale, Gemini, YGGtorrent, esprit C411).
+  Priorise la langue (MULTI VF2 > MULTI VFF > VF2 > VFF > VOSTFR), bonus teams FR Tier 1-2,
+  audio premium (Atmos/TrueHD/DTS-X/DTS-HD MA), codec efficient (x265/h265), édition (IMAX/Theatrical/Special),
+  streamers internationaux. Bloque Remux, Full Disc, AV1, Upscaled.
 tags:
 - 1080p
 - French
 upgradesAllowed: true
-# Seuil minimal de score formats personnalisés : exige une release alignée charte FR (voir README).
 minCustomFormatScore: 20000
-# Plafond d’upgrade : permet de remplacer une release jusqu’à obtenir le meilleur score langue.
 upgradeUntilScore: 888888
-# Incrément minimal entre deux scores pour déclencher un upgrade (évite les boucles sur micro-écarts).
 minScoreIncrement: 1
 custom_formats:
-# --- Langue (ordre de priorité Radarr : plus le score est haut, plus le grab est désiré) ---
-# Ces scores séparent largement les familles pour qu’aucun bonus HDR/team ne passe avant la langue.
+# === Langue ===
 - name: FR-MULTI-VF2
-  score: 60000
+  score: 100000
 - name: FR-MULTI-VFF
-  score: 50000
+  score: 90000
 - name: FR-VF2
-  score: 40000
+  score: 70000
 - name: FR-VFF
-  score: 30000
+  score: 60000
 - name: FR-VOSTFR
-  score: 10000
+  score: 20000
 
-# --- Teams d’encodage FR (détection par nom de release / groupe) ---
-# Bonus modéré : utile pour départager deux releases de même famille linguistique.
+# === Teams FR ===
 - name: FR-Tier-01
-  score: 1800
+  score: 2000
 - name: FR-Tier-02
-  score: 1700
+  score: 1500
+- name: FR-Tier-03
+  score: 1000
 
-# --- Repacks / PROPER (corrections officielles) ---
-# Scores faibles : juste assez pour préférer une version corrigée sans battre la langue.
-- name: Repack3
-  score: 8
-- name: Repack2
-  score: 7
-- name: Repack1
-  score: 6
+# === Audio premium ===
+- name: Atmos
+  score: 500
+- name: Atmos (Missing)
+  score: -50
+- name: TrueHD
+  score: 400
+- name: TrueHD (Missing)
+  score: -30
+- name: DTS-X
+  score: 500
+- name: DTS-HD MA
+  score: 350
+- name: DTS-HD HRA
+  score: 250
+- name: DTS-ES
+  score: 200
+- name: DTS
+  score: 130
+- name: Dolby Digital +
+  score: 200
+- name: Dolby Digital
+  score: 100
+- name: AAC
+  score: 40
+- name: FLAC
+  score: 250
+- name: PCM
+  score: 200
+- name: Opus
+  score: 80
 
-# --- Exclusions fortes (alignement seeding / chartes / matériel) ---
+# === Codec ===
+- name: x265
+  score: 250
+- name: h265
+  score: 220
+- name: VP9
+  score: -200
+- name: VVC
+  score: 50
+- name: Xvid
+  score: -500
+
+# === HDR (rare en 1080p mais valorisé) ===
+- name: Dolby Vision
+  score: 1000
+- name: Dolby Vision (Without Fallback)
+  score: -200
+- name: HDR10+
+  score: 500
+- name: HDR10
+  score: 300
+- name: HDR
+  score: 200
+- name: HDR (Missing)
+  score: -100
+- name: HDR10 (Missing)
+  score: -50
+
+# === Édition ===
+- name: IMAX
+  score: 150
+- name: IMAX Enhanced
+  score: 200
+- name: Theatrical
+  score: 80
+- name: Special Edition
+  score: 100
+- name: 3D
+  score: -300
+- name: Internal
+  score: 50
+
+# === Repacks ===
+
+# === Streamers (consolidés) ===
+
+
+- name: FR-Streamer-Premium
+  score: 80
+- name: FR-Streamer-Standard
+  score: 50
+
+# === HDLight (Bluray allégé scène FR) ===
+- name: FR-HDLight
+  score: 60
+
+
+# === Hybrid (Bluray hybride premium) ===
+- name: FR-Hybrid
+  score: 200
+
+# === Exclusions fortes ===
 - name: FR-Blockers
   score: -999999
 - name: Remux
@@ -64,6 +141,12 @@ custom_formats:
   score: -999999
 - name: AV1
   score: -999999
+- name: Upscale
+  score: -999999
+
+# === Repack (releases corrigées : PROPER/REPACK/RERIP/REAL) ===
+- name: FR-Repack
+  score: 75
 
 qualities:
 - id: -1

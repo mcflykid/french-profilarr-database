@@ -1,42 +1,16 @@
-# ============================================================================
-# Format personnalisé — Liste de blocage (groupes / tags indésirables)
-# ----------------------------------------------------------------------------
-# S’appuie sur FR-Regex-Blockers : toute occurrence dans le titre applique un
-# score très négatif. À synchroniser avec les règles écrites La Cale / Gemini / C411.
-# ============================================================================
 name: FR-Blockers
-description: >
-  Marque les releases dont le titre contient un groupe/tag explicitement banni, un encodeur GPU interdit
-  (NVENC/QSV/AMF), ou un tag codec incohérent sur source pure (REMUX/BDMV/ISO avec x264/x265/h264/h265).
-  Mettre à jour FR-Regex-Blockers avec les règles tracker.
-tags: []
-# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
-# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
+description: Détecte les releases problématiques pour la scène FR — groupes bannis
+  (k0RE, Wawacity, YIFY, FGT, GalaxyRG, etc.), encodeurs GPU interdits (NVENC, QSV,
+  AMF) et incohérences techniques majeures (REMUX / BDMV / ISO combinés avec un codec
+  encoder x264/x265/h264/h265). Score très négatif pour exclure totalement de la sélection.
+tags:
+- Release Group
+- French
+- Banned
 conditions:
-  # required: false + une seule condition release_title : le groupe matche si la regex trouve un blocage
-  # (logique Profilarr « au moins une » sans required — voir évaluateur formats personnalisés).
-  - name: Blockers
-    type: release_title
-    negate: false
-    required: false
-    pattern: FR-Regex-Blockers
-# Tests : titres factices au format v1 (`id`, `input`, `expected`).
-tests:
-  - id: 1
-    input: Film.2020.FRENCH.BDRip.x264-k0RE
-    expected: true
-  - id: 2
-    input: Serie.S02E05.VOSTFR.WEBRip.x264-Wawacity
-    expected: true
-  - id: 3
-    input: Film.2024.MULTI.VFF.UHD.2160p.Hybrid.DoVi.HDR10.DTS-X.x265-QTZ
-    expected: false
-  - id: 4
-    input: WALL.E.2008.MULTI.VFF.2160p.UHD.BluRay.REMUX.DV.HDR10PLUS.TrueHD.7.1.x265-NOTAG
-    expected: true
-  - id: 5
-    input: Film.2024.MULTI.VFF.1080p.WEBRip.H264.NVENC-TEAM
-    expected: true
-  - id: 6
-    input: Film.2024.MULTI.VFF.1080p.WEBRip.H264-TEAM
-    expected: false
+- name: Blockers
+  negate: false
+  pattern: FR-Regex-Blockers
+  required: true
+  type: release_title
+tests: []

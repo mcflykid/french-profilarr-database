@@ -1,29 +1,15 @@
-# ============================================================================
-# Format personnalisé — Bonus teams Tier 2
-# ----------------------------------------------------------------------------
-# Bonus inférieur au Tier 1 ; couvre scène et teams « solides » secondaires.
-# ============================================================================
 name: FR-Tier-02
-description: >
-  Bonus pour teams Tier 2 (regex FR-Tier-02). Utile quand deux releases ont même score langue et
-  même type HDR/audio, mais proviennent de teams de réputation différente sur la scène FR.
-tags: []
-# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
-# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
+description: Bonus qualité pour les teams Tier 2 (G2 Confirmé P2P) de la liste officielle
+  C411 — 18 teams confirmées avec 50-330 releases et 100% de seed (ENIGMA, NEOSTARK,
+  HYPERION, TOXIC, N3ZUKO, J4CK, Maxadonf, D4RK, R3MiX, RAPTOR, Themouche, SUPERFLU,
+  LaFistiniere, R3DUCT0, SHADOW, OPTIMUM, ESPER, D5T0).
+tags:
+- Release Group
+- French
 conditions:
-  - name: Tier 02
-    type: release_title
-    negate: false
-    required: false
-    pattern: FR-Tier-02
-# Tests : titres factices au format v1 (`id`, `input`, `expected`).
-tests:
-  - id: 1
-    input: Film.2018.MULTI.VFF.WEB-DL.1080p.EAC3.5.1.h264-LOST
-    expected: true
-  - id: 2
-    input: Serie.NO.S02E11.VOSTFR.WEBRip.720p.x264-HYPERION
-    expected: true
-  - id: 3
-    input: Film.2024.VFF.UHD.2160p.DoVi.HDR10.DTS-HD.MA.7.1.x265-TFA
-    expected: false
+- name: Tier 02
+  negate: false
+  pattern: FR-Tier-02
+  required: true
+  type: release_title
+tests: []

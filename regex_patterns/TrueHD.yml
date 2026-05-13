@@ -1,18 +1,7 @@
-# ============================================================================
-# Motif regex — Scène FR (C411 / La Cale / Gemini)
-# ----------------------------------------------------------------------------
-# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
-# ============================================================================
-name: TrueHD Regex
-description: Détecte TrueHD dans le titre de release.
-pattern: \b(TrueHD)\b
-tests:
-  - id: 1
-    input: Film.2018.MULTI.VFF.Bluray.1080p.TrueHD.7.1.x264-TFA
-    expected: true
-  - id: 2
-    input: Serie.S01E08.VOSTFR.WEB-DL.TrueHD.Atmos.1080p.h265-GKS
-    expected: true
-  - id: 3
-    input: Film.2020.MULTI.VFF.WEB-DL.DTS-HD.MA.5.1.h264-OZEF
-    expected: false
+name: TrueHD
+pattern: True[ .-]?HD[ .-]?
+description: ''
+tags:
+- Audio
+- Lossless
+tests: []

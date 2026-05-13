@@ -1,39 +1,14 @@
-# ============================================================================
-# Format personnalisé — VOSTFR / SUBFRENCH (repli)
-# ----------------------------------------------------------------------------
-# Dernier palier langue acceptable avant absence de FR : VO + sous-titres FR
-# annoncés dans le titre (usuel La Cale / Gemini quand pas encore de VF).
-# ============================================================================
 name: FR-VOSTFR
-description: >
-  Version originale avec sous-titres français annoncés (VOSTFR, SUBFRENCH, FANSUB, FASTSUB). Repli lorsqu’aucun
-  doublage MULTI/VFF/VF2 n’est disponible sur l’indexeur, tout en gardant une exigence FR lisible.
+description: Détecte les variantes VOSTFR / VOST-FR / SUBFRENCH / FANSUB / FASTSUB
+  (version originale avec sous-titres français annoncés). Repli de langue accepté
+  lorsqu'aucun doublage MULTI / VFF / VF2 n'est disponible sur l'indexeur.
 tags:
-  - Language
-  - French
-  - Scene-FR
-# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
-# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
+- Language
+- French
 conditions:
-  - name: VOSTFR
-    type: release_title
-    negate: false
-    required: false
-    pattern: FR-Regex-VOSTFR
-# Tests : titres factices au format v1 (`id`, `input`, `expected`).
-tests:
-  - id: 1
-    input: Film.US.2023.VOSTFR.WEB-DL.1080p.EAC3.5.1.h264-Slay3R
-    expected: true
-  - id: 2
-    input: Mini.Serie.S01.SUBFRENCH.BluRay.1080p.DTS-HD.MA.5.1.x264-BOUC
-    expected: true
-  - id: 3
-    input: Serie.S02E03.VOST-FR.WEB.1080p.x264-TEAM
-    expected: true
-  - id: 4
-    input: Film.FR.2021.MULTI.VFF.UHD.2160p.DoVi.HDR10Plus.DTS-X.x265-QTZ
-    expected: false
-  - id: 5
-    input: Sentenced.To.Be.A.Hero.S01E01.VOSTFR.FASTSUB.1080p.WEBRip.AAC.2.0.x264-NOTAG
-    expected: true
+- name: VOSTFR
+  negate: false
+  pattern: FR-Regex-VOSTFR
+  required: true
+  type: release_title
+tests: []

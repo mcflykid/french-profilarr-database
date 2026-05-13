@@ -1,18 +1,29 @@
-# ============================================================================
-# Motif regex — Scène FR (C411 / La Cale / Gemini)
-# ----------------------------------------------------------------------------
-# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
-# ============================================================================
-name: AV1 Regex
-description: Détecte AV1 dans le titre de release.
+name: AV1
 pattern: \b(AV1)\b
+description: AV1, or AOMedia Video 1, is a video coding format that compresses video
+  files and streams while maintaining high quality.
+tags:
+- Codec
 tests:
-  - id: 1
-    input: Film.2025.MULTI.VFF.UHD.2160p.WEB-DL.AV1.DDP5.1-GKS
-    expected: true
-  - id: 2
-    input: Serie.S04E04.VOSTFR.WEB.1080p.AV1.OPUS-NEOSTARK
-    expected: true
-  - id: 3
-    input: Film.2022.MULTI.VFF.UHD.2160p.WEB-DL.h265.EAC3.5.1-QTZ
-    expected: false
+- expected: true
+  id: 1
+  input: Arcane S01 2160p UHD BluRay DD 5.1 DV HDR AV1-TiZU
+  lastRun: '2025-04-15T14:50:05.552676'
+  matchSpan:
+    end: 45
+    start: 42
+  matchedContent: AV1
+  matchedGroups:
+  - AV1
+  passes: true
+- expected: true
+  id: 2
+  input: Up.2009.2160p.Bluray.AC3.HDR.DV.AV1-TiZU.mkv
+  lastRun: '2025-04-15T14:50:05.552676'
+  matchSpan:
+    end: 35
+    start: 32
+  matchedContent: AV1
+  matchedGroups:
+  - AV1
+  passes: true

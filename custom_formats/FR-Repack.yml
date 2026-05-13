@@ -1,0 +1,16 @@
+name: FR-Repack
+description: Détecte toutes les variantes PROPER / REPACK / RERIP / REAL (avec ou
+  sans suffixe numérique 2 ou 3) dans une seule condition. Consolidation propre au
+  projet FR des Repack1 / Repack2 / Repack3 officiels Dictionarry — bonus unique pour
+  privilégier les releases corrigées sur leurs versions originales.
+tags:
+- Flag
+- Repack
+- French
+conditions:
+- name: Repack
+  negate: false
+  pattern: FR-Repack
+  required: true
+  type: release_title
+tests: []

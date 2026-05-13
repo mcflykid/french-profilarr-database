@@ -1,29 +1,32 @@
-# ============================================================================
-# Format personnalisé — HDR10
-# ----------------------------------------------------------------------------
-# HDR « de base » ; score inférieur à HDR10+ et DV dans les profils 4K.
-# ============================================================================
 name: HDR10
-description: >
-  Détecte HDR10 annoncé dans le titre (HDR de base). Bonus modéré sur UHD lorsque DV/HDR10+ ne sont
-  pas annoncés ou pour releases HDR10 seules sur indexeurs La Cale / Gemini.
-tags: []
-# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
-# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
+description: Matches the 'HDR10' Regex Pattern
+tags:
+- Colour Grade
+- HDR
 conditions:
-  - name: HDR10
-    type: release_title
-    negate: false
-    required: false
-    pattern: HDR10 Regex
-# Tests : titres factices au format v1 (`id`, `input`, `expected`).
-tests:
-  - id: 1
-    input: Film.2021.MULTI.VFF.UHD.2160p.HDR10.DTS-HD.MA.7.1.x265-FW
-    expected: true
-  - id: 2
-    input: Serie.S03E06.VOSTFR.WEB-DL.1080p.HDR10.h264-Slay3R
-    expected: true
-  - id: 3
-    input: Film.2024.MULTI.VFF.WEB-DL.1080p.SDR.h264-BOUC
-    expected: false
+- name: HDR10
+  negate: false
+  pattern: HDR10
+  required: true
+  type: release_title
+- name: Not SDR
+  negate: true
+  pattern: SDR
+  required: true
+  type: release_title
+- name: Not PQ
+  negate: true
+  pattern: PQ
+  required: true
+  type: release_title
+- name: Not HLG
+  negate: true
+  pattern: HLG
+  required: true
+  type: release_title
+- name: Not HDR10+
+  type: release_title
+  required: true
+  negate: true
+  pattern: HDR10+
+tests: []

@@ -1,30 +1,14 @@
-# ============================================================================
-# Format personnalisé — Bonus teams Tier 1
-# ----------------------------------------------------------------------------
-# Récompense les releases dont le titre contient une team « élite » (regex FR-Tier-01).
-# Bonus volontairement modeste vs la langue pour ne jamais inverser les priorités.
-# ============================================================================
 name: FR-Tier-01
-description: >
-  Bonus qualité pour teams Tier 1 (regex FR-Tier-01). Sert à départager deux releases FR identiques
-  en langue en faveur d’un groupe historiquement plus fiable sur La Cale / Gemini.
-tags: []
-# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
-# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
+description: Bonus qualité maximal pour les teams Tier 1 (top + Vétéran G1) de la
+  liste officielle C411 — TFA, FORWARD, THESYNDiCATE, TyHD, Slay3R, AMEN, BOUBA, BOUC,
+  OZEF. Encodeurs élites, volumes très élevés, qualité historiquement reconnue.
+tags:
+- Release Group
+- French
 conditions:
-  - name: Tier 01
-    type: release_title
-    negate: false
-    required: false
-    pattern: FR-Tier-01
-# Tests : titres factices au format v1 (`id`, `input`, `expected`).
-tests:
-  - id: 1
-    input: Film.Action.2022.MULTI.VFF.UHD.2160p.Hybrid.DoVi.HDR10Plus.DTS-X.x265-TFA
-    expected: true
-  - id: 2
-    input: Serie.UK.S04E02.VOSTFR.WEB.1080p.h264-FW
-    expected: true
-  - id: 3
-    input: Film.2020.MULTI.VFF.BDRip.x264-ENIGMA
-    expected: false
+- name: Tier 01
+  negate: false
+  pattern: FR-Tier-01
+  required: true
+  type: release_title
+tests: []

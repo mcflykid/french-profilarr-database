@@ -1,0 +1,24 @@
+name: FR-Regex-HDLight
+pattern: (?i)\bHDLight\b
+description: Détecte le tag HDLight (Bluray rip allégé, qualité réduite mais HD).
+  Convention typique scène FR sur C411 / La Cale / Gemini / YGGtorrent pour économiser
+  bande passante tout en conservant 1080p / 720p.
+tags:
+- Source
+- French
+tests:
+- id: 1
+  input: La.Rose.De.La.Mer.1946.VFF.1080p.HDLight.AC3.2.0.H264-NOTAG
+  expected: true
+- id: 2
+  input: Le.Sillage.De.La.Violence.1965.MULTI.VFI.1080p.HDLight.AC3.2.0.x264-NOTAG
+  expected: true
+- id: 3
+  input: La.Soupe.aux.choux.1981.VFF.1080p.BluRay.HDLight.AAC.2.0.x265-NOTAG
+  expected: true
+- id: 4
+  input: Alita.Battle.Angel.2019.MULTI.VFF.1080p.BluRay.DTS.HD.MA.7.1.x264-RiFiFi
+  expected: false
+- id: 5
+  input: Caught.Stealing.2025.MULTI.VF2.2160p.WEB.DV.HDR10Plus.AC3.5.1.H265-Slay3R
+  expected: false

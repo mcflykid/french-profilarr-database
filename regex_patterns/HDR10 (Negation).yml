@@ -1,0 +1,13 @@
+name: HDR10 (Negation)
+pattern: (?<=^|[\s.-])BHDStudio\b
+description: Groupes connus pour étiquetage HDR10 discutable (cf. base Dictionarry).
+tags:
+- Release Group
+- HDR
+tests:
+- id: 1
+  input: Film.2023.2160p.UHD.BluRay.DV-BHDStudio
+  expected: true
+- id: 2
+  input: Film.2023.2160p.UHD.BluRay.DV.FraMeSToR
+  expected: false

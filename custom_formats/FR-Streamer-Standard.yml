@@ -1,0 +1,15 @@
+name: FR-Streamer-Standard
+description: Détecte les sources WEB secondaires encore visibles sur trackers FR (iTunes
+  / Apple Store, Sky NOW, Crunchyroll) via une regex projet unique FR-Regex-Streamers-Standard.
+  Les services purement américains (Hulu, Peacock, Roku, etc.) restent exclus comme peu
+  pertinents pour la scène francophone.
+tags:
+- Streaming Service
+- French
+conditions:
+- name: Streamers standard
+  negate: false
+  pattern: FR-Regex-Streamers-Standard
+  required: true
+  type: release_title
+tests: []
