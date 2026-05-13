@@ -1,10 +1,31 @@
+# =============================================================================
+# Custom format — AV1 (pénalité)
+# -----------------------------------------------------------------------------
+# Politique dépôt : compat lecture ; peut diverger d’une charte C411 autorisant AV1.
+# =============================================================================
 name: AV1
-description: Identifie le codec vidéo AV1 à bloquer.
+description: >
+  Détecte AV1 dans le titre pour l’exclure ou le fortement pénaliser sur les profils ciblés
+  (téléviseurs / box sans décodeur matériel fiable). À retirer des profils si vous adoptez AV1 C411.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: AV1
     type: release_title
     negate: false
     required: false
     pattern: AV1 Regex
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2025.MULTI.VFF.UHD.2160p.WEB-DL.AV1.DDP5.1-GKS
+    type: movie
+    should_match: true
+    description: Codec AV1 dans le titre
+  - title: Serie.S04E02.VOSTFR.WEB.1080p.AV1.OPUS-NEOSTARK
+    type: series
+    should_match: true
+    description: AV1 sur série
+  - title: Film.2022.MULTI.VFF.UHD.2160p.WEB-DL.h265.EAC3.5.1-QTZ
+    type: movie
+    should_match: false
+    description: HEVC / h265 sans AV1
