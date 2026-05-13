@@ -1,4 +1,25 @@
+# =============================================================================
+# Regex — tag MULTI (titres de releases)
+# -----------------------------------------------------------------------------
+# Sur La Cale / Gemini, MULTI annonce plusieurs langues audio ; souvent requis
+# avec VFF pour les meilleures releases FR (custom format FR-MULTI-VFF).
+# =============================================================================
 name: FR-Regex-MULTI
-description: Détecte le tag MULTI dans les titres
+description: >
+  Détecte le mot entier MULTI dans le titre (release scène / trackers FR). Condition fréquente
+  pour les packs VF+VO conformes aux usages de naming trackers privés.
 pattern: \b(MULTI)\b
-tests: []
+# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
+tests:
+  - title: Film.2022.MULTI.VFF.UHD.2160p.WEB-DL.h265-GKS
+    type: movie
+    should_match: true
+    description: MULTI explicite
+  - title: Serie.S02E01.FRENCH.MULTI.1080p.WEB.h264-QTZ
+    type: series
+    should_match: true
+    description: MULTI au milieu du titre
+  - title: Film.2019.VFF.BDRip.1080p.x264-OZEF
+    type: movie
+    should_match: false
+    description: Pas de mot MULTI isolé
