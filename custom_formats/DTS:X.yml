@@ -1,10 +1,31 @@
+# =============================================================================
+# Custom format — DTS:X
+# -----------------------------------------------------------------------------
+# Audio immersif annoncé ; complémentaire avec TrueHD Atmos selon les releases.
+# =============================================================================
 name: DTS:X
-description: Identifie le format DTS:X.
+description: >
+  Détecte DTS:X (variantes DTS-X / DTS.X) dans le titre. Bonus pour annonces audio immersif sur
+  films et séries UHD/Bluray sur la scène francophone.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: DTS:X
     type: release_title
     negate: false
     required: false
     pattern: DTS-X Regex
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2023.MULTI.VFF.UHD.2160p.DoVi.HDR10Plus.DTS-X.7.1.x265-QTZ
+    type: movie
+    should_match: true
+    description: DTS-X explicite
+  - title: Serie.S02E03.VOSTFR.WEB.1080p.DTS.X.5.1.h264-BOUBA
+    type: series
+    should_match: true
+    description: Variante DTS.X
+  - title: Film.2016.MULTI.VFF.BluRay.1080p.DTS-HD.MA.5.1.x264-GKS
+    type: movie
+    should_match: false
+    description: DTS-HD MA sans extension X
