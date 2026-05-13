@@ -1,4 +1,25 @@
+# =============================================================================
+# Regex — ISO / BDMV / VIDEO_TS (disque complet)
+# -----------------------------------------------------------------------------
+# Structure « full disc » souvent non désirée pour bibliothèque type Plex et
+# pour le ratio sur trackers privés (La Cale, Gemini).
+# =============================================================================
 name: Full Disc Regex
-description: Détecte les structures de disques complètes (ISO/BDMV)
+description: >
+  Détecte ISO, BDMV ou VIDEO_TS dans le titre (images disque ou structure DVD/Bluray complète).
+  Employé pour pénaliser les uploads non remuxés en fichiers uniques mkv/mp4.
 pattern: \b(ISO|BDMV|VIDEO_TS)\b
-tests: []
+# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
+tests:
+  - title: Film.2007.MULTI.VFF.COMPLETE.BLURAY.VIDEO_TS.PAL-TLC
+    type: movie
+    should_match: true
+    description: Structure DVD VIDEO_TS
+  - title: Jeu.2011.MULTI.FULL.ISO.COMPLETE-LOST
+    type: movie
+    should_match: true
+    description: Fichier ISO annoncé
+  - title: Film.2024.MULTI.VFF.mkv.BDRip.1080p.x264-QTZ
+    type: movie
+    should_match: false
+    description: Rip fichier sans structure disque
