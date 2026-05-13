@@ -1,6 +1,7 @@
 # french-profilarr-database
 
-Configuration **Profilarr v1** (Radarr / Sonarr) orientée **scène FR stricte**
+Configuration **Profilarr v1** (Radarr / Sonarr) — référence d’import **v1.1.4** —
+orientée **scène FR stricte**
 pour les trackers privés francophones (**C411**, **La Cale**, **Gemini**, **YGGtorrent**).
 
 Ce dépôt est un **fork allégé et adapté** de
@@ -33,7 +34,7 @@ Si tu modifies un fichier officiel pour l'adapter au marché FR, **renomme-le `F
 
 ---
 
-## Compatibilité Profilarr v1
+## Compatibilité Profilarr v1 (référence **1.1.4**)
 
 - Schéma `regex_patterns/*` : `name`, `pattern`, `description`, `tags`, `tests`
 - Schéma `custom_formats/*` : `name`, `description`, `tags`, `conditions`, `tests`
@@ -49,8 +50,8 @@ tests des regex, pour un compteur « X/Y passing » fiable.
 
 Pour coller au comportement des titres de releases (Radarr / Sonarr : comparaison
 souvent **insensible à la casse**), les motifs qui ne l’étaient pas dans Dictionarry
-portent un préfixe **`(?i)`** lorsque les tests Profilarr sinon échouent (l’UI v1 exécute
-les cas de test en **casse stricte** si le motif ne contient pas `(?i)`).
+portent un préfixe **`(?i)`** lorsque les tests Profilarr sinon échouent (jusqu’en **1.1.4**,
+l’UI exécute les cas de test en **casse stricte** si le motif ne contient pas `(?i)`).
 
 ---
 
