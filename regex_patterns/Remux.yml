@@ -1,4 +1,26 @@
+# =============================================================================
+# Regex — Remux (source vidéo/audio quasi intacte)
+# -----------------------------------------------------------------------------
+# Souvent interdit ou fortement pénalisé sur trackers FR pour poids / seeding.
+# Détection par le mot Remux (casse exacte du motif \b Remux \b — vérifier les
+# annonces en majuscules sur votre indexer).
+# =============================================================================
 name: Remux Regex
-description: Détecte les versions Remux (Source intacte)
+description: >
+  Détecte le mot entier Remux dans le titre (releases type BluRay ou UHD remux). Utilisé pour
+  exclure ou pénaliser les fichiers très lourds non souhaités sur ce dépôt.
 pattern: \b(Remux)\b
-tests: []
+# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
+tests:
+  - title: Film.2018.MULTI.VFF.UHD.2160p.Bluray.Remux.DTS-X.TrueHD.7.1-FW
+    type: movie
+    should_match: true
+    description: Remux avec casse standard
+  - title: Serie.UK.S01.COMPLETE.BLURAY.Remux.DD5.1-GKS
+    type: series
+    should_match: true
+    description: Remux sur intégrale
+  - title: Film.2022.MULTI.VFF.WEB-DL.1080p.EAC3.5.1.h264-TFA
+    type: movie
+    should_match: false
+    description: WEB-DL sans Remux
