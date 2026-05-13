@@ -1,10 +1,31 @@
+# =============================================================================
+# Custom format — Repack niveau 3
+# -----------------------------------------------------------------------------
+# Dernier micro-palier avant saturation des bonus repack.
+# =============================================================================
 name: Repack3
-description: Identifie les corrections de type V4.
+description: >
+  Détecte corrections niveau 3 (REPACK.3, V4…). Bonus le plus élevé de la série Repack tout en
+  restant marginal face aux scores langue (évite les upgrades erratiques).
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: Repack3
     type: release_title
     negate: false
     required: false
     pattern: Repack3 Regex
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2015.MULTI.VFF.BDRip.V4.DTS.5.1.x264-OZEF
+    type: movie
+    should_match: true
+    description: V4 (niveau 3)
+  - title: Serie.S03E03.VOSTFR.WEB.REPACK.3.720p.x264-TMB
+    type: series
+    should_match: true
+    description: REPACK.3 explicite
+  - title: Documentaire.2014.MULTI.VFF.TVrip.REPACK.1080p.h264-TSR
+    type: movie
+    should_match: false
+    description: REPACK sans suffixe 3 / pas de V4
