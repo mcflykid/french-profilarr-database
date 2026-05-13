@@ -1,10 +1,31 @@
+# =============================================================================
+# Custom format — HDR10
+# -----------------------------------------------------------------------------
+# HDR « de base » ; score inférieur à HDR10+ et DV dans les profils 4K.
+# =============================================================================
 name: HDR10
-description: Identifie les releases encodées en HDR10 standard.
+description: >
+  Détecte HDR10 annoncé dans le titre (HDR de base). Bonus modéré sur UHD lorsque DV/HDR10+ ne sont
+  pas annoncés ou pour releases HDR10 seules sur indexeurs La Cale / Gemini.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: HDR10
     type: release_title
     negate: false
     required: false
     pattern: HDR10 Regex
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2021.MULTI.VFF.UHD.2160p.HDR10.DTS-HD.MA.7.1.x265-FW
+    type: movie
+    should_match: true
+    description: HDR10 explicite
+  - title: Serie.S03E06.VOSTFR.WEB-DL.1080p.HDR10.h264-Slay3R
+    type: series
+    should_match: true
+    description: HDR10 sur épisode
+  - title: Film.2024.MULTI.VFF.WEB-DL.1080p.SDR.h264-BOUC
+    type: movie
+    should_match: false
+    description: Pas de marqueur HDR10 dans le titre
