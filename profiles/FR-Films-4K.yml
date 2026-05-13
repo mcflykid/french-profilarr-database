@@ -35,11 +35,11 @@ custom_formats:
 - name: DTS-HD MA
   score: 900
 
-# === HDR ===
+# === HDR (Dolby Vision prioritaire pour AppleTV 4K) ===
 - name: Dolby Vision
-  score: 3000
+  score: 4500
 - name: HDR10+
-  score: 2000
+  score: 2500
 - name: HDR10
   score: 1000
 
