@@ -1,10 +1,31 @@
+# =============================================================================
+# Custom format — DTS-HD Master Audio
+# -----------------------------------------------------------------------------
+# Couvre formes « DTS-HD MA » et certaines abréviations « DTS-HD » seules selon regex.
+# =============================================================================
 name: DTS-HD MA
-description: Identifie le format DTS-HD Master Audio.
+description: >
+  Détecte DTS-HD Master Audio ou mention DTS-HD compatible avec la regex liée. Bonus audio lossless
+  côté DTS pour releases Bluray/UHD annoncées sur trackers FR.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: DTS-HD MA
     type: release_title
     negate: false
     required: false
     pattern: DTS-HD MA Regex
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2019.MULTI.VFF.UHD.2160p.HDR10Plus.DTS-HD.MA.7.1.x265-QTZ
+    type: movie
+    should_match: true
+    description: DTS-HD MA explicite
+  - title: Serie.S01E01.VOSTFR.BluRay.1080p.DTS-HD.h264-AMEN
+    type: series
+    should_match: true
+    description: DTS-HD (MA optionnel dans la regex)
+  - title: Film.2024.MULTI.VFF.WEB-DL.1080p.AC3.5.1.x264-TFA
+    type: movie
+    should_match: false
+    description: AC3 seul
