@@ -26,7 +26,7 @@ custom_formats:
 - name: FR-Tier-02
   score: 1700
 
-# === Audio & HDR (Comme pour les films 4K) ===
+# === Audio & HDR (Dolby Vision prioritaire pour AppleTV 4K) ===
 - name: TrueHD Atmos
   score: 1000
 - name: DTS:X
@@ -36,9 +36,9 @@ custom_formats:
 - name: DTS-HD MA
   score: 900
 - name: Dolby Vision
-  score: 3000
+  score: 4500
 - name: HDR10+
-  score: 2000
+  score: 2500
 - name: HDR10
   score: 1000
 
