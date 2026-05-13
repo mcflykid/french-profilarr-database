@@ -1,10 +1,31 @@
+# =============================================================================
+# Custom format — Dolby Vision (annonce titre)
+# -----------------------------------------------------------------------------
+# Ne vérifie pas profil DV ni fallback HDR (limites README / charte C411).
+# =============================================================================
 name: Dolby Vision
-description: Identifie les releases encodées en Dolby Vision.
+description: >
+  Détecte Dolby Vision, DV ou DoVi annoncés dans le titre. Fort bonus sur profils 4K pour privilégier
+  les UHD annoncées en DV sur matériel compatible (Apple TV, TV récentes, etc.).
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: Dolby Vision
     type: release_title
     negate: false
     required: false
     pattern: Dolby Vision Regex
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2022.MULTI.VFF.UHD.2160p.Hybrid.DoVi.HDR10.DDPPlus.Atmos.x265-QTZ
+    type: movie
+    should_match: true
+    description: DoVi / Dolby Vision texte
+  - title: Serie.S02E04.VOSTFR.WEB.1080p.DV.HDR10.h264-TFA
+    type: series
+    should_match: true
+    description: DV court
+  - title: Film.2015.MULTI.VFF.BDRip.1080p.x264-AMEN
+    type: movie
+    should_match: false
+    description: SDR sans marqueurs DV
