@@ -1,10 +1,36 @@
+# =============================================================================
+# Custom format — VF2 / VFQ seul
+# -----------------------------------------------------------------------------
+# Détecte VF2 ou VFQ sans exiger MULTI. Peut matcher des releases Québec ou
+# double VF selon le naming ; combiner avec les scores du profil pour la politique VFQ.
+# =============================================================================
 name: FR-VF2
-description: Identifie les releases VF2 uniques.
+description: >
+  Release avec VF2 ou VFQ dans le titre (sans condition MULTI ici). À utiliser avec les scores du
+  profil pour favoriser ou limiter la VFQ selon votre politique (France vs Québec).
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: VF2
     type: release_title
     negate: false
     required: false
     pattern: FR-Regex-VF2
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.Quebec.2020.VF2.WEBRip.1080p.AAC2.0.x264-TayTO
+    type: movie
+    should_match: true
+    description: VF2 seul
+  - title: Emission.S05E10.VFQ.HDTV.1080p.MPEG2-TSR
+    type: series
+    should_match: true
+    description: VFQ seul
+  - title: Film.2017.VFF.BluRay.1080p.DTS-HD.MA.5.1.x264-TFA
+    type: movie
+    should_match: false
+    description: VFF uniquement
+  - title: Film.2025.MULTI.VFF.2160p.UHD.BluRay.x265-GKS
+    type: movie
+    should_match: false
+    description: Pas de VF2 / VFQ dans le titre
