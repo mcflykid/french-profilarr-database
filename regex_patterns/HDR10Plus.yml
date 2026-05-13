@@ -1,4 +1,24 @@
+# =============================================================================
+# Regex — HDR10+ (titres de releases)
+# -----------------------------------------------------------------------------
+# Distinct de HDR10 seul grâce au « Plus » ou au signe + collé au mot HDR10.
+# =============================================================================
 name: HDR10+ Regex
-description: Détecte la présence de HDR10+
+description: >
+  Détecte HDR10+ ou HDR10Plus dans le titre. Utilisé pour le custom format HDR10+ (HDR dynamique
+  annoncé) sur profils 4K orientés matériel récent.
 pattern: \b(HDR10(Plus|\+))\b
-tests: []
+# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
+tests:
+  - title: Film.2023.MULTI.VFF.UHD.2160p.HDR10Plus.DTS-X.x265-TFA
+    type: movie
+    should_match: true
+    description: HDR10Plus collé
+  - title: Serie.S02E02.VOSTFR.WEBRip.1080p.HDR10+.EAC3.h264-GKS
+    type: series
+    should_match: true
+    description: HDR10+ avec signe plus
+  - title: Film.2019.MULTI.VFF.Bluray.1080p.HDR10.DTS.5.1.x264-OZEF
+    type: movie
+    should_match: false
+    description: HDR10 seul sans « Plus »
