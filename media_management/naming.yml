@@ -1,3 +1,12 @@
+# =============================================================================
+# Modèles de renommage Radarr / Sonarr (scène FR, trackers La Cale / Gemini)
+# -----------------------------------------------------------------------------
+# rename: false — les chaînes servent surtout de référence Profilarr / export ;
+#   activez le renommage dans Radarr/Sonarr si vous les appliquez telles quelles.
+# Inclus : TMDB/TVDB dans les dossiers, custom formats et groupe de release
+#   conservé en suffixe (-Groupe) pour respecter le naming tracker au seed.
+# Sonarr : `colonReplacementFormat: 4` correspond au réglage attendu par ce dépôt (remplacement des « : » dans les titres) — vérifier dans l’UI Sonarr si vous changez de version.
+# =============================================================================
 radarr:
   rename: false
   movieFormat: '{Movie CleanTitle} ({Release Year}) {tmdb-{TmdbId}} {edition-{Edition Tags}} [{Custom Formats}] [{Quality Full}] [{MediaInfo 3D}] [{MediaInfo VideoDynamicRangeType}] [{MediaInfo AudioCodec} {MediaInfo AudioChannels}] [{MediaInfo VideoCodec}] {-Release Group}'
