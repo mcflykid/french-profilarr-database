@@ -1,4 +1,26 @@
+# =============================================================================
+# Regex — VFF / TrueFrench (titres de releases indexeurs)
+# -----------------------------------------------------------------------------
+# Utilisée par les custom formats langue (ex. FR-MULTI-VFF, FR-VFF).
+# Contexte trackers francophones (La Cale, Gemini, charte type C411) : le tag
+# VFF ou TRUEFRENCH indique une piste de doublage France, distincte de VFQ/VF2.
+# =============================================================================
 name: FR-Regex-VFF
-description: Détecte le tag VFF ou TrueFrench
+description: >
+  Mot entier VFF ou TRUEFRENCH dans le titre de release (Radarr/Sonarr, champ analysé par Profilarr).
+  Sert à scorer les releases « vraie VF » France pour la scène FR ; combiner avec MULTI ou autres regex selon le custom format.
 pattern: \b(VFF|TRUEFRENCH)\b
-tests: []
+# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
+tests:
+  - title: Film.2023.MULTI.VFF.Bluray.1080p.DTS-HD.MA.5.1.x264-TFA
+    type: movie
+    should_match: true
+    description: Tag VFF standard
+  - title: Serie.S01E04.TRUEFRENCH.WEB.720p.x264-FW
+    type: series
+    should_match: true
+    description: Synonyme historique TrueFrench
+  - title: Film.2020.VFQ.WEB-DL.1080p.h264-AMEN
+    type: movie
+    should_match: false
+    description: VFQ seul (pas VFF)
