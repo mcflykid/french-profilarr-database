@@ -1,4 +1,15 @@
+# =============================================================================
+# Sonarr — Séries 1080p (scène FR, La Cale / Gemini, logique type C411)
+# -----------------------------------------------------------------------------
+# Même philosophie que FR-Films-1080p : langue FR prioritaire, teams, repacks,
+# exclusion remux / full disc / AV1. Les qualités incluent HDTV-1080p car les
+# séries FR passent souvent par du TV cap avant WEB/Bluray.
+# =============================================================================
 name: FR-Series-1080p
+description: >
+  Profil Sonarr 1080p pour séries sur trackers francophones stricts (La Cale, Gemini, esprit C411).
+  Priorise MULTI/VFF/VF2/VOSTFR, bonus teams Tier 1–2, repacks, et bloque remux, disque complet
+  et AV1. Inclut Bluray, WEB et HDTV 1080p dans le groupe de qualité cible.
 tags:
 - 1080p
 - French
@@ -8,7 +19,7 @@ minCustomFormatScore: 20000
 upgradeUntilScore: 888888
 minScoreIncrement: 1
 custom_formats:
-# === Langue ===
+# --- Langue ---
 - name: FR-MULTI-VF2
   score: 60000
 - name: FR-MULTI-VFF
@@ -20,13 +31,13 @@ custom_formats:
 - name: FR-VOSTFR
   score: 10000
 
-# === Groupes FR ===
+# --- Teams FR ---
 - name: FR-Tier-01
   score: 1800
 - name: FR-Tier-02
   score: 1700
 
-# === REPACKS (Priorité aux versions corrigées) ===
+# --- Repacks (corrections d’épisodes / saisons) ---
 - name: Repack3
   score: 8
 - name: Repack2
@@ -34,7 +45,7 @@ custom_formats:
 - name: Repack1
   score: 6
 
-# === Blockers Globaux ===
+# --- Exclusions ---
 - name: FR-Blockers
   score: -999999
 - name: Remux
