@@ -5,4 +5,13 @@ tags:
 - Enhancement
 - Colour Grade
 - HDR
-tests: []
+tests:
+- id: 1
+  input: Film.2024.Dolby.Vision.HDR10.x265-GROUP
+  expected: true
+- id: 2
+  input: Release.1080p.HDR.BluRay.x264-GROUP
+  expected: true
+- id: 3
+  input: Release HLG HDR x264-GROUP
+  expected: false

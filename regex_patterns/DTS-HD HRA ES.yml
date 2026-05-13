@@ -3,4 +3,10 @@ pattern: dts[-. ]?(es|(hd[. ]?)?(hr|hi))
 description: ''
 tags:
 - Audio
-tests: []
+tests:
+- id: 1
+  input: Film.dts.es.5.1.720p.BluRay.x264-GROUP
+  expected: true
+- id: 2
+  input: Movie.DTS-X.7.1.1080p.BluRay.x264-GROUP
+  expected: false

@@ -4,4 +4,10 @@ description: 'Matches upscales, regrades, AI Enhancements, etc. '
 tags:
 - Enhancement
 - Banned
-tests: []
+tests:
+- id: 1
+  input: Film.2024.Upscale.1080p.BluRay.x264-GROUP
+  expected: true
+- id: 2
+  input: Film.2024.1080p.BluRay.x264-GROUP
+  expected: false

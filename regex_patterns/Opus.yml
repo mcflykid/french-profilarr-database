@@ -3,4 +3,10 @@ pattern: \bOPUS(\b|\d)(?!.*[ ._-](\d{3,4}p))
 description: ''
 tags:
 - Audio
-tests: []
+tests:
+- id: 1
+  input: Film.2024.OPUS.2.0.WEB-DL.x264-GROUP
+  expected: true
+- id: 2
+  input: Film.2024.OPUS.1080p.WEB-DL.x264-GROUP
+  expected: false

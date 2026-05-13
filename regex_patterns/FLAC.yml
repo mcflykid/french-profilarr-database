@@ -3,4 +3,10 @@ pattern: \bFLAC(\b|\d)
 description: ''
 tags:
 - Audio
-tests: []
+tests:
+- id: 1
+  input: Album.FLAC.24bit.LOSSLESS-GROUP
+  expected: true
+- id: 2
+  input: Film.AAC.5.1.1080p.BluRay.x264-GROUP
+  expected: false

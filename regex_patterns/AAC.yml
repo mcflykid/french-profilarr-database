@@ -3,4 +3,10 @@ pattern: \bAAC(\b|\d)
 description: ''
 tags:
 - Audio
-tests: []
+tests:
+- id: 1
+  input: Movie.2024.1080p.BluRay.AAC5.1.x264-GROUP
+  expected: true
+- id: 2
+  input: Movie.2024.1080p.BluRay.DDP5.1.x264-GROUP
+  expected: false

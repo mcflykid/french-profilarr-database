@@ -1,9 +1,17 @@
 name: Dolby Vision
 pattern: \b(dv(?![ .](HLG|SDR))|dovi|dolby[ .]?vision)\b
-description: Dolby Vision is a high dynamic range (HDR) video format that uses dynamic metadata to deliver enhanced brightness, contrast, and color on a scene-by-scene or frame-by-frame basis, providing
-  superior picture quality. This pattern excludes matches where Dolby Vision is associated with SDR (Standard Dynamic Range) or HLG (Hybrid Log-Gamma), ensuring it focuses on Dolby Vision-specific terms.
+description: Dolby Vision is a high dynamic range (HDR) video format that uses dynamic metadata to deliver enhanced brightness,
+  contrast, and color on a scene-by-scene or frame-by-frame basis, providing superior picture quality. This pattern excludes
+  matches where Dolby Vision is associated with SDR (Standard Dynamic Range) or HLG (Hybrid Log-Gamma), ensuring it focuses
+  on Dolby Vision-specific terms.
 tags:
 - Enhancement
 - Colour Grade
 - HDR
-tests: []
+tests:
+- id: 1
+  input: Film.2024.2160p.UHD.BluRay.Dolby.Vision.HDR.x265-GROUP
+  expected: true
+- id: 2
+  input: Film.2024.2160p.UHD.BluRay.DV.HLG.HDR.x265-GROUP
+  expected: false

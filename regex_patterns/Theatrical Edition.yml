@@ -1,9 +1,14 @@
 name: Theatrical Edition
 pattern: ^(.*?)(\d{4})(.*?)\b(theatrical)\b
-description: >-
-  Matches any type of theatrical edition.
+description: 'Matches any type of theatrical edition.
 
-  - Ensures that `Theatrical` comes after the year so that movies with 'Theatrical` in the title are not matched
+  - Ensures that `Theatrical` comes after the year so that movies with ''Theatrical` in the title are not matched'
 tags:
 - Edition
-tests: []
+tests:
+- id: 1
+  input: Movie.Name.2024.Theatrical.Cut.1080p.BluRay.x264-GROUP
+  expected: true
+- id: 2
+  input: Theatrical.2024.1080p.BluRay.x264-GROUP
+  expected: false

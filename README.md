@@ -47,6 +47,10 @@ Les exports Dictionarry ou une ancienne version de Profilarr peuvent ajouter `la
 `passes`, `matchSpan` : ce dépôt ne garde que **`id` / `input` / `expected`** dans les
 tests des regex, pour un compteur « X/Y passing » fiable.
 
+Pour coller au comportement habituel des titres de releases (Radarr / Sonarr), la
+validation locale considère les motifs **insensibles à la casse** lorsque la regex ne
+contient pas déjà `(?i)`.
+
 ---
 
 ## Ce qui est strict vs éditorial

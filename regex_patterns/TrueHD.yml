@@ -4,4 +4,10 @@ description: ''
 tags:
 - Audio
 - Lossless
-tests: []
+tests:
+- id: 1
+  input: Film.2024.2160p.UHD.BluRay.TrueHD.7.1.Atmos.x265-GROUP
+  expected: true
+- id: 2
+  input: Film.2024.1080p.BluRay.DDP5.1.x264-GROUP
+  expected: false

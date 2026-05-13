@@ -1,11 +1,18 @@
 name: Remux
 pattern: Remux
-description: A remux is a digital video file that maintains the exact quality of the original source (like a Blu-ray or DVD) by copying the video and audio streams without re-encoding them, essentially
-  creating a perfect 1:1 copy. Think of it like carefully transferring the contents of a Blu-ray disc into a more convenient container file format (typically MKV), similar to pouring fine wine from its
-  bottle into a decanter without changing the wine itself.
+description: A remux is a digital video file that maintains the exact quality of the original source (like a Blu-ray or DVD)
+  by copying the video and audio streams without re-encoding them, essentially creating a perfect 1:1 copy. Think of it like
+  carefully transferring the contents of a Blu-ray disc into a more convenient container file format (typically MKV), similar
+  to pouring fine wine from its bottle into a decanter without changing the wine itself.
 tags:
 - Codec
 - h264
 - h265
 - Lossless
-tests: []
+tests:
+- id: 1
+  input: Movie.2024.1080p.BluRay.REMUX.AVC.DTS-HD-GROUP
+  expected: true
+- id: 2
+  input: Movie.2024.1080p.BluRay.x264-GROUP
+  expected: false

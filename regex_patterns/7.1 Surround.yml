@@ -4,4 +4,10 @@ description: ''
 tags:
 - Audio
 - Channel
-tests: []
+tests:
+- id: 1
+  input: Film.TrueHD.7.1.Atmos.DDP5.1.x264-GROUP
+  expected: true
+- id: 2
+  input: Film.720p.x264-GROUP
+  expected: false

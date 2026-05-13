@@ -5,4 +5,10 @@ tags:
 - Enhancement
 - Colour Grade
 - HDR
-tests: []
+tests:
+- id: 1
+  input: Film.2024.2160p.BluRay.PQ10.HDR.x265-GROUP
+  expected: true
+- id: 2
+  input: Film.2024.2160p.BluRay.HDR10.x265-GROUP
+  expected: false

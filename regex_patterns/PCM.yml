@@ -3,4 +3,10 @@ pattern: \b(l?)PCM(\b|\d)
 description: ''
 tags:
 - Audio
-tests: []
+tests:
+- id: 1
+  input: Film.LPCM.2.0.1080p.BluRay.x264-GROUP
+  expected: true
+- id: 2
+  input: Film.AC3.5.1.1080p.BluRay.x264-GROUP
+  expected: false
