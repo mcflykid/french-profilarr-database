@@ -1,4 +1,25 @@
+# =============================================================================
+# Regex — VF2 / VFQ (titres de releases)
+# -----------------------------------------------------------------------------
+# VF2 ou VFQ = doublage québécois ou seconde variante VF ; utilisé dans FR-VF2
+# et FR-MULTI-VF2. À combiner avec d’autres règles pour éviter VFQ seul si la
+# politique du profil le pénalise ailleurs.
+# =============================================================================
 name: FR-Regex-VF2
-description: Détecte le tag VF2 ou VFQ
+description: >
+  Détecte VF2 ou VFQ comme mot entier dans le titre de release (scène FR, trackers La Cale / Gemini).
 pattern: \b(VF2|VFQ)\b
-tests: []
+# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
+tests:
+  - title: Film.2021.MULTI.VF2.UHD.2160p.DoVi.HDR10Plus.x265-TFA
+    type: movie
+    should_match: true
+    description: VF2 explicite
+  - title: Serie.S03E10.VFQ.WEB.1080p.EAC3.5.1.h264-FW
+    type: series
+    should_match: true
+    description: VFQ (alias VF2 dans ce dépôt)
+  - title: Film.2018.MULTI.VFF.Bluray.1080p.DTS.5.1.x264-AMEN
+    type: movie
+    should_match: false
+    description: VFF seulement
