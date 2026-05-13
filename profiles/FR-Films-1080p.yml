@@ -1,13 +1,33 @@
+# =============================================================================
+# Radarr — Films 1080p (scène FR, trackers La Cale / Gemini, logique type C411)
+# -----------------------------------------------------------------------------
+# Ce profil pilote l’upgrade automatique vers du 1080p « propre » : priorité aux
+# doublages FR (MULTI, VFF, VF2), bonus aux teams réputées, petits bonus aux
+# repacks pour corriger sans casser la hiérarchie langue.
+# minCustomFormatScore (20 000) : impose au minimum une release reconnue comme
+# FR exploitable (typiquement VOSTFR ou mieux) avant d’accepter le grab.
+# upgradeUntilScore (888 888) : laisse monter jusqu’aux scores langue max.
+# Remux / Full Disc / AV1 : pénalisés pour coller aux usages seeding / chartes.
+# =============================================================================
 name: FR-Films-1080p
+description: >
+  Profil Radarr 1080p pour films sur trackers francophones stricts (La Cale, Gemini, esprit C411).
+  Priorise la langue (MULTI VF2 > MULTI VFF > VF2 > VFF > VOSTFR), récompense les teams FR Tier 1–2,
+  favorise les repacks mineurs, et bloque remux, disque complet et AV1 pour limiter poids inutile
+  et problèmes de lecture sur le matériel courant.
 tags:
 - 1080p
 - French
 upgradesAllowed: true
+# Seuil minimal de score custom formats : exige une release alignée charte FR (voir README).
 minCustomFormatScore: 20000
+# Plafond d’upgrade : permet de remplacer une release jusqu’à obtenir le meilleur score langue.
 upgradeUntilScore: 888888
+# Incrément minimal entre deux scores pour déclencher un upgrade (évite les boucles sur micro-écarts).
 minScoreIncrement: 1
 custom_formats:
-# === Langue ===
+# --- Langue (ordre de priorité Radarr : plus le score est haut, plus le grab est désiré) ---
+# Ces scores séparent largement les familles pour qu’aucun bonus HDR/team ne passe avant la langue.
 - name: FR-MULTI-VF2
   score: 60000
 - name: FR-MULTI-VFF
@@ -19,13 +39,15 @@ custom_formats:
 - name: FR-VOSTFR
   score: 10000
 
-# === Groupes FR ===
+# --- Teams d’encodage FR (détection par nom de release / groupe) ---
+# Bonus modéré : utile pour départager deux releases de même famille linguistique.
 - name: FR-Tier-01
   score: 1800
 - name: FR-Tier-02
   score: 1700
 
-# === REPACKS ===
+# --- Repacks / PROPER (corrections officielles) ---
+# Scores faibles : juste assez pour préférer une version corrigée sans battre la langue.
 - name: Repack3
   score: 8
 - name: Repack2
@@ -33,7 +55,7 @@ custom_formats:
 - name: Repack1
   score: 6
 
-# === Blockers Globaux ===
+# --- Exclusions fortes (alignement seeding / chartes / matériel) ---
 - name: FR-Blockers
   score: -999999
 - name: Remux
