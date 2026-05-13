@@ -1,4 +1,25 @@
+# =============================================================================
+# Regex — HDR10 (marqueur dans le titre)
+# -----------------------------------------------------------------------------
+# Détection annonce HDR10 ; ne distingue pas profil HDR réel du fichier (voir
+# limites README). Complémentaire avec HDR10+ et Dolby Vision.
+# =============================================================================
 name: HDR10 Regex
-description: Détecte la présence de HDR10 standard
+description: >
+  Détecte le mot entier HDR10 dans le titre de release (annonces La Cale / Gemini). Souvent présent
+  sur les UHD WEB-DL / Bluray annoncés en HDR de base.
 pattern: \b(HDR10)\b
-tests: []
+# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
+tests:
+  - title: Film.2022.MULTI.VFF.UHD.2160p.HDR10.DTS-HD.MA.x265-QTZ
+    type: movie
+    should_match: true
+    description: HDR10 explicite
+  - title: Serie.S01E05.VOSTFR.WEB.1080p.HDR10.h264-FW
+    type: series
+    should_match: true
+    description: HDR10 sur épisode
+  - title: Film.2020.MULTI.VFF.WEB-DL.1080p.SDR.x264-AMEN
+    type: movie
+    should_match: false
+    description: Pas de marqueur HDR10
