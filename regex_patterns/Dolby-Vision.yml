@@ -1,11 +1,11 @@
 # ============================================================================
-# Regex Pattern — Scène FR (C411 / La Cale / Gemini)
+# Motif regex — Scène FR (C411 / La Cale / Gemini)
 # ----------------------------------------------------------------------------
 # Schéma Profilarr v1 : tests = [ {id, input, expected} ]
 # ============================================================================
 name: Dolby Vision Regex
 description: Détecte DV, DoVi ou Dolby Vision en évitant les faux positifs DV.HLG / DV.SDR.
-pattern: \b(dv(?![ ._-]?(HLG|SDR))|dovi|dolby[ ._-]?vision)\b
+pattern: (?i)\b(dv(?![ ._-]?(HLG|SDR))|dovi|dolby[ ._-]?vision)\b
 tests:
   - id: 1
     input: Film.2024.MULTI.VFF.UHD.2160p.DoVi.HDR10.Hybrid.DTS-X.x265-QTZ

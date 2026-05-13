@@ -1,5 +1,5 @@
 # ============================================================================
-# Custom format — MULTI + VF2 / VFQ
+# Format personnalisé — MULTI + VF2 / VFQ
 # ----------------------------------------------------------------------------
 # Exige MULTI et VF2 ou VFQ. Représente les packs avec variante québécoise ou
 # seconde VF en plus des autres langues ; score juste sous MULTI.VFF selon le profil.
@@ -8,7 +8,10 @@ name: FR-MULTI-VF2
 description: >
   Release avec MULTI et VF2 ou VFQ dans le titre. Couvre les annonces « multi-pistes » incluant la
   variante VFQ/VF2, fréquentes sur trackers francophones pour compatibilité maximale.
-tags: []
+tags:
+  - Language
+  - French
+  - Scene-FR
 # Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
 # `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
@@ -24,21 +27,17 @@ conditions:
     negate: false
     required: true
     pattern: FR-Regex-VF2
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.Canada.2021.MULTI.VF2.UHD.2160p.WEB-DL.DDP5.1.DoVi.HDR10Plus.h265-TFA
-    type: movie
-    should_match: true
-    description: MULTI + VF2
-  - title: Serie.S03E08.MULTI.VFQ.WEB.1080p.EAC3.5.1.x264-FW
-    type: series
-    should_match: true
-    description: MULTI + VFQ (alias VF2)
-  - title: Film.2019.MULTI.VFF.Bluray.1080p.DTS-HD.MA.5.1.x264-AMEN
-    type: movie
-    should_match: false
-    description: MULTI + VFF uniquement (pas VF2/VFQ)
-  - title: Film.2023.VF2.WEB.1080p.h264-BOUBA
-    type: movie
-    should_match: false
-    description: VF2 sans MULTI
+  - id: 1
+    input: Film.Canada.2021.MULTI.VF2.UHD.2160p.WEB-DL.DDP5.1.DoVi.HDR10Plus.h265-TFA
+    expected: true
+  - id: 2
+    input: Serie.S03E08.MULTI.VFQ.WEB.1080p.EAC3.5.1.x264-FW
+    expected: true
+  - id: 3
+    input: Film.2019.MULTI.VFF.Bluray.1080p.DTS-HD.MA.5.1.x264-AMEN
+    expected: false
+  - id: 4
+    input: Film.2023.VF2.WEB.1080p.h264-BOUBA
+    expected: false

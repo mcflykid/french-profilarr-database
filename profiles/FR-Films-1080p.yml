@@ -19,7 +19,7 @@ tags:
 - 1080p
 - French
 upgradesAllowed: true
-# Seuil minimal de score custom formats : exige une release alignée charte FR (voir README).
+# Seuil minimal de score formats personnalisés : exige une release alignée charte FR (voir README).
 minCustomFormatScore: 20000
 # Plafond d’upgrade : permet de remplacer une release jusqu’à obtenir le meilleur score langue.
 upgradeUntilScore: 888888

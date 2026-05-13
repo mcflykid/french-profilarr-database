@@ -1,5 +1,5 @@
 # ============================================================================
-# Custom format — Bonus teams Tier 2
+# Format personnalisé — Bonus teams Tier 2
 # ----------------------------------------------------------------------------
 # Bonus inférieur au Tier 1 ; couvre scène et teams « solides » secondaires.
 # ============================================================================
@@ -16,17 +16,14 @@ conditions:
     negate: false
     required: false
     pattern: FR-Tier-02
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.2018.MULTI.VFF.WEB-DL.1080p.EAC3.5.1.h264-LOST
-    type: movie
-    should_match: true
-    description: Scène / Tier 02 (LOST)
-  - title: Serie.NO.S02E11.VOSTFR.WEBRip.720p.x264-HYPERION
-    type: series
-    should_match: true
-    description: HYPERION explicite
-  - title: Film.2024.VFF.UHD.2160p.DoVi.HDR10.DTS-HD.MA.7.1.x265-TFA
-    type: movie
-    should_match: false
-    description: Groupe Tier 01 seulement (absent de la liste Tier 02)
+  - id: 1
+    input: Film.2018.MULTI.VFF.WEB-DL.1080p.EAC3.5.1.h264-LOST
+    expected: true
+  - id: 2
+    input: Serie.NO.S02E11.VOSTFR.WEBRip.720p.x264-HYPERION
+    expected: true
+  - id: 3
+    input: Film.2024.VFF.UHD.2160p.DoVi.HDR10.DTS-HD.MA.7.1.x265-TFA
+    expected: false

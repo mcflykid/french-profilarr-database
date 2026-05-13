@@ -1,5 +1,5 @@
 # ============================================================================
-# Custom format — Remux
+# Format personnalisé — Remux
 # ----------------------------------------------------------------------------
 # Score fortement négatif sur profils où le remux est interdit (poids / charte).
 # ============================================================================
@@ -16,17 +16,14 @@ conditions:
     negate: false
     required: false
     pattern: Remux Regex
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.2018.MULTI.VFF.UHD.2160p.Bluray.Remux.DTS-X.TrueHD.7.1-FW
-    type: movie
-    should_match: true
-    description: Mot Remux
-  - title: Serie.UK.S02E01.MULTI.VFF.COMPLETE.BLURAY.Remux.DTS-HD.MA-QTZ
-    type: series
-    should_match: true
-    description: Remux avec casse mixte (mot Remux)
-  - title: Film.2020.MULTI.VFF.WEB-DL.1080p.EAC3.5.1.h264-TFA
-    type: movie
-    should_match: false
-    description: WEB-DL sans Remux
+  - id: 1
+    input: Film.2018.MULTI.VFF.UHD.2160p.Bluray.Remux.DTS-X.TrueHD.7.1-FW
+    expected: true
+  - id: 2
+    input: Serie.UK.S02E01.MULTI.VFF.COMPLETE.BLURAY.Remux.DTS-HD.MA-QTZ
+    expected: true
+  - id: 3
+    input: Film.2020.MULTI.VFF.WEB-DL.1080p.EAC3.5.1.h264-TFA
+    expected: false

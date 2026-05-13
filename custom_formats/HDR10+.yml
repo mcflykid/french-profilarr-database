@@ -1,5 +1,5 @@
 # ============================================================================
-# Custom format — HDR10+
+# Format personnalisé — HDR10+
 # ----------------------------------------------------------------------------
 # HDR dynamique annoncé ; distinct de HDR10 seul via la regex HDR10+ Regex.
 # ============================================================================
@@ -16,17 +16,14 @@ conditions:
     negate: false
     required: false
     pattern: HDR10+ Regex
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.2023.MULTI.VFF.UHD.2160p.HDR10Plus.DTS-X.x265-QTZ
-    type: movie
-    should_match: true
-    description: HDR10Plus collé
-  - title: Serie.S01E12.VOSTFR.WEBRip.1080p.HDR10+.EAC3.5.1.h264-GKS
-    type: series
-    should_match: true
-    description: HDR10+ avec signe plus
-  - title: Film.2019.MULTI.VFF.Bluray.1080p.HDR10.DTS-HD.MA.5.1.x264-TFA
-    type: movie
-    should_match: false
-    description: HDR10 seul (pas HDR10+)
+  - id: 1
+    input: Film.2023.MULTI.VFF.UHD.2160p.HDR10Plus.DTS-X.x265-QTZ
+    expected: true
+  - id: 2
+    input: Serie.S01E12.VOSTFR.WEBRip.1080p.HDR10+.EAC3.5.1.h264-GKS
+    expected: true
+  - id: 3
+    input: Film.2019.MULTI.VFF.Bluray.1080p.HDR10.DTS-HD.MA.5.1.x264-TFA
+    expected: false

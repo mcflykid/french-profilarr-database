@@ -24,11 +24,11 @@ Ce dépôt est structuré pour **Profilarr v1**.
   - `id`
   - `input`
   - `expected`
-- Dans `custom_formats/`, les tests restent au format de test custom format :
-  - `title`
-  - `type`
-  - `should_match`
-  - `description`
+- Dans `custom_formats/`, utiliser le schéma de test v1 également :
+  - `id`
+  - `input`
+  - `expected`
+  - (des champs supplémentaires calculés par l'UI peuvent exister, par ex. `conditionResults`, `lastRun`, `passes`)
 
 Si le schéma est mélangé, l'UI Profilarr peut afficher `Unexpected Error`.
 
@@ -38,7 +38,7 @@ Si le schéma est mélangé, l'UI Profilarr peut afficher `Unexpected Error`.
 
 ### Strict (à ne pas casser)
 - Schéma des tests `regex_patterns/` : `id`, `input`, `expected`.
-- Schéma des tests `custom_formats/` : `title`, `type`, `should_match`, `description`.
+- Schéma des tests `custom_formats/` : `id`, `input`, `expected` (avec éventuels champs UI additionnels).
 - Références valides :
   - `custom_formats.conditions[].pattern` -> `regex_patterns.name`
   - `profiles.custom_formats[].name` -> `custom_formats.name`
@@ -159,8 +159,8 @@ Ordre de travail conseillé :
 ## Checklist avant import Profilarr
 
 - Valider que tous les fichiers YAML sont parseables.
-- Vérifier qu'aucun test `regex_patterns` n'utilise `title/type/should_match`.
-- Vérifier qu'aucun test `custom_formats` n'utilise `id/input/expected`.
+- Vérifier que les tests `regex_patterns` utilisent `id/input/expected`.
+- Vérifier que les tests `custom_formats` utilisent `id/input/expected`.
 - Vérifier que tous les `pattern` de `custom_formats` existent dans `regex_patterns`.
 - Vérifier que tous les `name` de `profiles.custom_formats` existent dans `custom_formats`.
 - Contrôler la hiérarchie langue (`FR-MULTI-VF2 > FR-MULTI-VFF > FR-VF2 > FR-VFF > FR-VOSTFR`) sur chaque profil.

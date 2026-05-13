@@ -1,11 +1,11 @@
 # ============================================================================
-# Regex Pattern — Scène FR (C411 / La Cale / Gemini)
+# Motif regex — Scène FR (C411 / La Cale / Gemini)
 # ----------------------------------------------------------------------------
 # Schéma Profilarr v1 : tests = [ {id, input, expected} ]
 # ============================================================================
 name: FR-Regex-VF2
 description: Détecte VF2 ou VFQ dans le titre de release.
-pattern: \b(VF2|VFQ)\b
+pattern: (?i)\b(VF2|VFQ)\b
 tests:
   - id: 1
     input: Film.2021.MULTI.VF2.UHD.2160p.DoVi.HDR10Plus.x265-TFA

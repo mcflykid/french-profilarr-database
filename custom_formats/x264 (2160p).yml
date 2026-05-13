@@ -1,5 +1,5 @@
 # ============================================================================
-# Custom format — x264 / h264 / AVC en 4K (pénalité)
+# Format personnalisé — x264 / h264 / AVC en 4K (pénalité)
 # ----------------------------------------------------------------------------
 # Politique 4K light : UHD en HEVC préféré ; x264 en 2160p typiquement à éviter.
 # ============================================================================
@@ -16,17 +16,14 @@ conditions:
     negate: false
     required: false
     pattern: x264 4K Regex
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.2013.MULTI.VFF.UHD.BDRip.2160p.x264.DTS-HD.MA.7.1-TFA
-    type: movie
-    should_match: true
-    description: 2160p puis x264 (deuxième branche du OU)
-  - title: Serie.S01E10.VOSTFR.WEB.4K.h264.5.1-FW
-    type: series
-    should_match: true
-    description: 4K + h264
-  - title: Film.2021.MULTI.VFF.BDRip.1080p.x264.DTS.5.1-AMEN
-    type: movie
-    should_match: false
-    description: x264 en 1080p uniquement
+  - id: 1
+    input: Film.2013.MULTI.VFF.UHD.BDRip.2160p.x264.DTS-HD.MA.7.1-TFA
+    expected: true
+  - id: 2
+    input: Serie.S01E10.VOSTFR.WEB.4K.h264.5.1-FW
+    expected: true
+  - id: 3
+    input: Film.2021.MULTI.VFF.BDRip.1080p.x264.DTS.5.1-AMEN
+    expected: false

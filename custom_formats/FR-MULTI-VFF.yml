@@ -1,5 +1,5 @@
 # ============================================================================
-# Custom format — MULTI + VFF (TrueFrench)
+# Format personnalisé — MULTI + VFF (TrueFrench)
 # ----------------------------------------------------------------------------
 # Les deux conditions sont requises : le titre doit annoncer MULTI **et** VFF
 # (ou TRUEFRENCH). Utilisé pour le plus haut score « VF France multi-langues »
@@ -7,9 +7,12 @@
 # ============================================================================
 name: FR-MULTI-VFF
 description: >
-  Release annonçant MULTI et VFF (ou TRUEFRENCH) dans le titre analysé par Radarr/Sonarr.
-  Représente le pack audio français « France » avec autres langues, très recherché sur la scène FR.
-tags: []
+  Release annonçant MULTI et un tag FR hors VFQ/VF2 (VFF, TRUEFRENCH, VFI, VOF, VFB, VF).
+  Représente le pack audio FR multi-langues le plus courant sur la scène FR hors cas MULTI.VF2.
+tags:
+  - Language
+  - French
+  - Scene-FR
 # Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
 # `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
@@ -19,27 +22,26 @@ conditions:
     negate: false
     required: true
     pattern: FR-Regex-MULTI
-  # required true : le titre doit aussi contenir VFF ou TRUEFRENCH (regex FR-Regex-VFF).
+  # required true : le titre doit aussi contenir un tag FR hors VFQ/VF2 (regex FR-Regex-VFF).
   - name: VFF
     type: release_title
     negate: false
     required: true
     pattern: FR-Regex-VFF
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.Francais.2023.MULTI.VFF.Bluray.1080p.DTS-HD.MA.5.1.x264-TFA
-    type: movie
-    should_match: true
-    description: MULTI explicite + VFF dans le titre
-  - title: Serie.US.S01E12.MULTI.TRUEFRENCH.WEB.1080p.EAC3.5.1.x265-FW
-    type: series
-    should_match: true
-    description: MULTI + synonyme TRUEFRENCH (VFF)
-  - title: Film.2024.VFF.WEB-DL.1080p.x264-QTZ
-    type: movie
-    should_match: false
-    description: VFF sans tag MULTI
-  - title: Animation.2022.MULTI.VOSTFR.WEB.1080p.h264-GKS
-    type: movie
-    should_match: false
-    description: MULTI mais pas de piste VFF / TrueFrench détectée
+  - id: 1
+    input: Film.Francais.2023.MULTI.VFF.Bluray.1080p.DTS-HD.MA.5.1.x264-TFA
+    expected: true
+  - id: 2
+    input: Serie.US.S01E12.MULTI.TRUEFRENCH.WEB.1080p.EAC3.5.1.x265-FW
+    expected: true
+  - id: 3
+    input: Film.2024.VFF.WEB-DL.1080p.x264-QTZ
+    expected: false
+  - id: 4
+    input: Animation.2022.MULTI.VOSTFR.WEB.1080p.h264-GKS
+    expected: false
+  - id: 5
+    input: Born.To.Dance.2015.MULTI.VF.1080p.WEBRip.EAC3.5.1.x264-NOTAG
+    expected: true

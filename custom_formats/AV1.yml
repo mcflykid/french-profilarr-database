@@ -1,5 +1,5 @@
 # ============================================================================
-# Custom format — AV1 (pénalité)
+# Format personnalisé — AV1 (pénalité)
 # ----------------------------------------------------------------------------
 # Politique dépôt : compat lecture ; peut diverger d’une charte C411 autorisant AV1.
 # ============================================================================
@@ -16,17 +16,14 @@ conditions:
     negate: false
     required: false
     pattern: AV1 Regex
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.2025.MULTI.VFF.UHD.2160p.WEB-DL.AV1.DDP5.1-GKS
-    type: movie
-    should_match: true
-    description: Codec AV1 dans le titre
-  - title: Serie.S04E02.VOSTFR.WEB.1080p.AV1.OPUS-NEOSTARK
-    type: series
-    should_match: true
-    description: AV1 sur série
-  - title: Film.2022.MULTI.VFF.UHD.2160p.WEB-DL.h265.EAC3.5.1-QTZ
-    type: movie
-    should_match: false
-    description: HEVC / h265 sans AV1
+  - id: 1
+    input: Film.2025.MULTI.VFF.UHD.2160p.WEB-DL.AV1.DDP5.1-GKS
+    expected: true
+  - id: 2
+    input: Serie.S04E02.VOSTFR.WEB.1080p.AV1.OPUS-NEOSTARK
+    expected: true
+  - id: 3
+    input: Film.2022.MULTI.VFF.UHD.2160p.WEB-DL.h265.EAC3.5.1-QTZ
+    expected: false

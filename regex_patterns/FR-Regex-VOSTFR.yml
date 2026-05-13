@@ -1,11 +1,11 @@
 # ============================================================================
-# Regex Pattern — Scène FR (C411 / La Cale / Gemini)
+# Motif regex — Scène FR (C411 / La Cale / Gemini)
 # ----------------------------------------------------------------------------
 # Schéma Profilarr v1 : tests = [ {id, input, expected} ]
 # ============================================================================
 name: FR-Regex-VOSTFR
-description: Détecte VOSTFR ou SUBFRENCH dans le titre de release.
-pattern: \b(VOSTFR|SUBFRENCH)\b
+description: Détecte VOSTFR et variantes de sous-titres FR (VOST-FR, SUBFRENCH, FANSUB, FASTSUB).
+pattern: (?i)\b(VOST[ ._-]?FR|SUBFRENCH|FANSUB|FASTSUB)\b
 tests:
   - id: 1
     input: Film.US.2023.VOSTFR.WEB-DL.1080p.EAC3.5.1.h264-BOUBA
@@ -16,3 +16,12 @@ tests:
   - id: 3
     input: Film.2024.MULTI.VFF.UHD.2160p.x265-QTZ
     expected: false
+  - id: 4
+    input: Anime.S01E01.FANSUB.1080p.WEB.h264-GROUP
+    expected: true
+  - id: 5
+    input: Serie.S02E03.VOST-FR.WEB.1080p.x264-TEAM
+    expected: true
+  - id: 6
+    input: Sentenced.To.Be.A.Hero.S01E01.VOSTFR.FASTSUB.1080p.WEBRip.AAC.2.0.x264-NOTAG
+    expected: true

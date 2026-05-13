@@ -1,5 +1,5 @@
 # ============================================================================
-# Custom format — Bonus teams Tier 1
+# Format personnalisé — Bonus teams Tier 1
 # ----------------------------------------------------------------------------
 # Récompense les releases dont le titre contient une team « élite » (regex FR-Tier-01).
 # Bonus volontairement modeste vs la langue pour ne jamais inverser les priorités.
@@ -17,17 +17,14 @@ conditions:
     negate: false
     required: false
     pattern: FR-Tier-01
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.Action.2022.MULTI.VFF.UHD.2160p.Hybrid.DoVi.HDR10Plus.DTS-X.x265-TFA
-    type: movie
-    should_match: true
-    description: Groupe Tier 01 (TFA) dans le titre
-  - title: Serie.UK.S04E02.VOSTFR.WEB.1080p.h264-FW
-    type: series
-    should_match: true
-    description: Groupe FW / Forward
-  - title: Film.2020.MULTI.VFF.BDRip.x264-ENIGMA
-    type: movie
-    should_match: false
-    description: Groupe Tier 02 uniquement
+  - id: 1
+    input: Film.Action.2022.MULTI.VFF.UHD.2160p.Hybrid.DoVi.HDR10Plus.DTS-X.x265-TFA
+    expected: true
+  - id: 2
+    input: Serie.UK.S04E02.VOSTFR.WEB.1080p.h264-FW
+    expected: true
+  - id: 3
+    input: Film.2020.MULTI.VFF.BDRip.x264-ENIGMA
+    expected: false

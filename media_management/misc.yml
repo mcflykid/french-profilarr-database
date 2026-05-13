@@ -2,7 +2,7 @@
 # Réglages annexes Radarr / Sonarr (media_management)
 # ----------------------------------------------------------------------------
 # propersRepacks : ici on ne force pas l’upgrade automatique via les réglages
-# natifs (doNotPrefer) — la logique repack est portée par les custom formats.
+# natifs (doNotPrefer) — la logique repack est portée par les formats personnalisés.
 # enableMediaInfo : laisse Radarr/Sonarr enrichir les métadonnées pour le
 # renommage et l’affichage (cohérent avec naming.yml qui injecte MediaInfo).
 # ============================================================================

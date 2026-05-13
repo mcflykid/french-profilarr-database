@@ -1,5 +1,5 @@
 # ============================================================================
-# Custom format — Repack niveau 3
+# Format personnalisé — Repack niveau 3
 # ----------------------------------------------------------------------------
 # Dernier micro-palier avant saturation des bonus repack.
 # ============================================================================
@@ -16,17 +16,14 @@ conditions:
     negate: false
     required: false
     pattern: Repack3 Regex
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.2015.MULTI.VFF.BDRip.V4.DTS.5.1.x264-OZEF
-    type: movie
-    should_match: true
-    description: V4 (niveau 3)
-  - title: Serie.S03E03.VOSTFR.WEB.REPACK.3.720p.x264-TMB
-    type: series
-    should_match: true
-    description: REPACK.3 explicite
-  - title: Documentaire.2014.MULTI.VFF.TVrip.REPACK.1080p.h264-TSR
-    type: movie
-    should_match: false
-    description: REPACK sans suffixe 3 / pas de V4
+  - id: 1
+    input: Film.2015.MULTI.VFF.BDRip.V4.DTS.5.1.x264-OZEF
+    expected: true
+  - id: 2
+    input: Serie.S03E03.VOSTFR.WEB.REPACK.3.720p.x264-TMB
+    expected: true
+  - id: 3
+    input: Documentaire.2014.MULTI.VFF.TVrip.REPACK.1080p.h264-TSR
+    expected: false

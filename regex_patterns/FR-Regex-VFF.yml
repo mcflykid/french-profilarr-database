@@ -1,11 +1,11 @@
 # ============================================================================
-# Regex Pattern — Scène FR (C411 / La Cale / Gemini)
+# Motif regex — Scène FR (C411 / La Cale / Gemini)
 # ----------------------------------------------------------------------------
 # Schéma Profilarr v1 : tests = [ {id, input, expected} ]
 # ============================================================================
 name: FR-Regex-VFF
-description: Détecte VFF ou TRUEFRENCH dans le titre de release (scène FR stricte).
-pattern: \b(VFF|TRUEFRENCH)\b
+description: Détecte les tags FR hors VFQ/VF2 (VFF, TRUEFRENCH, VFI, VOF, VFB, VF) dans le titre.
+pattern: (?i)\b(VFF|TRUEFRENCH|VFI|VOF|VFB|VF(?!Q|2))\b
 tests:
   - id: 1
     input: Film.2023.MULTI.VFF.Bluray.1080p.DTS-HD.MA.5.1.x264-TFA
@@ -16,3 +16,15 @@ tests:
   - id: 3
     input: Film.2020.VFQ.WEB-DL.1080p.h264-AMEN
     expected: false
+  - id: 4
+    input: Film.2022.MULTI.VFI.WEB-DL.1080p.h264-TEAM
+    expected: true
+  - id: 5
+    input: Sept.Ecossais.Du.Texas.1966.MULTI.VF.1080p.WEBRip.AC3.2.0.x264-NOTAG
+    expected: true
+  - id: 6
+    input: The.Bear.S04.MULTI.VOF.1080p.WEB.EAC3.5.1.H264-TFA
+    expected: true
+  - id: 7
+    input: Twisters.2024.VFB.2160p.WEB.HDR.EAC3.5.1.H265-FW
+    expected: true

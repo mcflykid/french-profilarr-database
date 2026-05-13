@@ -40,7 +40,7 @@ custom_formats:
   score: 1700
 
 # --- Audio lossless / spatial (bonus si annoncé dans le titre de release) ---
-# Note : le score final Radarr est la somme des custom formats qui matchent ; les valeurs HDR
+# Note : le score final Radarr est la somme des formats personnalisés qui matchent ; les valeurs HDR
 # ci-dessous sont volontairement plus élevées que l’audio pour favoriser une image HDR quand la langue est déjà au max.
 - name: TrueHD Atmos
   score: 1000

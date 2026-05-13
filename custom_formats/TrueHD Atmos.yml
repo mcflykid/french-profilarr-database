@@ -1,5 +1,5 @@
 # ============================================================================
-# Custom format — TrueHD + Atmos (annonce titre)
+# Format personnalisé — TrueHD + Atmos (annonce titre)
 # ----------------------------------------------------------------------------
 # Détection textuelle ; combiner avec profils 4K / Any pour favoriser le HC.
 # ============================================================================
@@ -16,17 +16,14 @@ conditions:
     negate: false
     required: false
     pattern: TrueHD Atmos Regex
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.2021.MULTI.VFF.UHD.2160p.Bluray.TrueHD.Atmos.7.1.x265-TFA
-    type: movie
-    should_match: true
-    description: TrueHD Atmos ordre naturel
-  - title: Serie.S01E07.Atmos.TrueHD.WEB-DL.1080p.EAC3.h264-FW
-    type: series
-    should_match: true
-    description: Ordre inverse Atmos / TrueHD
-  - title: Film.2019.MULTI.VFF.WEB-DL.1080p.DDP5.1.h264-AMEN
-    type: movie
-    should_match: false
-    description: Pas de mention TrueHD / Atmos
+  - id: 1
+    input: Film.2021.MULTI.VFF.UHD.2160p.Bluray.TrueHD.Atmos.7.1.x265-TFA
+    expected: true
+  - id: 2
+    input: Serie.S01E07.Atmos.TrueHD.WEB-DL.1080p.EAC3.h264-FW
+    expected: true
+  - id: 3
+    input: Film.2019.MULTI.VFF.WEB-DL.1080p.DDP5.1.h264-AMEN
+    expected: false

@@ -1,7 +1,7 @@
 # ============================================================================
-# Custom format — TrueHD (sans exiger Atmos ici)
+# Format personnalisé — TrueHD (sans exiger Atmos ici)
 # ----------------------------------------------------------------------------
-# Peut coexister avec TrueHD Atmos sur une même release (deux custom formats).
+# Peut coexister avec TrueHD Atmos sur une même release (deux formats personnalisés).
 # ============================================================================
 name: TrueHD
 description: >
@@ -16,17 +16,14 @@ conditions:
     negate: false
     required: false
     pattern: TrueHD Regex
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.2020.MULTI.VFF.Bluray.1080p.TrueHD.7.1.Atmos.x264-TFA
-    type: movie
-    should_match: true
-    description: TrueHD hors combinaison Atmos explicite (mot TrueHD)
-  - title: Serie.S03E09.VOSTFR.WEB-DL.720p.TrueHD.5.1.x265-FW
-    type: series
-    should_match: true
-    description: TrueHD classique
-  - title: Film.2022.MULTI.VFF.WEB.1080p.DTS-HD.MA.5.1.h264-OZEF
-    type: movie
-    should_match: false
-    description: Pas de TrueHD dans le titre
+  - id: 1
+    input: Film.2020.MULTI.VFF.Bluray.1080p.TrueHD.7.1.Atmos.x264-TFA
+    expected: true
+  - id: 2
+    input: Serie.S03E09.VOSTFR.WEB-DL.720p.TrueHD.5.1.x265-FW
+    expected: true
+  - id: 3
+    input: Film.2022.MULTI.VFF.WEB.1080p.DTS-HD.MA.5.1.h264-OZEF
+    expected: false

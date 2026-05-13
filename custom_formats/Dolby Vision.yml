@@ -1,7 +1,7 @@
 # ============================================================================
-# Custom format — Dolby Vision (annonce titre)
+# Format personnalisé — Dolby Vision (annonce titre)
 # ----------------------------------------------------------------------------
-# Ne vérifie pas profil DV ni fallback HDR (limites README / charte C411).
+# Ne vérifie pas profil DV ni repli HDR (limites README / charte C411).
 # ============================================================================
 name: Dolby Vision
 description: >
@@ -16,17 +16,14 @@ conditions:
     negate: false
     required: false
     pattern: Dolby Vision Regex
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.2022.MULTI.VFF.UHD.2160p.Hybrid.DoVi.HDR10.DDPPlus.Atmos.x265-QTZ
-    type: movie
-    should_match: true
-    description: DoVi / Dolby Vision texte
-  - title: Serie.S02E04.VOSTFR.WEB.1080p.DV.HDR10.h264-TFA
-    type: series
-    should_match: true
-    description: DV court
-  - title: Film.2015.MULTI.VFF.BDRip.1080p.x264-AMEN
-    type: movie
-    should_match: false
-    description: SDR sans marqueurs DV
+  - id: 1
+    input: Film.2022.MULTI.VFF.UHD.2160p.Hybrid.DoVi.HDR10.DDPPlus.Atmos.x265-QTZ
+    expected: true
+  - id: 2
+    input: Serie.S02E04.VOSTFR.WEB.1080p.DV.HDR10.h264-TFA
+    expected: true
+  - id: 3
+    input: Film.2015.MULTI.VFF.BDRip.1080p.x264-AMEN
+    expected: false

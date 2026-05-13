@@ -1,5 +1,5 @@
 # ============================================================================
-# Custom format — HDR10
+# Format personnalisé — HDR10
 # ----------------------------------------------------------------------------
 # HDR « de base » ; score inférieur à HDR10+ et DV dans les profils 4K.
 # ============================================================================
@@ -16,17 +16,14 @@ conditions:
     negate: false
     required: false
     pattern: HDR10 Regex
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.2021.MULTI.VFF.UHD.2160p.HDR10.DTS-HD.MA.7.1.x265-FW
-    type: movie
-    should_match: true
-    description: HDR10 explicite
-  - title: Serie.S03E06.VOSTFR.WEB-DL.1080p.HDR10.h264-Slay3R
-    type: series
-    should_match: true
-    description: HDR10 sur épisode
-  - title: Film.2024.MULTI.VFF.WEB-DL.1080p.SDR.h264-BOUC
-    type: movie
-    should_match: false
-    description: Pas de marqueur HDR10 dans le titre
+  - id: 1
+    input: Film.2021.MULTI.VFF.UHD.2160p.HDR10.DTS-HD.MA.7.1.x265-FW
+    expected: true
+  - id: 2
+    input: Serie.S03E06.VOSTFR.WEB-DL.1080p.HDR10.h264-Slay3R
+    expected: true
+  - id: 3
+    input: Film.2024.MULTI.VFF.WEB-DL.1080p.SDR.h264-BOUC
+    expected: false

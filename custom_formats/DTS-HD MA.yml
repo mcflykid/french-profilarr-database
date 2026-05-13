@@ -1,5 +1,5 @@
 # ============================================================================
-# Custom format — DTS-HD Master Audio
+# Format personnalisé — DTS-HD Master Audio
 # ----------------------------------------------------------------------------
 # Couvre formes « DTS-HD MA » et certaines abréviations « DTS-HD » seules selon regex.
 # ============================================================================
@@ -16,17 +16,14 @@ conditions:
     negate: false
     required: false
     pattern: DTS-HD MA Regex
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.2019.MULTI.VFF.UHD.2160p.HDR10Plus.DTS-HD.MA.7.1.x265-QTZ
-    type: movie
-    should_match: true
-    description: DTS-HD MA explicite
-  - title: Serie.S01E01.VOSTFR.BluRay.1080p.DTS-HD.h264-AMEN
-    type: series
-    should_match: true
-    description: DTS-HD (MA optionnel dans la regex)
-  - title: Film.2024.MULTI.VFF.WEB-DL.1080p.AC3.5.1.x264-TFA
-    type: movie
-    should_match: false
-    description: AC3 seul
+  - id: 1
+    input: Film.2019.MULTI.VFF.UHD.2160p.HDR10Plus.DTS-HD.MA.7.1.x265-QTZ
+    expected: true
+  - id: 2
+    input: Serie.S01E01.VOSTFR.BluRay.1080p.DTS-HD.h264-AMEN
+    expected: true
+  - id: 3
+    input: Film.2024.MULTI.VFF.WEB-DL.1080p.AC3.5.1.x264-TFA
+    expected: false

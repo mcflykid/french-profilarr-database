@@ -1,5 +1,5 @@
 # ============================================================================
-# Custom format — Full disc (ISO / BDMV / VIDEO_TS)
+# Format personnalisé — Full disc (ISO / BDMV / VIDEO_TS)
 # ----------------------------------------------------------------------------
 # Pénalité pour structures disque complètes non souhaitées en bibliothèque type Plex.
 # ============================================================================
@@ -16,17 +16,14 @@ conditions:
     negate: false
     required: false
     pattern: Full Disc Regex
-# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+# Tests : titres factices au format v1 (`id`, `input`, `expected`).
 tests:
-  - title: Film.2009.MULTI.VFF.COMPLETE.BLURAY.VIDEO_TS.DVD9-TLC
-    type: movie
-    should_match: true
-    description: Structure VIDEO_TS
-  - title: Jeu.Video.2011.MULTI.FULL.ISO.BluRay-LOST
-    type: movie
-    should_match: true
-    description: Image disque ISO
-  - title: Film.2024.MULTI.VFF.mkv.BDRip.1080p.x264-AMEN
-    type: movie
-    should_match: false
-    description: Rip fichier mkv sans ISO/BDMV/VIDEO_TS
+  - id: 1
+    input: Film.2009.MULTI.VFF.COMPLETE.BLURAY.VIDEO_TS.DVD9-TLC
+    expected: true
+  - id: 2
+    input: Jeu.Video.2011.MULTI.FULL.ISO.BluRay-LOST
+    expected: true
+  - id: 3
+    input: Film.2024.MULTI.VFF.mkv.BDRip.1080p.x264-AMEN
+    expected: false
