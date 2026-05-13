@@ -1,4 +1,24 @@
+# =============================================================================
+# Regex — DTS-HD Master Audio (titres de releases)
+# -----------------------------------------------------------------------------
+# Couvre « DTS-HD » avec ou sans « MA » explicite selon la variante du pattern.
+# =============================================================================
 name: DTS-HD MA Regex
-description: Détecte la présence de DTS-HD Master Audio
+description: >
+  Détecte DTS-HD Master Audio ou forme courte DTS-HD dans le titre. Custom format DTS-HD MA pour
+  bonus audio lossless compatible avec la lecture sur la plupart des box/TV récentes.
 pattern: \b(DTS[ ._-]?HD([ ._-]?MA)?)\b
-tests: []
+# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
+tests:
+  - title: Film.2019.MULTI.VFF.UHD.2160p.DTS-HD.MA.7.1.x265-FW
+    type: movie
+    should_match: true
+    description: DTS-HD MA explicite
+  - title: Serie.S02E11.VOSTFR.BluRay.1080p.DTS-HD.h264-TFA
+    type: series
+    should_match: true
+    description: DTS-HD sans MA explicite (sous-pattern optionnel)
+  - title: Film.2024.MULTI.VFF.WEB-DL.AC3.5.1.h264-GKS
+    type: movie
+    should_match: false
+    description: AC3 seul
