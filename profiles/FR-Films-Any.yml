@@ -1,4 +1,18 @@
+# =============================================================================
+# Radarr — Films « Any » qualité (scène FR, La Cale / Gemini)
+# -----------------------------------------------------------------------------
+# Profil volontairement permissif sur la RÉSOLUTION : SD à Raw-HD pour saisir
+# tôt une release FR, puis laisser Radarr upgrader via les scores custom formats.
+# Bloque toujours les groupes blacklistés (FR-Blockers) et l’AV1 (compat).
+# Pas de pénalité Remux / Full Disc ici : utile si vous acceptez ces sources
+# sur ce profil uniquement (ex. bibliothèque mixte).
+# =============================================================================
 name: FR-Films-Any
+description: >
+  Profil Radarr « toute qualité » pour films sur trackers francophones (La Cale, Gemini).
+  Garde la hiérarchie langue FR + teams + repacks + bonus audio lossless, mais n’impose pas de
+  résolution cible (WEB, HDTV, DVD, etc.). Ne bloque pas Remux ni Full Disc sur ce profil ;
+  bloque FR-Blockers et AV1.
 tags:
 - any
 - French
@@ -7,7 +21,7 @@ minCustomFormatScore: 20000
 upgradeUntilScore: 888888
 minScoreIncrement: 1
 custom_formats:
-# === Langue ===
+# --- Langue ---
 - name: FR-MULTI-VF2
   score: 60000
 - name: FR-MULTI-VFF
@@ -18,12 +32,12 @@ custom_formats:
   score: 30000
 - name: FR-VOSTFR
   score: 10000
-# === Groupes FR ===
+# --- Teams FR ---
 - name: FR-Tier-01
   score: 1800
 - name: FR-Tier-02
   score: 1700
-# === Audio ===
+# --- Audio (bonus si la release annonce du lossless dans le titre) ---
 - name: TrueHD Atmos
   score: 1000
 - name: DTS:X
@@ -32,14 +46,14 @@ custom_formats:
   score: 900
 - name: DTS-HD MA
   score: 900
-# === REPACKS ===
+# --- Repacks ---
 - name: Repack3
   score: 8
 - name: Repack2
   score: 7
 - name: Repack1
   score: 6
-# === Blockers Globaux ===
+# --- Exclusions minimales (pas de Remux / Full Disc ici) ---
 - name: FR-Blockers
   score: -999999
 - name: AV1
