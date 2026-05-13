@@ -1,4 +1,25 @@
+# =============================================================================
+# Regex — Dolby TrueHD + Atmos (titre de release)
+# -----------------------------------------------------------------------------
+# Détection textuelle dans le nom de release ; ne garantit pas le contenu mux.
+# Utile pour favoriser les uploads annonçant Atmos sur équipements HC.
+# =============================================================================
 name: TrueHD Atmos Regex
-description: Détecte la présence de Dolby TrueHD Atmos
+description: >
+  Détecte les mentions TrueHD et Atmos dans des variantes de séparateurs (point, espace, tiret).
+  Employé par le custom format TrueHD Atmos pour bonus audio sur profils 4K / Any.
 pattern: \b(TrueHD[ ._-]?Atmos|Atmos[ ._-]?TrueHD)\b
-tests: []
+# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
+tests:
+  - title: Film.2021.MULTI.VFF.UHD.Bluray.TrueHD.Atmos.7.1.x265-QTZ
+    type: movie
+    should_match: true
+    description: TrueHD.Atmos
+  - title: Serie.S02E03.Atmos.TrueHD.WEB-DL.1080p.h264-FW
+    type: series
+    should_match: true
+    description: Ordre inverse Atmos / TrueHD
+  - title: Film.2019.MULTI.VFF.WEB.1080p.DDP5.1.h264-AMEN
+    type: movie
+    should_match: false
+    description: Pas de mention Atmos / TrueHD
