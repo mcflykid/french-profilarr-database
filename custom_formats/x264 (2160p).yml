@@ -1,10 +1,31 @@
+# =============================================================================
+# Custom format — x264 / h264 / AVC en 4K (pénalité)
+# -----------------------------------------------------------------------------
+# Politique 4K light : UHD en HEVC préféré ; x264 en 2160p typiquement à éviter.
+# =============================================================================
 name: x264 (2160p)
-description: Cible le codec x264 utilisé en résolution 4K UHD.
+description: >
+  Détecte un couple annoncé x264|h264|AVC + 2160p|4K|UHD dans le titre (ordre flexible). Pénalité
+  pour décourager les UHD lourdes ou peu efficaces par rapport à du x265 sur la scène FR moderne.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: x264 4K
     type: release_title
     negate: false
     required: false
     pattern: x264 4K Regex
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2013.MULTI.VFF.UHD.BDRip.2160p.x264.DTS-HD.MA.7.1-TFA
+    type: movie
+    should_match: true
+    description: 2160p puis x264 (deuxième branche du OU)
+  - title: Serie.S01E10.VOSTFR.WEB.4K.h264.5.1-FW
+    type: series
+    should_match: true
+    description: 4K + h264
+  - title: Film.2021.MULTI.VFF.BDRip.1080p.x264.DTS.5.1-AMEN
+    type: movie
+    should_match: false
+    description: x264 en 1080p uniquement
