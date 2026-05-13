@@ -1,15 +1,44 @@
+# =============================================================================
+# Custom format — MULTI + VFF (TrueFrench)
+# -----------------------------------------------------------------------------
+# Les deux conditions sont requises : le titre doit annoncer MULTI **et** VFF
+# (ou TRUEFRENCH). Utilisé pour le plus haut score « VF France multi-langues »
+# sous MULTI.VF2 sur trackers type La Cale / Gemini (naming type charte C411).
+# =============================================================================
 name: FR-MULTI-VFF
-description: Identifie les releases MULTI avec piste VFF.
+description: >
+  Release annonçant MULTI et VFF (ou TRUEFRENCH) dans le titre analysé par Radarr/Sonarr.
+  Représente le pack audio français « France » avec autres langues, très recherché sur la scène FR.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
+  # required true : le titre doit contenir MULTI (regex FR-Regex-MULTI).
   - name: MULTI
     type: release_title
     negate: false
     required: true
     pattern: FR-Regex-MULTI
+  # required true : le titre doit aussi contenir VFF ou TRUEFRENCH (regex FR-Regex-VFF).
   - name: VFF
     type: release_title
     negate: false
     required: true
     pattern: FR-Regex-VFF
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.Francais.2023.MULTI.VFF.Bluray.1080p.DTS-HD.MA.5.1.x264-TFA
+    type: movie
+    should_match: true
+    description: MULTI explicite + VFF dans le titre
+  - title: Serie.US.S01E12.MULTI.TRUEFRENCH.WEB.1080p.EAC3.5.1.x265-FW
+    type: series
+    should_match: true
+    description: MULTI + synonyme TRUEFRENCH (VFF)
+  - title: Film.2024.VFF.WEB-DL.1080p.x264-QTZ
+    type: movie
+    should_match: false
+    description: VFF sans tag MULTI
+  - title: Animation.2022.MULTI.VOSTFR.WEB.1080p.h264-GKS
+    type: movie
+    should_match: false
+    description: MULTI mais pas de piste VFF / TrueFrench détectée
