@@ -1,10 +1,31 @@
+# =============================================================================
+# Custom format — Repack niveau 2
+# -----------------------------------------------------------------------------
+# Bonus légèrement supérieur à Repack1 pour corrections « plus loin » (V3, etc.).
+# =============================================================================
 name: Repack2
-description: Identifie les corrections de type V3.
+description: >
+  Détecte corrections niveau 2 (REPACK.2, V3…). Bonus juste au-dessus de Repack1 pour inciter à
+  prendre la release la plus corrigée lorsque tout le reste est égal.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: Repack2
     type: release_title
     negate: false
     required: false
     pattern: Repack2 Regex
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2016.MULTI.VFF.WEB-DL.REPACK.2.1080p.h264-QTZ
+    type: movie
+    should_match: true
+    description: REPACK niveau 2
+  - title: Serie.S02E08.VOSTFR.BluRay.V3.DTS-HD.MA.5.1.x264-GKS
+    type: series
+    should_match: true
+    description: V3 (niveau 2)
+  - title: Film.2019.MULTI.VFF.DVDrip.REPACK.1080p.XviD-BOUBA
+    type: movie
+    should_match: false
+    description: REPACK simple (niveau 1)
