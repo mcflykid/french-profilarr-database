@@ -1,99 +1,110 @@
 qualityDefinitions:
   radarr:
-    Bluray-1080p:
-      max: 150
-      min: 0
-      preferred: 80
+    # === 2160p (4K) ===
     Bluray-2160p:
-      max: 400
-      min: 0
-      preferred: 250
-    Bluray-720p:
-      max: 100
-      min: 0
-      preferred: 40
-    Remux-1080p:
-      max: 200
-      min: 0
-      preferred: 120
+      max: 4500
+      min: 2800  # C411: x265 min 2800 kb/s = ~350 MB/90min
+      preferred: 4500  # 4K Light HEVC CPU slow/veryslow
+    WEBDL-2160p:
+      max: 4500
+      min: 2800  # C411: x265 min 2800 kb/s
+      preferred: 3500  # WEB-DL généralement plus léger
+    WEBRip-2160p:
+      max: 4500
+      min: 2800  # C411: x265 min 2800 kb/s
+      preferred: 3500
     Remux-2160p:
-      max: 400
+      max: 8000  # Remux can be massive, blocker applies anyway
       min: 0
-      preferred: 350
-    WEBDL-1080p:
-      max: 150
-      min: 0
-      preferred: 60
-    WEBDL-2160p:
-      max: 400
-      min: 0
-      preferred: 150
-    WEBDL-720p:
-      max: 100
-      min: 0
-      preferred: 30
-    WEBRip-1080p:
-      max: 150
-      min: 0
-      preferred: 60
-    WEBRip-2160p:
-      max: 400
-      min: 0
-      preferred: 150
-    WEBRip-720p:
-      max: 100
-      min: 0
-      preferred: 30
-  sonarr:
+      preferred: 7000  # Non-préféré (bloqué dans profiles mais min défini)
+
+    # === 1080p ===
     Bluray-1080p:
-      max: 150
-      min: 0
-      preferred: 80
-    Bluray-1080p Remux:
-      max: 200
-      min: 0
-      preferred: 120
-    Bluray-2160p:
-      max: 400
-      min: 0
-      preferred: 250
-    Bluray-2160p Remux:
-      max: 400
-      min: 0
-      preferred: 350
-    Bluray-720p:
-      max: 100
-      min: 0
-      preferred: 40
-    HDTV-1080p:
-      max: 150
-      min: 0
-      preferred: 50
-    HDTV-720p:
-      max: 100
-      min: 0
-      preferred: 30
+      max: 2000
+      min: 1200  # C411: x265 min 1200 kb/s (~150 MB/90min)
+      preferred: 1800  # Favor quality over size
     WEBDL-1080p:
-      max: 150
-      min: 0
-      preferred: 60
-    WEBDL-2160p:
-      max: 400
-      min: 0
-      preferred: 150
-    WEBDL-720p:
-      max: 100
-      min: 0
-      preferred: 30
+      max: 2000
+      min: 0  # WEB-DL exception C411 (no minimum)
+      preferred: 1500
     WEBRip-1080p:
-      max: 150
+      max: 2000
+      min: 0  # WEB-DL exception C411
+      preferred: 1500
+    Remux-1080p:
+      max: 3000  # Remux can be heavy, blocker applies anyway
       min: 0
-      preferred: 60
-    WEBRip-2160p:
-      max: 400
-      min: 0
-      preferred: 150
+      preferred: 2500
+
+    # === 720p ===
+    Bluray-720p:
+      max: 1000
+      min: 800  # C411: x265 min reasonable (~100 MB/90min)
+      preferred: 900
+    WEBDL-720p:
+      max: 1000
+      min: 0  # WEB-DL exception C411
+      preferred: 600
     WEBRip-720p:
-      max: 100
+      max: 1000
+      min: 0  # WEB-DL exception C411
+      preferred: 600
+
+  sonarr:
+    # === 2160p (4K) ===
+    Bluray-2160p:
+      max: 2000  # Per episode, not per season
+      min: 1400  # C411: x265 min 2800 kb/s / 2 episodes avg = ~1400 MB/ep
+      preferred: 1800  # 4K Light per episode
+    WEBDL-2160p:
+      max: 2000
+      min: 1400
+      preferred: 1500
+    WEBRip-2160p:
+      max: 2000
+      min: 1400
+      preferred: 1500
+    Bluray-2160p Remux:
+      max: 4000  # Remux per episode, blocker applies anyway
       min: 0
-      preferred: 30
+      preferred: 3500
+
+    # === 1080p ===
+    Bluray-1080p:
+      max: 1000
+      min: 600  # C411: x265 min 1200 kb/s / 2 episodes avg = ~600 MB/ep
+      preferred: 800
+    WEBDL-1080p:
+      max: 1000
+      min: 0  # WEB-DL exception C411
+      preferred: 600
+    WEBRip-1080p:
+      max: 1000
+      min: 0  # WEB-DL exception C411
+      preferred: 600
+    HDTV-1080p:
+      max: 1000
+      min: 0
+      preferred: 400
+    Bluray-1080p Remux:
+      max: 1500  # Remux per episode, blocker applies anyway
+      min: 0
+      preferred: 1200
+
+    # === 720p ===
+    Bluray-720p:
+      max: 500
+      min: 400  # C411: x265 min reasonable / 2 episodes = ~400 MB/ep
+      preferred: 450
+    WEBDL-720p:
+      max: 500
+      min: 0  # WEB-DL exception C411
+      preferred: 300
+    WEBRip-720p:
+      max: 500
+      min: 0  # WEB-DL exception C411
+      preferred: 300
+    HDTV-720p:
+      max: 500
+      min: 0
+      preferred: 200
