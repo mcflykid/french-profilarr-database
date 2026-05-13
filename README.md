@@ -34,6 +34,23 @@ Si le schéma est mélangé, l'UI Profilarr peut afficher `Unexpected Error`.
 
 ---
 
+## Ce qui est strict vs éditorial
+
+### Strict (à ne pas casser)
+- Schéma des tests `regex_patterns/` : `id`, `input`, `expected`.
+- Schéma des tests `custom_formats/` : `title`, `type`, `should_match`, `description`.
+- Références valides :
+  - `custom_formats.conditions[].pattern` -> `regex_patterns.name`
+  - `profiles.custom_formats[].name` -> `custom_formats.name`
+- YAML valide dans tous les dossiers importés (`regex_patterns`, `custom_formats`, `profiles`, `media_management`).
+
+### Éditorial (modifiable selon votre politique)
+- Listes teams (`FR-Tier-01`, `FR-Tier-02`) et blocklist (`FR-Blockers`).
+- Pondération fine des bonus/malus (hors hiérarchie langue).
+- Choix de compatibilité matériel (ex : malus AV1, exclusion Remux/Full Disc selon profil).
+
+---
+
 ## Structure du dépôt
 
 ### `regex_patterns/`
@@ -136,3 +153,15 @@ Ordre de travail conseillé :
 - vérifier le schéma des tests,
 - vérifier la cohérence des noms (`pattern` ↔ regex existante),
 - valider le YAML avant import Profilarr.
+
+---
+
+## Checklist avant import Profilarr
+
+- Valider que tous les fichiers YAML sont parseables.
+- Vérifier qu'aucun test `regex_patterns` n'utilise `title/type/should_match`.
+- Vérifier qu'aucun test `custom_formats` n'utilise `id/input/expected`.
+- Vérifier que tous les `pattern` de `custom_formats` existent dans `regex_patterns`.
+- Vérifier que tous les `name` de `profiles.custom_formats` existent dans `custom_formats`.
+- Contrôler la hiérarchie langue (`FR-MULTI-VF2 > FR-MULTI-VFF > FR-VF2 > FR-VFF > FR-VOSTFR`) sur chaque profil.
+- Contrôler que `FR-Films-Any` reste volontairement permissif (ne pas le durcir par défaut).

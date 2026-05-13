@@ -4,8 +4,8 @@
 # Schéma Profilarr v1 : tests = [ {id, input, expected} ]
 # ============================================================================
 name: HDR10+ Regex
-description: Détecte HDR10+ ou HDR10Plus dans le titre de release.
-pattern: \b(HDR10(Plus|\+))\b
+description: Détecte HDR10+ et variantes d'écriture (HDR10Plus, HDR10 Plus, HDR10P).
+pattern: \bHDR10(?:[ ._-]?Plus|[ ._-]?P)\b|\bHDR10\+
 tests:
   - id: 1
     input: Film.2023.MULTI.VFF.UHD.2160p.HDR10Plus.DTS-X.x265-TFA
@@ -16,3 +16,9 @@ tests:
   - id: 3
     input: Film.2019.MULTI.VFF.Bluray.1080p.HDR10.DTS.5.1.x264-OZEF
     expected: false
+  - id: 4
+    input: Film.2024.MULTI.VFF.UHD.2160p.HDR10 Plus.TrueHD.Atmos.x265-QTZ
+    expected: true
+  - id: 5
+    input: Serie.S01E03.VOSTFR.WEB-DL.2160p.HDR10P.DDP5.1.h265-TFA
+    expected: true

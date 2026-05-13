@@ -4,8 +4,8 @@
 # Schéma Profilarr v1 : tests = [ {id, input, expected} ]
 # ============================================================================
 name: Dolby Vision Regex
-description: Détecte DV, DoVi ou Dolby Vision dans le titre de release.
-pattern: \b(DV|DoVi|Dolby[ ._-]?Vision)\b
+description: Détecte DV, DoVi ou Dolby Vision en évitant les faux positifs DV.HLG / DV.SDR.
+pattern: \b(dv(?![ ._-]?(HLG|SDR))|dovi|dolby[ ._-]?vision)\b
 tests:
   - id: 1
     input: Film.2024.MULTI.VFF.UHD.2160p.DoVi.HDR10.Hybrid.DTS-X.x265-QTZ
@@ -15,4 +15,10 @@ tests:
     expected: true
   - id: 3
     input: Film.2015.MULTI.VFF.BDRip.1080p.x264-AMEN
+    expected: false
+  - id: 4
+    input: Film.2022.MULTI.VFF.UHD.2160p.DV.HLG.h265-TEST
+    expected: false
+  - id: 5
+    input: Serie.S01E01.VOSTFR.WEB.2160p.DV.SDR.h265-TEST
     expected: false

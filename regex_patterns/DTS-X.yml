@@ -5,7 +5,7 @@
 # ============================================================================
 name: DTS-X Regex
 description: Détecte DTS-X ou DTS.X dans le titre de release.
-pattern: \b(DTS[ ._-]?X)\b
+pattern: \b(DTS[ .:_-]?X)\b(?!\d)
 tests:
   - id: 1
     input: Film.2023.MULTI.VFF.UHD.2160p.DTS-X.7.1.x265-QTZ
@@ -16,3 +16,6 @@ tests:
   - id: 3
     input: Film.2017.MULTI.VFF.BDRip.DTS-HD.MA.5.1.x264-AMEN
     expected: false
+  - id: 4
+    input: Film.2024.MULTI.VFF.UHD.2160p.DTS:X.7.1.TrueHD.x265-TFA
+    expected: true
