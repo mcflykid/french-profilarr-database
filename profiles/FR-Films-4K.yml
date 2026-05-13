@@ -1,4 +1,18 @@
+# =============================================================================
+# Radarr — Films 4K UHD (scène FR, La Cale / Gemini, esprit C411 + 4K light)
+# -----------------------------------------------------------------------------
+# Profil « cinéma maison » : langue FR d’abord, puis HDR (DV > HDR10+ > HDR10),
+# puis audio lossless, puis teams. Bloque x264 en 2160p (mauvais rapport qualité/poids)
+# et l’AV1 (compat matérielle), ainsi que remux / full disc pour le seeding charte.
+# Les scores HDR sont volontairement au-dessus des bonus team pour favoriser
+# une image moderne lorsque la langue est déjà satisfaite.
+# =============================================================================
 name: FR-Films-4K
+description: >
+  Profil Radarr 4K pour films sur trackers francophones stricts (La Cale, Gemini, charte C411).
+  Priorise la langue FR, valorise fortement Dolby Vision puis HDR10+ / HDR10, favorise TrueHD Atmos
+  et DTS-X, récompense les teams Tier 1–2 et les repacks. Exclut remux, disque complet, x264 en UHD
+  et AV1 pour rester sur des encodages compatibles et raisonnables en taille (philosophie 4K light).
 tags:
 - 2160p
 - French
@@ -7,7 +21,7 @@ minCustomFormatScore: 20000
 upgradeUntilScore: 888888
 minScoreIncrement: 1
 custom_formats:
-# === Langue (Nos formats FR) ===
+# --- Langue (même échelle que les autres profils pour des upgrades cohérents Radarr ↔ Sonarr) ---
 - name: FR-MULTI-VF2
   score: 60000
 - name: FR-MULTI-VFF
@@ -19,13 +33,15 @@ custom_formats:
 - name: FR-VOSTFR
   score: 10000
 
-# === Groupes FR ===
+# --- Teams FR ---
 - name: FR-Tier-01
   score: 1800
 - name: FR-Tier-02
   score: 1700
 
-# === Audio (Lossless privilégié) ===
+# --- Audio lossless / spatial (bonus si annoncé dans le titre de release) ---
+# Note : le score final Radarr est la somme des custom formats qui matchent ; les valeurs HDR
+# ci-dessous sont volontairement plus élevées que l’audio pour favoriser une image HDR quand la langue est déjà au max.
 - name: TrueHD Atmos
   score: 1000
 - name: DTS:X
@@ -35,7 +51,7 @@ custom_formats:
 - name: DTS-HD MA
   score: 900
 
-# === HDR (Dolby Vision prioritaire pour AppleTV 4K) ===
+# --- HDR (priorité affichage sur téléviseurs HDR10/DV) ---
 - name: Dolby Vision
   score: 4500
 - name: HDR10+
@@ -43,7 +59,7 @@ custom_formats:
 - name: HDR10
   score: 1000
 
-# === REPACKS (Priorité aux versions corrigées) ===
+# --- Repacks ---
 - name: Repack3
   score: 8
 - name: Repack2
@@ -51,7 +67,7 @@ custom_formats:
 - name: Repack1
   score: 6
 
-# === Blockers Globaux ===
+# --- Exclusions ---
 - name: FR-Blockers
   score: -999999
 - name: Remux
