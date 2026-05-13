@@ -1,4 +1,14 @@
+# =============================================================================
+# Sonarr — Séries 720p (scène FR, La Cale / Gemini)
+# -----------------------------------------------------------------------------
+# Flux légers ou anciennes saisons : mêmes règles langue/team que le 1080p,
+# sans Full Disc (peu pertinent en 720p TV), avec remux et AV1 bloqués.
+# =============================================================================
 name: FR-Series-720p
+description: >
+  Profil Sonarr 720p pour séries sur trackers francophones (La Cale, Gemini, esprit C411).
+  Hiérarchie langue identique au 1080p ; bonus teams et repacks ; bloque remux et AV1.
+  Qualités Bluray/WEB/HDTV 720p activées dans le groupe cible.
 tags:
 - 720p
 - French
@@ -8,7 +18,7 @@ minCustomFormatScore: 20000
 upgradeUntilScore: 888888
 minScoreIncrement: 1
 custom_formats:
-# === Langue ===
+# --- Langue ---
 - name: FR-MULTI-VF2
   score: 60000
 - name: FR-MULTI-VFF
@@ -20,13 +30,13 @@ custom_formats:
 - name: FR-VOSTFR
   score: 10000
 
-# === Groupes FR ===
+# --- Teams FR ---
 - name: FR-Tier-01
   score: 1800
 - name: FR-Tier-02
   score: 1700
 
-# === REPACKS ===
+# --- Repacks ---
 - name: Repack3
   score: 8
 - name: Repack2
@@ -34,7 +44,7 @@ custom_formats:
 - name: Repack1
   score: 6
 
-# === Blockers Globaux ===
+# --- Exclusions ---
 - name: FR-Blockers
   score: -999999
 - name: Remux
