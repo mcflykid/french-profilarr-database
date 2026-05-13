@@ -1,4 +1,15 @@
+# =============================================================================
+# Radarr — Films 720p (scène FR, La Cale / Gemini, logique type C411)
+# -----------------------------------------------------------------------------
+# Variante allégée pour flux 720p : mêmes priorités linguistiques et teams que
+# le 1080p, mais sans bloquer « Full Disc » (souvent absent des flux 720p).
+# Remux et AV1 restent pénalisés (poids / compat).
+# =============================================================================
 name: FR-Films-720p
+description: >
+  Profil Radarr 720p pour films sur trackers francophones (La Cale, Gemini, esprit C411).
+  Même hiérarchie langue et teams que le 1080p ; bloque remux et AV1. Pas de pénalité Full Disc
+  sur ce profil (contenu 720p issu surtout du WEB/TV, rarement ISO complet).
 tags:
 - 720p
 - French
@@ -7,7 +18,7 @@ minCustomFormatScore: 20000
 upgradeUntilScore: 888888
 minScoreIncrement: 1
 custom_formats:
-# === Langue ===
+# --- Langue (priorité absolue sur tout le reste) ---
 - name: FR-MULTI-VF2
   score: 60000
 - name: FR-MULTI-VFF
@@ -19,13 +30,13 @@ custom_formats:
 - name: FR-VOSTFR
   score: 10000
 
-# === Groupes FR ===
+# --- Teams FR (bonus si le titre porte le nom du groupe) ---
 - name: FR-Tier-01
   score: 1800
 - name: FR-Tier-02
   score: 1700
 
-# === REPACKS ===
+# --- Repacks (versions corrigées) ---
 - name: Repack3
   score: 8
 - name: Repack2
@@ -33,7 +44,7 @@ custom_formats:
 - name: Repack1
   score: 6
 
-# === Blockers Globaux ===
+# --- Exclusions ---
 - name: FR-Blockers
   score: -999999
 - name: Remux
