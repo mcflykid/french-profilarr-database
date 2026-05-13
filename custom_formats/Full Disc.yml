@@ -1,10 +1,31 @@
+# =============================================================================
+# Custom format — Full disc (ISO / BDMV / VIDEO_TS)
+# -----------------------------------------------------------------------------
+# Pénalité pour structures disque complètes non souhaitées en bibliothèque type Plex.
+# =============================================================================
 name: Full Disc
-description: Identifie les structures de disques complètes à bannir.
+description: >
+  Détecte ISO, BDMV ou VIDEO_TS dans le titre. Sert à éviter les packs disque complets inadaptés
+  au renommage simple et souvent mal vus sur les trackers FR pour le stockage domestic.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: Full Disc
     type: release_title
     negate: false
     required: false
     pattern: Full Disc Regex
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2009.MULTI.VFF.COMPLETE.BLURAY.VIDEO_TS.DVD9-TLC
+    type: movie
+    should_match: true
+    description: Structure VIDEO_TS
+  - title: Jeu.Video.2011.MULTI.FULL.ISO.BluRay-LOST
+    type: movie
+    should_match: true
+    description: Image disque ISO
+  - title: Film.2024.MULTI.VFF.mkv.BDRip.1080p.x264-AMEN
+    type: movie
+    should_match: false
+    description: Rip fichier mkv sans ISO/BDMV/VIDEO_TS
