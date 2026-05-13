@@ -1,10 +1,34 @@
+# =============================================================================
+# Custom format — Blocklist (groupes / tags indésirables)
+# -----------------------------------------------------------------------------
+# S’appuie sur FR-Regex-Blockers : toute occurrence dans le titre applique un
+# score très négatif. À synchroniser avec les règles écrites La Cale / Gemini / C411.
+# =============================================================================
 name: FR-Blockers
-description: Formats et teams d'encodages médiocres à bloquer.
+description: >
+  Marque les releases dont le titre contient un groupe ou tag explicitement banni (regex centralisée).
+  Mettre à jour FR-Regex-Blockers en même temps que les règles du tracker ; chaque ajout doit être traçable.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
+  # required: false + une seule condition release_title : le groupe matche si la regex trouve un blocage
+  # (logique Profilarr « au moins une » sans required — voir évaluateur custom formats).
   - name: Blockers
     type: release_title
     negate: false
     required: false
     pattern: FR-Regex-Blockers
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2020.FRENCH.BDRip.x264-k0RE
+    type: movie
+    should_match: true
+    description: Groupe listé dans FR-Regex-Blockers
+  - title: Serie.S02E05.VOSTFR.WEBRip.x264-Wawacity
+    type: series
+    should_match: true
+    description: Nom de groupe banni en fin de titre
+  - title: Film.2024.MULTI.VFF.UHD.2160p.Hybrid.DoVi.HDR10.DTS-X.x265-QTZ
+    type: movie
+    should_match: false
+    description: Release propre sans groupe bloqué
