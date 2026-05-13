@@ -1,4 +1,25 @@
+# =============================================================================
+# Regex — Dolby TrueHD (sans exiger Atmos dans ce motif)
+# -----------------------------------------------------------------------------
+# Attention : « TrueHD » apparaît aussi dans « TrueHD Atmos » ; les deux custom
+# formats peuvent matcher la même release si les conditions sont remplies.
+# =============================================================================
 name: TrueHD Regex
-description: Détecte la présence de Dolby TrueHD classique
+description: >
+  Détecte le mot TrueHD seul (TrueHD 7.1, etc.). Complète le custom format TrueHD pour bonus audio
+  lorsque la release annonce du lossless Dolby sans forcément citer Atmos.
 pattern: \b(TrueHD)\b
-tests: []
+# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
+tests:
+  - title: Film.2018.MULTI.VFF.Bluray.1080p.TrueHD.7.1.x264-TFA
+    type: movie
+    should_match: true
+    description: TrueHD classique
+  - title: Serie.S01E08.VOSTFR.WEB-DL.TrueHD.Atmos.1080p.h265-GKS
+    type: series
+    should_match: true
+    description: TrueHD dans une variante Atmos (mot TrueHD présent)
+  - title: Film.2020.MULTI.VFF.WEB-DL.DTS-HD.MA.5.1.h264-OZEF
+    type: movie
+    should_match: false
+    description: Pas de TrueHD dans le titre
