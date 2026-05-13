@@ -1,8 +1,10 @@
-# Guide de Configuration Profilarr : Architecture Optimisée pour les Trackers Francophones
+# french-profilarr-database
 
-Ce dépôt contient une base de données de configuration **Profilarr** (compatible avec Radarr et Sonarr) entièrement optimisée pour la scène francophone et ses trackers (comme *La Cale* ou autres plateformes privées FR).
+Ce dépôt contient une base de données de configuration **Profilarr** (Radarr / Sonarr) pour usage réel sur **trackers francophones stricts** visant une cohérence avec les trackers privées **C411**, **La Cale** et **Gemini trackers** : scoring langue (MULTI, VFF, VF2, VOSTFR), tiers de release groups, HDR / audio lossless, repacks, blockers.
 
 L'objectif de cette configuration est d'automatiser entièrement la recherche, le téléchargement, le renommage et la mise à niveau (upgrade) de vos films et séries avec une précision chirurgicale, sans accumuler de fichiers inutiles ("fichiers fantômes").
+
+> **Note** : Ce dépôt est une **configuration technique** à valider et adapter selon les annonces officielles de chaque tracker avec le temps. Les listes (blockers, teams) sont **éditoriales** et doivent être mises à jour selons vos préference à vous.
 
 ---
 
@@ -86,3 +88,12 @@ Le fichier `media_management/naming.yml` applique une structure de nommage rigou
 ### Exemple de rendu :
 * **Film** : `/Insaisissables (2013) {tmdb-117251}/Insaisissables (2013) {tmdb-117251} [FR - MULTI.VFF][Bluray-1080p][h264][DTS-HD MA 5.1]-TFA.mkv`
 * **Série** : `/Severance (2022) {tvdb-368294}/Season 01/Severance - S01E01 - Good News About Hell [FR - MULTI.VFF][WEBDL-1080p][h264][EAC3 5.1]-FW.mkv`
+
+---
+
+## Limites connues
+
+- **FR-Films-Any** accepte volontairement toutes les qualités listées dans le profil (pas de blocage Remux / Full Disc sur ce profil).
+- **AV1** est pénalisé dans les profils 4K / HD ciblés pour limiter les problèmes de décodage matériel.
+- **HDR / DV** : détection textuelle seulement ; pas de validation profil 7/8 ou fallback HDR10 depuis le titre seul.
+- **Blockers** : liste close dans `regex_patterns/FR-Regex-Blockers.yml` ; à modifier selons vos preferences. 
