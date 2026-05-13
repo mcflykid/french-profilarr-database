@@ -1,4 +1,25 @@
+# =============================================================================
+# Regex — x264 / h264 / AVC combiné à une résolution 4K annoncée
+# -----------------------------------------------------------------------------
+# Politique : UHD doit rester en HEVC (x265) pour efficacité ; le x264 en 2160p
+# est typiquement à éviter (fichiers énormes ou qualité discutable).
+# =============================================================================
 name: x264 4K Regex
-description: Détecte le codec x264 appliqué sur une résolution 4K
+description: >
+  Détecte x264, h264 ou AVC dans le même titre qu’une résolution 2160p, 4K ou UHD (ordre flexible).
+  Sert au custom format x264 (2160p) pour pénaliser les annonces incohérentes avec une politique 4K light.
 pattern: \b(x264|h264|AVC)\b.*\b(2160p|4K|UHD)\b|\b(2160p|4K|UHD)\b.*\b(x264|h264|AVC)\b
-tests: []
+# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
+tests:
+  - title: Film.2013.MULTI.VFF.UHD.BDRip.2160p.x264.DTS-HD.MA.7.1-TFA
+    type: movie
+    should_match: true
+    description: 2160p puis x264
+  - title: Serie.S01E10.VOSTFR.WEB.4K.h264.EAC3-FW
+    type: series
+    should_match: true
+    description: 4K + h264
+  - title: Film.2021.MULTI.VFF.BDRip.1080p.x264.DTS.5.1-AMEN
+    type: movie
+    should_match: false
+    description: x264 en 1080p seulement
