@@ -1,10 +1,36 @@
+# =============================================================================
+# Custom format — VFF / TrueFrench seul (sans exiger MULTI)
+# -----------------------------------------------------------------------------
+# Condition unique sur la regex VFF : utile pour releases 100 % doublées France
+# sans tag MULTI explicite (selon naming du groupe ou du tracker).
+# =============================================================================
 name: FR-VFF
-description: Identifie les releases VFF uniques.
+description: >
+  Release annonçant VFF ou TRUEFRENCH sans condition MULTI dans ce custom format.
+  Sert à scorer les doublages France « purs » lorsque le releaseur n’a pas mis MULTI dans le titre.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: VFF
     type: release_title
     negate: false
     required: false
     pattern: FR-Regex-VFF
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2022.VFF.BDRip.1080p.DTS.5.1.x264-OZEF
+    type: movie
+    should_match: true
+    description: Tag VFF seul
+  - title: Documentaire.2018.TRUEFRENCH.DVDRip.XviD-TLC
+    type: movie
+    should_match: true
+    description: Synonyme TrueFrench
+  - title: Film.2024.MULTI.VOSTFR.WEB-DL.1080p.h264-ENIGMA
+    type: movie
+    should_match: false
+    description: VOSTFR sans VFF
+  - title: Serie.S01E03.MULTI.VF2.WEB.720p.x264-NEOSTARK
+    type: series
+    should_match: false
+    description: VF2 / VFQ, pas VFF
