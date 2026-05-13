@@ -1,10 +1,31 @@
+# =============================================================================
+# Custom format — Remux
+# -----------------------------------------------------------------------------
+# Score fortement négatif sur profils où le remux est interdit (poids / charte).
+# =============================================================================
 name: Remux
-description: Identifie et cible les versions Remux.
+description: >
+  Détecte le mot Remux dans le titre (source quasi brute). Pénalité pour alignement avec les usages
+  de seeding et de taille sur trackers privés francophones lorsque vous ne voulez pas de remux.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: Remux
     type: release_title
     negate: false
     required: false
     pattern: Remux Regex
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2018.MULTI.VFF.UHD.2160p.Bluray.Remux.DTS-X.TrueHD.7.1-FW
+    type: movie
+    should_match: true
+    description: Mot Remux
+  - title: Serie.UK.S02E01.MULTI.VFF.COMPLETE.BLURAY.Remux.DTS-HD.MA-QTZ
+    type: series
+    should_match: true
+    description: Remux avec casse mixte (mot Remux)
+  - title: Film.2020.MULTI.VFF.WEB-DL.1080p.EAC3.5.1.h264-TFA
+    type: movie
+    should_match: false
+    description: WEB-DL sans Remux
