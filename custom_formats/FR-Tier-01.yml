@@ -1,10 +1,32 @@
+# =============================================================================
+# Custom format — Bonus teams Tier 1
+# -----------------------------------------------------------------------------
+# Récompense les releases dont le titre contient une team « élite » (regex FR-Tier-01).
+# Bonus volontairement modeste vs la langue pour ne jamais inverser les priorités.
+# =============================================================================
 name: FR-Tier-01
-description: Applique un score bonus aux groupes d'encodage de Tier 1.
+description: >
+  Bonus qualité pour teams Tier 1 (regex FR-Tier-01). Sert à départager deux releases FR identiques
+  en langue en faveur d’un groupe historiquement plus fiable sur La Cale / Gemini.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: Tier 01
     type: release_title
     negate: false
     required: false
     pattern: FR-Tier-01
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.Action.2022.MULTI.VFF.UHD.2160p.Hybrid.DoVi.HDR10Plus.DTS-X.x265-TFA
+    type: movie
+    should_match: true
+    description: Groupe Tier 01 (TFA) dans le titre
+  - title: Serie.UK.S04E02.VOSTFR.WEB.1080p.h264-FW
+    type: series
+    should_match: true
+    description: Groupe FW / Forward
+  - title: Film.2020.MULTI.VFF.BDRip.x264-ENIGMA
+    type: movie
+    should_match: false
+    description: Groupe Tier 02 uniquement
