@@ -1,4 +1,14 @@
+# =============================================================================
+# Sonarr — Séries 4K UHD (scène FR, La Cale / Gemini, esprit C411 + 4K light)
+# -----------------------------------------------------------------------------
+# Équivalent série du profil films 4K : langue, HDR, audio lossless, teams,
+# exclusion remux / full disc / x264@UHD / AV1.
+# =============================================================================
 name: FR-Series-4K
+description: >
+  Profil Sonarr 4K pour séries sur trackers francophones stricts (La Cale, Gemini, charte C411).
+  Priorise la langue FR, valorise Dolby Vision puis HDR10+ / HDR10, favorise TrueHD Atmos et DTS-X,
+  bonus teams Tier 1–2 et repacks. Exclut remux, disque complet, x264 en UHD et AV1.
 tags:
 - 2160p
 - French
@@ -8,7 +18,7 @@ minCustomFormatScore: 20000
 upgradeUntilScore: 888888
 minScoreIncrement: 1
 custom_formats:
-# === Langue ===
+# --- Langue ---
 - name: FR-MULTI-VF2
   score: 60000
 - name: FR-MULTI-VFF
@@ -20,13 +30,13 @@ custom_formats:
 - name: FR-VOSTFR
   score: 10000
 
-# === Groupes FR ===
+# --- Teams FR ---
 - name: FR-Tier-01
   score: 1800
 - name: FR-Tier-02
   score: 1700
 
-# === Audio & HDR (Dolby Vision prioritaire pour AppleTV 4K) ===
+# --- Audio ---
 - name: TrueHD Atmos
   score: 1000
 - name: DTS:X
@@ -35,6 +45,7 @@ custom_formats:
   score: 900
 - name: DTS-HD MA
   score: 900
+# --- HDR ---
 - name: Dolby Vision
   score: 4500
 - name: HDR10+
@@ -42,7 +53,7 @@ custom_formats:
 - name: HDR10
   score: 1000
 
-# === REPACKS ===
+# --- Repacks ---
 - name: Repack3
   score: 8
 - name: Repack2
@@ -50,7 +61,7 @@ custom_formats:
 - name: Repack1
   score: 6
 
-# === Blockers Globaux ===
+# --- Exclusions ---
 - name: FR-Blockers
   score: -999999
 - name: Remux
