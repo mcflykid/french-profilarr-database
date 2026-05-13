@@ -1,10 +1,32 @@
+# =============================================================================
+# Custom format — VOSTFR / Subfrench (fallback)
+# -----------------------------------------------------------------------------
+# Dernier palier langue acceptable avant absence de FR : VO + sous-titres FR
+# annoncés dans le titre (usuel La Cale / Gemini quand pas encore de VF).
+# =============================================================================
 name: FR-VOSTFR
-description: Identifie les releases en version originale sous-titrée française.
+description: >
+  Version originale avec sous-titres français annoncés (VOSTFR ou SUBFRENCH). Fallback lorsqu’aucun
+  doublage MULTI/VFF/VF2 n’est disponible sur l’indexeur, tout en gardant une exigence FR lisible.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: VOSTFR
     type: release_title
     negate: false
     required: false
     pattern: FR-Regex-VOSTFR
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.US.2023.VOSTFR.WEB-DL.1080p.EAC3.5.1.h264-Slay3R
+    type: movie
+    should_match: true
+    description: VOSTFR standard
+  - title: Mini.Serie.S01.SUBFRENCH.BluRay.1080p.DTS-HD.MA.5.1.x264-BOUC
+    type: series
+    should_match: true
+    description: Synonyme Subfrench
+  - title: Film.FR.2021.MULTI.VFF.UHD.2160p.DoVi.HDR10Plus.DTS-X.x265-QTZ
+    type: movie
+    should_match: false
+    description: Version doublée FR (VFF), pas VOSTFR
