@@ -12,7 +12,7 @@ Ce dépôt est un **fork allégé et adapté** de
 Objectif : automatiser la sélection de releases en priorisant dans l'ordre
 1. la **langue FR** (MULTI VF2 > MULTI VFF > VF2 > VFF > VOSTFR),
 2. la **qualité technique utile** (HDR, audio premium, codec efficient),
-3. la **fiabilité des groupes** (teams FR Tier 1 / 2 / 3),
+3. la **fiabilité des groupes** (teams FR Tier 1 à 4),
 4. le **respect des contraintes** (compatibilité matériel, charte tracker, seeding).
 
 ---
@@ -21,7 +21,7 @@ Objectif : automatiser la sélection de releases en priorisant dans l'ordre
 
 | Préfixe | Origine | Exemples |
 |---|---|---|
-| **`FR-*`** | **Propre au projet** — logique métier scène FR | `FR-Regex-VFF`, `FR-Blockers`, `FR-Tier-01`, `FR-Repack` |
+| **`FR-*`** | **Propre au projet** — logique métier scène FR | `FR-Regex-VFF`, `FR-Blockers`, `FR-Tier-01`, `FR-Repack-3` |
 | *autre* | Importé / aligné Dictionarry officiel | `Atmos`, `Dolby Vision`, `x265`, `AAC`, `IMAX` |
 
 **Nom de fichier :** chaque `regex_patterns/*.yml` et `custom_formats/*.yml` a un
@@ -58,16 +58,18 @@ Mélanger les schémas v1 et v2 dans `tests:` peut afficher `Unexpected Error` d
   `FR-MULTI-VF2 > FR-MULTI-VFF > FR-VF2 > FR-VFF > FR-VOSTFR`.
 
 ### Éditorial (modifiable selon ta politique)
-- Listes teams `FR-Tier-01`, `FR-Tier-02`, `FR-Tier-03` et blocklist `FR-Blockers`.
+- Listes teams `FR-Tier-01` … `FR-Tier-04` et blocklist `FR-Blockers`.
 - Pondération fine des bonus/malus (hors hiérarchie langue).
 - Choix de compatibilité matériel (ex : malus AV1, exclusion Remux/Full Disc).
 - Liste des streamers à scorer (NF, AMZN, DSNP, ATVP, etc.).
+- Pas de custom formats « Missing » (malus pour étiquettes absentes) : le tri repose
+  sur des bonus lorsque le titre contient explicitement les motifs (HDR, audio, etc.).
 
 ---
 
 ## Structure du dépôt
 
-### `regex_patterns/` (64 fichiers)
+### `regex_patterns/` (58 fichiers)
 Motifs regex nommés. Détectent : langue, codecs, HDR, audio, source, edition,
 teams (FR + patterns internationaux pour traçabilité), repacks, blockers.
 
@@ -75,15 +77,15 @@ Fichiers **propres au projet** (préfixe `FR-`) :
 - `FR-Regex-VFF`, `FR-Regex-VF2`, `FR-Regex-MULTI`, `FR-Regex-VOSTFR`
 - `FR-Regex-Blockers`, `FR-Regex-HDLight`, `FR-Regex-4KLight`, `FR-Regex-Hybrid`
 - `FR-Regex-Streamers-Premium`, `FR-Regex-Streamers-Standard`, `FR-Regex-Atmos-Bundle`
-- `FR-Tier-01`, `FR-Tier-02`, `FR-Tier-03`, `FR-Repack`
+- `FR-Tier-01`, `FR-Tier-02`, `FR-Tier-03`, `FR-Tier-04`, `FR-Repack`, `FR-Repack-2`, `FR-Repack-3`
 
-### `custom_formats/` (59 fichiers)
+### `custom_formats/` (55 fichiers)
 Règles consommées par Radarr/Sonarr. Chaque custom format référence une regex
 via `conditions[].pattern`.
 
 Custom formats **propres au projet** :
 - Langue : `FR-VFF`, `FR-VF2`, `FR-VOSTFR`, `FR-MULTI-VFF`, `FR-MULTI-VF2`
-- Scène : `FR-Blockers`, `FR-Tier-01`, `FR-Tier-02`, `FR-Tier-03`, `FR-Repack`,
+- Scène : `FR-Blockers`, `FR-Tier-01` … `FR-Tier-04`, `FR-Repack`, `FR-Repack-2`, `FR-Repack-3`,
   `FR-HDLight`, `FR-4KLight`, `FR-Hybrid`, `FR-Streamer-Premium`, `FR-Streamer-Standard`
 
 ### `profiles/` (7 fichiers)
@@ -113,21 +115,22 @@ Les écarts sont **volontairement grands** pour qu'aucun bonus secondaire
 (team, HDR, audio, repack) ne fasse basculer la priorité linguistique.
 
 ### Teams FR (scores types dans les profils films/séries)
-- `FR-Tier-01` : +2000
-- `FR-Tier-02` : +1500
-- `FR-Tier-03` : +1000
+- `FR-Tier-01` : +2400
+- `FR-Tier-02` : +2000
+- `FR-Tier-03` : +1600
+- `FR-Tier-04` : +1000
 
 ### Bonus techniques (variable selon profil)
 - HDR : Dolby Vision > HDR10+ > HDR10 > HDR (poids fort en 4K, modéré en 1080p)
 - Audio premium : Atmos / TrueHD / DTS-X / DTS-HD MA / DTS-HD HRA / DTS-ES /
   Dolby Digital + / Dolby Digital / FLAC / PCM / Opus / AAC
 - Codec : x265 / h265 (+), VP9 / Xvid (-)
-- Édition : IMAX / IMAX Enhanced / Theatrical / Special Edition
-- Source 4K : UHD Bluray / UHD Bluray (Efficient)
+- Édition : IMAX / IMAX Enhanced / Theatrical (films)
+- Source 4K downscale 1080p : `UHD Bluray` (HDR basique annoncé dans le titre)
 - Streamers : `FR-Streamer-Premium` (Netflix, Prime, Disney+, Apple TV+, HBO Max/Max, Paramount+)
   et `FR-Streamer-Standard` (NOW, Crunchyroll, iTunes WEB)
-- Séries : Season Pack, Extras, TV Extras
-- `FR-Repack` : bonus unique pour releases corrigées (PROPER / REPACK / RERIP / REAL)
+- Séries : Season Pack, TV Extras
+- Repacks : `FR-Repack-3` (PROPER3/REPACK3), `FR-Repack-2` (PROPER2/REPACK2, REAL…PROPER), `FR-Repack` (PROPER / REPACK / RERIP / REAL simple)
 
 ### Exclusions fortes (score -999999)
 - `FR-Blockers` (groupes bannis, NVENC/QSV/AMF, incohérences codec)

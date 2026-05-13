@@ -1,5 +1,8 @@
 name: Opus
-description: Matches 'Opus' Regex Pattern and negates any other audio types that might conflict.
+description: >
+  Détecte la piste Opus dans le titre. La négation « groupe OPUS » a été retirée :
+  en cas de faux positif sur un release group -OPUS, ajuster le score ou réintroduire
+  un motif dédié.
 tags:
 - Audio
 conditions:
@@ -8,9 +11,4 @@ conditions:
   pattern: Opus
   required: true
   type: release_title
-- name: Not OPUS Release Group
-  negate: true
-  pattern: Opus (Negation)
-  required: true
-  type: release_group
 tests: []

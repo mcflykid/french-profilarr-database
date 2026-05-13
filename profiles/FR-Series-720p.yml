@@ -7,7 +7,7 @@
 name: FR-Series-720p
 description: >
   Profil Sonarr 720p pour séries sur trackers francophones (La Cale, Gemini, YGGtorrent, esprit C411).
-  Priorise langue FR, bonus teams Tier 1-2, audio modéré, codec efficient. Inclut HDTV-720p
+  Priorise langue FR, bonus teams sur 4 tiers, audio modéré, codec efficient. Inclut HDTV-720p
   pour TV cap, bonus Season Pack. Bloque Remux, AV1, Upscaled.
 tags:
 - 720p
@@ -30,12 +30,14 @@ custom_formats:
 - name: FR-VOSTFR
   score: 20000
 
-# === Teams FR ===
+# === Teams FR (4 tiers) ===
 - name: FR-Tier-01
-  score: 2000
+  score: 2400
 - name: FR-Tier-02
-  score: 1500
+  score: 2000
 - name: FR-Tier-03
+  score: 1600
+- name: FR-Tier-04
   score: 1000
 
 # === Audio ===
@@ -69,8 +71,6 @@ custom_formats:
   score: 30
 - name: Season Pack
   score: 50
-- name: Extras
-  score: 30
 - name: TV Extras
   score: 30
 
@@ -100,7 +100,11 @@ custom_formats:
 - name: Upscaled
   score: -999999
 
-# === Repack (releases corrigées : PROPER/REPACK/RERIP/REAL) ===
+# === Repack (3 → 2 → simple) ===
+- name: FR-Repack-3
+  score: 110
+- name: FR-Repack-2
+  score: 75
 - name: FR-Repack
   score: 50
 

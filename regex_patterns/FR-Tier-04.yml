@@ -1,0 +1,21 @@
+name: FR-Tier-04
+pattern: \b(TLC|DN55|Dramas[ ._]?For[ ._]?Ever|DFE|KAF|NYX|raf66|Raf66|HazzAnim|prem|FIST|Fist|Macolive|GISMO65|ZEKEY|FIRESOUL64|Firesoul64|PokemonFansub|FANKAI|PiCKLES|KPORAL|ACKER|TG7|STORiES|RiFiFi|DRIVE|AuriA|STIF|FUTE69|higgsboson|Alicia|BOONA33|RedROses|jdjo69|Luju|hyhyho|Chachou6768|TTK|Kaoru111|PARISTOCAT|tlub|ztgold|UKDHD|ZatNik07|Dixcents|Sicario|XSHD)\b
+description: Teams Tier 4 — G3 archivistes + G4 aspirants C411 et groupes observés
+  sur releases 4K / HDLight (ancien agrégat Tier 03).
+tags:
+- Release Group
+- French
+- Tier-04
+tests:
+- id: 1
+  input: Film.2024.MULTI.VFF.WEB-DL.1080p.x264-TLC
+  expected: true
+- id: 2
+  input: Anime.S01E04.VOSTFR.1080p.BDRip.AAC.x264-Firesoul64
+  expected: true
+- id: 3
+  input: Film.2016.MULTI.VFF.WEB-DL.1080p.h264-ENIGMA
+  expected: false
+- id: 4
+  input: Film.2024.MULTI.VFF.1080p.WEB-DL.x264-TFA
+  expected: false

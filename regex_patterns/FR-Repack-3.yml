@@ -1,0 +1,21 @@
+name: FR-Repack-3
+pattern: (?i)\b(?:proper|repack)3\b
+description: >
+  Troisième itération PROPER/REPACK — correction la plus « profonde » signalée dans le titre.
+tags:
+- Flag
+- Repack
+- French
+tests:
+- id: 1
+  input: Sonic.the.Hedgehog.3.2024.REPACK3.2160p.WEB-DL.DDP5.1.Atmos.DoVi.HDR.H.265-FLUX
+  expected: true
+- id: 2
+  input: Film.2024.PROPER3.1080p.BluRay.x264-GROUP
+  expected: true
+- id: 3
+  input: Sonic.the.Hedgehog.3.2024.REPACK2.2160p.WEB-DL.DDP5.1.Atmos.DoVi.HDR.H.265-FLUX
+  expected: false
+- id: 4
+  input: The.Zone.of.Interest.2023.PROPER.2160p.UHD.BluRay.TrueHD.7.1.Atmos.HDR.x265-MainFrame
+  expected: false

@@ -1,8 +1,8 @@
 ---
 name: Theatrical
 description: |-
-  Matches any type of theatrical edition.
-  - Ensures that `Theatrical` comes after the year so that movies with 'Theatrical` in the title are not matched
+  Édition Theatrical (titre). Exclusion Special Edition retirée — seuls IMAX restent
+  exclus pour éviter le double comptage avec les CF IMAX.
 tags:
 - Edition
 conditions:
@@ -14,11 +14,6 @@ conditions:
 - name: Not IMAX
   negate: true
   pattern: IMAX
-  required: true
-  type: release_title
-- name: Not Special Edition
-  negate: true
-  pattern: Special Edition
   required: true
   type: release_title
 tests: []

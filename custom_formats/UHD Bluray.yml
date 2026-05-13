@@ -1,8 +1,8 @@
 name: UHD Bluray
-description: UHD Blu-ray is a digital optical disc format released in 2016. It stores 66GB on triple-layer discs or 100GB on quad-layer discs, compared to standard Blu-ray's 25GB/50GB capacity. The format
-  delivers 3840x2160 (4K) resolution video using HEVC (H.265) encoding at bitrates up to 128Mbps. All UHD Blu-rays include HDR10 support, with some releases adding Dolby Vision or HDR10+. The format uses
-  the BT.2020 color space and 10-bit color depth, while supporting audio formats like Dolby Atmos, DTS:X, DTS-HD MA, and Dolby TrueHD. UHD Blu-ray players require HDMI 2.0a and HDCP 2.2 compliant displays
-  to show 4K HDR content.
+description: >
+  Indique un downscale 1080p provenant d'une source UHD annoncée dans le titre,
+  avec HDR (Basic HDR Formats). La condition par groupe (liste restrictive) a été
+  retirée : tout groupe peut déclencher le bonus si le titre reste cohérent.
 tags:
 - 2160p
 - Storage
@@ -22,9 +22,4 @@ conditions:
   pattern: Basic HDR Formats
   required: true
   type: release_title
-- name: Release Groups
-  negate: false
-  pattern: UHD Bluray Release Groups
-  required: true
-  type: release_group
 tests: []

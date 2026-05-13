@@ -1,0 +1,15 @@
+name: FR-Repack-2
+description: >
+  Bonus intermédiaire pour PROPER2 / REPACK2 ou chaîne REAL…PROPER. Disjoint de FR-Repack-3
+  et FR-Repack (base).
+tags:
+- Flag
+- Repack
+- French
+conditions:
+- name: Repack 2e itération ou REAL…PROPER
+  negate: false
+  pattern: FR-Repack-2
+  required: true
+  type: release_title
+tests: []

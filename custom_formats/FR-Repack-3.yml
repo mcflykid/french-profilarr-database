@@ -1,0 +1,14 @@
+name: FR-Repack-3
+description: >
+  Bonus maximal pour PROPER3 / REPACK3 (signale le plus de passes de correction dans le titre).
+tags:
+- Flag
+- Repack
+- French
+conditions:
+- name: Repack 3e itération
+  negate: false
+  pattern: FR-Repack-3
+  required: true
+  type: release_title
+tests: []

@@ -1,0 +1,24 @@
+name: FR-Repack-2
+pattern: (?i)\b(?:(?:proper|repack)2\b|(?:real[\s._-]+){1,2}proper\b)
+description: >
+  Deuxième itération PROPER/REPACK ou chaîne REAL…PROPER (hors suffixe 3, réservé à FR-Repack-3).
+tags:
+- Flag
+- Repack
+- French
+tests:
+- id: 1
+  input: The.Zone.of.Interest.2023.PROPER2.2160p.UHD.BluRay.TrueHD.7.1.Atmos.HDR.x265-MainFrame
+  expected: true
+- id: 2
+  input: Release.2024.REPACK2.1080p.WEB-DL.x264-GROUP
+  expected: true
+- id: 3
+  input: Scene.Show.S01E01.REAL.PROPER.1080p.WEB.h264-GROUP
+  expected: true
+- id: 4
+  input: Sonic.the.Hedgehog.3.2024.REPACK3.2160p.WEB-DL.DDP5.1.Atmos.DoVi.HDR.H.265-FLUX
+  expected: false
+- id: 5
+  input: The.Zone.of.Interest.2023.PROPER.2160p.UHD.BluRay.TrueHD.7.1.Atmos.HDR.x265-MainFrame
+  expected: false

@@ -1,8 +1,6 @@
 name: Upscaled
-description: 'Matches the ''Upscaled'' regex pattern
-
-
-  Sonarr Version'
+description: Malus / blocage pour releases upscalées série (Upscaled uniquement — tags
+  IA TV retirés du dépôt).
 tags:
 - Banned
 - Enhancement
@@ -10,11 +8,6 @@ conditions:
 - name: Upscaled
   negate: false
   pattern: Upscaled
-  required: false
-  type: release_title
-- name: AI TV
-  negate: false
-  pattern: AI TV
-  required: false
+  required: true
   type: release_title
 tests: []

@@ -1,8 +1,6 @@
 name: Upscale
-description: 'Matches the ''Upscaled'' regex pattern
-
-
-  Radarr Version'
+description: Malus / blocage pour releases upscalées (motif Upscaled uniquement — les
+  tags IA film ont été retirés du dépôt).
 tags:
 - Banned
 - Enhancement
@@ -10,11 +8,6 @@ conditions:
 - name: Upscaled
   negate: false
   pattern: Upscaled
-  required: false
-  type: release_title
-- name: AI Movies
-  negate: false
-  pattern: AI Movies
-  required: false
+  required: true
   type: release_title
 tests: []

@@ -1,0 +1,13 @@
+name: FR-Tier-04
+description: Bonus qualité pour les teams Tier 4 (G3 / G4 C411 + observés 4K / HDLight).
+  Couche la plus basse du découpage quatre tiers ; reste au-dessus des inconnus.
+tags:
+- Release Group
+- French
+conditions:
+- name: Tier 04
+  negate: false
+  pattern: FR-Tier-04
+  required: true
+  type: release_title
+tests: []

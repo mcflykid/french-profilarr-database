@@ -1,31 +1,21 @@
 name: FR-Tier-02
-pattern: \b(ENIGMA|NEOSTARK|HYPERION|TOXIC|N3ZUKO|J4CK|MAXADONF|Maxadonf|D4RK|R3MiX|RAPTOR|Themouche|SUPERFLU|LaFistiniere|R3DUCT0|SHADOW|Shadow|OPTIMUM|ESPER|D5T0)\b
-description: Teams Tier 2 (G2 Confirmé du P2P) — liste officielle C411. 18 teams
-  confirmées avec 50-330 releases chacune et 100% de seed. Groupes actifs et fiables
-  reconnus par le tracker.
+pattern: \b(AMEN|BOUBA|BOUC|OZEF|QTZ|Erotelemo)\b
+description: Teams Tier 2 — vétérans G1 C411 + références 4KLight (QTZ, Erotelemo)
+  encore au-dessus du peloton G2 mais distincts du « top absolu » Tier 1.
 tags:
 - Release Group
 - French
 - Tier-02
 tests:
 - id: 1
-  input: Film.2016.MULTI.VFF.WEB-DL.1080p.h264-ENIGMA
+  input: Trois.couleurs.Blanc.1994.VOF.2160p.BluRay.4KLight.DV.AC3.5.1.x265-QTZ
   expected: true
 - id: 2
-  input: Serie.S04E02.VOSTFR.WEBRip.720p.x264-HYPERION
+  input: Film.2024.MULTI.VFF.2160p.UHD.BluRay.4KLight.HDR10.x265-Erotelemo
   expected: true
 - id: 3
-  input: Film.2022.MULTI.VFF.1080p.BluRay.x265-N3ZUKO
-  expected: true
-- id: 4
-  input: Film.2023.MULTI.VFF.UHD.2160p.DV.HDR10.x265-Maxadonf
-  expected: true
-- id: 5
-  input: Film.2024.MULTI.VFF.WEB.1080p.x265-R3DUCT0
-  expected: true
-- id: 6
-  input: Film.2024.MULTI.VFF.1080p.WEB-DL.x264-TFA
+  input: Film.2024.MULTI.VFF.UHD.2160p.DoVi.HDR10.DTS-X.x265-TFA
   expected: false
-- id: 7
+- id: 4
   input: Film.2024.MULTI.VFF.1080p.WEB-DL.x264-UNKNOWN
   expected: false

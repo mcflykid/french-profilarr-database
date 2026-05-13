@@ -2,14 +2,14 @@
 # Radarr — Films 1080p (scène FR : C411 / La Cale / Gemini / YGGtorrent)
 # ----------------------------------------------------------------------------
 # Profil principal 1080p : langue FR, teams FR, audio premium, codec efficient,
-# édition (IMAX/Theatrical/Special), streamers. Exclut Remux / Full Disc / AV1
+# édition (IMAX/Theatrical), streamers. Exclut Remux / Full Disc / AV1
 # pour limiter taille et privilégier compatibilité matériel.
 # ============================================================================
 name: FR-Films-1080p
 description: >
   Profil Radarr 1080p pour films sur trackers francophones (La Cale, Gemini, YGGtorrent, esprit C411).
-  Priorise la langue (MULTI VF2 > MULTI VFF > VF2 > VFF > VOSTFR), bonus teams FR Tier 1-2,
-  audio premium (Atmos/TrueHD/DTS-X/DTS-HD MA), codec efficient (x265/h265), édition (IMAX/Theatrical/Special),
+  Priorise la langue (MULTI VF2 > MULTI VFF > VF2 > VFF > VOSTFR), bonus teams FR sur 4 tiers,
+  audio premium (Atmos/TrueHD/DTS-X/DTS-HD MA), codec efficient (x265/h265), édition (IMAX/Theatrical),
   streamers internationaux. Bloque Remux, Full Disc, AV1, Upscaled.
 tags:
 - 1080p
@@ -31,23 +31,21 @@ custom_formats:
 - name: FR-VOSTFR
   score: 20000
 
-# === Teams FR ===
+# === Teams FR (4 tiers) ===
 - name: FR-Tier-01
-  score: 2000
+  score: 2400
 - name: FR-Tier-02
-  score: 1500
+  score: 2000
 - name: FR-Tier-03
+  score: 1600
+- name: FR-Tier-04
   score: 1000
 
 # === Audio premium ===
 - name: Atmos
   score: 500
-- name: Atmos (Missing)
-  score: -50
 - name: TrueHD
   score: 400
-- name: TrueHD (Missing)
-  score: -30
 - name: DTS-X
   score: 500
 - name: DTS-HD MA
@@ -94,10 +92,6 @@ custom_formats:
   score: 300
 - name: HDR
   score: 200
-- name: HDR (Missing)
-  score: -100
-- name: HDR10 (Missing)
-  score: -50
 
 # === Édition ===
 - name: IMAX
@@ -106,8 +100,6 @@ custom_formats:
   score: 200
 - name: Theatrical
   score: 80
-- name: Special Edition
-  score: 100
 - name: 3D
   score: -300
 - name: Internal
@@ -144,7 +136,11 @@ custom_formats:
 - name: Upscale
   score: -999999
 
-# === Repack (releases corrigées : PROPER/REPACK/RERIP/REAL) ===
+# === Repack (3 → 2 → simple) ===
+- name: FR-Repack-3
+  score: 150
+- name: FR-Repack-2
+  score: 110
 - name: FR-Repack
   score: 75
 
