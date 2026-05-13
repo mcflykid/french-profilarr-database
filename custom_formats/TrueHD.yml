@@ -1,10 +1,31 @@
+# =============================================================================
+# Custom format — TrueHD (sans exiger Atmos ici)
+# -----------------------------------------------------------------------------
+# Peut coexister avec TrueHD Atmos sur une même release (deux custom formats).
+# =============================================================================
 name: TrueHD
-description: Identifie le format TrueHD classique.
+description: >
+  Détecte TrueHD dans le titre (y compris quand Atmos est aussi annoncé). Bonus audio lossless
+  Dolby hors cas DTS-HD MA.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: TrueHD
     type: release_title
     negate: false
     required: false
     pattern: TrueHD Regex
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2020.MULTI.VFF.Bluray.1080p.TrueHD.7.1.Atmos.x264-TFA
+    type: movie
+    should_match: true
+    description: TrueHD hors combinaison Atmos explicite (mot TrueHD)
+  - title: Serie.S03E09.VOSTFR.WEB-DL.720p.TrueHD.5.1.x265-FW
+    type: series
+    should_match: true
+    description: TrueHD classique
+  - title: Film.2022.MULTI.VFF.WEB.1080p.DTS-HD.MA.5.1.h264-OZEF
+    type: movie
+    should_match: false
+    description: Pas de TrueHD dans le titre
