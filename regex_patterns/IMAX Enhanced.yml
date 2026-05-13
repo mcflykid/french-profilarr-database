@@ -1,5 +1,5 @@
 name: IMAX Enhanced
-pattern: ^(?=.*\b((DSNP|Disney\+|BC|B?CORE)(?=.?web.?(dl|rip)\b)))(?=.*\b((?<!NON.?)IMAX(.?Enhanced)?)\b)
+pattern: (?i)^(?=.*\b((DSNP|Disney\+|BC|B?CORE)(?=.?web.?(dl|rip)\b)))(?=.*\b((?<!NON.?)IMAX(.?Enhanced)?)\b)
 description: 'Matches IMAX releases from specific digital sources.
 
 

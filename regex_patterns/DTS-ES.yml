@@ -1,5 +1,5 @@
 name: DTS-ES
-pattern: dts[-. ]?es\b
+pattern: (?i)dts[-. ]?es\b
 description: ''
 tags:
 - Audio
