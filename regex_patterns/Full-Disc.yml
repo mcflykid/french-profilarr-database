@@ -1,25 +1,18 @@
-# =============================================================================
-# Regex — ISO / BDMV / VIDEO_TS (disque complet)
-# -----------------------------------------------------------------------------
-# Structure « full disc » souvent non désirée pour bibliothèque type Plex et
-# pour le ratio sur trackers privés (La Cale, Gemini).
-# =============================================================================
+# ============================================================================
+# Regex Pattern — Scène FR (C411 / La Cale / Gemini)
+# ----------------------------------------------------------------------------
+# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
+# ============================================================================
 name: Full Disc Regex
-description: >
-  Détecte ISO, BDMV ou VIDEO_TS dans le titre (images disque ou structure DVD/Bluray complète).
-  Employé pour pénaliser les uploads non remuxés en fichiers uniques mkv/mp4.
+description: Détecte ISO, BDMV ou VIDEO_TS dans le titre de release.
 pattern: \b(ISO|BDMV|VIDEO_TS)\b
-# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
 tests:
-  - title: Film.2007.MULTI.VFF.COMPLETE.BLURAY.VIDEO_TS.PAL-TLC
-    type: movie
-    should_match: true
-    description: Structure DVD VIDEO_TS
-  - title: Jeu.2011.MULTI.FULL.ISO.COMPLETE-LOST
-    type: movie
-    should_match: true
-    description: Fichier ISO annoncé
-  - title: Film.2024.MULTI.VFF.mkv.BDRip.1080p.x264-QTZ
-    type: movie
-    should_match: false
-    description: Rip fichier sans structure disque
+  - id: 1
+    input: Film.2007.MULTI.VFF.COMPLETE.BLURAY.VIDEO_TS.PAL-TLC
+    expected: true
+  - id: 2
+    input: Jeu.2011.MULTI.FULL.ISO.COMPLETE-LOST
+    expected: true
+  - id: 3
+    input: Film.2024.MULTI.VFF.mkv.BDRip.1080p.x264-QTZ
+    expected: false

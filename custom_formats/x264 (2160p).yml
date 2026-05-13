@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — x264 / h264 / AVC en 4K (pénalité)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Politique 4K light : UHD en HEVC préféré ; x264 en 2160p typiquement à éviter.
-# =============================================================================
+# ============================================================================
 name: x264 (2160p)
 description: >
   Détecte un couple annoncé x264|h264|AVC + 2160p|4K|UHD dans le titre (ordre flexible). Pénalité
   pour décourager les UHD lourdes ou peu efficaces par rapport à du x265 sur la scène FR moderne.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: x264 4K
     type: release_title

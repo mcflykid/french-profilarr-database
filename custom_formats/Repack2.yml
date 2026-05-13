@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — Repack niveau 2
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Bonus légèrement supérieur à Repack1 pour corrections « plus loin » (V3, etc.).
-# =============================================================================
+# ============================================================================
 name: Repack2
 description: >
   Détecte corrections niveau 2 (REPACK.2, V3…). Bonus juste au-dessus de Repack1 pour inciter à
   prendre la release la plus corrigée lorsque tout le reste est égal.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: Repack2
     type: release_title

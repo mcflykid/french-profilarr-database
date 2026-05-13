@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — DTS-HD Master Audio
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Couvre formes « DTS-HD MA » et certaines abréviations « DTS-HD » seules selon regex.
-# =============================================================================
+# ============================================================================
 name: DTS-HD MA
 description: >
   Détecte DTS-HD Master Audio ou mention DTS-HD compatible avec la regex liée. Bonus audio lossless
   côté DTS pour releases Bluray/UHD annoncées sur trackers FR.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: DTS-HD MA
     type: release_title

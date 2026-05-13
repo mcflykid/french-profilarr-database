@@ -1,24 +1,18 @@
-# =============================================================================
-# Regex — Repack niveau 3 / V4
-# -----------------------------------------------------------------------------
-# Dernier palier de bonus « micro » pour inciter à la dernière correction connue.
-# =============================================================================
+# ============================================================================
+# Regex Pattern — Scène FR (C411 / La Cale / Gemini)
+# ----------------------------------------------------------------------------
+# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
+# ============================================================================
 name: Repack3 Regex
-description: >
-  Détecte PROPER/REPACK/RERIP niveau 3 ou la marque V4. Custom format Repack3 (bonus minimal mais
-  supérieur aux niveaux précédents pour départager deux releases identiques sinon).
+description: Détecte REPACK/PROPER/RERIP niveau 3 ou V4.
 pattern: \b(PROPER[ ._-]?3|REPACK[ ._-]?3|RERIP[ ._-]?3|V4)\b
-# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
 tests:
-  - title: Film.2015.MULTI.VFF.BDRip.V4.DTS.5.1.x264-OZEF
-    type: movie
-    should_match: true
-    description: V4
-  - title: Serie.S03E03.VOSTFR.WEB.REPACK.3.720p.x264-TMB
-    type: series
-    should_match: true
-    description: REPACK.3
-  - title: Documentaire.2014.MULTI.VFF.TVrip.REPACK.1080p.h264-TSR
-    type: movie
-    should_match: false
-    description: REPACK simple sans niveau 3 ni V4
+  - id: 1
+    input: Film.2015.MULTI.VFF.BDRip.V4.DTS.5.1.x264-OZEF
+    expected: true
+  - id: 2
+    input: Serie.S03E03.VOSTFR.WEB.REPACK.3.720p.x264-TMB
+    expected: true
+  - id: 3
+    input: Documentaire.2014.MULTI.VFF.TVrip.REPACK.1080p.h264-TSR
+    expected: false

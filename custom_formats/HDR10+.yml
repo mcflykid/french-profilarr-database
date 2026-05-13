@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — HDR10+
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # HDR dynamique annoncé ; distinct de HDR10 seul via la regex HDR10+ Regex.
-# =============================================================================
+# ============================================================================
 name: HDR10+
 description: >
   Détecte HDR10+ ou HDR10Plus dans le titre. Bonus intermédiaire entre HDR10 et Dolby Vision sur les
   profils 4K orientés matériel HDR moderne.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: HDR10+
     type: release_title

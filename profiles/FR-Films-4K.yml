@@ -1,12 +1,12 @@
-# =============================================================================
+# ============================================================================
 # Radarr — Films 4K UHD (scène FR, La Cale / Gemini, esprit C411 + 4K light)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Profil « cinéma maison » : langue FR d’abord, puis HDR (DV > HDR10+ > HDR10),
 # puis audio lossless, puis teams. Bloque x264 en 2160p (mauvais rapport qualité/poids)
 # et l’AV1 (compat matérielle), ainsi que remux / full disc pour le seeding charte.
 # Les scores HDR sont volontairement au-dessus des bonus team pour favoriser
 # une image moderne lorsque la langue est déjà satisfaite.
-# =============================================================================
+# ============================================================================
 name: FR-Films-4K
 description: >
   Profil Radarr 4K pour films sur trackers francophones stricts (La Cale, Gemini, charte C411).

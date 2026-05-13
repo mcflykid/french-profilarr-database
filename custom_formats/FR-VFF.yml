@@ -1,15 +1,16 @@
-# =============================================================================
+# ============================================================================
 # Custom format — VFF / TrueFrench seul (sans exiger MULTI)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Condition unique sur la regex VFF : utile pour releases 100 % doublées France
 # sans tag MULTI explicite (selon naming du groupe ou du tracker).
-# =============================================================================
+# ============================================================================
 name: FR-VFF
 description: >
   Release annonçant VFF ou TRUEFRENCH sans condition MULTI dans ce custom format.
   Sert à scorer les doublages France « purs » lorsque le releaseur n’a pas mis MULTI dans le titre.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: VFF
     type: release_title

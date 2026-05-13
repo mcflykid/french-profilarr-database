@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — Dolby Vision (annonce titre)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Ne vérifie pas profil DV ni fallback HDR (limites README / charte C411).
-# =============================================================================
+# ============================================================================
 name: Dolby Vision
 description: >
   Détecte Dolby Vision, DV ou DoVi annoncés dans le titre. Fort bonus sur profils 4K pour privilégier
   les UHD annoncées en DV sur matériel compatible (Apple TV, TV récentes, etc.).
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: Dolby Vision
     type: release_title

@@ -1,10 +1,10 @@
-# =============================================================================
+# ============================================================================
 # Sonarr — Séries 1080p (scène FR, La Cale / Gemini, logique type C411)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Même philosophie que FR-Films-1080p : langue FR prioritaire, teams, repacks,
 # exclusion remux / full disc / AV1. Les qualités incluent HDTV-1080p car les
 # séries FR passent souvent par du TV cap avant WEB/Bluray.
-# =============================================================================
+# ============================================================================
 name: FR-Series-1080p
 description: >
   Profil Sonarr 1080p pour séries sur trackers francophones stricts (La Cale, Gemini, esprit C411).

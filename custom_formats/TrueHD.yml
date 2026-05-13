@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — TrueHD (sans exiger Atmos ici)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Peut coexister avec TrueHD Atmos sur une même release (deux custom formats).
-# =============================================================================
+# ============================================================================
 name: TrueHD
 description: >
   Détecte TrueHD dans le titre (y compris quand Atmos est aussi annoncé). Bonus audio lossless
   Dolby hors cas DTS-HD MA.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: TrueHD
     type: release_title

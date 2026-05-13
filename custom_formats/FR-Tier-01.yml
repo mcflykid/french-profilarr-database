@@ -1,15 +1,16 @@
-# =============================================================================
+# ============================================================================
 # Custom format — Bonus teams Tier 1
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Récompense les releases dont le titre contient une team « élite » (regex FR-Tier-01).
 # Bonus volontairement modeste vs la langue pour ne jamais inverser les priorités.
-# =============================================================================
+# ============================================================================
 name: FR-Tier-01
 description: >
   Bonus qualité pour teams Tier 1 (regex FR-Tier-01). Sert à départager deux releases FR identiques
   en langue en faveur d’un groupe historiquement plus fiable sur La Cale / Gemini.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: Tier 01
     type: release_title

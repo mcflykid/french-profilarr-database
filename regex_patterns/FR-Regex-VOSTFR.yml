@@ -1,25 +1,18 @@
-# =============================================================================
-# Regex — VOSTFR / Subfrench (titres de releases)
-# -----------------------------------------------------------------------------
-# Fallback quand aucune VF n’est disponible : version originale + sous-titres FR.
-# Chartes type C411 exigent souvent VOSTFR explicite si pas de doublage.
-# =============================================================================
+# ============================================================================
+# Regex Pattern — Scène FR (C411 / La Cale / Gemini)
+# ----------------------------------------------------------------------------
+# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
+# ============================================================================
 name: FR-Regex-VOSTFR
-description: >
-  Détecte VOSTFR ou SUBFRENCH dans le titre (releases trackers FR). Utilisé pour scorer le fallback
-  VO sous-titrée lorsque les tags MULTI/VFF ne sont pas présents.
+description: Détecte VOSTFR ou SUBFRENCH dans le titre de release.
 pattern: \b(VOSTFR|SUBFRENCH)\b
-# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
 tests:
-  - title: Film.US.2023.VOSTFR.WEB-DL.1080p.EAC3.5.1.h264-BOUBA
-    type: movie
-    should_match: true
-    description: VOSTFR standard
-  - title: MiniSerie.S01.SUBFRENCH.BluRay.720p.DD5.1.x264-TLC
-    type: series
-    should_match: true
-    description: Variante Subfrench
-  - title: Film.2024.MULTI.VFF.UHD.2160p.x265-QTZ
-    type: movie
-    should_match: false
-    description: Version doublée FR
+  - id: 1
+    input: Film.US.2023.VOSTFR.WEB-DL.1080p.EAC3.5.1.h264-BOUBA
+    expected: true
+  - id: 2
+    input: MiniSerie.S01.SUBFRENCH.BluRay.720p.DD5.1.x264-TLC
+    expected: true
+  - id: 3
+    input: Film.2024.MULTI.VFF.UHD.2160p.x265-QTZ
+    expected: false

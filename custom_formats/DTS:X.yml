@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — DTS:X
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Audio immersif annoncé ; complémentaire avec TrueHD Atmos selon les releases.
-# =============================================================================
+# ============================================================================
 name: DTS:X
 description: >
   Détecte DTS:X (variantes DTS-X / DTS.X) dans le titre. Bonus pour annonces audio immersif sur
   films et séries UHD/Bluray sur la scène francophone.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: DTS:X
     type: release_title

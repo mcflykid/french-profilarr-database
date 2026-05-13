@@ -1,26 +1,18 @@
-# =============================================================================
-# Regex — codec AV1 annoncé dans le titre
-# -----------------------------------------------------------------------------
-# Politique de ce dépôt : AV1 fortement pénalisé sur plusieurs profils pour
-# compatibilité matérielle (box TV, clients Plex). La charte C411 peut autoriser
-# AV1 : adapter les profils si vous ciblez 100 % C411 sans ce blocage.
-# =============================================================================
+# ============================================================================
+# Regex Pattern — Scène FR (C411 / La Cale / Gemini)
+# ----------------------------------------------------------------------------
+# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
+# ============================================================================
 name: AV1 Regex
-description: >
-  Détecte le mot entier AV1 dans le titre de release. Utilisé pour exclure les encodages AV1 lorsque
-  le matériel de lecture du foyer ne gère pas ce codec de façon fiable.
+description: Détecte AV1 dans le titre de release.
 pattern: \b(AV1)\b
-# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
 tests:
-  - title: Film.2025.MULTI.VFF.UHD.2160p.WEB-DL.AV1.DDP5.1-GKS
-    type: movie
-    should_match: true
-    description: AV1 explicite
-  - title: Serie.S04E04.VOSTFR.WEB.1080p.AV1.OPUS-NEOSTARK
-    type: series
-    should_match: true
-    description: AV1 sur série
-  - title: Film.2022.MULTI.VFF.UHD.2160p.WEB-DL.h265.EAC3.5.1-QTZ
-    type: movie
-    should_match: false
-    description: HEVC annoncé sans AV1
+  - id: 1
+    input: Film.2025.MULTI.VFF.UHD.2160p.WEB-DL.AV1.DDP5.1-GKS
+    expected: true
+  - id: 2
+    input: Serie.S04E04.VOSTFR.WEB.1080p.AV1.OPUS-NEOSTARK
+    expected: true
+  - id: 3
+    input: Film.2022.MULTI.VFF.UHD.2160p.WEB-DL.h265.EAC3.5.1-QTZ
+    expected: false

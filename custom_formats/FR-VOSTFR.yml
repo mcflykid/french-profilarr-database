@@ -1,15 +1,16 @@
-# =============================================================================
+# ============================================================================
 # Custom format — VOSTFR / Subfrench (fallback)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Dernier palier langue acceptable avant absence de FR : VO + sous-titres FR
 # annoncés dans le titre (usuel La Cale / Gemini quand pas encore de VF).
-# =============================================================================
+# ============================================================================
 name: FR-VOSTFR
 description: >
   Version originale avec sous-titres français annoncés (VOSTFR ou SUBFRENCH). Fallback lorsqu’aucun
   doublage MULTI/VFF/VF2 n’est disponible sur l’indexeur, tout en gardant une exigence FR lisible.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: VOSTFR
     type: release_title

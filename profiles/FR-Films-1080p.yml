@@ -1,6 +1,6 @@
-# =============================================================================
+# ============================================================================
 # Radarr — Films 1080p (scène FR, trackers La Cale / Gemini, logique type C411)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Ce profil pilote l’upgrade automatique vers du 1080p « propre » : priorité aux
 # doublages FR (MULTI, VFF, VF2), bonus aux teams réputées, petits bonus aux
 # repacks pour corriger sans casser la hiérarchie langue.
@@ -8,7 +8,7 @@
 # FR exploitable (typiquement VOSTFR ou mieux) avant d’accepter le grab.
 # upgradeUntilScore (888 888) : laisse monter jusqu’aux scores langue max.
 # Remux / Full Disc / AV1 : pénalisés pour coller aux usages seeding / chartes.
-# =============================================================================
+# ============================================================================
 name: FR-Films-1080p
 description: >
   Profil Radarr 1080p pour films sur trackers francophones stricts (La Cale, Gemini, esprit C411).

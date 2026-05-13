@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — Full disc (ISO / BDMV / VIDEO_TS)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Pénalité pour structures disque complètes non souhaitées en bibliothèque type Plex.
-# =============================================================================
+# ============================================================================
 name: Full Disc
 description: >
   Détecte ISO, BDMV ou VIDEO_TS dans le titre. Sert à éviter les packs disque complets inadaptés
-  au renommage simple et souvent mal vus sur les trackers FR pour le stockage domestic.
+  au renommage simple et souvent mal vus sur les trackers FR pour le stockage domestique.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: Full Disc
     type: release_title

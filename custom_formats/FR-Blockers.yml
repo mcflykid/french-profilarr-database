@@ -1,15 +1,16 @@
-# =============================================================================
+# ============================================================================
 # Custom format — Blocklist (groupes / tags indésirables)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # S’appuie sur FR-Regex-Blockers : toute occurrence dans le titre applique un
 # score très négatif. À synchroniser avec les règles écrites La Cale / Gemini / C411.
-# =============================================================================
+# ============================================================================
 name: FR-Blockers
 description: >
   Marque les releases dont le titre contient un groupe ou tag explicitement banni (regex centralisée).
   Mettre à jour FR-Regex-Blockers en même temps que les règles du tracker ; chaque ajout doit être traçable.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   # required: false + une seule condition release_title : le groupe matche si la regex trouve un blocage
   # (logique Profilarr « au moins une » sans required — voir évaluateur custom formats).

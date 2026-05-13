@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — HDR10
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # HDR « de base » ; score inférieur à HDR10+ et DV dans les profils 4K.
-# =============================================================================
+# ============================================================================
 name: HDR10
 description: >
   Détecte HDR10 annoncé dans le titre (HDR de base). Bonus modéré sur UHD lorsque DV/HDR10+ ne sont
   pas annoncés ou pour releases HDR10 seules sur indexeurs La Cale / Gemini.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: HDR10
     type: release_title

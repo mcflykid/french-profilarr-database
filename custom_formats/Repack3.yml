@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — Repack niveau 3
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Dernier micro-palier avant saturation des bonus repack.
-# =============================================================================
+# ============================================================================
 name: Repack3
 description: >
   Détecte corrections niveau 3 (REPACK.3, V4…). Bonus le plus élevé de la série Repack tout en
   restant marginal face aux scores langue (évite les upgrades erratiques).
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: Repack3
     type: release_title

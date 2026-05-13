@@ -1,25 +1,18 @@
-# =============================================================================
-# Regex — Repack / Proper / V2 (correction niveau 1)
-# -----------------------------------------------------------------------------
-# Petits bonus dans les profils pour préférer une release corrigée sans battre
-# la hiérarchie langue / HDR.
-# =============================================================================
+# ============================================================================
+# Regex Pattern — Scène FR (C411 / La Cale / Gemini)
+# ----------------------------------------------------------------------------
+# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
+# ============================================================================
 name: Repack1 Regex
-description: >
-  Détecte PROPER, REAL PROPER, REPACK, FIX, RERIP ou V2 comme corrections de niveau 1 dans le titre.
-  Utilisé par Repack1 pour un léger bonus de score.
+description: Détecte PROPER/REPACK/RERIP/V2 et variantes de correction niveau 1.
 pattern: \b(PROPER|REAL[ ._-]?PROPER|REPACK|FIX|RERIP|V2)\b
-# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
 tests:
-  - title: Film.2017.MULTI.VFF.BDRip.PROPER.1080p.x264-QTZ
-    type: movie
-    should_match: true
-    description: PROPER explicite
-  - title: Serie.S01E03.VOSTFR.WEB.REPACK.720p.h264-GKS
-    type: series
-    should_match: true
-    description: REPACK simple
-  - title: Film.2020.MULTI.VFF.NF.WEB-DL.1080p.h264-TFA
-    type: movie
-    should_match: false
-    description: Aucun marqueur de correction niveau 1
+  - id: 1
+    input: Film.2017.MULTI.VFF.BDRip.PROPER.1080p.x264-QTZ
+    expected: true
+  - id: 2
+    input: Serie.S01E03.VOSTFR.WEB.REPACK.720p.h264-GKS
+    expected: true
+  - id: 3
+    input: Film.2020.MULTI.VFF.NF.WEB-DL.1080p.h264-TFA
+    expected: false

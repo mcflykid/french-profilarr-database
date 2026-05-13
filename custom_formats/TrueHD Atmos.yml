@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — TrueHD + Atmos (annonce titre)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Détection textuelle ; combiner avec profils 4K / Any pour favoriser le HC.
-# =============================================================================
+# ============================================================================
 name: TrueHD Atmos
 description: >
   Détecte une annonce TrueHD Atmos (ou ordre inverse) dans le titre. Bonus audio pour releases UHD
   ou 1080p haut de gamme annoncées compatibles home-cinéma sur trackers FR.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: TrueHD Atmos
     type: release_title

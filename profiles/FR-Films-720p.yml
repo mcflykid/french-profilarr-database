@@ -1,10 +1,10 @@
-# =============================================================================
+# ============================================================================
 # Radarr — Films 720p (scène FR, La Cale / Gemini, logique type C411)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Variante allégée pour flux 720p : mêmes priorités linguistiques et teams que
 # le 1080p, mais sans bloquer « Full Disc » (souvent absent des flux 720p).
 # Remux et AV1 restent pénalisés (poids / compat).
-# =============================================================================
+# ============================================================================
 name: FR-Films-720p
 description: >
   Profil Radarr 720p pour films sur trackers francophones (La Cale, Gemini, esprit C411).

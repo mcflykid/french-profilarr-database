@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — AV1 (pénalité)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Politique dépôt : compat lecture ; peut diverger d’une charte C411 autorisant AV1.
-# =============================================================================
+# ============================================================================
 name: AV1
 description: >
   Détecte AV1 dans le titre pour l’exclure ou le fortement pénaliser sur les profils ciblés
   (téléviseurs / box sans décodeur matériel fiable). À retirer des profils si vous adoptez AV1 C411.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: AV1
     type: release_title

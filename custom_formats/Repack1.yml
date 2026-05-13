@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — Repack / Proper niveau 1
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Micro-bonus pour préférer une correction sans surcharger le score global.
-# =============================================================================
+# ============================================================================
 name: Repack1
 description: >
   Détecte PROPER, REPACK, FIX, RERIP, V2, etc. (regex Repack1 Regex). Bonus minimal pour favoriser
   une release corrigée par rapport à la version initiale buggée, sans battre la langue ou le HDR.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: Repack1
     type: release_title

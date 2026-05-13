@@ -1,104 +1,138 @@
 # french-profilarr-database
 
+Configuration **Profilarr v1** (Radarr / Sonarr) orientée **scène FR stricte** pour les usages proches des trackers privés (**C411**, **La Cale**, **Gemini**).
 
-## EN CONTRUCTIONS ##
+Ce dépôt centralise :
+- la détection des releases via regex,
+- la logique métier via custom formats,
+- les règles de scoring via profils,
+- les contraintes de gestion média (tailles, naming, options).
 
-
-
-Ce dépôt contient une base de données de configuration **Profilarr** (Radarr / Sonarr) pour usage réel sur **trackers francophones stricts** visant une cohérence avec les trackers privées **C411**, **La Cale** et **Gemini trackers** : scoring langue (MULTI, VFF, VF2, VOSTFR), tiers de release groups, HDR / audio lossless, repacks, blockers.
-
-L'objectif de cette configuration est d'automatiser entièrement la recherche, le téléchargement, le renommage et la mise à niveau (upgrade) de vos films et séries avec une précision chirurgicale, sans accumuler de fichiers inutiles ("fichiers fantômes").
-
-> **Note** : Ce dépôt est une **configuration technique** à valider et adapter selon les annonces officielles de chaque tracker avec le temps. Les listes (blockers, teams) sont **éditoriales** et doivent être mises à jour selons vos préference à vous.
-
----
-
-## 1. Philosophie et Architecture du Dépôt
-
-Contrairement aux configurations standards (souvent calquées sur la scène anglophone), cette architecture a été pensée pour répondre spécifiquement aux règles et habitudes de la scène francophone.
-
-### Structure des Dossiers
-* **`/regex_patterns`** : Contient les briques de détection de base (les expressions régulières). C'est le "cerveau" qui sait lire et analyser les titres des releases.
-* **`/custom_formats`** : Assemble les regex pour créer des règles métiers compréhensibles par Radarr et Sonarr.
-* **`/profiles`** : Définit vos profils de qualité (4K, 1080p, 720p) pour Radarr et Sonarr, en leur attribuant des scores précis.
-* **`/media_management`** : Regroupe la configuration globale pour le renommage parfait (`naming.yml`) et les limites de taille par résolution (`quality_definitions.yml`).
+L'objectif est d'automatiser la sélection de releases en priorisant :
+1. la **langue FR**,
+2. la **qualité technique utile** (HDR/audio),
+3. la **fiabilité des groupes**,
+4. le **respect des contraintes de poids/compatibilité**.
 
 ---
 
-## 2. Logique de Scoring Linguistique
+## Compatibilité importante (Profilarr v1)
 
-La priorité absolue de cette configuration est de vous garantir des médias en français de la meilleure qualité possible, tout en gérant intelligemment la version originale sous-titrée (VOSTFR).
+Ce dépôt est structuré pour **Profilarr v1**.
 
-| Format | Score | Rôle & Justification |
-| :--- | :--- | :--- |
-| **`FR - MULTI.VF2`** | `+60 000` | Priorité maximale. Contient la version originale, la vraie VF (VFF) **et** la version québécoise de qualité (VF2/VFQ). Idéal pour la compatibilité maximale. |
-| **`FR - MULTI.VFF`** | `+50 000` | Version préférée. Contient la version originale et la vraie piste de doublage française (TrueFrench/VFF). |
-| **`FR - VF2`** | `+40 000` | Releases contenant uniquement les pistes françaises VFF + VFQ (sans VO). |
-| **`FR - VFF`** | `+30 000` | Releases contenant uniquement la vraie VF (sans VO et sans VFQ). |
-| **`FR - VOSTFR`** | `+10 000` | Accepté en guise de secours (fallback) si aucune version doublée en français n'est encore disponible sur les trackers. |
-| **`FR - VFQ` (Seul)** | `-999 999` | Bloqué. Évite le téléchargement de releases contenant uniquement le doublage québécois (accent prononcé, expressions locales non adaptées à l'exploitation en France). |
+- Dans `regex_patterns/`, les tests utilisent le schéma v1 :
+  - `id`
+  - `input`
+  - `expected`
+- Dans `custom_formats/`, les tests restent au format de test custom format :
+  - `title`
+  - `type`
+  - `should_match`
+  - `description`
 
----
-
-## 3. Classification des Groupes de Release (Tiers FR)
-
-Afin d'éviter le téléchargement de fichiers mal encodés, nous avons classé les teams de la scène francophone en deux grands Tiers simplifiés. Cela permet à Radarr/Sonarr de choisir la release d'une team réputée si deux fichiers ont la même taille et la même langue.
-
-### Tier 01 : L'Élite (Score : `+1800`)
-Regroupe les teams les plus actives, rigoureuses sur le débit vidéo (bitrate), le respect des couleurs (gamut) et le traitement audio.
-* **Teams incluses** : `TFA`, `FW` (FORWARD), `THESYNDICATE`, `TyHD`, `Slay3R`, `AMEN`, `BOUBA`, `BOUC`, `OZEF`, `QTZ`, `GKS`, `KAAZA`, `TayTO`, `M@x`, `B@tman`.
-
-### Tier 02 : La Scène & Qualité secondaire (Score : `+1700`)
-Regroupe les équipes secondaires très correctes ainsi que la scène Warez historique francophone.
-* **Teams incluses** : `ENIGMA`, `NEOSTARK`, `HYPERION`, `TOXIC`, `N3ZUKO`, `J4CK`, `Maxadonf`, `D4RK`, `R3MIX`, `Themouche`, `SUPERFLU`, `TLC`, `LKT`, `ZTM`, `TMB`, `TSR`, `COCAIN`, `ATE` ainsi que la scène classique (`LOST`, `PRESTiGE`, `GORE`, `MULTiPLY`...).
+Si le schéma est mélangé, l'UI Profilarr peut afficher `Unexpected Error`.
 
 ---
 
-## 4. Traitement Technique (Audio, HDR et Sécurité)
+## Structure du dépôt
 
-### Vidéo & HDR (Profils 4K)
-Le profil 4K favorise grandement les formats HDR dynamiques pour exploiter pleinement les téléviseurs modernes :
-* **`Dolby Vision`** (`+3000`) et **`HDR10+`** (`+2000`) sont fortement valorisés.
-* **`AV1`** (`-999 999`) : **Bloqué**. Bien que ce codec soit très performant, une grande majorité de clients matériels (anciennes TV, Box Android d'entrée de gamme) ne possèdent pas de décodeur matériel AV1, provoquant des saccades ou du transcodage CPU inutile sur Plex/Jellyfin.
-* **`x264 (2160p)`** (`-999 999`) : **Bloqué**. Le 4K doit impérativement utiliser le codec x265/HEVC sous peine de générer des fichiers inutilement lourds et mal optimisés.
+### `regex_patterns/`
+Bibliothèque de motifs regex nommés.
+Chaque fichier contient :
+- `name`
+- `description`
+- `pattern`
+- `tests` (format v1)
 
-### Audio spatialisé et Lossless
-Le système cherche d'abord le meilleur son possible pour votre Home-Cinéma :
-* **`TrueHD Atmos` / `DTS:X`** (`+1000`)
-* **`TrueHD` / `DTS-HD MA`** (`+900`)
+Rôle : détecter des éléments dans le titre (langue, codecs, tags, groupes, repacks, etc.).
+
+### `custom_formats/`
+Règles consommées par Radarr/Sonarr.
+Chaque custom format référence une ou plusieurs regex via le champ `pattern` dans les conditions.
+
+Rôle : transformer des détections regex en signaux de scoring exploitables par les profils.
+
+### `profiles/`
+Profils FR films/séries (720p / 1080p / 4K / Any).
+Rôle : hiérarchiser le score final (langue > qualité > teams > repacks > exclusions).
+
+### `media_management/`
+- `quality_definitions.yml` : bornes min/max/preferred par qualité
+- `naming.yml` : templates de nommage
+- `misc.yml` : options techniques annexes
 
 ---
 
-## 5. Fiabilité : Gestion des Repacks
+## Philosophie de scoring
 
-Dans le monde du partage, une release peut parfois être publiée avec un bug (décalage de sous-titres, piste audio manquante). Les teams publient alors des correctifs.
-Notre configuration surveille et attribue un score progressif aux tags de correction :
-* **`Repack3`** / **`V4`** (`+8`)
-* **`Repack2`** / **`V3`** (`+7`)
-* **`Repack1`** / **`PROPER`** / **`REPACK`** / **`V2`** (`+6`)
+### Priorité linguistique
+L'ordre logique est :
+- `FR-MULTI-VF2`
+- `FR-MULTI-VFF`
+- `FR-VF2`
+- `FR-VFF`
+- `FR-VOSTFR`
 
-*Pourquoi des scores si petits (+6, +7, +8) ?* Cela permet de dépasser la version originale buggée d'un cheveu, déclenchant ainsi un téléchargement de mise à jour automatique sans perturber le reste de la logique de score linguistique ou de team.
+Les écarts de score sont volontaires pour empêcher qu'un bonus secondaire (team/HDR/repack) dépasse la langue.
+
+### Teams FR
+- `FR-Tier-01` : bonus plus élevé
+- `FR-Tier-02` : bonus légèrement inférieur
+
+But : départager des releases de langue équivalente.
+
+### Technique (4K)
+Sur profils 4K, bonus dédiés :
+- Dolby Vision / HDR10+ / HDR10
+- TrueHD Atmos / DTS:X / TrueHD / DTS-HD MA
+
+### Exclusions
+Selon les profils, exclusions fortes via score très négatif :
+- `FR-Blockers`
+- `Remux`
+- `Full Disc`
+- `x264 (2160p)`
+- `AV1`
+
+> Note : le blocage AV1 est un choix de compatibilité matérielle dans ce dépôt. Il peut diverger de certaines politiques tracker.
 
 ---
 
-## 6. Naming & Standardisation Plex/Jellyfin
+## Convention d'annotations (uniformisation)
 
-Le fichier `media_management/naming.yml` applique une structure de nommage rigoureuse.
+Tous les fichiers YAML suivent la même logique de lecture :
+- bannière de tête,
+- description explicite,
+- commentaires fonctionnels courts,
+- tests présents et contextualisés.
 
-### Avantages :
-1. **Compatibilité à 100%** : Inclusion systématique de l'ID unique (TMDB pour les films, TVDB pour les séries) dans les noms de dossiers. Plex ou Jellyfin identifieront vos médias instantanément sans jamais faire d'erreur d'association.
-2. **Transparence** : Injection automatique des Custom Formats détectés (ex: `[FR - MULTI.VFF]`) directement dans le nom de fichier final pour savoir en un coup d'œil ce qui se trouve sur votre stockage.
-3. **Respect du Partage** : Le nom du groupe de release final (le "Release Group" à la fin du fichier, ex: `-TFA`) est conservé. C'est indispensable pour pouvoir continuer de partager (seeder) vos fichiers sur vos trackers privés sans enfreindre les règles de nommage.
+Dans `custom_formats/` :
+- commentaire standard expliquant la référence regex,
+- commentaire sur la logique des conditions quand nécessaire (`required`, `negate`).
 
-### Exemple de rendu :
-* **Film** : `/Insaisissables (2013) {tmdb-117251}/Insaisissables (2013) {tmdb-117251} [FR - MULTI.VFF][Bluray-1080p][h264][DTS-HD MA 5.1]-TFA.mkv`
-* **Série** : `/Severance (2022) {tvdb-368294}/Season 01/Severance - S01E01 - Good News About Hell [FR - MULTI.VFF][WEBDL-1080p][h264][EAC3 5.1]-FW.mkv`
+Dans `profiles/` :
+- commentaires par section (langue, teams, audio/HDR, repacks, exclusions).
 
 ---
 
 ## Limites connues
 
-- **FR-Films-Any** accepte volontairement toutes les qualités listées dans le profil (pas de blocage Remux / Full Disc sur ce profil).
-- **AV1** est pénalisé dans les profils 4K / HD ciblés pour limiter les problèmes de décodage matériel.
-- **HDR / DV** : détection textuelle seulement ; pas de validation profil 7/8 ou fallback HDR10 depuis le titre seul.
-- **Blockers** : liste close dans `regex_patterns/FR-Regex-Blockers.yml` ; à modifier selons vos preferences. 
+- Les tests regex reposent uniquement sur le **titre de release**.
+- Les validations réelles de bitrate/profil DV/audio piste ne sont pas garanties par le titre seul.
+- Les listes teams/blockers sont éditoriales et doivent évoluer avec la scène et les règles tracker.
+
+---
+
+## Maintenance recommandée
+
+Ordre de travail conseillé :
+1. `README.md`
+2. `media_management/quality_definitions.yml`
+3. `regex_patterns/`
+4. `custom_formats/`
+5. `profiles/`
+
+À chaque changement :
+- vérifier le schéma des tests,
+- vérifier la cohérence des noms (`pattern` ↔ regex existante),
+- valider le YAML avant import Profilarr.

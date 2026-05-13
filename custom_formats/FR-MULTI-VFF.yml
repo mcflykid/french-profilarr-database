@@ -1,16 +1,17 @@
-# =============================================================================
+# ============================================================================
 # Custom format — MULTI + VFF (TrueFrench)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Les deux conditions sont requises : le titre doit annoncer MULTI **et** VFF
 # (ou TRUEFRENCH). Utilisé pour le plus haut score « VF France multi-langues »
 # sous MULTI.VF2 sur trackers type La Cale / Gemini (naming type charte C411).
-# =============================================================================
+# ============================================================================
 name: FR-MULTI-VFF
 description: >
   Release annonçant MULTI et VFF (ou TRUEFRENCH) dans le titre analysé par Radarr/Sonarr.
   Représente le pack audio français « France » avec autres langues, très recherché sur la scène FR.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   # required true : le titre doit contenir MULTI (regex FR-Regex-MULTI).
   - name: MULTI

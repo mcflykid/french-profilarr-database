@@ -1,25 +1,18 @@
-# =============================================================================
-# Regex — Teams Tier 1 « élite » (titres de releases)
-# -----------------------------------------------------------------------------
-# Bonus qualité pour releases signées par des teams considérées comme très
-# fiables sur la scène FR (La Cale, Gemini). Liste à ajuster avec prudence.
-# =============================================================================
+# ============================================================================
+# Regex Pattern — Scène FR (C411 / La Cale / Gemini)
+# ----------------------------------------------------------------------------
+# Schéma Profilarr v1 : tests = [ {id, input, expected} ]
+# ============================================================================
 name: FR-Tier-01
-description: >
-  Détecte les noms de teams Tier 1 (encodages FR réputés stables, bon débit). Utilisé par le custom
-  format FR-Tier-01 pour augmenter légèrement le score quand deux releases ont la même langue.
+description: Détecte les teams Tier 1 (élite) de la scène FR.
 pattern: \b(TFA|FW|FORWARD|THESYNDICATE|TyHD|Slay3R|AMEN|BOUBA|BOUC|OZEF|QTZ|GKS|KAAZA|TayTO|M@x|B@tman)\b
-# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
 tests:
-  - title: Film.2024.MULTI.VFF.UHD.2160p.DoVi.HDR10.DTS-X.x265-QTZ
-    type: movie
-    should_match: true
-    description: QTZ en fin de release
-  - title: Serie.S01E01.VOSTFR.WEB.1080p.h264-FW
-    type: series
-    should_match: true
-    description: FW (alias Forward)
-  - title: Film.2020.MULTI.VFF.BDRip.x264-ENIGMA
-    type: movie
-    should_match: false
-    description: Groupe hors Tier 1
+  - id: 1
+    input: Film.2024.MULTI.VFF.UHD.2160p.DoVi.HDR10.DTS-X.x265-QTZ
+    expected: true
+  - id: 2
+    input: Serie.S01E01.VOSTFR.WEB.1080p.h264-FW
+    expected: true
+  - id: 3
+    input: Film.2020.MULTI.VFF.BDRip.x264-ENIGMA
+    expected: false

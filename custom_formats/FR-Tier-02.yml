@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — Bonus teams Tier 2
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Bonus inférieur au Tier 1 ; couvre scène et teams « solides » secondaires.
-# =============================================================================
+# ============================================================================
 name: FR-Tier-02
 description: >
   Bonus pour teams Tier 2 (regex FR-Tier-02). Utile quand deux releases ont même score langue et
   même type HDR/audio, mais proviennent de teams de réputation différente sur la scène FR.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: Tier 02
     type: release_title

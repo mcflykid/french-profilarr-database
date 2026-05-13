@@ -1,15 +1,16 @@
-# =============================================================================
+# ============================================================================
 # Custom format — VF2 / VFQ seul
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Détecte VF2 ou VFQ sans exiger MULTI. Peut matcher des releases Québec ou
 # double VF selon le naming ; combiner avec les scores du profil pour la politique VFQ.
-# =============================================================================
+# ============================================================================
 name: FR-VF2
 description: >
   Release avec VF2 ou VFQ dans le titre (sans condition MULTI ici). À utiliser avec les scores du
   profil pour favoriser ou limiter la VFQ selon votre politique (France vs Québec).
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: VF2
     type: release_title

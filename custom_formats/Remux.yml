@@ -1,14 +1,15 @@
-# =============================================================================
+# ============================================================================
 # Custom format — Remux
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Score fortement négatif sur profils où le remux est interdit (poids / charte).
-# =============================================================================
+# ============================================================================
 name: Remux
 description: >
   Détecte le mot Remux dans le titre (source quasi brute). Pénalité pour alignement avec les usages
   de seeding et de taille sur trackers privés francophones lorsque vous ne voulez pas de remux.
 tags: []
-# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
+# Référence regex : le champ `pattern` doit pointer vers un nom présent dans `regex_patterns/`.
+# `type: release_title` = analyse sur le titre d'annonce fourni par l'indexeur (La Cale / Gemini).
 conditions:
   - name: Remux
     type: release_title
