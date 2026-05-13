@@ -1,4 +1,25 @@
+# =============================================================================
+# Regex — Dolby Vision / DV / DoVi (titres de releases)
+# -----------------------------------------------------------------------------
+# Les chartes (ex. C411) imposent souvent des contraintes sur les profils DV ;
+# ici on ne fait que détecter le texte dans le nom de fichier annoncé.
+# =============================================================================
 name: Dolby Vision Regex
-description: Détecte la présence de Dolby Vision (DV/DoVi)
+description: >
+  Détecte DV, DoVi ou Dolby Vision dans le titre (annonces trackers FR). Custom format Dolby Vision
+  pour fortement favoriser les releases UHD annoncées en DV lorsque la langue est déjà au max.
 pattern: \b(DV|DoVi|Dolby[ ._-]?Vision)\b
-tests: []
+# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
+tests:
+  - title: Film.2024.MULTI.VFF.UHD.2160p.DoVi.HDR10.Hybrid.DTS-X.x265-QTZ
+    type: movie
+    should_match: true
+    description: DoVi explicite
+  - title: Serie.S03E12.VOSTFR.WEB-DL.2160p.DV.HDR10.h265-FW
+    type: series
+    should_match: true
+    description: DV court
+  - title: Film.2015.MULTI.VFF.BDRip.1080p.x264-AMEN
+    type: movie
+    should_match: false
+    description: Pas de marqueur Dolby Vision
