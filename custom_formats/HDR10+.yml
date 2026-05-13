@@ -1,10 +1,31 @@
+# =============================================================================
+# Custom format — HDR10+
+# -----------------------------------------------------------------------------
+# HDR dynamique annoncé ; distinct de HDR10 seul via la regex HDR10+ Regex.
+# =============================================================================
 name: HDR10+
-description: Identifie les releases encodées en HDR10+.
+description: >
+  Détecte HDR10+ ou HDR10Plus dans le titre. Bonus intermédiaire entre HDR10 et Dolby Vision sur les
+  profils 4K orientés matériel HDR moderne.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: HDR10+
     type: release_title
     negate: false
     required: false
     pattern: HDR10+ Regex
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2023.MULTI.VFF.UHD.2160p.HDR10Plus.DTS-X.x265-QTZ
+    type: movie
+    should_match: true
+    description: HDR10Plus collé
+  - title: Serie.S01E12.VOSTFR.WEBRip.1080p.HDR10+.EAC3.5.1.h264-GKS
+    type: series
+    should_match: true
+    description: HDR10+ avec signe plus
+  - title: Film.2019.MULTI.VFF.Bluray.1080p.HDR10.DTS-HD.MA.5.1.x264-TFA
+    type: movie
+    should_match: false
+    description: HDR10 seul (pas HDR10+)
