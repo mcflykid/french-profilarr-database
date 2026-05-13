@@ -1,5 +1,10 @@
 # french-profilarr-database
 
+
+## EN CONTRUCTIONS ##
+
+
+
 Ce dépôt contient une base de données de configuration **Profilarr** (Radarr / Sonarr) pour usage réel sur **trackers francophones stricts** visant une cohérence avec les trackers privées **C411**, **La Cale** et **Gemini trackers** : scoring langue (MULTI, VFF, VF2, VOSTFR), tiers de release groups, HDR / audio lossless, repacks, blockers.
 
 L'objectif de cette configuration est d'automatiser entièrement la recherche, le téléchargement, le renommage et la mise à niveau (upgrade) de vos films et séries avec une précision chirurgicale, sans accumuler de fichiers inutiles ("fichiers fantômes").
