@@ -1,3 +1,12 @@
+# =============================================================================
+# Définitions de taille qualité (Radarr + Sonarr) — charte type C411 & scène FR
+# -----------------------------------------------------------------------------
+# Les champs min / max / preferred pilotent ce que Radarr/Sonarr considère comme
+# « taille plausible » par qualité annoncée (MB/h). Les commentaires rappellent
+# la logique C411 (bitrates min x265, exception WEB sans minimum, etc.) et
+# l’objectif 4K light (HEVC UHD maîtrisé) pour trackers La Cale / Gemini.
+# Les valeurs Sonarr sont exprimées par épisode (approximation /2 vs film).
+# =============================================================================
 qualityDefinitions:
   radarr:
     # === 2160p (4K) ===
