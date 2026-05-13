@@ -1,15 +1,43 @@
+# =============================================================================
+# Custom format — MULTI + VF2 / VFQ
+# -----------------------------------------------------------------------------
+# Exige MULTI et VF2 ou VFQ. Représente les packs avec variante québécoise ou
+# seconde VF en plus des autres langues ; score juste sous MULTI.VFF selon le profil.
+# =============================================================================
 name: FR-MULTI-VF2
-description: Identifie les releases MULTI avec piste VF2.
+description: >
+  Release avec MULTI et VF2 ou VFQ dans le titre. Couvre les annonces « multi-pistes » incluant la
+  variante VFQ/VF2, fréquentes sur trackers francophones pour compatibilité maximale.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
+  # MULTI obligatoire dans le titre.
   - name: MULTI
     type: release_title
     negate: false
     required: true
     pattern: FR-Regex-MULTI
+  # VF2 ou VFQ requis en plus de MULTI (regex FR-Regex-VF2).
   - name: VF2
     type: release_title
     negate: false
     required: true
     pattern: FR-Regex-VF2
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.Canada.2021.MULTI.VF2.UHD.2160p.WEB-DL.DDP5.1.DoVi.HDR10Plus.h265-TFA
+    type: movie
+    should_match: true
+    description: MULTI + VF2
+  - title: Serie.S03E08.MULTI.VFQ.WEB.1080p.EAC3.5.1.x264-FW
+    type: series
+    should_match: true
+    description: MULTI + VFQ (alias VF2)
+  - title: Film.2019.MULTI.VFF.Bluray.1080p.DTS-HD.MA.5.1.x264-AMEN
+    type: movie
+    should_match: false
+    description: MULTI + VFF uniquement (pas VF2/VFQ)
+  - title: Film.2023.VF2.WEB.1080p.h264-BOUBA
+    type: movie
+    should_match: false
+    description: VF2 sans MULTI
