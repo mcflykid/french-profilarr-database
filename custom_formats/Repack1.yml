@@ -1,10 +1,31 @@
+# =============================================================================
+# Custom format — Repack / Proper niveau 1
+# -----------------------------------------------------------------------------
+# Micro-bonus pour préférer une correction sans surcharger le score global.
+# =============================================================================
 name: Repack1
-description: Identifie les corrections de type Repack ou Proper.
+description: >
+  Détecte PROPER, REPACK, FIX, RERIP, V2, etc. (regex Repack1 Regex). Bonus minimal pour favoriser
+  une release corrigée par rapport à la version initiale buggée, sans battre la langue ou le HDR.
 tags: []
+# « pattern » : nom de la regex (fichiers regex_patterns/) ; type release_title : analyse sur le titre d’annonce Radarr ou Sonarr (La Cale, Gemini, etc.).
 conditions:
   - name: Repack1
     type: release_title
     negate: false
     required: false
     pattern: Repack1 Regex
-tests: []
+# Tests : titres factices, résultat attendu should_match (Profilarr / PCD).
+tests:
+  - title: Film.2017.MULTI.VFF.BDRip.PROPER.REPACK.1080p.x264-TFA
+    type: movie
+    should_match: true
+    description: REPACK explicite
+  - title: Serie.S01E05.VOSTFR.WEB.1080p.V2.h264-FW
+    type: series
+    should_match: true
+    description: V2 comme correction mineure
+  - title: Film.2020.MULTI.VFF.NF.WEB-DL.1080p.h264-AMEN
+    type: movie
+    should_match: false
+    description: Pas de proper / repack / V2 dans le titre
