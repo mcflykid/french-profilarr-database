@@ -1,44 +1,16 @@
----
 name: x264
-pattern: "^(?!.*(?i:remux)).*([xh](\\.?264)|DVDRip)"
+pattern: ^(?!.*(?i:remux)).*([xh](\.?264)|DVDRip)
 description: 'An open source encoder that produces H.264 videos. '
 tags:
 - Encoder
 - Codec
 tests:
-- expected: true
-  id: 1
+- id: 1
   input: Dan Da Dan AKA Dandadan S01E10 1080p CR WEB-DL AAC 2.0 x264-SubsPlease
-  lastRun: '2024-12-07T00:22:39.865345'
-  matchSpan:
-    end: 59
-    start: 0
-  matchedContent: Dan Da Dan AKA Dandadan S01E10 1080p CR WEB-DL AAC 2.0 x264
-  matchedGroups:
-  - x264
-  - '264'
-  passes: true
-- expected: true
-  id: 2
+  expected: true
+- id: 2
   input: Life of Pi 2012 1080p BluRay x264-SPARKS
-  lastRun: '2024-12-07T00:22:39.865345'
-  matchSpan:
-    end: 33
-    start: 0
-  matchedContent: Life of Pi 2012 1080p BluRay x264
-  matchedGroups:
-  - x264
-  - '264'
-  passes: true
-- expected: true
-  id: 3
+  expected: true
+- id: 3
   input: _Summer S00 JAPANESE 480p DVDRip DD 2.0 x264-Tsundere
-  lastRun: '2024-12-07T00:22:39.865345'
-  matchSpan:
-    end: 44
-    start: 0
-  matchedContent: _Summer S00 JAPANESE 480p DVDRip DD 2.0 x264
-  matchedGroups:
-  - x264
-  - '264'
-  passes: true
+  expected: true

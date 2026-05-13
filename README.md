@@ -43,6 +43,9 @@ Si tu modifies un fichier officiel pour l'adapter au marché FR, **renomme-le `F
   `upgrade_until`, `language`
 
 Mélanger les schémas v1 et v2 dans `tests:` peut afficher `Unexpected Error` dans l'UI.
+Les exports Dictionarry ou une ancienne version de Profilarr peuvent ajouter `lastRun`,
+`passes`, `matchSpan` : ce dépôt ne garde que **`id` / `input` / `expected`** dans les
+tests des regex, pour un compteur « X/Y passing » fiable.
 
 ---
 
