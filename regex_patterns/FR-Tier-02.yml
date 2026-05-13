@@ -1,4 +1,25 @@
+# =============================================================================
+# Regex — Teams Tier 2 (scène / qualité secondaire)
+# -----------------------------------------------------------------------------
+# Bonus plus faible que Tier 1 ; couvre teams « sérieuses » et une partie de la
+# scène historique listée dans le README du dépôt.
+# =============================================================================
 name: FR-Tier-02
-description: Détecte les teams de Tier 2 (Qualité et Scène) d'après la charte
+description: >
+  Détecte les teams Tier 2 (bonne qualité ou scène FR historique). S’emploie avec FR-Tier-02 pour
+  un bonus inférieur au Tier 1 afin de départager les releases sans sur-scorer.
 pattern: \b(ENIGMA|NEOSTARK|HYPERION|TOXIC|N3ZUKO|J4CK|Maxadonf|D4RK|R3MIX|Themouche|SUPERFLU|TLC|LKT|ZTM|TMB|TSR|COCAIN|ATE|LOST|PRESTiGE|GORE|MULTiPLY|VENUE|DREAM|UTT|AJP)\b
-tests: []
+# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
+tests:
+  - title: Film.2016.MULTI.VFF.WEB-DL.1080p.h264-LOST
+    type: movie
+    should_match: true
+    description: LOST (scène / Tier 2)
+  - title: Serie.S04E02.VOSTFR.WEBRip.720p.x264-HYPERION
+    type: series
+    should_match: true
+    description: HYPERION
+  - title: Film.2022.MULTI.VFF.UHD.2160p.x265-TFA
+    type: movie
+    should_match: false
+    description: Groupe Tier 1 uniquement
