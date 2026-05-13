@@ -1,4 +1,24 @@
+# =============================================================================
+# Regex — DTS:X (titres de releases)
+# -----------------------------------------------------------------------------
+# Audio immersif annoncé ; utile pour départager deux releases FR identiques
+# sinon en codec vidéo.
+# =============================================================================
 name: DTS-X Regex
-description: Détecte la présence de DTS:X
+description: >
+  Détecte DTS:X ou DTS.X dans le titre (annonces trackers). Utilisé par le custom format DTS:X.
 pattern: \b(DTS[ ._-]?X)\b
-tests: []
+# Tests : titres factices ; should_match = la regex doit matcher le titre (Profilarr / PCD).
+tests:
+  - title: Film.2023.MULTI.VFF.UHD.2160p.DTS-X.7.1.x265-QTZ
+    type: movie
+    should_match: true
+    description: DTS-X standard
+  - title: Serie.S03E01.VOSTFR.WEB.1080p.DTS.X.5.1.h264-BOUBA
+    type: series
+    should_match: true
+    description: Variante avec point
+  - title: Film.2017.MULTI.VFF.BDRip.DTS-HD.MA.5.1.x264-AMEN
+    type: movie
+    should_match: false
+    description: DTS-HD MA sans X final requis
