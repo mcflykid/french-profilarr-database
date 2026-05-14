@@ -4,6 +4,10 @@
 # Valeurs alignées sur les limites API ARR pour éviter les erreurs de sync.
 # Règle appliquée : min <= preferred <= max, avec bornes max ARR.
 #
+# **Radarr MB/minute** — sur min / preferred / max, **2000 = plafond « quasi illimité »**
+# pour la taille maximale préférée, **pas** une valeur acceptable pour « min ». Mettre **min:
+# 2000** sur du WEB/UHD équivalait à exiger ~300+ Go pour un long-métrage (2000 × durée).
+#
 # Séries WEB 1080p HEVC « scène » (ex. BONBON : ~548 MiB / ~43 min d’épisode,
 # soit ~13 MiB/min) : preferred WEBDL/WEBRip 1080p abaissé pour ne pas
 # surestimer les très gros épisodes lors du classement intra-qualité.
@@ -25,7 +29,7 @@ qualityDefinitions:
       preferred: 1800
     Bluray-2160p:
       max: 2000
-      min: 2000
+      min: 0
       preferred: 2000
     Bluray-480p:
       max: 2000
@@ -105,7 +109,7 @@ qualityDefinitions:
       preferred: 1500
     WEBDL-2160p:
       max: 2000
-      min: 2000
+      min: 0
       preferred: 2000
     WEBDL-480p:
       max: 2000
@@ -121,7 +125,7 @@ qualityDefinitions:
       preferred: 1500
     WEBRip-2160p:
       max: 2000
-      min: 2000
+      min: 0
       preferred: 2000
     WEBRip-480p:
       max: 2000
