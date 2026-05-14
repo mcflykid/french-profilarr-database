@@ -1,6 +1,8 @@
 name: FLAC
-description: Matches 'FLAC' Regex Pattern and negates any other audio types that might
-  conflict.
+description: |-
+  Détecte la présence du codec **FLAC** (sans perte) annoncée pour la piste audio principale dans le titre.
+  Les conditions négatives évitent de cumuler avec Dolby Digital(+), DTS, AAC, PCM ou TrueHD lorsque plusieurs
+  mentions contradictoires apparaissent sur une même ligne d’indexation — comportement éprouvé Dictionarry / TRaSH.
 tags:
 - Audio
 conditions:

@@ -3,6 +3,15 @@
 # ----------------------------------------------------------------------------
 # Valeurs alignées sur les limites API ARR pour éviter les erreurs de sync.
 # Règle appliquée : min <= preferred <= max, avec bornes max ARR.
+#
+# Séries WEB 1080p HEVC « scène » (ex. BONBON : ~548 MiB / ~43 min d’épisode,
+# soit ~13 MiB/min) : preferred WEBDL/WEBRip 1080p abaissé pour ne pas
+# surestimer les très gros épisodes lors du classement intra-qualité.
+#
+# Animé : même fichier `sonarr` sert dramas et épisodes anime ; durée épisode courte
+# (souvent ~24 min) donne déjà un poids fichier plus léger avec la même valeur
+# MB/min Sonarr. Les plages Anime distinctes sont dans Sonarr Réglages > Qualité —
+# onglet **Anime** (non synchronisable séparément par Profilarr v1 avec ce YAML).
 # ============================================================================
 qualityDefinitions:
   radarr:
@@ -186,7 +195,7 @@ qualityDefinitions:
     WEBDL-1080p:
       max: 1000
       min: 0
-      preferred: 600
+      preferred: 350
     WEBDL-2160p:
       max: 1000
       min: 1000
@@ -202,7 +211,7 @@ qualityDefinitions:
     WEBRip-1080p:
       max: 1000
       min: 0
-      preferred: 600
+      preferred: 350
     WEBRip-2160p:
       max: 1000
       min: 1000

@@ -1,8 +1,8 @@
 name: FR-Regex-VF2
 pattern: (?i)\b(VF2|VFQ|VOQ)\b
 description: Détecte les tags audio VF2, VFQ ou VOQ (Québec / québécois, ex. releases
-  QTZ « Version originale québécoise »). Adapté aux trackers FR (C411, La Cale, Gemini,
-  YGGtorrent).
+  QTZ « Version originale québécoise »). Adapté aux trackers FR type C411 (La Cale,
+  Gemini).
 tags:
 - Language
 - French

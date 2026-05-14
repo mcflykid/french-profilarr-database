@@ -1,6 +1,8 @@
 name: UHD Bluray
 pattern: \bUHD[-_.\s]?Blu[-]?Ray\b
-description: Matches "UHD Bluray" or "UHD Blu-Ray" with a hyphen, space, dot or underscore between them
+description: >-
+  Détecte **Ultra HD Blu-ray** écrit sous formes **`UHD Bluray`, `UHD Blu-ray`** avec séparateurs variés (trait d’union, espace,
+  point ou soulignement entre **UHD** et **Bluray**/BluRay). Sert aux chaînes de scoring « source UHD annoncée » dans votre base.
 tags: []
 tests:
 - id: 1

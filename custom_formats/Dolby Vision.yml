@@ -1,5 +1,8 @@
 name: Dolby Vision
-description: Matches the 'Dolby Vision' Regex Pattern
+description: >-
+  Repère explicitement les alias **DV / DoVi / Dolby Vision** annoncés dans le titre indexer. Regex exclut volontairement
+  associations **DV+HLG** ou **DV+SDR triviales** (voir motif) pour se concentrer sur les releases réellement positionnées
+  comme Dolby Vision consommable (voir documentation technique DV du fabricant Dolby).
 tags:
 - Colour Grade
 - HDR

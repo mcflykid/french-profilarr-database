@@ -1,5 +1,7 @@
 name: AV1
-description: Matches the 'AV1' Regex Pattern
+description: >-
+  Signale codec **AV1** annoncé (encodé « nouveau standard » très compressé mais **souvent pénalisé -999999** sur profils french-profilarr
+  pour garantir un **décodage matériel** homogène sur téléviseurs / box TV encore courants côté usage domestique francophone).
 tags:
 - Codec
 - Bleeding Edge

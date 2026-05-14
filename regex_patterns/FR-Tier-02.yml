@@ -1,7 +1,7 @@
 name: FR-Tier-02
 pattern: \b(AMEN|BOUBA|BOUC|OZEF|QTZ|Erotelemo)\b
-description: Teams Tier 2 — vétérans G1 C411 + références 4KLight (QTZ, Erotelemo)
-  encore au-dessus du peloton G2 mais distincts du « top absolu » Tier 1.
+description: >-
+  **Niveau scène 02** — « vétérans G1 » C411 et signatures **4KLight** notables (**QTZ**, **Erotelemo**), toujours très haut placés mais sous le palier absolu 01.
 tags:
 - Release Group
 - French

@@ -1,6 +1,8 @@
 name: TrueHD
-description: Matches 'TrueHD' Regex Pattern and negates any other audio types that
-  might conflict.
+description: |-
+  Détecte **TrueHD Dolby** (« Dolby TrueHD », parfois lié implicitement ou non à une piste Atmos séparée).
+  Liste négative identique aux bundles Dictionarry pour isoler DTS:X / DTS‑HD MA / FLAC lorsqu’ils seraient mieux représentés
+  comme signal principal dans le titre.
 tags:
 - Audio
 conditions:

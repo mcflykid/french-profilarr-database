@@ -1,6 +1,7 @@
 name: TrueHD
 pattern: True[ .-]?HD[ .-]?
-description: ''
+description: >-
+  **Dolby TrueHD** (« **True‑HD** » selon typo) — audio **sans perte** Dolby issu très souvent Blu-ray/remux téléchargées privées ; la piste immersive **Atmos** est généralement gérée séparément par le CF **Atmos** via `FR-Regex-Atmos-Bundle`.
 tags:
 - Audio
 - Lossless

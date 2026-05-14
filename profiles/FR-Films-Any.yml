@@ -1,5 +1,5 @@
 # ============================================================================
-# Radarr — Films « Any » qualité (scène FR : C411 / La Cale / Gemini / YGGtorrent)
+# Radarr — Films « Any » qualité (charte FR type C411 : La Cale, Gemini)
 # ----------------------------------------------------------------------------
 # Profil permissif sur la RÉSOLUTION : SD à Raw-HD pour saisir tôt une release FR
 # puis upgrader via les scores. Bloque uniquement FR-Blockers, AV1 et Upscaled.
@@ -7,8 +7,8 @@
 # ============================================================================
 name: FR-Films-Any
 description: >
-  Profil Radarr « toute qualité » pour films sur trackers francophones (La Cale, Gemini, YGGtorrent).
-  Garde la hiérarchie langue FR + teams + audio premium + édition + streamers. Permissif sur
+  Profil Radarr « toute qualité » pour films sur trackers francophones type C411 (La Cale, Gemini).
+  Garde la hiérarchie langue FR + équipes françaises + audio premium + édition + streamers. Permissif sur
   résolution (SD à Raw-HD) ; n'impose pas de cible. Bloque FR-Blockers, AV1, Upscaled.
 tags:
 - any
@@ -30,7 +30,7 @@ custom_formats:
 - name: FR-VOSTFR
   score: 20000
 
-# === Teams FR (4 tiers) ===
+# === Équipes FR (quatre paliers) ===
 - name: FR-Tier-01
   score: 2400
 - name: FR-Tier-02
@@ -99,9 +99,6 @@ custom_formats:
   score: 60
 - name: 3D
   score: -100
-- name: Internal
-  score: 30
-
 # === Repacks ===
 
 # === Streamers (consolidés) ===

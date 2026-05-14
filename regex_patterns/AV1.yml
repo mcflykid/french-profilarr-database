@@ -1,7 +1,7 @@
 name: AV1
 pattern: \b(AV1)\b
-description: AV1, or AOMedia Video 1, is a video coding format that compresses video
-  files and streams while maintaining high quality.
+description: >-
+  **AV1 (« AOMedia Video 1 »)** : codec open-source très efficace surtout côté streaming ; rare sur cercles français et souvent bloqué par nos profils car le **matériel grand public** le **décode mal en temps réel**.
 tags:
 - Codec
 tests:

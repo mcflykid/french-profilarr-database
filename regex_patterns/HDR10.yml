@@ -1,6 +1,7 @@
 name: HDR10
 pattern: \bHDR10(?!\+|Plus)\b
-description: 'This regex matches `HDR10` only when it *is not* followed by any HDR format specifiers like `+`, or `Plus`. '
+  Détecte `HDR10` lorsqu’il n’est **pas** prolongé immédiatement par **`+`** ni par les variantes **`P`/`Plus`** réservées à **HDR10+**
+  (`HDR10+.yml` séparément).
 tags:
 - Enhancement
 - Colour Grade

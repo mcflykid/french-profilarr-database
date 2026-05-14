@@ -1,6 +1,5 @@
 name: Upscaled
-description: Malus / blocage pour releases upscalées série (Upscaled uniquement — tags
-  IA TV retirés du dépôt).
+description: Malus **fort / blocage** pour releases **explicitement upscalées** (marqueurs type « Upscale », regrading forcé, tags **IA** / **AIUS** couverts par la regex `Upscaled`).
 tags:
 - Banned
 - Enhancement

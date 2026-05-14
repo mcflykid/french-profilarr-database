@@ -1,6 +1,7 @@
 name: DTS-HD HRA ES
 pattern: dts[-. ]?(es|(hd[. ]?)?(hr|hi))
-description: ''
+description: |-
+  Couverture combinée **`DTS-ES`** et variantes **high resolution (`HR`, `HI`)** du DTS classique lorsque titreurs anciens mélangent abréviations ; aide les autres CF Dolby/DTS à s’exclure sans doublons.
 tags:
 - Audio
 tests:

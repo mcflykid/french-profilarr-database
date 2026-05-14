@@ -1,6 +1,7 @@
 name: DTS-ES
 pattern: (?i)dts[-. ]?es\b
-description: ''
+description: >-
+  **DTS-ES (Extended Surround)** : extension matricielle 6.1/ES fréquentes vieux téléchargements DVD/Bluray Dolby Surround.
 tags:
 - Audio
 tests:

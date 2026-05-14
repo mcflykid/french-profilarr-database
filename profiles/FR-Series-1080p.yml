@@ -1,5 +1,5 @@
 # ============================================================================
-# Sonarr — Séries 1080p (scène FR : C411 / La Cale / Gemini / YGGtorrent)
+# Sonarr — Séries 1080p (charte FR type C411 : La Cale, Gemini)
 # ----------------------------------------------------------------------------
 # Profil principal séries 1080p : langue FR, audio premium, codec efficient,
 # édition légère, streamers. Exclut Remux / AV1 / Upscaled. Inclut HDTV-1080p
@@ -7,8 +7,8 @@
 # ============================================================================
 name: FR-Series-1080p
 description: >
-  Profil Sonarr 1080p pour séries sur trackers francophones (La Cale, Gemini, YGGtorrent, esprit C411).
-  Priorise langue FR, teams sur 4 tiers, audio premium, codec efficient (x265/h265).
+  Profil Sonarr 1080p pour séries sur trackers francophones type C411 (La Cale, Gemini).
+  Priorise langue FR, équipes françaises sur quatre paliers, audio premium, codec efficient (x265/h265).
   Inclut HDTV-1080p pour TV cap. Bonus Season Pack. Bloque Remux, Full Disc, AV1, Upscaled.
 tags:
 - 1080p
@@ -31,7 +31,7 @@ custom_formats:
 - name: FR-VOSTFR
   score: 20000
 
-# === Teams FR (4 tiers) ===
+# === Équipes FR (quatre paliers) ===
 - name: FR-Tier-01
   score: 2400
 - name: FR-Tier-02
@@ -92,12 +92,8 @@ custom_formats:
   score: 200
 
 # === Source/Édition séries ===
-- name: Internal
-  score: 50
 - name: Season Pack
   score: 50
-- name: TV Extras
-  score: 30
 
 # === Repacks ===
 

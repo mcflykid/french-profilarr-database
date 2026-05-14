@@ -1,6 +1,7 @@
 name: Dolby Digital +
 pattern: \bDD[P+]|\b(e[-_. ]?ac3)\b
-description: ''
+description: >-
+  **Dolby Digital Plus** (**DD+**, **E‑AC‑3**) : alias **`DDP`** ou **`e.ac3`** (séparateurs `.`/`_`/espaces tolérés). Distinct du **Dolby Digital** « AC‑3 » classique (voir fichier `Dolby Digital.yml` du dossier regex).
 tags:
 - Audio
 tests:

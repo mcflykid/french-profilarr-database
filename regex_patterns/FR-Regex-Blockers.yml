@@ -1,6 +1,6 @@
 name: FR-Regex-Blockers
 pattern: (?i)\b(k0RE|Wawacity|YIFY|YTS|RARBG|FGT|GalaxyRG|GalaxyTV|MeGusta|ETRG|ION10|TGx|WAVES|NoGRP|NoGroup|ATTKC|SUJAIDR|LAMA|TimeStrike|Pahe|TBS|EVO|RMTeam|ETHEL|Telly|playSD|playWEB)\b|\b(NVENC|QSV|AMF)\b|(?=.*\b(REMUX|BDMV|ISO)\b)(?=.*\b(x26[45]|h26[45])\b)
-description: 'Liste noire scène FR (C411, La Cale, Gemini, YGGtorrent) — groupes
+description: 'Liste noire scène FR type C411 (La Cale, Gemini) — groupes
   bannis internationaux à basse réputation (YIFY, FGT, GalaxyRG, etc.), encodeurs
   GPU interdits (NVENC, QSV, AMF) et incohérences techniques majeures (REMUX / BDMV
   / ISO combinés à x264 / x265 / h264 / h265). NB — Firesoul64 retiré car team officielle

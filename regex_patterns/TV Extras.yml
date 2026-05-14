@@ -1,9 +1,0 @@
-name: TV Extras
-pattern: (?<=\bS\d+\b).*\b(Extras|Bonus|Extended[ ._-]Clip)\b
-description: Extras, Special Features, Featurettes, etc
-tags:
-- Banned
-tests:
-- id: 1
-  input: Game of Thrones S08 Extras The Game Revealed 1080p AMZN WEB-DL DD+ 2.0 H.264-NTG
-  expected: true

@@ -1,6 +1,7 @@
 name: FLAC
 pattern: \bFLAC(\b|\d)
-description: ''
+description: >-
+  **FLAC sans perte** annoncée sur la ligne release (`FLAC`, profils **`FLAC24`**, …). À distinguer du **PCM/LPCM** non compressés (`PCM.yml`).
 tags:
 - Audio
 tests:

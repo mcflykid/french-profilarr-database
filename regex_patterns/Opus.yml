@@ -1,6 +1,7 @@
 name: Opus
 pattern: \bOPUS(\b|\d)(?!.*[ ._-](\d{3,4}p))
-description: ''
+description: >-
+  **Opus** dans le titre, avec lookahead négatif **empêchant** qu’un segment **`XXXp`** (résolution) apparaisse **plus loin dans la même chaîne après `OPUS`** — ancien garde‑fou Dictionarry contre les collisions avec des noms de groupe ou artefacts de titre mal ordonnés.
 tags:
 - Audio
 tests:

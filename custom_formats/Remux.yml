@@ -1,5 +1,7 @@
 name: Remux
-description: Matches Remux as a codec, not a source. Either h265 or h264.
+description: >-
+  Marque une release **REMUX** : conteneur type MKV comportant généralement flux vidéo/audio **copiés sans ré-encodage** depuis Blu-ray/UHD,
+  différent du transcode (« encode » ). Utilisée en blocage dur sur plusieurs profils **FR-Series / FR-Films** qui refusent le volume fichier d’un Remux domestique tout en gardant HDR si transcodé léger.
 tags:
 - Storage
 conditions:

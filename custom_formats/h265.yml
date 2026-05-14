@@ -1,5 +1,6 @@
 name: h265
-description: Matches 'h265' regex pattern.
+description: >-
+  Mentions génériques **h265 / H265 / HEVC** annoncées sur la ligne titre (alternative orthographique **x265**).
 tags:
 - Codec
 conditions:

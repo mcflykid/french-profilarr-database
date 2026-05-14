@@ -1,11 +1,8 @@
 name: IMAX Enhanced
 pattern: (?i)^(?=.*\b((DSNP|Disney\+|BC|B?CORE)(?=.?web.?(dl|rip)\b)))(?=.*\b((?<!NON.?)IMAX(.?Enhanced)?)\b)
-description: 'Matches IMAX releases from specific digital sources.
-
-
-  - Checks for WEBs from `Disney+` or `Bravia Core`
-
-  - Ensures "IMAX" appears (with optional "Enhanced" suffix) but not when preceded by "NON"'
+description: |-
+  **IMAX Enhanced** pour WEB issus de **Disney+** (tags **DSNP**, **Disney+**, etc.) ou **Bravia Core** (**BC** / **CORE**),
+  avec mention **IMAX** (suffixe Enhanced optionnel), en excluant les variantes précédées de **« NON‑IMAX »** selon lookahead du motif projet.
 tags:
 - Enhancement
 - Aspect Ratio

@@ -1,7 +1,7 @@
 name: FR-VFF
 description: Détecte la présence d'un tag FR hors VFQ/VF2 (VFF, TRUEFRENCH, VFI, VOF,
   VFB, VF générique) dans le titre, sans exiger MULTI. Sert à scorer les doublages
-  français « purs » (mono-piste FR) sur les trackers C411 / La Cale / Gemini / YGGtorrent.
+  français « purs » (mono-piste FR) sur les trackers type C411 (La Cale, Gemini).
 tags:
 - Language
 - French

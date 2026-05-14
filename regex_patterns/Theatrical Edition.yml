@@ -1,8 +1,7 @@
 name: Theatrical Edition
 pattern: (?i)^(.*?)(\d{4})(.*?)\b(theatrical)\b
-description: 'Matches any type of theatrical edition.
-
-  - Ensures that `Theatrical` comes after the year so that movies with ''Theatrical` in the title are not matched'
+description: |-
+  Mention **« Theatrical »** (cut ciné standard) doit apparaître **après l’année sur quatre chiffres** pour éviter les faux positifs lorsque ce mot fait partie du titre marchand réel placé avant l’année.
 tags:
 - Edition
 tests:

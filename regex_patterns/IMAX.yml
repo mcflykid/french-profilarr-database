@@ -1,10 +1,7 @@
 name: IMAX
 pattern: \b((?<!NON.?)IMAX)\b
-description: 'Matches any IMAX release. This includes:
-
-  - Any movie shot with IMAX in mind and henceforth tagged as `IMAX`
-
-  - IMAX Enchanced digital releases found on `Disney + / Bravia Core`'
+description: |-
+  Repère **`IMAX`** (expérience géant écran augmenté hors tag **« NON‑IMAX »**) et variantes Enhanced basiques encore taguées IMAX générique hors regex **IMAX Enhanced** dédiée (Disney+/BC).
 tags:
 - Enhancement
 - Aspect Ratio

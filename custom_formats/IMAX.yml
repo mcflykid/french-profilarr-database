@@ -1,5 +1,7 @@
 name: IMAX
-description: ''
+description: >
+  Détecte une déclinaison **IMAX classique** (ciné expansé / mastering IMAX hors cas « Enhanced streaming »
+  géré séparément). Le CF exclut **IMAX Enhanced** résolu par regex dédiée pour éviter le double-score.
 tags:
 - Edition
 conditions:

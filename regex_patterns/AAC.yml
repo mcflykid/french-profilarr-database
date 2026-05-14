@@ -1,6 +1,8 @@
 name: AAC
 pattern: \bAAC(\b|\d)
-description: ''
+description: |-
+  **AAC**, alias **Advanced Audio Coding** (`\bAAC` puis fin de bloc ou suffixe numérique `AAC5.1`).
+  Codec lossy léger très courant flux WEB télé et encodes partagés sur trackers français ; différent Dolby (`Dolby Digital`, `DD+`).
 tags:
 - Audio
 tests:

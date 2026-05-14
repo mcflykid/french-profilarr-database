@@ -1,5 +1,9 @@
 name: AAC
-description: Matches 'AAC' Regex Pattern and negates any other audio types that might conflict.
+description: |-
+  Détecte la présence du codec audio **AAC** dans le titre de release (indexeur).
+  Le bloc de conditions suivant exclut l’activation si le titre announce en parallèle
+  d’autres formats audio listés (« negate »), afin de ne scorer qu’une piste prédominante
+  cohérente avec le parsing Servarr/Dictionarry d’origine.
 tags:
 - Audio
 conditions:

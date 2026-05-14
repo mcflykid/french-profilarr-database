@@ -1,6 +1,7 @@
 name: HLG
 pattern: \b(HLG)\b
-description: This regex matches a `HLG` generalisation. This is a basic HDR Format.
+description: >-
+  **HLG (« Hybrid Log-Gamma »)** : HDR broadcast télé / IPTV. Utilisée pour détections spéciales ou exclusions selon vos profils domestiques (« pas de HDR broadcast TV caps » ).
 tags:
 - Enhancement
 - Colour Grade

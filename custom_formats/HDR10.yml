@@ -1,5 +1,7 @@
 name: HDR10
-description: Matches the 'HDR10' Regex Pattern
+description: >-
+  Détecte **HDR10** « strict » lorsque le titre n’emploie pas immédiatement les suffixes **+**, **PLUS** réservés à HDR10+
+  (voir regex **HDR10+** projet). Complète **Dolby Vision** et **HDR** générique pour granularité scoring HDR sur stack FR.
 tags:
 - Colour Grade
 - HDR

@@ -2,8 +2,8 @@ name: FR-Regex-VFF
 pattern: (?i)\b(VFF|TRUEFRENCH|VFI|VOF|VFB|VF(?!Q|2))\b
 description: Détecte les tags audio français hors VFQ/VF2/VOQ (VFF, TRUEFRENCH, VFI,
   VOF, VFB, VF générique). Le tag VOQ (version originale québécoise, ex. QTZ) est traité
-  via FR-Regex-VF2 pour la même priorité que VFQ. Conforme à la scène FR stricte (C411,
-  La Cale, Gemini, YGGtorrent).
+  via FR-Regex-VF2 pour la même priorité que VFQ. Conforme à la scène FR stricte type
+  C411 (La Cale, Gemini).
 tags:
 - Language
 - French

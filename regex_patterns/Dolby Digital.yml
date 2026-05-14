@@ -1,6 +1,7 @@
 name: Dolby Digital
 pattern: \bDD[^a-z+]|(?<!e)ac3
-description: ''
+description: >-
+  **Dolby Digital** « classique » : alias **`DD` (hors familles `DD+`)** ou encore **`AC3`** / **`ac3`** selon motifs regex projet, distinct de **E‑AC‑3** (**Dolby Digital +**) et des flux lossless Dolby.
 tags:
 - Audio
 tests:

@@ -1,6 +1,8 @@
 name: Upscaled
 pattern: (Up[-\.\s]?scale|Re[-\.\s]?Grade|\bAIUS\b|AI[-\.\s]?enhanced)
-description: 'Matches upscales, regrades, AI Enhancements, etc. '
+description: >-
+  Repère tout marqueur d’**upscale artisanal**, **regrade** colorimétrique agressif, ou jargon **« AI enhanced / AIUS »**
+  évocateur sur un titre indexer (à bannir quand vos profils recherchent un master natif fidèle).
 tags:
 - Enhancement
 - Banned

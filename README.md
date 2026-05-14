@@ -1,6 +1,6 @@
 # french-profilarr-database
 
-Une base pour **Profilarr** à importer dans **Radarr** et **Sonarr**. Elle est pensée pour la **scène française** sur les trackers privés francophones : objectif général = privilégier les releases **avec français** (VF, MULTI, VOSTFR, etc.), une **qualité cohérente** avec la résolution du profil, et des critères qui suivent les **usages usuels de la scène FR** plutôt qu’un copier-coller “international”.
+Une base pour **Profilarr** à importer dans **Radarr** et **Sonarr**. Elle est pensée pour la **scène française** sur les trackers privés francophones dont la logique suit la **charte type C411** (par ex. **La Cale**, **Gemini**) : objectif général = privilégier les releases **avec français** (VF, MULTI, VOSTFR, etc.), une **qualité cohérente** avec la résolution du profil, et des critères qui suivent les **usages usuels de la scène FR** plutôt qu’un copier-coller “international”.
 
 La technique (audio, codec, HDR, etc.) repose largement sur le projet officiel **[Dictionarry-Hub/database](https://github.com/Dictionarry-Hub/database)**. Tout ce qui est spécifique au marché français est préfixé **`FR-`** (langue, teams, exclusions, réglages métier).
 
@@ -26,6 +26,8 @@ Les profils **720p**, **1080p** et **4K** sont **plus stricts** (par ex. exclusi
 ### Séries (`FR-Series-*`)
 
 Même logique que les films : **720p**, **1080p** ou **4K**, selon la définition que tu veux pour tes séries en priorité.
+
+**Animé** (`FR-Anime-720p`, `FR-Anime-1080p`, `FR-Anime-4K`) : mêmes scores langue/tiers/audio que les profils série correspondants, à utiliser quand Sonarr classe la série en **type Anime**. Les définitions de taille importées depuis ce dépôt restent celles globales **`sonarr:`** ; ajuster séparément l’onglet **Anime** des définitions dans Sonarr en cas de rejet trop strict sur épisodes très courts ou BD anime compacts.
 
 ---
 

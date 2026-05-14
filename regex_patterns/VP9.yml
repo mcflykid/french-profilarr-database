@@ -1,6 +1,7 @@
 name: VP9
 pattern: \b(VP9)\b
-description: VP9 is an open and royalty-free video coding format developed by Google
+description: >-
+  **VP9** : codec vidéo ouvert développé par Google (famille ouverte WebM/streaming léger sans redevances). Souvent utilisé hors écosystèmes trackers privés ciblés par vos profils HEVC.
 tags:
 - Codec
 tests:

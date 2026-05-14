@@ -1,6 +1,8 @@
 name: Dolby Vision (Without Fallback)
 pattern: (?<=^(?!.*(HDR|HULU|REMUX|BLURAY)).*?)\b(DV|Dovi|Dolby[- .]?V(ision)?)\b
-description: Matches Dolby Vision when it doesn't come with regular HDR Fallback (A Bluray Remux or a Hulu WEB-DL)
+description: >-
+  Dolby Vision sans annonce évidente d’une **couche HDR10/accompagnement classique (« fallback » HDR)** lisible depuis le titre :
+  évite DV « orphelin » mal typé hors contextes Hulu/Remux généralement garantissant double couche Dolby+HDR lorsque vos lecteurs anciens nécessitaient HDR10 de secours.
 tags:
 - Enhancement
 - Colour Grade

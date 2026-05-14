@@ -1,8 +1,6 @@
 name: FR-Regex-Streamers-Premium
 pattern: '(?:\b(?:NF|Netflix)\b|\b(?:AMZN|(?:AMAZON)(?=\s*.(?:WEB-?DL|WEBRIP)))\b|\b(?:dsnp|dsny(?:p)?|disney\+)\s*\b|\b(?:ATVP|ATV|APTV|Apple TV\+)\s*\b|\b(?:HMAX|HBOM|(?:HBO[ ._-]?MAX)(?=\s*.(?:WEB-?DL|WEBRIP)))\b|\b(?:(?<!hbo[ ._-])max)\b(?=[ ._-]web[ ._-]?(?:dl|rip)\b)|\[(?:MAX)\b|\b(?:MAX)\]|\b(?:PMTP|Paramount Plus)\b)'
-description: Regroupe les motifs « streamers premium » (Netflix, Prime, Disney+, Apple
-  TV+, HBO Max / Max, Paramount+) en une seule regex projet — évite 8 fichiers séparés.
-  Comportement aligné sur les patrons Dictionarry d’origine.
+description: Regroupe les motifs « streamers premium » (**Netflix**, **Prime Video**, **Disney+**, **Apple TV+**, **HBO Max / Max**, **Paramount+**) en une seule regex projet — évite huit motifs séparés. Comportement repris des modèles **Dictionarry** d’origine.
 tags:
 - Streaming Service
 - French

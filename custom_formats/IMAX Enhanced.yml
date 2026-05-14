@@ -1,5 +1,6 @@
 name: IMAX Enhanced
-description: ''
+description: >-
+  Détecte la mention **IMAX Enhanced** dans le titre lorsque catalogue ou indexeur précise cette **livraison « IMAX à domicile »** associée (**Disney+**, collaborations **Sony Bravia CORE** / **BC**, autres déploiements studio selon nomenclatures locales). Séparée du bonus **IMAX** « générique » : évite **d’additionner deux fois** le même film quand une édition ne porte que l’aspect **Enhanced** alors qu’une autre ne cite que **IMAX** sans qualifier.
 tags:
 - Edition
 conditions:

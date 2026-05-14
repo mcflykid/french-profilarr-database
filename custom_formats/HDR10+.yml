@@ -1,5 +1,7 @@
 name: HDR10+
-description: Matches the 'HDR10+' Regex Pattern
+description: >-
+  Détecte **HDR10+ / HDR10 PLUS** (« dynamic HDR metadata », souvent accolé après **HDR10** dans les noms de fichiers trackers).
+  Négations **SDR / PQ standalone / HLG** pour éviter faux positifs quand différentes couches HDR coexistent verbalement dans la release.
 tags:
 - Colour Grade
 - HDR

@@ -1,5 +1,8 @@
 name: Full Disc
-description: 'Matches the ''Full Disc'' regex pattern and negates any remuxes / encodes. '
+description: >-
+  Indique une **image disque Blu-ray intacte ou ISO / structure complète** dans le titre (regex `Full Disc`).
+  Mutualise exclusions **WEB-DL / WEBRip**, **Remux** et codecs **x264/x265 annoncés** pour distinguer véritable transport
+  disque fichier-image vs encodes classiques indexer.
 tags:
 - Storage
 conditions:

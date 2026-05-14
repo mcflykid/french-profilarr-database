@@ -1,6 +1,7 @@
 name: DTS-HD MA
 pattern: (?i)\b(dts[-_. ]?(ma|hd([-_. ]?ma)?|xll))(\b|\d)
-description: ''
+description: >-
+  **DTS‑HD Master Audio** : famille **MA** / **`DTS‑HD MA`** / **`XLL`** (sans perte) distincte du **DTS:X** et du **DTS‑HRA**. Très fréquent sur remux Blu-ray / UHD et certains flux WEB premium.
 tags:
 - Audio
 tests:

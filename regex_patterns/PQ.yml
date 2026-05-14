@@ -1,6 +1,7 @@
 name: PQ
 pattern: \b(PQ|PQ10)\b
-description: This regex matches a `PQ` generalisation. This is a basic HDR Format.
+description: >-
+  **PQ (« Perceptual Quantizer »)** : signal HDR statique SMPTE ST2084 associé généralement **HDR10**/**HDR10+** metadata — utile motifs « Basic HDR PQ detection » composites Dictionarry.
 tags:
 - Enhancement
 - Colour Grade

@@ -1,5 +1,7 @@
 name: 3D
-description: Matches the '3D' Regex Pattern
+description: >-
+  Repère tout contenu vidéo **stéréoscopique 3D** (« Bluray3D », **SBS** half/full, tags selon regex `3D`).
+  Souvent **malus dur** puisque peu d’installations domestiques utilisent encore la 3D active/passive.
 tags:
 - Banned
 - Enhancement

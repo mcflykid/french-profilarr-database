@@ -1,24 +1,29 @@
 # ============================================================================
-# Radarr — Films 720p (charte FR type C411 : La Cale, Gemini)
+# Sonarr — Animé / animation 720p (charte FR type C411 : La Cale, Gemini)
 # ----------------------------------------------------------------------------
-# Profil léger pour 720p : priorité langue FR absolue, audio modéré, exclusions
-# fortes sur Remux, AV1, Full Disc et groupes blacklistés. Adapté aux flux WEB
-# et anciennes saisons / catalogues HD.
+# Dérivé du profil série 720p. Les épisodes anime sont souvent courts (~24 min
+# nominaux) ⇒ fichiers totals plus légers pour un même Mb/min sous Sonarr.
+# Les définitions de taille partagent `media_management/quality_definitions.yml`
+# (clé sonarr:) ; si une anime BD compacte est rejetée par la taille, ajuster aussi
+# les Définitions de qualité **Anime** dans Sonarr (réglages instance), distinctes
+# des séries drama.
 # ============================================================================
-name: FR-Films-720p
+name: FR-Anime-720p
 description: >
-  Profil Radarr 720p pour films sur trackers francophones type C411 (La Cale, Gemini).
-  Priorise la langue (MULTI VF2 > MULTI VFF > VF2 > VFF > VOSTFR), récompense les équipes françaises sur quatre paliers,
-  bonus audio modéré, codec efficient (HEVC/h265/x265). Bloque Remux, Full Disc, AV1, Upscaled.
+  Profil Sonarr 720p pour animés sur trackers francophones type C411 (La Cale, Gemini).
+  À utiliser lorsque la série Sonarr est de type « Anime ». Priorité langue FR, équipes sur
+  quatre paliers, audio modéré, codec efficient. Inclut HDTV-720p. Bloque Remux, Full Disc,
+  AV1, Upscaled.
 tags:
 - 720p
+- anime
 - French
 upgradesAllowed: true
 minCustomFormatScore: 20000
 upgradeUntilScore: 888888
 minScoreIncrement: 1
 custom_formats:
-# === Langue (priorité absolue) ===
+# === Langue ===
 - name: FR-MULTI-VF2
   score: 100000
 - name: FR-MULTI-VFF
@@ -30,7 +35,7 @@ custom_formats:
 - name: FR-VOSTFR
   score: 20000
 
-# === Équipes françaises (quatre paliers : sommet / 4KLight+vétérans / G2 / G3–G4) ===
+# === Équipes FR (quatre paliers) ===
 - name: FR-Tier-01
   score: 2400
 - name: FR-Tier-02
@@ -40,7 +45,7 @@ custom_formats:
 - name: FR-Tier-04
   score: 1000
 
-# === Audio (bonus modéré) ===
+# === Audio ===
 - name: Atmos
   score: 200
 - name: TrueHD
@@ -66,20 +71,11 @@ custom_formats:
 - name: Xvid
   score: -200
 
-# === Édition (subtile) ===
-- name: IMAX
-  score: 100
-- name: IMAX Enhanced
-  score: 130
-- name: Theatrical
-  score: 60
-- name: 3D
-  score: -100
-
-# === Repacks / corrections ===
+# === Source / saison ===
+- name: Season Pack
+  score: 50
 
 # === Streamers (consolidés) ===
-
 
 - name: FR-Streamer-Premium
   score: 50
@@ -90,7 +86,7 @@ custom_formats:
 - name: FR-HDLight
   score: 50
 
-# === Exclusions fortes (charte FR + compatibilité) ===
+# === Exclusions ===
 - name: FR-Blockers
   score: -999999
 - name: Remux
@@ -99,10 +95,10 @@ custom_formats:
   score: -999999
 - name: AV1
   score: -999999
-- name: Upscale
+- name: Upscaled
   score: -999999
 
-# === Repack (3 → 2 → simple) ===
+# === Repack ===
 - name: FR-Repack-3
   score: 110
 - name: FR-Repack-2
@@ -114,12 +110,14 @@ qualities:
 - id: -2
   name: 720p Quality
   qualities:
-  - id: 13
+  - id: 11
     name: Bluray-720p
-  - id: 14
+  - id: 5
     name: WEBDL-720p
-  - id: 15
+  - id: 6
     name: WEBRip-720p
+  - id: 1
+    name: HDTV-720p
 upgrade_until:
   id: -2
   name: 720p Quality

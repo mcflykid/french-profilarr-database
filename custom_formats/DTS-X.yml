@@ -1,5 +1,8 @@
 name: DTS-X
-description: Matches 'DTS-X' Regex Pattern and negates any other audio types that might conflict.
+description: |-
+  Détecte **DTS:X** objet dans le titre. Les négations sur DTS‑HD MA, TrueHD sans Atmos équivalent etc.
+  garantissent qu’une seule « famille » DTS premium prévaut lors du passage des conditions combinées Servarr,
+  suivant toujours le schéma de conflits hérité de Dictionarry.
 tags:
 - Audio
 conditions:

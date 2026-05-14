@@ -1,5 +1,7 @@
 name: x264 (2160p)
-description: 'Matches ''x264'' regex pattern only when 2160p is also found. '
+description: >-
+  **x264 uniquement lorsque la ligne annonce également 2160p** (« x264 fake 4K » typique) pour les **bloquer** ou les **noter très négativement**
+  alors que vos profils 4K préfèrent HEVC propre (« x264 @ UHD », voir également CF dédiée `x264 (2160p)` combinée suivant vos YAML profils Films/Séries anime).
 tags:
 - Codec
 conditions:

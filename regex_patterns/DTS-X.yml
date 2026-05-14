@@ -1,6 +1,7 @@
 name: DTS-X
 pattern: (?i)\b(dts[-_. :]?x)\b(?!\d)
-description: ''
+description: >-
+  **DTS:X** (« immersif objet ») hors variantes parasites numériques (`\d`), variantes typo **dts.x / dts_x** permissives suivant ancien tableau TRaSH.
 tags:
 - Audio
 tests:

@@ -1,5 +1,8 @@
 name: Dolby Vision (Without Fallback)
-description: Matches the 'Dolby Vision (Without Fallback) Regex Pattern
+description: >-
+  **Dolby Vision sans HDR10 fallback lisible dans le titre** : cas problématiques pour lecteurs anciens où seule la couche DV
+  est taguée hors combinaisons **HDR10 / REMUX Blu-ray**. Utilisée en léger malus (« Without Fallback ») sur profils pensés pour
+  la compatibilité matérielle domestique généraliste lorsque aucune mention HDR de secours ne parait sur la ligne de release brute.
 tags:
 - Colour Grade
 - HDR

@@ -1,6 +1,7 @@
 name: 7.1 Surround
 pattern: \D7\.1\D
-description: ''
+description: >-
+  Détecte l’empreinte **`7.1`** (séparateurs **non chiffres** avant/après, motif `\D7\.1\D`) pour éviter les collisions avec d’autres suites numériques ; utile lorsque vos profils valorisent explicitement mixes **surround large 7.1** mentionnés sur la ligne release (Atmos/objet utilisant parfois d’autres marqueurs `Atmos`).
 tags:
 - Audio
 - Channel

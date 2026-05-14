@@ -1,7 +1,7 @@
 name: FR-Tier-03
 pattern: \b(ENIGMA|NEOSTARK|HYPERION|TOXIC|N3ZUKO|J4CK|MAXADONF|Maxadonf|D4RK|R3MiX|RAPTOR|Themouche|SUPERFLU|LaFistiniere|R3DUCT0|SHADOW|Shadow|OPTIMUM|ESPER|D5T0)\b
-description: Teams Tier 3 (G2 confirmé C411) — groupes fiables à fort volume, sous
-  les deux premières couches d’élite.
+description: >-
+  **Niveau scène 03** — groupe **G2 confirmé** C411 : très fiable à fort débit, placé sous les deux premiers paliers « élite » mais au-dessus des archivistes/observateurs du palier 04.
 tags:
 - Release Group
 - French

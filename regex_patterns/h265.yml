@@ -1,7 +1,8 @@
 name: h265
 pattern: (?i)h\s*\.?\s*265
-description: A video compression standard that delivers higher efficiency than H.264, enabling better quality at lower bitrates,
-  ideal for 4K and HDR content.
+description: >-
+  Détecte la désignation **H.265 / H265** tolérante aux espacements autour du point (alternative graphique commune à « x265 »).
+  Codec **HEVC** : meilleure efficacité que AVC à débit équivalent ; très présent pour UHD HDR sur vos trackers français.
 tags:
 - Codec
 tests:

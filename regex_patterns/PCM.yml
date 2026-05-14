@@ -1,6 +1,7 @@
 name: PCM
 pattern: (?i)\b(l?)PCM(\b|\d)
-description: ''
+description: >-
+  **LPCM / PCM** (« **PCM** », **LPCM**) : audio PCM linéaire non compressé, souvent sur captures télé ou master Blu-ray hors Dolby bitstream (`Dolby Digital`). Insensible à la casse (**`lpcm`** accepté par le motif).
 tags:
 - Audio
 tests:

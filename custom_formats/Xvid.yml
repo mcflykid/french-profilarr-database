@@ -1,5 +1,7 @@
 name: Xvid
-description: Matches Xvid Regex
+description: >-
+  Détecte le codec ancien **`Xvid` / MPEG-4 ASP legacy** encore présent sur certains DVDsrip SD voire anciens épisodes télé.
+  Score souvent très négatif sur profils HD/4K (« -500 ») pour pousser HEVC / AVC moderne trackers privés.
 tags:
 - Codec
 conditions:

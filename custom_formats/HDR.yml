@@ -1,5 +1,8 @@
 name: HDR
-description: Matches the 'HDR' Regex Pattern
+description: >-
+  Repère une mention **HDR** « fourre-tout » dans le titre quand elle n’est **pas** mieux précisée comme **HDR10**,
+  **HDR10+**, pas plus signalée comme **SDR**, **PQ** isolé ou **HLG** (voir exclusions). Réduit le risque de double noter HDR
+  plusieurs fois alors que Dolby Vision peut coexister sur d’autres CF suivant profil.
 tags:
 - Colour Grade
 - HDR

@@ -1,7 +1,7 @@
 name: FR-Regex-4KLight
 pattern: (?i)\b4K[ ._-]?Light\b
 description: Détecte le tag 4KLight (Bluray 4K UHD allégé, qualité visuelle préservée
-  avec taille réduite). Référence sur la scène FR (C411 / La Cale / Gemini / YGGtorrent),
+  avec taille réduite). Référence sur la scène FR type C411 (La Cale, Gemini),
   particulièrement les releases QTZ et Erotelemo réputées pour leur qualité d'encodage
   4KLight.
 tags:

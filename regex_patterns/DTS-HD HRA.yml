@@ -1,6 +1,7 @@
 name: DTS-HD HRA
 pattern: (?i)dts[-. ]?(hd[. ]?)?(hra?|hi\b)
-description: ''
+description: >-
+  **DTS-HD High Resolution** (**HRA**, alias **HI**) : couche DTS « haute résolution » mais **non lossless**, intermédiaire entre DTS classique Core et MA.
 tags:
 - Audio
 tests:

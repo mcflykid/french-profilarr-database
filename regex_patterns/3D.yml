@@ -1,12 +1,6 @@
 name: 3D
 pattern: (?<=\b[12]\d{3}\b).*\b((bluray|bd)?3d|sbs|half[ .-]ou|half[ .-]sbs)\b
-description: 'Matches terms related to 3D video formats:
-
-  - `bluray3d` or `bd3d` (optional `bluray` or `bd` followed by `3d`).
-
-  - `sbs` (side-by-side).
-
-  - `half ou` or `half sbs` with space (` `), dot (`.`), or hyphen (`-`) as separators.'
+  Repère marqueurs **`bluray3d` / `bd3d`**, **`sbs`** (côte‑à‑côte) et **`half‑ou` ou `half‑sbs`** (séparés par `.`, `-` ou espace après un bloc année quatre chiffres) — utile pour exclure ou pénaliser fortement vos imports 1080p/4k si vous n’utilisez pas la 3D passif/actif domestique.
 tags:
 - Enhancement
 - Banned

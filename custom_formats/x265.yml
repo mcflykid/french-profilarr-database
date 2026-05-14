@@ -1,5 +1,7 @@
 name: x265
-description: Matches 'x265' regex pattern.
+description: >-
+  Détecte l’empreinte **Encodeur logiciel « x265 »** dans le titre (variante très répandue dans la scene FR/US).
+  Fonctionnement aligné avec `h265` / `HEVC` pour répartir vos bonus codecs selon la graphie exactement rencontrée sur les indexeurs.
 tags:
 - Codec
 conditions:

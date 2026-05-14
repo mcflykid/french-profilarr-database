@@ -3,11 +3,10 @@ pattern: ^(?!.*\b((?<!HD[._ -]|HD)DVD|BDRip|MKV|XviD|WMV|d3g|BDREMUX|REMUX|^(?=.
   ]?1|MVC|MPEG[-_. ]?2)\b))\b)(((?=.*\b(Blu[-_. ]?ray|BD|HD[-_. ]?DVD)\b)(?=.*\b(AVC|HEVC|VC[-_. ]?1|MVC|MPEG[-_. ]?2|BDMV|ISO)\b))|^((?=.*\b(^((?=.*\b((.*_)?COMPLETE.*|Dis[ck])\b)(?=.*(Blu[-_.
   ]?ray|HD[-_. ]?DVD)))|3D[-_. ]?BD|BR[-_. ]?DISK|Full[-_. ]?Blu[-_. ]?ray|^((?=.*((BD|UHD)[-_. ]?(25|50|66|100|ISO)))))))).*|(?i)(DVD9|DVD5|NTSC|PAL|VOB
   IFO|VC-1|AVC|MPEG-2|\bCOMPLETE[-.\s]?(?:UHD[-.\s])?BLU[-.\s]?RAY\b|\bCOMPLETE BLURAY\b|\bBR-Disk\b)
-description: A Full Disc release refers to a complete copy of a physical media disc, such as a DVD or Blu-ray, preserving
-  all original content including menus, bonus features, and multiple audio or subtitle tracks. Unlike compressed or re-encoded
-  formats, Full Disc files maintain the full structure and quality of the original disc, often stored as ISO files or folders
-  like BDMV for Blu-rays. These releases are ideal for users seeking an authentic, unaltered experience identical to using
-  the physical disc.
+description: >-
+  Repère une **release « Full Disc »** : copie exhaustive d’un média physique (DVD, Blu-ray/UHD…) conservant dossiers menus,
+  bonus, pistes et structure d’origine (souvent **ISO / BDMV / dossier BR-DISK**). Ce motif est très strict : il évite faux positifs avec
+  des encodes légers (« BDRip », « REMUX », `x265`…) explicitement exclus par lookahead négatif intégré au pattern volumineux.
 tags:
 - Storage
 tests:

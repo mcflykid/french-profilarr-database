@@ -1,5 +1,6 @@
 name: Season Pack
-description: Matches Season Pack Release Type on Sonarr
+description: >-
+  Identifie un **Season Pack Sonarr** (saison complète ramenée dans **un seul** flux de téléchargement). Petit bonus utile lorsque vos indexeurs mettent en avant **l’ensemble d’une saison** plutôt qu’un épisode isolé tout en gardant les règles **qualités natives Sonarr** inchangées dans l’instance.
 tags:
 - Enhancement
 conditions:

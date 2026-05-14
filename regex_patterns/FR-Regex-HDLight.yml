@@ -1,7 +1,7 @@
 name: FR-Regex-HDLight
 pattern: (?i)\bHDLight\b
 description: Détecte le tag HDLight (Bluray rip allégé, qualité réduite mais HD).
-  Convention typique scène FR sur C411 / La Cale / Gemini / YGGtorrent pour économiser
+  Convention typique scène FR type C411 (La Cale, Gemini) pour économiser
   bande passante tout en conservant 1080p / 720p.
 tags:
 - Source

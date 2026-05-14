@@ -1,5 +1,7 @@
 name: VVC
-description: Matches the 'VVC' Regex Pattern
+description: >-
+  Détecte **VVC / H.266 / MPEG-I Part 8** encore rare sur les cercles français mais signalé lorsqu’un encodeur avant-gardiste l’emploie —
+  léger bonus ou neutre suivant vos profils 4K (ici souvent léger positif résiduel lorsque vos lecteurs peuvent décoder HW).
 tags:
 - Codec
 - Bleeding Edge

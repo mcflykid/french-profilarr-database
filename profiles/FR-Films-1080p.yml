@@ -1,14 +1,14 @@
 # ============================================================================
-# Radarr — Films 1080p (scène FR : C411 / La Cale / Gemini / YGGtorrent)
+# Radarr — Films 1080p (charte FR type C411 : La Cale, Gemini)
 # ----------------------------------------------------------------------------
-# Profil principal 1080p : langue FR, teams FR, audio premium, codec efficient,
+# Profil principal 1080p : langue FR, équipes françaises sur quatre paliers, audio premium, codec efficient,
 # édition (IMAX/Theatrical), streamers. Exclut Remux / Full Disc / AV1
 # pour limiter taille et privilégier compatibilité matériel.
 # ============================================================================
 name: FR-Films-1080p
 description: >
-  Profil Radarr 1080p pour films sur trackers francophones (La Cale, Gemini, YGGtorrent, esprit C411).
-  Priorise la langue (MULTI VF2 > MULTI VFF > VF2 > VFF > VOSTFR), bonus teams FR sur 4 tiers,
+  Profil Radarr 1080p pour films sur trackers francophones type C411 (La Cale, Gemini).
+  Priorise la langue (MULTI VF2 > MULTI VFF > VF2 > VFF > VOSTFR), bonus équipes françaises sur quatre paliers,
   audio premium (Atmos/TrueHD/DTS-X/DTS-HD MA), codec efficient (x265/h265), édition (IMAX/Theatrical),
   streamers internationaux. Bloque Remux, Full Disc, AV1, Upscaled.
 tags:
@@ -31,7 +31,7 @@ custom_formats:
 - name: FR-VOSTFR
   score: 20000
 
-# === Teams FR (4 tiers) ===
+# === Équipes FR (quatre paliers) ===
 - name: FR-Tier-01
   score: 2400
 - name: FR-Tier-02
@@ -102,8 +102,6 @@ custom_formats:
   score: 80
 - name: 3D
   score: -300
-- name: Internal
-  score: 50
 
 # === Repacks ===
 

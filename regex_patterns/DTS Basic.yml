@@ -1,6 +1,7 @@
 name: DTS Basic
 pattern: DTS[ .]?[1-9]
-description: ''
+description: >-
+  **DTS** suivi quasi immédiatement d’un chiffre de canal (**`DTS.5`**, **`DTS 5`**) : variante télégraphique ancienne télé/broadcast (pattern `DTS[ .]?[1-9]` projet Dictionarry).
 tags:
 - Audio
 tests:

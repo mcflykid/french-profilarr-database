@@ -1,6 +1,8 @@
 name: DTS-HD HRA
-description: Matches 'DTS-HD HRA' Regex Pattern and negates any other audio types
-  that might conflict.
+description: |-
+  Détecte **DTS-HD High Resolution Audio** (« HRA »). Les exclusions mutuelles éviteront de classer plusieurs
+  bonus audio différents (DTS‑HD MA, DTS:X, Dolby TrueHD, FLAC…) lorsque plusieurs tags légitimes se superposent
+  dans une release internationale brute.
 tags:
 - Audio
 conditions:

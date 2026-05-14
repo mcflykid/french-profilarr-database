@@ -1,6 +1,7 @@
 name: x264
 pattern: ^(?!.*(?i:remux)).*([xh](\.?264)|DVDRip)
-description: 'An open source encoder that produces H.264 videos. '
+description: >-
+  **x264 / H.264 (AVC)** : encodeur open-source très répandu pour fichiers au format MPEG-4 AVC. Le motif couvre **`x264`**, **`h264`**, **`H.264`**, ainsi que **`DVDRip`** (anciens téléchargements DVD → AVC SD) tout en **excluant explicitement tout titre contenant « remux »** pour ne pas doubler avec les lignes Blu-ray natives.
 tags:
 - Encoder
 - Codec

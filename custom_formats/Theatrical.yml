@@ -1,8 +1,7 @@
 ---
 name: Theatrical
 description: |-
-  Édition Theatrical (titre). Exclusion Special Edition retirée — seuls IMAX restent
-  exclus pour éviter le double comptage avec les CF IMAX.
+  Édition **Theatrical** détectée sur le titre. La prise en charge globale de la mention **« édition spéciale »** a été retirée volontairement — seuls les marqueurs **IMAX** restent gérés par les **formats personnalisés** dédiés pour éviter un double classement.
 tags:
 - Edition
 conditions:

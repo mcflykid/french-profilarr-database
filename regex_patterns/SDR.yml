@@ -1,6 +1,7 @@
 name: SDR
 pattern: \b(SDR)\b
-description: 'Explicitly matches labelled Standard Dynamic Range, i.e. "SDR" '
+description: >-
+  Détection explicite de la mention **« SDR »** sur le titre : **Gamme dynamique standard** (« Standard Dynamic Range »), soit **pas** HDR — utile pour fiabiliser ou filtrer des UHD/remux où l’éditeur indique noir sur blanc une version **sans** extension dynamique élargie.
 tags:
 - HDR
 tests:

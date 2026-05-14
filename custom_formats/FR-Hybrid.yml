@@ -1,8 +1,8 @@
 name: FR-Hybrid
-description: Détecte le tag HYBRID (Bluray hybride — vidéo et audio sélectionnées
-  parmi plusieurs sources pour atteindre la meilleure qualité possible). Source premium
-  sur scène FR, courante en UHD BluRay. Bonus modéré pour identification d'un encodage
-  haut de gamme.
+description: Détecte le tag **HYBRID** (« Blu-ray hybride » : image et pistes recomposées
+  à partir **de plusieurs matrices** pour tirer parti du meilleur de chaque source). Référence **premium**
+  très courante chez nous en **Ultra HD Blu-ray**. Bonus **modéré** lorsque le titre trace **explicitement**
+  cet assemblage haut de gamme.
 tags:
 - Source
 - French

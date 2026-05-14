@@ -1,5 +1,7 @@
 name: VP9
-description: Matches the 'VP9' Regex Pattern
+description: >-
+  Repère mentions **VP9** (flux issus de pipelines type Google/streaming léger ou certains épisodes anime WEB). Malus léger (« -200 ») car
+  on privilégie en général **HEVC/x265** lorsque le tracker propose l’alternative pour la même œuvre.
 tags:
 - Codec
 - Bleeding Edge

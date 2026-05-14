@@ -1,13 +1,13 @@
 # ============================================================================
-# Sonarr — Séries 720p (scène FR : C411 / La Cale / Gemini / YGGtorrent)
+# Sonarr — Séries 720p (charte FR type C411 : La Cale, Gemini)
 # ----------------------------------------------------------------------------
 # Profil léger pour séries 720p (TV cap fréquent). Langue FR prioritaire,
 # audio modéré, exclusions Remux / AV1 / Upscaled. Bonus Season Pack.
 # ============================================================================
 name: FR-Series-720p
 description: >
-  Profil Sonarr 720p pour séries sur trackers francophones (La Cale, Gemini, YGGtorrent, esprit C411).
-  Priorise langue FR, bonus teams sur 4 tiers, audio modéré, codec efficient. Inclut HDTV-720p
+  Profil Sonarr 720p pour séries sur trackers francophones type C411 (La Cale, Gemini).
+  Priorise langue FR, bonus équipes françaises sur quatre paliers, audio modéré, codec efficient. Inclut HDTV-720p
   pour TV cap, bonus Season Pack. Bloque Remux, AV1, Upscaled.
 tags:
 - 720p
@@ -30,7 +30,7 @@ custom_formats:
 - name: FR-VOSTFR
   score: 20000
 
-# === Teams FR (4 tiers) ===
+# === Équipes FR (quatre paliers) ===
 - name: FR-Tier-01
   score: 2400
 - name: FR-Tier-02
@@ -67,12 +67,8 @@ custom_formats:
   score: -200
 
 # === Source/Édition séries ===
-- name: Internal
-  score: 30
 - name: Season Pack
   score: 50
-- name: TV Extras
-  score: 30
 
 # === Repacks ===
 

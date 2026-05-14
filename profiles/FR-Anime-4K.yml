@@ -1,18 +1,18 @@
 # ============================================================================
-# Sonarr — Séries 4K UHD (charte FR type C411 : La Cale, Gemini)
+# Sonarr — Animé / animation 4K UHD (charte FR type C411 : La Cale, Gemini)
 # ----------------------------------------------------------------------------
-# Équivalent série du profil films 4K : langue FR, HDR fort, audio premium,
-# codec efficient. Exclut x264@UHD, Remux, Full Disc, AV1, Upscaled.
+# Dérivé FR-Series-4K. Offres légales 4K/stream par titre ; tailles d’épisode courtes :
+# voir Définitions **Anime** dans Sonarr pour affiner les plages hors ce dépôt.
 # ============================================================================
-name: FR-Series-4K
+name: FR-Anime-4K
 description: >
-  Profil Sonarr 4K pour séries sur trackers francophones type C411 (La Cale, Gemini).
-  Priorise langue FR, valorise fortement Dolby Vision puis HDR10+/HDR10/HDR, audio premium,
-  édition IMAX, bonus Season Pack. Exclut x264@UHD, Remux, Full Disc, AV1, Upscaled.
+  Profil Sonarr 4K pour animés (type Anime Sonarr) sur trackers francophones type C411.
+  Dolby Vision puis HDR10+/HDR10, audio premium, codec efficient ; bonus 4KLight / Hybrid.
+  Exclut x264@2160p, Remux, Full Disc, AV1, Upscaled.
 tags:
 - 2160p
+- anime
 - French
-- tv
 upgradesAllowed: true
 minCustomFormatScore: 20000
 upgradeUntilScore: 888888
@@ -40,7 +40,7 @@ custom_formats:
 - name: FR-Tier-04
   score: 1000
 
-# === HDR (priorité forte en 4K) ===
+# === HDR ===
 - name: Dolby Vision
   score: 4500
 - name: Dolby Vision (Without Fallback)
@@ -92,11 +92,11 @@ custom_formats:
 - name: Xvid
   score: -500
 
-# === Source 4K ===
+# === Source ===
 - name: UHD Bluray
   score: 500
 
-# === Édition / Séries ===
+# === Édition ===
 - name: IMAX
   score: 250
 - name: IMAX Enhanced
@@ -104,26 +104,21 @@ custom_formats:
 - name: Season Pack
   score: 80
 
-# === Repacks ===
-
 # === Streamers (consolidés) ===
-
 
 - name: FR-Streamer-Premium
   score: 120
 - name: FR-Streamer-Standard
   score: 70
 
-
-# === 4KLight (QTZ/Erotelemo — qualité signature scène FR) ===
+# === 4KLight / Hybrid ===
 - name: FR-4KLight
   score: 2500
 
-# === Hybrid (Bluray hybride premium) ===
 - name: FR-Hybrid
   score: 500
 
-# === Exclusions fortes ===
+# === Exclusions ===
 - name: FR-Blockers
   score: -999999
 - name: Remux
@@ -137,7 +132,7 @@ custom_formats:
 - name: Upscaled
   score: -999999
 
-# === Repack (3 → 2 → simple) ===
+# === Repack ===
 - name: FR-Repack-3
   score: 220
 - name: FR-Repack-2

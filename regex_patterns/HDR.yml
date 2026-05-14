@@ -1,6 +1,7 @@
 name: HDR
 pattern: \b(HDR)\b
-description: 'This regex matches a `HDR` generalisation. This can be HDR10, HDR10+, etc. '
+description: >-
+  Champ lexical **HDR** ouvert (attrape « HDR », etc.) encore ambigu jusqu’aux variantes Dolby/HDR10+ ultérieurement filtrées en aval par CF plus fines (**HDR10**, **HDR10+**, exclusions **SDR**…).
 tags:
 - Enhancement
 - Colour Grade

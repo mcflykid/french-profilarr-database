@@ -1,6 +1,7 @@
 name: DTS
 pattern: \bDTS(\b|\d)
-description: ''
+description: >-
+  **Core DTS (« DTS » générique hors extensions HD ou X**) juste suivie canalisation numérique (ex **`DTS5`**, **`DTS.5`**) — format audio compressé ancien télé/broadcast léger remaster Blu-ray française.
 tags:
 - Audio
 tests:
