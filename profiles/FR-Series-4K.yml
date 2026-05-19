@@ -40,17 +40,17 @@ custom_formats:
 - name: FR-Tier-04
   score: 1000
 
-# === HDR (priorité forte en 4K) ===
+# === HDR (priorité forte en 4K ; écarts resserrés entre HDR10+/HDR/DD pour titres trackers hétérogènes) ===
 - name: Dolby Vision
   score: 4500
 - name: Dolby Vision (Without Fallback)
   score: -500
 - name: HDR10+
-  score: 2500
+  score: 2000
 - name: HDR10
   score: 1000
 - name: HDR
-  score: 500
+  score: 1000
 
 # === Audio premium ===
 - name: Atmos
@@ -70,7 +70,7 @@ custom_formats:
 - name: Dolby Digital +
   score: 400
 - name: Dolby Digital
-  score: 200
+  score: 100
 - name: AAC
   score: 50
 - name: FLAC
