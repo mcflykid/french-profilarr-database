@@ -36,11 +36,12 @@ INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Te
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-PopHD', 'Équipe PopHD — 1080p HDLight x264, MULTI. Bonus 720p/1080p.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-QTZ', 'Équipe QTZ — référence 4KLight. Parmi les plus hauts scores team.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-SUPPLY', 'Équipe SUPPLY — WEB 2160p premium H265/DV/Atmos. Fort bonus 4K.', 0);
-INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-Slay3R', 'Équipe Slay3R — WEB 2160p volume et exclus. Bonus élevé 4K.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-Slay3R', 'Équipe Slay3R — WEB 1080p/2160p/720p C411 (H264/H265, exclus).', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-TFA', 'Équipe TFA — WEB 2160p MULTI. Bonus intermédiaire-haut.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-THESYNDiCATE', 'Équipe THESYNDiCATE — WEB 2160p HEVC. AV1 toujours exclu.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-TOXIC', 'Équipe TOXIC — 1080p HDLight. Souvent cumul FR-HDLight.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-TyHD', 'Équipe TyHD — WEB 2160p HEVC compact. Bonus modéré 4K.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-Winks', 'Équipe Winks — 1080p BluRay/WEB x265 MULTI (~4–5,5 Go). Référence C411.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Tier-01', 'Palier 01 encodeurs (BOUBA, NEOSTARK, …). Sous les équipes FR-Team.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Tier-02', 'Palier 02 encodeurs (TLC, DFE, KPORAL, …). Sous FR-Tier-01.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-VF2', 'VF2, VFQ ou VOQ sans MULTI. Ajuste la politique VFQ/Québec via les scores.', 0);

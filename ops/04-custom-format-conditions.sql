@@ -365,6 +365,12 @@ INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, 
 SELECT 'FR-Team-TyHD', 'TyHD Group', 'release_group', 'all', 0, 0
 FROM custom_formats cf WHERE cf.name = 'FR-Team-TyHD';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Team-Winks', 'Winks', 'release_title', 'all', 0, 0
+FROM custom_formats cf WHERE cf.name = 'FR-Team-Winks';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Team-Winks', 'Winks Group', 'release_group', 'all', 0, 0
+FROM custom_formats cf WHERE cf.name = 'FR-Team-Winks';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
 SELECT 'FR-Tier-01', 'Palier 01 — longue traîne haute', 'release_title', 'all', 0, 1
 FROM custom_formats cf WHERE cf.name = 'FR-Tier-01';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
@@ -830,6 +836,10 @@ INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expr
 SELECT 'FR-Team-TyHD', 'TyHD', re.name FROM regular_expressions re WHERE re.name = 'TyHD';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'FR-Team-TyHD', 'TyHD Group', re.name FROM regular_expressions re WHERE re.name = 'TyHD';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-Team-Winks', 'Winks', re.name FROM regular_expressions re WHERE re.name = 'Winks';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-Team-Winks', 'Winks Group', re.name FROM regular_expressions re WHERE re.name = 'Winks';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'FR-Tier-01', 'Palier 01 — longue traîne haute', re.name FROM regular_expressions re WHERE re.name = 'FR-Tier-01';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)

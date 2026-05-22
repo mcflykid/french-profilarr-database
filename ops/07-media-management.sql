@@ -20,7 +20,7 @@ INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, 
 SELECT 'FR-Media-Radarr', q.name, 0, 2000, 1990
 FROM qualities q WHERE q.name = 'BR-DISK';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
-SELECT 'FR-Media-Radarr', q.name, 1200, 2000, 1800
+SELECT 'FR-Media-Radarr', q.name, 900, 2600, 1750
 FROM qualities q WHERE q.name = 'Bluray-1080p';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
 SELECT 'FR-Media-Radarr', q.name, 0, 2000, 55
@@ -80,10 +80,10 @@ INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, 
 SELECT 'FR-Media-Radarr', q.name, 0, 2000, 1990
 FROM qualities q WHERE q.name = 'Unknown';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
-SELECT 'FR-Media-Radarr', q.name, 0, 2000, 1500
+SELECT 'FR-Media-Radarr', q.name, 600, 3200, 1650
 FROM qualities q WHERE q.name = 'WEBDL-1080p';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
-SELECT 'FR-Media-Radarr', q.name, 0, 2000, 60
+SELECT 'FR-Media-Radarr', q.name, 40, 2000, 70
 FROM qualities q WHERE q.name = 'WEBDL-2160p';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
 SELECT 'FR-Media-Radarr', q.name, 0, 2000, 1990
@@ -92,10 +92,10 @@ INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, 
 SELECT 'FR-Media-Radarr', q.name, 0, 1000, 600
 FROM qualities q WHERE q.name = 'WEBDL-720p';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
-SELECT 'FR-Media-Radarr', q.name, 0, 2000, 1500
+SELECT 'FR-Media-Radarr', q.name, 600, 3200, 1650
 FROM qualities q WHERE q.name = 'WEBRip-1080p';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
-SELECT 'FR-Media-Radarr', q.name, 0, 2000, 60
+SELECT 'FR-Media-Radarr', q.name, 40, 2000, 70
 FROM qualities q WHERE q.name = 'WEBRip-2160p';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
 SELECT 'FR-Media-Radarr', q.name, 0, 2000, 1990
@@ -107,7 +107,7 @@ INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, 
 SELECT 'FR-Media-Radarr', q.name, 0, 2000, 1990
 FROM qualities q WHERE q.name = 'WORKPRINT';
 INSERT INTO sonarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
-SELECT 'FR-Media-Sonarr', q.name, 600, 1000, 800
+SELECT 'FR-Media-Sonarr', q.name, 500, 1200, 750
 FROM qualities q WHERE q.name = 'Bluray-1080p';
 INSERT INTO sonarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
 SELECT 'FR-Media-Sonarr', q.name, 0, 1000, 1000
@@ -149,7 +149,7 @@ INSERT INTO sonarr_quality_definitions (name, quality_name, min_size, max_size, 
 SELECT 'FR-Media-Sonarr', q.name, 0, 1000, 990
 FROM qualities q WHERE q.name = 'Unknown';
 INSERT INTO sonarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
-SELECT 'FR-Media-Sonarr', q.name, 0, 1000, 350
+SELECT 'FR-Media-Sonarr', q.name, 150, 650, 400
 FROM qualities q WHERE q.name = 'WEBDL-1080p';
 INSERT INTO sonarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
 SELECT 'FR-Media-Sonarr', q.name, 0, 1000, 60
@@ -161,7 +161,7 @@ INSERT INTO sonarr_quality_definitions (name, quality_name, min_size, max_size, 
 SELECT 'FR-Media-Sonarr', q.name, 0, 500, 300
 FROM qualities q WHERE q.name = 'WEBDL-720p';
 INSERT INTO sonarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
-SELECT 'FR-Media-Sonarr', q.name, 0, 1000, 350
+SELECT 'FR-Media-Sonarr', q.name, 150, 650, 400
 FROM qualities q WHERE q.name = 'WEBRip-1080p';
 INSERT INTO sonarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
 SELECT 'FR-Media-Sonarr', q.name, 0, 1000, 60

@@ -316,7 +316,7 @@ Ordre de priorité **langue** (scores identiques sur Films / Series / Anime ; la
 
 | Niveau | CF | Rôle |
 |--------|-----|------|
-| **Équipes documentées** | `FR-Team-*` (15 groupes) | Bonus **fort** et stable (QTZ, AMEN, TyHD, Slay3R, TFA, …) |
+| **Équipes documentées** | `FR-Team-*` (16 groupes) | Bonus **fort** et stable (QTZ, AMEN, TyHD, Winks, Slay3R, TFA, …) |
 | **Longue traîne** | `FR-Tier-01`, `FR-Tier-02` | Petits bonus pour encodeurs listés en regex compacte |
 
 On **n’a pas** adopté le modèle [Profilarr-database-french-regex](https://github.com/Jojont54/Profilarr-database-french-regex) (~1 regex / team × ~900 fichiers) : maintenance lourde, rebase Dictionarry difficile, peu de gain sur les cas réels observés (ex. Momie : même groupe, tags HDR différents).
@@ -337,7 +337,8 @@ On **n’a pas** adopté le modèle [Profilarr-database-french-regex](https://gi
 | **FR-Team-ENIGMA** | 6 200 | VFQ, blockbusters |
 | **FR-Team-TOXIC** | 6 400 | 1080p HDLight |
 | **FR-Team-PopHD** | 6 500 | 1080p compact x264 |
-| **FR-Team-Slay3R** | 5 500 | WEB 2160p volume / exclus |
+| **FR-Team-Winks** | 6 600 | 1080p BluRay/WEB x265 MULTI (~4–5,5 Go, C411) |
+| **FR-Team-Slay3R** | 6 000 | WEB 1080p/2160p/720p C411 (H264/H265, exclus) |
 | **FR-Team-HYPERION** / **OZEF** | 2 000 | Remux — détectés mais **jamais retenus** (-999999 Remux) |
 | **FR-Tier-01** | 2 000 | Longue traîne haute (BOUBA, NEOSTARK, …) |
 | **FR-Tier-02** | 1 000 | Longue traîne basse + **DELIRIUS** (séries `MULTI.FRENCH`) |
@@ -447,6 +448,23 @@ Deux presets distincts (plus de gabarit `FR-Media-Base` ni de doublon « French 
 | WEBDL-2160p / WEBRip-2160p | **60** |
 
 Objectif : favoriser les **encodes compacts** (4KLight, TyHD, AMEN ~2,5–8 Go) plutôt que des WEB-DL ~15 Go ou remux — aligné créneaux **HC OPTI** / **4KLight** du catalogue privé FR.
+
+### Tailles 1080p (Winks / scène compacte BluRay)
+
+| Qualité | `min` / `preferred` / `max` (Mo/h) — Radarr `FR-Media-Radarr` |
+|---------|----------------------------------------------------------------|
+| Bluray-1080p | **900** / **1750** / **2600** |
+| WEBDL-1080p / WEBRip-1080p | **800** / **1700** / **2600** |
+
+Calibré sur les sorties **Winks** C411 (~3,5–7 Go, cœur **4–5,5 Go** pour un long métrage x265). Sonarr `Bluray-1080p` : **500** / **750** / **1200** (épisodes plus courts).
+
+### Tailles WEB (Slay3R / scène C411)
+
+| Qualité | `min` / `preferred` / `max` — Radarr `FR-Media-Radarr` |
+|---------|--------------------------------------------------------|
+| WEBDL/WEBRip-1080p | **600** / **1650** / **3200** (H264 ~4–5 Go, H265 ~2–3 Go, max ~9 Go) |
+| WEBDL/WEBRip-2160p | **40** / **70** / **2000** (compact ~7–8 Go, blockbusters ~15–23 Go) |
+| WEBDL/WEBRip-1080p — Sonarr | **150** / **400** / **650** (épisodes ~2,4–3 Go) |
 
 `ops/09` ne contient **que** `FR-Delay-Sonarr` ; **`FR-Delay-Radarr`** est dans `ops/07`.
 
