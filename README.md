@@ -71,7 +71,7 @@ Pour retrouver d’anciennes copies (snapshot, squelette PCD vierge, pre-reset) 
 
 1. Lier `https://github.com/mcflykid/french-profilarr-database`
 2. **Pull** — importe les 11 fichiers `ops/*.sql` (log `updated:11` = OK)
-3. **Compile** — **obligatoire** : remplit le cache (profils, delays, presets `French - Radarr` visibles dans l’UI)
+3. **Compile** — **obligatoire** : remplit le cache (profils, delays, presets `FR-Media-Radarr` visibles dans l’UI)
 
 Sans **Compile**, les listes déroulantes peuvent rester vides ou obsolètes.
 
@@ -95,11 +95,11 @@ Ce n’est **pas** un preset par profil `FR-Films-1080p`. **Un seul triplet** po
 
 | Menu Profilarr | Radarr | Sonarr |
 |----------------|--------|--------|
-| Naming | **`French - Radarr`** | **`French - Sonarr`** |
-| Quality definitions | **`French - Radarr`** | **`French - Sonarr`** |
-| Media settings | **`French - Radarr`** | **`French - Sonarr`** |
+| Naming | **`FR-Media-Radarr`** | **`FR-Media-Sonarr`** |
+| Quality definitions | **`FR-Media-Radarr`** | **`FR-Media-Sonarr`** |
+| Media settings | **`FR-Media-Radarr`** | **`FR-Media-Sonarr`** |
 
-Les **trois** menus doivent pointer vers le **même** nom. Ne pas choisir `FR-Media-Base` (gabarit SQL interne dans `ops/07` uniquement).
+Les **trois** menus doivent pointer vers le **même** nom (préfixe `FR-` comme les profils `FR-Films-4K`, `FR-Series-1080p`, etc.).
 
 #### Delay profile
 
@@ -132,7 +132,7 @@ Profilarr a lancé les jobs, mais **aucune config Sync n’est enregistrée** po
 #### Checklist Radarr
 
 - [ ] Base : **Pull** + **Compile**
-- [ ] Arr → Radarr → Sync → Media : `French - Radarr` sur les **3** menus → **Save**
+- [ ] Arr → Radarr → Sync → Media : `FR-Media-Radarr` sur les **3** menus → **Save**
 - [ ] Delay : **`FR-Delay-Radarr`** → **Save**
 - [ ] Quality profiles : au moins un `FR-Films-*` → **Save**
 - [ ] Bouton **Sync** sur l’instance
@@ -140,7 +140,7 @@ Profilarr a lancé les jobs, mais **aucune config Sync n’est enregistrée** po
 #### Checklist Sonarr
 
 - [ ] Base : **Pull** + **Compile**
-- [ ] Arr → Sonarr → Sync → Media : `French - Sonarr` × 3 → **Save**
+- [ ] Arr → Sonarr → Sync → Media : `FR-Media-Sonarr` × 3 → **Save**
 - [ ] Delay : **`FR-Delay-Sonarr`** → **Save**
 - [ ] Quality profiles : `FR-Series-*` / `FR-Anime-*` → **Save**
 - [ ] **Sync**
@@ -227,7 +227,7 @@ ops/
   04-custom-format-conditions.sql  # Conditions + liaisons regex
   05-custom-format-tags.sql        # Tags par CF
   06-quality-profiles.sql          # Profils FR-* + scores + tags profil
-  07-media-management.sql          # FR-Media-Base, French - Radarr/Sonarr, FR-Delay-Radarr
+  07-media-management.sql          # FR-Media-Radarr, FR-Media-Sonarr, FR-Delay-Radarr
   09-profile-media-bundles.sql     # FR-Delay-Sonarr uniquement
   10-profile-ui-tags.sql           # Tags Radarr/Sonarr/Films/Series (pas tag SQL "anime")
   11-custom-format-tests.sql       # Tests parser CF (optionnel UI)
@@ -263,7 +263,7 @@ On a **fusionné** des regex Dictionarry en bundles projet (`FR-Regex-Streamers-
 | **Torrent only, délai 0** | `FR-Delay-Radarr` / `FR-Delay-Sonarr` : `only_torrent`, `torrent_delay = 0`, bypass si déjà meilleure qualité |
 | **x265 favorisé en 1080p/720p** | Contrairement à Dumpstarr qui pénalise souvent HEVC sous 2160p — la scène FR pousse les encodes compacts |
 | **Pas de ban VFQ** | VFQ/VOQ passent par **`FR-VF2`** / **`FR-MULTI-VF2`** ; politique ajustable par scores, pas par exclusion aveugle |
-| **Un preset media par app** | Modèle Profilarr v2 + Dictionarry : `French - Radarr` / `French - Sonarr`, pas un bundle par profil `FR-Films-4K` |
+| **Un preset media par app** | Modèle Profilarr v2 + Dictionarry : `FR-Media-Radarr` / `FR-Media-Sonarr`, pas un bundle par profil `FR-Films-4K` |
 
 ### Seuils profil (alignement Dumpstarr)
 
@@ -432,12 +432,12 @@ Tags **Radarr**, **Sonarr**, **Films**, **Series**, résolutions **1080p** / **2
 
 ## Media management et delays
 
-### Gabarit `FR-Media-Base` → presets instance
+### Presets media (`ops/07`)
 
-`ops/07` définit les **quality definitions** (tailles min/max/preferred) puis clone vers :
+Deux presets distincts (plus de gabarit `FR-Media-Base` ni de doublon « French - Radarr » dans la liste Profilarr) :
 
-- **`French - Radarr`** — les **3** menus Profilarr (Naming, Quality definitions, Media settings) doivent pointer sur ce nom.
-- **`French - Sonarr`** — idem.
+- **`FR-Media-Radarr`** — les **3** menus Profilarr Radarr (Naming, Quality definitions, Media settings) pointent sur ce nom.
+- **`FR-Media-Sonarr`** — idem pour Sonarr.
 
 ### Tailles 2160p (choix scène compacte)
 
@@ -450,7 +450,7 @@ Objectif : favoriser les **encodes compacts** (4KLight, TyHD, AMEN ~2,5–8 Go) 
 
 `ops/09` ne contient **que** `FR-Delay-Sonarr` ; **`FR-Delay-Radarr`** est dans `ops/07`.
 
-**Ancien modèle** (commits Git antérieurs) : un bundle media **par profil** (`FR-Films-4K` = nom preset). Abandonné — Profilarr v2 impose **une config media par instance** (`French - Radarr` / `French - Sonarr`).
+**Ancien modèle** (commits Git antérieurs) : un bundle media **par profil** (`FR-Films-4K` = nom preset). Abandonné — Profilarr v2 impose **une config media par instance** (`FR-Media-Radarr` / `FR-Media-Sonarr`).
 
 ---
 
@@ -497,7 +497,7 @@ Trackers **sans slots** : même logique via **tags** (`MULTI.VFF`, `MULTI.FRENCH
 | **Ban VFQ** comme certaines bases FR | Non — VFQ/VOQ gérés par VF2/MULTI-VF2 |
 | **`release_group`** en plus du titre | Pas urgent — le groupe est quasi toujours dans le nom FR |
 | Tiers WEB vs Bluray séparés | Pas urgent — seed surtout du WEB |
-| Bundles media par profil qualité | Remplacé par **French - Radarr/Sonarr** (Profilarr v2) |
+| Bundles media par profil qualité | Remplacé par **FR-Media-Radarr/Sonarr** (Profilarr v2) |
 | Éditions / CF « Banned* » internationaux redondants | Supprimés au profit de **FR-Blockers** |
 | Repack natif Radarr « Prefer » | **doNotPrefer** + CF **FR-Repack*** |
 | Noms de trackers dans la doc publique | Remplacé par **« scène française privée »** (charte, pas marque) |
@@ -516,7 +516,7 @@ python3 scripts/validate.py
 
 Contrôles :
 
-- Intégrité `ops/` (doublons, FK, profils, presets `French - *`)
+- Intégrité `ops/` (doublons, FK, profils, presets `FR-Media-Radarr` / `FR-Media-Sonarr`)
 - Compile SQLite simulé (schema 1.1.0 + tous les `ops/*.sql`)
 - Descriptions regex sans `*` (sync Sonarr)
 

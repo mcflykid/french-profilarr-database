@@ -244,17 +244,17 @@ def main() -> int:
         fail("07-media-management.sql", f"qualités invalides: {sorted(q_bad)}")
     elif "FR-Delay-Radarr" not in delays_07:
         fail("07-media-management.sql", "FR-Delay-Radarr manquant")
-    elif "FR-Media-Base" not in t07:
-        fail("07-media-management.sql", "FR-Media-Base manquant")
-    elif "French - Radarr" not in t07:
-        fail("07-media-management.sql", "preset instance French - Radarr manquant")
-    elif "French - Sonarr" not in t07:
-        fail("07-media-management.sql", "preset instance French - Sonarr manquant")
+    elif "FR-Media-Radarr" not in t07:
+        fail("07-media-management.sql", "preset FR-Media-Radarr manquant")
+    elif "FR-Media-Sonarr" not in t07:
+        fail("07-media-management.sql", "preset FR-Media-Sonarr manquant")
+    elif "FR-Media-Base" in t07:
+        fail("07-media-management.sql", "FR-Media-Base ne doit plus exister (utiliser FR-Media-Radarr/Sonarr)")
     else:
         ok("07-media-management.sql")
     print(f"\n07-media-management.sql\n  qualités invalides: {len(q_bad)}, delays: {len(delays_07)}")
 
-    # --- 09 delay Sonarr (media instance = French - Radarr/Sonarr dans ops/07) ---
+    # --- 09 delay Sonarr (media instance = FR-Media-Radarr/Sonarr dans ops/07) ---
     t09 = read("09-profile-media-bundles.sql")
     radarr_media_09 = set(RE_RADARR_MEDIA.findall(t09))
     sonarr_media_09 = set(RE_SONARR_MEDIA.findall(t09))
@@ -262,7 +262,7 @@ def main() -> int:
     if radarr_media_09 or sonarr_media_09:
         fail(
             "09-profile-media-bundles.sql",
-            "pas de bundle media par profil (utiliser French - Radarr/Sonarr dans ops/07)",
+            "pas de bundle media par profil (utiliser FR-Media-Radarr/Sonarr dans ops/07)",
         )
     elif "FR-Delay-Radarr" in delays_09:
         fail("09-profile-media-bundles.sql", "FR-Delay-Radarr doit être dans ops/07 seulement")

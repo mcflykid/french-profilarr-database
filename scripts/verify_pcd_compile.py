@@ -61,11 +61,11 @@ def main() -> int:
 
             row = conn.execute(
                 "SELECT COUNT(*) FROM sonarr_quality_definitions "
-                "WHERE name = 'FR-Media-Base' AND quality_name IN ('Remux-1080p', 'Remux-2160p')"
+                "WHERE name = 'FR-Media-Sonarr' AND quality_name IN ('Remux-1080p', 'Remux-2160p')"
             ).fetchone()
             if row[0] != 2:
                 print(
-                    f"ERROR: FR-Media-Base Sonarr remux defs expected 2, got {row[0]}"
+                    f"ERROR: FR-Media-Sonarr remux defs expected 2, got {row[0]}"
                 )
                 return 1
 
@@ -82,8 +82,8 @@ def main() -> int:
                 return 1
 
             for table, preset in (
-                ("radarr_media_settings", "French - Radarr"),
-                ("sonarr_media_settings", "French - Sonarr"),
+                ("radarr_media_settings", "FR-Media-Radarr"),
+                ("sonarr_media_settings", "FR-Media-Sonarr"),
             ):
                 row = conn.execute(
                     f"SELECT 1 FROM {table} WHERE name = ?", (preset,)
