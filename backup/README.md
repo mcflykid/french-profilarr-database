@@ -1,9 +1,10 @@
-# Backup
+# Backup — archives complètes
 
-Tout l’ancien dépôt est archivé ici avant chaque remise à zéro.
+Rien n’est supprimé : chaque remise à zéro déplace la racine ici.
 
-| Dossier | Contenu |
-|---------|---------|
-| [`pre-reset-2025-05-23/`](pre-reset-2025-05-23/) | Dernier état complet (v3.0.1, ops, docs, scripts, CI, snapshot-2.5) |
+| Dossier | Description |
+|---------|-------------|
+| [`pre-reset-2025-05-23/`](pre-reset-2025-05-23/) | État avant la v4 (v3.0.1, snapshot-2.5, scripts, YAML, etc.) |
+| [`racine-v4.0.0/`](racine-v4.0.0/) | Dernière base active (ops, pcd 4.0.0, docs, scripts, CI) — compile validée |
 
-**Dépôt actif à la racine :** uniquement ce qui sert Profilarr (`pcd.json` + `ops/` + doc minimale).
+Pour repartir : copier ou réécrire depuis `racine-v4.0.0/ops/` vers la racine du dépôt.
