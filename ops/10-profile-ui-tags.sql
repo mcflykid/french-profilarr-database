@@ -38,12 +38,7 @@ SELECT 'FR-Series-720p', 'Series' FROM tags t WHERE t.name = 'Series';
 INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Anime-4K', 'Sonarr' FROM tags t WHERE t.name = 'Sonarr';
 INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
-SELECT 'FR-Anime-4K', 'anime' FROM tags t WHERE t.name = 'anime';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Anime-1080p', 'Sonarr' FROM tags t WHERE t.name = 'Sonarr';
 INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
-SELECT 'FR-Anime-1080p', 'anime' FROM tags t WHERE t.name = 'anime';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Anime-720p', 'Sonarr' FROM tags t WHERE t.name = 'Sonarr';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
-SELECT 'FR-Anime-720p', 'anime' FROM tags t WHERE t.name = 'anime';
+-- tag « anime » déjà posé dans ops/06 — ne pas réinsérer ici (UNIQUE → échec Compile)

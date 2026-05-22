@@ -13,7 +13,7 @@ Radarr et Sonarr ne classent une release qu’à partir du **nom** renvoyé par 
 | **Format** | PCD — `pcd.json` + `ops/*.sql` |
 | **Profilarr** | ≥ 2.0.0 |
 | **Schema** | [Dictionarry-Hub/schema](https://github.com/Dictionarry-Hub/schema) **1.1.0** |
-| **Contenu** | 66 custom formats · 70 regex · 10 profils · **sans Remux** |
+| **Contenu** | 65 custom formats · 70 regex · 10 profils · **sans Remux** |
 | **Licence** | MIT |
 
 > **Profilarr v2 uniquement** — source de vérité : `ops/*.sql` + `pcd.json` (plus de YAML dans le dépôt). Workflow : **Compile** → **Sync**.
@@ -108,7 +108,9 @@ ops/
   12-quality-profile-tests.sql    simulations profil (Momie, POI, animé, Incendies)
 tweaks/                           ajustements locaux (voir README)
 scripts/
-  check.sh                        toutes les vérifications PCD v2
+  check.sh                        toutes les vérifications PCD v2 (intégrité ops + compile)
+  verify_ops_integrity.py         audit fichier par fichier (doublons, FK, qualités)
+  verify_pcd_compile.py           simulation Compile Profilarr (schema 1.1.0)
   verify_pcd_v2.py                structure + métadonnées FR
   verify_team_tests.py            chaque FR-Team-* a un test positif
   verify_expected_scores.py       politique Remux / AV1 / blocages
@@ -268,6 +270,7 @@ Tu peux aussi ajuster via les **customisations** locales Profilarr (couche sépa
 
 | Problème | Piste |
 |----------|--------|
+| **500 database cache not available** (Naming / Media) | **Compile** a échoué — `python3 scripts/verify_pcd_compile.py` puis Pull → Compile |
 | Message media / delay manquant | Choisir `FR-Delay-Radarr` ou `FR-Delay-Sonarr` + bundle media = nom du profil |
 | Sonarr `PUT customformat` Fatal | Regex invalide dans `02` → `validate_regex_ops.py` puis re-sync |
 | Écart de score entre indexeurs | Tags différents dans le **titre** — normal |

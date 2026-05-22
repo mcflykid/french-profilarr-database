@@ -65,6 +65,19 @@ Regénérer les clones media : `python3 scripts/generate_profile_media_ops.py`
 
 Les profils `FR-Anime-*` partagent la même logique media que `FR-Series-*` (un bundle par nom de profil). Sonarr ne synchronise pas un onglet « Anime » séparé pour les tailles : les valeurs 2160p dans `ops/09` s’appliquent aussi aux bibliothèques de type Anime.
 
+## Erreur 500 « database cache not available » (Naming / Quality / Media)
+
+Ce message apparaît quand la **compilation PCD** n’a pas produit de cache SQLite (souvent après un **Pull** sans **Compile** réussi, ou une erreur SQL dans `ops/`).
+
+**À faire :**
+
+1. **Databases** → ta base FR → **Compile** et vérifier qu’il n’y a **pas d’erreur** (logs Profilarr / tâche Compile).
+2. Si Compile échoue : corriger le dépôt puis **Pull → Compile** à nouveau. Test local : `python3 scripts/verify_pcd_compile.py`.
+3. Conteneur Docker en lecture seule : monter un volume ou `tmpfs` writable sur `/app/.cache` (Deno/SQLite — voir [Profilarr #326](https://github.com/Dictionarry-Hub/profilarr/issues/326)).
+4. Après Compile OK : rouvrir **Naming settings**, **Quality definitions**, **Media settings** — les presets `FR-*` doivent s’afficher.
+
+Cause corrigée en v2.5.0+ : doublons `quality_profile_tags` dans `ops/10` (tag `anime` déjà dans `ops/06`) bloquaient toute la compilation.
+
 ## Message « Quality profiles require media management settings and a delay profile »
 
 Profilarr v2 exige un **bundle media** par profil et un **delay** par instance. Ce dépôt aligne les noms pour que ce soit évident dans l’UI.

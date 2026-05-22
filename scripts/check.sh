@@ -2,6 +2,10 @@
 # Vérifications PCD v2 — à lancer avant commit / PR
 set -euo pipefail
 cd "$(dirname "$0")/.."
+echo "=== verify_ops_integrity ==="
+python3 scripts/verify_ops_integrity.py
+echo "=== verify_pcd_compile ==="
+python3 scripts/verify_pcd_compile.py
 echo "=== verify_pcd_v2 ==="
 python3 scripts/verify_pcd_v2.py
 echo "=== validate_regex_ops ==="

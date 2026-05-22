@@ -113,13 +113,13 @@ SELECT 'FR-Media-Base', q.name, 600, 1000, 800
 FROM qualities q WHERE q.name = 'Bluray-1080p';
 INSERT INTO sonarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
 SELECT 'FR-Media-Base', q.name, 0, 1000, 1000
-FROM qualities q WHERE q.name = 'Bluray-1080p Remux';
+FROM qualities q WHERE q.name = 'Remux-1080p';
 INSERT INTO sonarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
 SELECT 'FR-Media-Base', q.name, 0, 1000, 55
 FROM qualities q WHERE q.name = 'Bluray-2160p';
 INSERT INTO sonarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
 SELECT 'FR-Media-Base', q.name, 0, 1000, 1000
-FROM qualities q WHERE q.name = 'Bluray-2160p Remux';
+FROM qualities q WHERE q.name = 'Remux-2160p';
 INSERT INTO sonarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
 SELECT 'FR-Media-Base', q.name, 0, 1000, 990
 FROM qualities q WHERE q.name = 'Bluray-480p';

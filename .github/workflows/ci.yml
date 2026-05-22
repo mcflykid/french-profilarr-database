@@ -16,6 +16,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Intégrité ops + compile PCD (comme Profilarr)
+        run: |
+          python3 scripts/verify_ops_integrity.py
+          python3 scripts/verify_pcd_compile.py
+
       - name: PCD v2 + métadonnées FR
         run: python3 scripts/verify_pcd_v2.py
 

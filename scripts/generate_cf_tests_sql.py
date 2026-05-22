@@ -114,15 +114,12 @@ def load_existing() -> list[tuple[str, str, str, int, str]]:
 def merge_rows(
     *sources: list[tuple[str, str, str, int, str]],
 ) -> list[tuple[str, str, str, int, str]]:
-    seen: set[tuple[str, str, str, int]] = set()
-    out: list[tuple[str, str, str, int, str]] = []
+    # Clé PCD / Profilarr : (cf, title, type) UNIQUE — dernier should_match gagne
+    by_key: dict[tuple[str, str, str], tuple[str, str, str, int, str]] = {}
     for source in sources:
         for cf, title, typ, sm, desc in source:
-            key = (cf, title, typ, sm)
-            if key in seen:
-                continue
-            seen.add(key)
-            out.append((cf, title, typ, sm, desc))
+            by_key[(cf, title, typ)] = (cf, title, typ, sm, desc)
+    out: list[tuple[str, str, str, int, str]] = list(by_key.values())
     out.sort(key=lambda x: (x[0], x[1]))
     return out
 
