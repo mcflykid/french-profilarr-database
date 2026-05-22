@@ -44,12 +44,44 @@ Ensuite seulement, cocher les profils voulus, par ex. :
 
 **Save**, puis **Sync** (ou Pull → Compile → Sync si la base Git a changé).
 
-## Workflow Git
+## Workflow Git (deux endroits différents)
 
-1. **Pull** la base
-2. **Compile**
-3. Configurer l’instance comme ci-dessus
-4. **Sync**
+### Sur la base « French Profilarr Database » (dépôt Git)
+
+1. **Pull** — importe les `ops/*.sql` (tes logs `updated:11` = OK)
+2. **Compile** — obligatoire pour remplir le cache (profils, delays, presets `French - Radarr` visibles dans l’UI)
+
+Sans **Compile**, les listes déroulantes de l’instance Arr peuvent rester vides ou anciennes.
+
+### Sur chaque instance Arr (Radarr **et** Sonarr séparément)
+
+Menu **Arr** → ton instance → onglet **Sync** — ce n’est **pas** le Pull de la base.
+
+## Logs `Job finished … (skipped)` — ce que ça veut dire
+
+Exemple typique après un Pull :
+
+```text
+arr.sync.qualityProfiles (skipped)
+arr.sync.delayProfiles (skipped)
+arr.sync.mediaManagement (skipped)
+```
+
+Profilarr a bien lancé les jobs post-Pull, mais **aucune config Sync n’est enregistrée** pour cette instance (`hasConfig` = false dans le code Profilarr). Ce n’est pas une erreur SQL du dépôt.
+
+**À faire :** ouvrir **Arr → [Radarr ou Sonarr] → Sync**, configurer chaque bloc, cliquer **Save** sur chacun, puis **Sync** (bouton dans la carte) une fois rien n’est « dirty ».
+
+Tant que tu ne vois pas dans les logs Profilarr quelque chose comme `qualityProfiles: N item(s)` au lieu de `skipped`, la config instance n’est pas sauvegardée.
+
+## Checklist Radarr (instance par instance)
+
+- [ ] Base : Pull + **Compile**
+- [ ] Arr → Radarr → Sync → Media : `French - Radarr` × 3 → **Save**
+- [ ] Delay : cocher `FR-Delay-Radarr` (base id **3** = McFlyKid) → **Save**
+- [ ] Quality profiles : cocher au moins un `FR-Films-*` → **Save** (plus de bandeau orange)
+- [ ] Chaque carte : bouton **Sync** (ou trigger **On Pull** + nouveau Pull sur la base)
+
+Répéter la même checklist pour **Sonarr** avec `French - Sonarr` et `FR-Delay-Sonarr`.
 
 ## Références
 

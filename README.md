@@ -2,11 +2,18 @@
 
 Base PCD [Profilarr v2](https://v2.dictionarry.dev) — scène française (C411, La Cale, Gemini). Structure comme [Dumpstarr/Database](https://github.com/Dumpstarr/Database) : `pcd.json` + `ops/*.sql` uniquement.
 
-**Profilarr ≥ 2.0.0** — schema [1.1.0](https://github.com/Dictionarry-Hub/schema). Après mise à jour Git : **Pull → Compile → Sync**.
+**Profilarr ≥ 2.0.0** — schema [1.1.0](https://github.com/Dictionarry-Hub/schema).
+
+| Où | Action |
+|----|--------|
+| **Base** (dépôt Git) | **Pull** puis **Compile** |
+| **Chaque Arr** (Radarr, Sonarr) | Onglet **Sync** → Save media, delay, profils → **Sync** |
+
+Le **Pull** sur la base ne configure pas Radarr/Sonarr. Les logs `arr.sync.* (skipped)` = aller dans **Arr → Sync** et **Save**. Détail : **[docs/PROFILARR-SYNC.md](docs/PROFILARR-SYNC.md)**.
 
 ## Sync Profilarr (important)
 
-Le message *« Quality profiles require media management settings and a delay profile »* = config **instance** non sauvée. Voir **[docs/PROFILARR-SYNC.md](docs/PROFILARR-SYNC.md)**.
+Le message *« Quality profiles require media management settings and a delay profile »* = config **instance** non sauvée (cliquer **Save** sur chaque section).
 
 Résumé par instance **Radarr** :
 
