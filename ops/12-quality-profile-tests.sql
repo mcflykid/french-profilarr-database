@@ -26,6 +26,14 @@ VALUES (
 INSERT INTO test_releases (entity_type, entity_tmdb_id, title, size_bytes, languages, indexers, flags)
 VALUES (
     'movie', 564,
+    'La.Momie.1999.MULTI.TRUEFRENCH.2160p.WEB.DV.HDR.DV.WEB-DL.H265-Slay3R',
+    12884901888,
+    '[]', '[]', '[]'
+);
+
+INSERT INTO test_releases (entity_type, entity_tmdb_id, title, size_bytes, languages, indexers, flags)
+VALUES (
+    'movie', 564,
     'La.Momie.1999.MULTI.VFF.2160p.WEB.DV.HDR10PLUS.AC3.5.1.H265-TyHD',
     10737418240,
     '[]', '[]', '[]'
