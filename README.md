@@ -57,7 +57,7 @@ Le projet a évolué en plusieurs étapes (commits Git ; anciennes archives `bac
 |-------|--------|--------|
 | v1 | YAML (`regex_patterns/`, `custom_formats/`, `profiles/`) | Profilarr v1, annotations FR |
 | v2.5 → v3 | PCD + `ops/*.sql` | Migration schema 1.1.0 |
-| v4 / **2.0.0 actuel** | Racine = `pcd.json` + `ops/` + `docs/` + `scripts/` | Alignement [Dumpstarr](https://github.com/Dumpstarr/Database) (seuils profil) |
+| v4 / **2.0.0 actuel** | Racine = `pcd.json` + `ops/` + `scripts/` + README | Alignement [Dumpstarr](https://github.com/Dumpstarr/Database) (seuils profil) |
 
 Pour retrouver d’anciennes copies (snapshot, squelette PCD vierge, pre-reset) : `git log` puis `git show <commit>:backup/...` (ex. commit `c1d52ee` avant suppression du dossier).
 
@@ -67,17 +67,21 @@ Pour retrouver d’anciennes copies (snapshot, squelette PCD vierge, pre-reset) 
 
 ## Démarrage Profilarr
 
-### Sur la base Git (une fois)
+### 1. Base Git (dépôt PCD)
 
-1. Lier le dépôt `https://github.com/mcflykid/french-profilarr-database`
-2. **Pull** — importe les 11 fichiers `ops/*.sql`
-3. **Compile** — remplit le cache Profilarr (obligatoire avant que les listes instance soient à jour)
+1. Lier `https://github.com/mcflykid/french-profilarr-database`
+2. **Pull** — importe les 11 fichiers `ops/*.sql` (log `updated:11` = OK)
+3. **Compile** — **obligatoire** : remplit le cache (profils, delays, presets `French - Radarr` visibles dans l’UI)
 
-### Sur chaque instance Radarr / Sonarr (obligatoire)
+Sans **Compile**, les listes déroulantes peuvent rester vides ou obsolètes.
 
-Le **Pull** sur la base **ne configure pas** Radarr/Sonarr. Les logs `arr.sync.* (skipped)` signifient : aller dans **Arr → Sync** et enregistrer chaque bloc.
+### 2. Sync par instance Radarr / Sonarr
 
-**Ordre** (par instance) :
+Le **Pull** sur la base **ne configure pas** Radarr/Sonarr. Menu **Arr** → ton instance → onglet **Sync** (ce n’est pas le Pull de la base).
+
+Le bandeau *« Quality profiles require media management settings and a delay profile »* = sections **non sauvegardées** (cliquer **Save** sur chaque bloc).
+
+**Ordre obligatoire** (tant qu’une section est « dirty », l’avertissement reste) :
 
 ```text
 1. Media Management  →  Save
@@ -85,14 +89,130 @@ Le **Pull** sur la base **ne configure pas** Radarr/Sonarr. Les logs `arr.sync.*
 3. Quality profiles  →  Save  →  Sync
 ```
 
-Guide détaillé : **[docs/PROFILARR-SYNC.md](docs/PROFILARR-SYNC.md)**
+#### Media Management — un preset par application
 
-| Instance | Media (×3 menus : Naming, Quality definitions, Media settings) | Delay | Profils qualité (exemples) |
-|----------|----------------------------------------------------------------|-------|----------------------------|
-| **Radarr** | **`French - Radarr`** | **`FR-Delay-Radarr`** | `FR-Films-1080p`, `FR-Films-4K`, `FR-Films-720p`, `FR-Films-Any` |
-| **Sonarr** | **`French - Sonarr`** | **`FR-Delay-Sonarr`** | `FR-Series-*`, `FR-Anime-*` |
+Ce n’est **pas** un preset par profil `FR-Films-1080p`. **Un seul triplet** pour toute l’instance Radarr (ou Sonarr) :
 
-Ne pas utiliser `FR-Media-Base` dans l’UI : gabarit SQL interne uniquement (`ops/07`).
+| Menu Profilarr | Radarr | Sonarr |
+|----------------|--------|--------|
+| Naming | **`French - Radarr`** | **`French - Sonarr`** |
+| Quality definitions | **`French - Radarr`** | **`French - Sonarr`** |
+| Media settings | **`French - Radarr`** | **`French - Sonarr`** |
+
+Les **trois** menus doivent pointer vers le **même** nom. Ne pas choisir `FR-Media-Base` (gabarit SQL interne dans `ops/07` uniquement).
+
+#### Delay profile
+
+| Instance | Choisir puis **Save** |
+|----------|----------------------|
+| Radarr | **`FR-Delay-Radarr`** |
+| Sonarr | **`FR-Delay-Sonarr`** |
+
+#### Profils qualité — cases à cocher
+
+Exemples Radarr : `FR-Films-1080p`, `FR-Films-4K`, `FR-Films-720p`, `FR-Films-Any`  
+Exemples Sonarr : `FR-Series-1080p`, `FR-Series-4K`, `FR-Anime-1080p`, etc.
+
+**Save**, puis **Sync** sur la carte instance (ou Pull → Compile → Sync si la base Git vient de changer).
+
+#### Logs `arr.sync.* (skipped)`
+
+Après un Pull, tu peux voir :
+
+```text
+arr.sync.qualityProfiles (skipped)
+arr.sync.delayProfiles (skipped)
+arr.sync.mediaManagement (skipped)
+```
+
+Profilarr a lancé les jobs, mais **aucune config Sync n’est enregistrée** pour cette instance — ce n’est **pas** une erreur SQL du dépôt.
+
+**À faire :** Arr → Radarr/Sonarr → **Sync** → configurer chaque bloc → **Save** → **Sync**. Tant que les logs affichent `skipped` au lieu de `qualityProfiles: N item(s)`, la config instance n’est pas sauvegardée.
+
+#### Checklist Radarr
+
+- [ ] Base : **Pull** + **Compile**
+- [ ] Arr → Radarr → Sync → Media : `French - Radarr` sur les **3** menus → **Save**
+- [ ] Delay : **`FR-Delay-Radarr`** → **Save**
+- [ ] Quality profiles : au moins un `FR-Films-*` → **Save**
+- [ ] Bouton **Sync** sur l’instance
+
+#### Checklist Sonarr
+
+- [ ] Base : **Pull** + **Compile**
+- [ ] Arr → Sonarr → Sync → Media : `French - Sonarr` × 3 → **Save**
+- [ ] Delay : **`FR-Delay-Sonarr`** → **Save**
+- [ ] Quality profiles : `FR-Series-*` / `FR-Anime-*` → **Save**
+- [ ] **Sync**
+
+### 3. Docker Compose (homelab, optionnel)
+
+Exemple [Profilarr v2](https://v2.dictionarry.dev/profilarr-setup/installation) + parser pour tests CF/QP. Migration v1 : sauvegarder l’appdata Profilarr puis repartir vide.
+
+Variables utiles : `DOCKERDIR`, `PROFILARR_PORT` (défaut 6868), `TZ`, `PUID`, `PGID`. Derrière reverse proxy : définir `ORIGIN`. Sans parser : retirer le service `profilarr-parser`, `depends_on`, `PARSER_HOST` et `PARSER_PORT`.
+
+```yaml
+name: profilarr
+
+services:
+  profilarr-parser:
+    image: ghcr.io/dictionarry-hub/profilarr-parser:latest
+    container_name: profilarr-parser
+    cpus: 0.25
+    mem_limit: 256m
+    mem_reservation: 64m
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    networks:
+      - homelab_apps
+    expose:
+      - "5000"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:5000/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  profilarr:
+    image: ghcr.io/dictionarry-hub/profilarr:latest
+    container_name: profilarr
+    cpus: 0.5
+    mem_limit: 512m
+    mem_reservation: 128m
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    networks:
+      - homelab_apps
+    ports:
+      - "${PROFILARR_PORT:-6868}:6868/tcp"
+    volumes:
+      - "${DOCKERDIR}/appdata/profilarr:/config"
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      TZ: ${TZ:-Europe/Paris}
+      PUID: ${PUID:-1000}
+      PGID: ${PGID:-1000}
+      UMASK: "022"
+      AUTH: on
+      PARSER_HOST: profilarr-parser
+      PARSER_PORT: "5000"
+    depends_on:
+      profilarr-parser:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://127.0.0.1:6868/api/v1/health || exit 1"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 45s
+
+networks:
+  homelab_apps:
+    external: true
+```
 
 ---
 
@@ -112,9 +232,6 @@ ops/
   10-profile-ui-tags.sql           # Tags Radarr/Sonarr/Films/Series (pas tag SQL "anime")
   11-custom-format-tests.sql       # Tests parser CF (optionnel UI)
   12-quality-profile-tests.sql     # Simulations profil (Momie, POI, etc.)
-docs/
-  PROFILARR-SYNC.md      # Sync instance, checklist, logs skipped
-  compose-profilarr-v2.yml  # Exemple Docker Profilarr + parser (homelab)
 scripts/
   validate.py            # Intégrité + compile + regex Sonarr-safe
 ```
@@ -418,7 +535,6 @@ Après modification : **Pull → Compile** sur la base, puis revérifier les tes
 - [Dictionarry-Hub/schema 1.1.0](https://github.com/Dictionarry-Hub/schema)
 - [Dictionarry-Hub/database](https://github.com/Dictionarry-Hub/database)
 - [Dumpstarr/Database](https://github.com/Dumpstarr/Database)
-- [Sync instance (ce dépôt)](docs/PROFILARR-SYNC.md)
 - [Issues](https://github.com/mcflykid/french-profilarr-database/issues)
 
 ---
