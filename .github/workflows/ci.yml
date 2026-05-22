@@ -16,22 +16,5 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Intégrité ops + compile PCD (comme Profilarr)
-        run: |
-          python3 scripts/verify_ops_integrity.py
-          python3 scripts/verify_pcd_compile.py
-
-      - name: PCD v2 + métadonnées FR
-        run: python3 scripts/verify_pcd_v2.py
-
-      - name: Regex
-        run: python3 scripts/validate_regex_ops.py
-
-      - name: Scores attendus (politique FR)
-        run: python3 scripts/verify_expected_scores.py
-
-      - name: Tests équipes (FR-Team-*)
-        run: python3 scripts/verify_team_tests.py
-
-      - name: Parité scores inter-profils
-        run: python3 scripts/verify_profile_scores.py
+      - name: Valider PCD (compile + ops + regex Sonarr)
+        run: python3 scripts/validate.py

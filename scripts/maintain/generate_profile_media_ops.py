@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "ops" / "09-profile-media-bundles.sql"
 
 # Modèle cloné depuis ops/07 (ne pas assigner manuellement dans l’UI)

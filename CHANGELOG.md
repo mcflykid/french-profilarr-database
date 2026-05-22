@@ -10,6 +10,7 @@ Format basé sur [Keep a Changelog](https://keepachangelog.com/). Versions align
 - README — structure `docs/` allégée, workflow corrigé.
 - `ops/02-regex.sql` — descriptions sans markdown ni `*` (évite `RegexParseException` Sonarr sur HDR/HDR10).
 - `validate_regex_ops.py`, `sanitize_regex_descriptions.py` — garde-fous sync *arr.
+- Scripts : une seule commande `python3 scripts/validate.py` ; anciens outils dans `backup/scripts/`.
 
 ### Supprimé
 

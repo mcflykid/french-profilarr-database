@@ -5,15 +5,10 @@ Merci de contribuer à la base PCD **Profilarr v2** pour la scène française.
 ## Avant d’ouvrir une PR
 
 ```bash
-./scripts/check.sh
+python3 scripts/validate.py
 ```
 
-Le CI GitHub exécute les mêmes vérifications.
-
-`check.sh` inclut notamment :
-
-- **`verify_ops_integrity.py`** — doublons `quality_profile_tags` (06 vs 10), tests CF (11), qualités media (07), références CF/regex.
-- **`verify_pcd_compile.py`** — simulation **Compile** Profilarr (schema 1.1.0 + tous les `ops/*.sql`).
+(`./scripts/check.sh` est un alias.) Le CI exécute la même commande : intégrité `ops/`, compile PCD (schema 1.1.0), regex compatibles Sonarr.
 
 Sans compile OK, Profilarr affiche **500 database cache not available** sur Media / Naming — voir [`docs/PROFILARR-V2.md`](docs/PROFILARR-V2.md).
 
@@ -33,8 +28,8 @@ Sans compile OK, Profilarr affiche **500 database cache not available** sur Medi
 |---------|-------------------|
 | Nouvelle équipe | `ops/02-regex.sql`, `ops/03`, `ops/04`, `ops/06`, `ops/11` (test) |
 | Score profil | `ops/06-quality-profiles.sql` |
-| Regex / CF | `ops/02`–`05`, regénérer tests si besoin : `generate_cf_tests_sql.py` |
-| Media / tailles | `ops/07`, `generate_profile_media_ops.py` |
+| Regex / CF | `ops/02`–`05`, regénérer tests si besoin : `scripts/maintain/generate_cf_tests_sql.py` |
+| Media / tailles | `ops/07`, `scripts/maintain/generate_profile_media_ops.py` |
 
 ## Issues
 

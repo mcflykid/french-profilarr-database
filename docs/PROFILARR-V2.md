@@ -162,12 +162,12 @@ v2 peut lier **plusieurs bases** en parallèle ([devlog](https://v2.dictionarry.
 | `10-profile-ui-tags.sql` | Tags UI Radarr/Sonarr/Films/Series |
 | `11` / `12` | Tests parser |
 
-Regénération : `python3 scripts/generate_profile_media_ops.py` → `ops/09`.
+Regénération (rare) : `python3 scripts/maintain/generate_profile_media_ops.py` → `ops/09`.
 
-Validation locale avant commit :
+Validation locale avant commit sur le dépôt :
 
 ```bash
-./scripts/check.sh
+python3 scripts/validate.py
 ```
 
 ---
@@ -210,7 +210,7 @@ Commit minimum côté Git : **`fe7285c`** (correctifs compile `ops/10` / `ops/11
 | Sonarr `PUT customformat` 500 / `RegexParseException` | Souvent description avec `*` concaténée au motif (HDR/HDR10) — Pull dernier `main` → Compile → Sync |
 | Sonarr `PUT customformat` Fatal | Regex `ops/02` → `validate_regex_ops.py` → Pull → Compile → Sync |
 | Scores différents entre indexeurs | Titres différents sur le même fichier — normal |
-| Compile échoue | `./scripts/check.sh` ; schema `1.1.0` dans `pcd.json` |
+| Compile échoue | Pull `main` ; schema `1.1.0` dans `pcd.json` ; validate.py si tu modifies ops |
 
 Conventions libellés UI : [`DECISIONS-METADONNEES-FR.md`](DECISIONS-METADONNEES-FR.md).
 
@@ -219,7 +219,7 @@ Conventions libellés UI : [`DECISIONS-METADONNEES-FR.md`](DECISIONS-METADONNEES
 ## 14. Mise à jour du dépôt (mainteneurs)
 
 ```text
-Modifier ops/ → ./scripts/check.sh → commit → push
+Modifier ops/ → python3 scripts/validate.py → commit → push
 → Profilarr : Pull → Compile → Sync
 ```
 

@@ -44,8 +44,8 @@ Structure commune :
 ## Scripts
 
 ```bash
-python3 scripts/verify_pcd_v2.py      # structure v2 + métadonnées FR
-python3 scripts/normalize_fr_metadata.py  # ré-appliquer uniformisation FR
+python3 scripts/validate.py           # validation dépôt (mainteneurs)
+# uniformisation historique : backup/scripts/normalize_fr_metadata.py
 ```
 
 ## Décisions notables (pourquoi)

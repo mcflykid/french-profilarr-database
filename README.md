@@ -106,19 +106,12 @@ ops/
   10-profile-ui-tags.sql          tags Radarr / Films / Series sur les profils
   11-custom-format-tests.sql      ~450 tests CF (parser)
   12-quality-profile-tests.sql    simulations profil (Momie, POI, animé, Incendies)
-tweaks/                           ajustements locaux (voir README)
+tweaks/                           optionnel (customisations UI Profilarr de préférence)
 scripts/
-  check.sh                        toutes les vérifications PCD v2 (intégrité ops + compile)
-  verify_ops_integrity.py         audit fichier par fichier (doublons, FK, qualités)
-  verify_pcd_compile.py           simulation Compile Profilarr (schema 1.1.0)
-  verify_pcd_v2.py                structure + métadonnées FR
-  verify_team_tests.py            chaque FR-Team-* a un test positif
-  verify_expected_scores.py       politique Remux / AV1 / blocages
-  verify_profile_scores.py        compare scores entre profils
-  normalize_fr_metadata.py        uniformise descriptions / annotations FR
-  validate_regex_ops.py           regex compilables
-  generate_cf_tests_sql.py          fusionne ops/11 + scène FR
-  generate_profile_media_ops.py   regénère ops/09
+  validate.py                     seule commande utile aux mainteneurs (CI identique)
+  check.sh                        alias de validate.py
+  maintain/                       regénération ops/09 et ops/11 (rare)
+backup/scripts/                   anciens outils archivés (inutiles au quotidien)
 docs/
   PROFILARR-V2.md                 guide unique (install, Pull/Compile/Sync, 500, delays)
   DECISIONS-METADONNEES-FR.md     conventions libellés UI + décisions « pourquoi »
@@ -236,17 +229,17 @@ Pour des retouches ponctuelles, préférer des `UPDATE` idempotents (voir [Chang
 - `ops/02-regex.sql` — motifs
 - `ops/04-custom-format-conditions.sql` — conditions par CF
 
-### Scripts
+### Validation (mainteneurs uniquement)
+
+**Tu n’as rien à installer pour Profilarr** — lie le dépôt, Pull, Compile, Sync.
+
+Avant un commit sur `ops/` :
 
 ```bash
-./scripts/check.sh                       # recommandé avant commit
-python3 scripts/verify_pcd_v2.py           # structure v2 + libellés FR
-python3 scripts/normalize_fr_metadata.py # ré-appliquer descriptions / annotations FR
-python3 scripts/validate_regex_ops.py    # regex valides
-python3 scripts/verify_team_tests.py       # couverture FR-Team-*
-python3 scripts/generate_cf_tests_sql.py   # fusion ops/11 + extras scène
-python3 scripts/generate_profile_media_ops.py  # regénère ops/09
+python3 scripts/validate.py
 ```
+
+Regénération rare : voir [`scripts/maintain/README.md`](scripts/maintain/README.md).
 
 Conventions des textes affichés dans Profilarr (descriptions, annotations de conditions, tests) : [`docs/DECISIONS-METADONNEES-FR.md`](docs/DECISIONS-METADONNEES-FR.md).
 
@@ -270,7 +263,7 @@ Tu peux aussi ajuster via les **customisations** locales Profilarr (couche sépa
 | Sonarr sync CF 500 (`Nested quantifier '*'`) | Descriptions `ops/02` sans `*` — Pull → Compile → Sync |
 | Sonarr `PUT customformat` Fatal | Regex invalide dans `02` → `validate_regex_ops.py` puis re-sync |
 | Écart de score entre indexeurs | Tags différents dans le **titre** — normal |
-| Compile échoue | Vérifier dépendance schema `1.1.0` dans `pcd.json` |
+| Compile échoue | Pull dernier `main` ; `python3 scripts/validate.py` en local si tu modifies le dépôt |
 
 Plus de détails : [`docs/PROFILARR-V2.md`](docs/PROFILARR-V2.md).
 
