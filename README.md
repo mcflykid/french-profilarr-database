@@ -267,6 +267,7 @@ Tu peux aussi ajuster via les **customisations** locales Profilarr (couche sépa
 |----------|--------|
 | **500 database cache not available** (Naming / Media) | **Pull → Compile** (cache RAM) — [`docs/PROFILARR-V2.md` §12](docs/PROFILARR-V2.md#12-erreur-500-database-cache-not-available) |
 | Message media / delay manquant | Choisir `FR-Delay-Radarr` ou `FR-Delay-Sonarr` + bundle media = nom du profil |
+| Sonarr sync CF 500 (`Nested quantifier '*'`) | Descriptions `ops/02` sans `*` — Pull → Compile → Sync |
 | Sonarr `PUT customformat` Fatal | Regex invalide dans `02` → `validate_regex_ops.py` puis re-sync |
 | Écart de score entre indexeurs | Tags différents dans le **titre** — normal |
 | Compile échoue | Vérifier dépendance schema `1.1.0` dans `pcd.json` |

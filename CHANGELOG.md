@@ -8,6 +8,8 @@ Format basé sur [Keep a Changelog](https://keepachangelog.com/). Versions align
 
 - `docs/PROFILARR-V2.md` — guide unique aligné [v2.dictionarry.dev](https://v2.dictionarry.dev) (Pull → Compile → Sync, delays, media, 500).
 - README — structure `docs/` allégée, workflow corrigé.
+- `ops/02-regex.sql` — descriptions sans markdown ni `*` (évite `RegexParseException` Sonarr sur HDR/HDR10).
+- `validate_regex_ops.py`, `sanitize_regex_descriptions.py` — garde-fous sync *arr.
 
 ### Supprimé
 

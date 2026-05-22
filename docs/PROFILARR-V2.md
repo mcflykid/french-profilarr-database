@@ -207,6 +207,7 @@ Commit minimum côté Git : **`fe7285c`** (correctifs compile `ops/10` / `ops/11
 | Symptôme | Piste |
 |----------|--------|
 | *Quality profiles require media management and delay* | Delay `FR-Delay-*` + media = nom du profil |
+| Sonarr `PUT customformat` 500 / `RegexParseException` | Souvent description avec `*` concaténée au motif (HDR/HDR10) — Pull dernier `main` → Compile → Sync |
 | Sonarr `PUT customformat` Fatal | Regex `ops/02` → `validate_regex_ops.py` → Pull → Compile → Sync |
 | Scores différents entre indexeurs | Titres différents sur le même fichier — normal |
 | Compile échoue | `./scripts/check.sh` ; schema `1.1.0` dans `pcd.json` |
