@@ -7,7 +7,7 @@ Le **500** signifie : Profilarr n’a **pas** de cache compilé en RAM (compile 
 ### 1. Mettre à jour Git
 
 Dépôt : `https://github.com/mcflykid/french-profilarr-database`  
-Version PCD **≥ 4.0.0** (`pcd.json`).
+Version PCD **≥ 3.0.1** (`pcd.json`).
 
 ### 2. Dans Profilarr (UI)
 

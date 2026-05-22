@@ -1,14 +1,9 @@
-# Backup — ancienne arborescence
+# Backup
 
-Tout ce qui existait avant la réécriture **v3.0.0** est dans [`snapshot-2.5/`](snapshot-2.5/) :
+Tout l’ancien dépôt est archivé ici avant chaque remise à zéro.
 
-| Contenu | Description |
-|---------|-------------|
-| `snapshot-2.5/ops/` | Anciens SQL (base de la réécriture v3) |
-| `snapshot-2.5/docs/`, `scripts/`, `README.md`, … | Doc et outils d’origine |
-| `snapshot-2.5/backup-nested/` | Scripts archivés (migration YAML, etc.) |
-| `profiles/`, `custom_formats/`, … | YAML v1 s’ils étaient encore présents |
+| Dossier | Contenu |
+|---------|---------|
+| [`pre-reset-2025-05-23/`](pre-reset-2025-05-23/) | Dernier état complet (v3.0.1, ops, docs, scripts, CI, snapshot-2.5) |
 
-**Dépôt actif (Profilarr) :** uniquement `pcd.json` + `ops/` à la racine.
-
-Pour régénérer `ops/` depuis le snapshot : `python3 scripts/maintain/rebuild_ops.py`
+**Dépôt actif à la racine :** uniquement ce qui sert Profilarr (`pcd.json` + `ops/` + doc minimale).

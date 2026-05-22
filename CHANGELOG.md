@@ -1,26 +1,8 @@
 # Changelog
 
-## [3.0.1] — 2025-05-22
+## [4.0.0] — 2025-05-23
 
-### Corrigé
+- Remise à zéro du dépôt : tout l’historique dans `backup/pre-reset-2025-05-23/`.
+- Base active = `pcd.json` 4.0.0 + `ops/` (compile validée, ops/10 sans doublons).
 
-- **Compile / 500 cache** : tags UI fusionnés dans `ops/06` + `ops/01` ; `ops/10` vidé (évite UNIQUE `quality_profile_tags`).
-- `INSERT OR IGNORE` sur tags et liaisons profil.
-- Guide [`docs/PROFILARR-RESET.md`](docs/PROFILARR-RESET.md) (Unlink → Relink → Compile).
-
-## [3.0.0] — 2025-05-22
-
-### Changement majeur
-
-- Réécriture du dépôt : contenu actif = `pcd.json` + `ops/` uniquement.
-- Ancienne arborescence entière dans **`backup/snapshot-2.5/`**.
-- `ops/` reconstruits fichier par fichier (en-têtes v3, regex Sonarr-safe, `ops/10` sans doublon `anime`).
-- Validation unique : `python3 scripts/validate.py`.
-
-### Contenu inchangé (logique FR)
-
-- 10 profils `FR-*`, 65 custom formats, politique anti-Remux et `rename = 0`.
-
-## Historique
-
-Versions **2.x** : voir [`backup/snapshot-2.5/CHANGELOG.md`](backup/snapshot-2.5/CHANGELOG.md).
+Historique : voir archives dans `backup/`.
