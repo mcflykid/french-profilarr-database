@@ -1,2 +1,0 @@
--- Fichier 10 : réservé (tags UI dans ops/01-tags.sql + ops/06-quality-profiles.sql)
--- Ne pas réinsérer quality_profile_tags ici : UNIQUE (profil, tag) → échec Compile Profilarr.
