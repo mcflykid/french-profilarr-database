@@ -16,7 +16,7 @@ Ce dépôt n’est **pas** un fork Dictionarry « à peine retouché » : la cou
 ## Table des matières
 
 1. [Objectif et public](#objectif-et-public)
-2. [Historique et dossier `backup/`](#historique-et-dossier-backup)
+2. [Historique du dépôt](#historique-du-dépôt)
 3. [Démarrage Profilarr](#démarrage-profilarr)
 4. [Structure du dépôt](#structure-du-dépôt)
 5. [Philosophie de conception](#philosophie-de-conception)
@@ -49,26 +49,19 @@ Ce dépôt n’est **pas** un fork Dictionarry « à peine retouché » : la cou
 
 ---
 
-## Historique et dossier `backup/`
+## Historique du dépôt
 
-Le projet a évolué en plusieurs étapes (l’historique Git complet reste dans les commits) :
+Le projet a évolué en plusieurs étapes (commits Git ; anciennes archives `backup/` supprimées du dépôt car redondantes) :
 
 | Phase | Forme | Notes |
 |-------|--------|--------|
-| v1 | YAML (`regex_patterns/`, `custom_formats/`, `profiles/`) | Profilarr v1, annotations FR, comparaisons Jojont54 / Dictionarry |
-| v2.5 → v3 | PCD + `ops/*.sql` | Migration schema 1.1.0, compile Profilarr |
-| v4 / 2.0.0 actuel | Racine = base active uniquement | `backup/` = archives ; alignement [Dumpstarr](https://github.com/Dumpstarr/Database) (seuils profil) |
+| v1 | YAML (`regex_patterns/`, `custom_formats/`, `profiles/`) | Profilarr v1, annotations FR |
+| v2.5 → v3 | PCD + `ops/*.sql` | Migration schema 1.1.0 |
+| v4 / **2.0.0 actuel** | Racine = `pcd.json` + `ops/` + `docs/` + `scripts/` | Alignement [Dumpstarr](https://github.com/Dumpstarr/Database) (seuils profil) |
 
-### Contenu de `backup/`
+Pour retrouver d’anciennes copies (snapshot, squelette PCD vierge, pre-reset) : `git log` puis `git show <commit>:backup/...` (ex. commit `c1d52ee` avant suppression du dossier).
 
-| Chemin | Rôle |
-|--------|------|
-| **`backup/snapshot-main/`** | Copie figée de la base active (`ops/`, `pcd.json`, `docs/`) — référence avant gros changement |
-| **`backup/pcd-vierge/`** | Squelette PCD vide (même arborescence `ops/`, sans `INSERT`) pour fork perso |
-| **`backup/docs/compose-profilarr-v2.yml`** | Exemple Docker Profilarr + parser (homelab) |
-| **`backup/pre-reset-2025-05-23/`** (Git uniquement) | Archive pré–remise à zéro : anciens scripts, `DECISIONS-METADONNEES-FR.md`, bundles media par profil |
-
-La base **à importer dans Profilarr** est toujours à la **racine** : `pcd.json` + `ops/`.
+**À importer dans Profilarr** : uniquement la **racine** du dépôt.
 
 ---
 
@@ -121,9 +114,9 @@ ops/
   12-quality-profile-tests.sql     # Simulations profil (Momie, POI, etc.)
 docs/
   PROFILARR-SYNC.md      # Sync instance, checklist, logs skipped
+  compose-profilarr-v2.yml  # Exemple Docker Profilarr + parser (homelab)
 scripts/
   validate.py            # Intégrité + compile + regex Sonarr-safe
-backup/                  # Archives (voir ci-dessus)
 ```
 
 **Préfixe `FR-`** : tout ce qui est **spécifique marché français** (langue, teams, blockers, signatures, repacks). Le reste reprend les noms Dictionarry (`HDR10+`, `Dolby Vision`, `Remux`, …) pour rester compatible et rebaseable.
@@ -340,7 +333,7 @@ Objectif : favoriser les **encodes compacts** (4KLight, TyHD, AMEN ~2,5–8 Go) 
 
 `ops/09` ne contient **que** `FR-Delay-Sonarr` ; **`FR-Delay-Radarr`** est dans `ops/07`.
 
-**Ancien modèle** (archive `backup/pre-reset`) : un bundle media **par profil** (`FR-Films-4K` = nom preset). Abandonné car Profilarr v2 + doc Dictionarry imposent **une config media par instance**.
+**Ancien modèle** (commits Git antérieurs) : un bundle media **par profil** (`FR-Films-4K` = nom preset). Abandonné — Profilarr v2 impose **une config media par instance** (`French - Radarr` / `French - Sonarr`).
 
 ---
 
