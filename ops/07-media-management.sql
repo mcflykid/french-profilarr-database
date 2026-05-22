@@ -1,5 +1,6 @@
 -- french-profilarr-database — ops/07
--- FR-Media-Base, tailles qualité, nommage rename=0, FR-Delay-Radarr.
+-- FR-Media-Base (gabarit interne), presets instance French - Radarr / French - Sonarr, FR-Delay-Radarr.
+-- Profilarr v2 : UNE config media par instance (3 listes = même nom de preset), pas un bundle par profil qualité.
 
 INSERT INTO radarr_media_settings (name, propers_repacks, enable_media_info)
 VALUES ('FR-Media-Base', 'doNotPrefer', 1);
@@ -173,3 +174,23 @@ SELECT 'FR-Media-Base', q.name, 0, 500, 300
 FROM qualities q WHERE q.name = 'WEBRip-720p';
 INSERT INTO radarr_naming (name, rename, movie_format, movie_folder_format, replace_illegal_characters, colon_replacement_format) VALUES ('FR-Media-Base', 0, '{Movie CleanTitle} ({Release Year}) {tmdb-{TmdbId}} {edition-{Edition Tags}} [{Custom Formats}] [{Quality Full}] [{MediaInfo 3D}] [{MediaInfo VideoDynamicRangeType}] [{MediaInfo AudioCodec} {MediaInfo AudioChannels}] [{MediaInfo VideoCodec}] {-Release Group}', '{Movie CleanTitle} ({Release Year}) {tmdb-{TmdbId}}', 0, 'smart');
 INSERT INTO sonarr_naming (name, rename, standard_episode_format, daily_episode_format, anime_episode_format, series_folder_format, season_folder_format, replace_illegal_characters, colon_replacement_format, custom_colon_replacement_format, multi_episode_style) VALUES ('FR-Media-Base', 0, '{Series TitleYear} - S{season:00}E{episode:00} - {Episode CleanTitle} [{Custom Formats}] [{Quality Full}] [{MediaInfo VideoDynamicRangeType}] [{MediaInfo AudioCodec} {MediaInfo AudioChannels}] [{MediaInfo VideoCodec}] {-Release Group}', '{Series TitleYear} - {Air-Date} - {Episode CleanTitle} [{Custom Formats}] [{Quality Full}] [{MediaInfo VideoDynamicRangeType}] [{MediaInfo AudioCodec} {MediaInfo AudioChannels}] [{MediaInfo VideoCodec}] {-Release Group}', '{Series TitleYear} - S{season:00}E{episode:00} - {absolute:000} - {Episode CleanTitle} [{Custom Formats}] [{Quality Full}] [{MediaInfo VideoDynamicRangeType}] [{MediaInfo VideoBitDepth}bit] [{MediaInfo VideoCodec}] [{MediaInfo AudioCodec} {MediaInfo AudioChannels}] [{MediaInfo AudioLanguages}] {-Release Group}', '{Series TitleYear} {tvdb-{TvdbId}}', 'Season {season:00}', 0, 'smart', NULL, 5);
+
+-- Presets instance Profilarr (comme Dictionarry - Radarr / - Sonarr) — à choisir pour les 3 menus Media Management
+INSERT INTO radarr_media_settings (name, propers_repacks, enable_media_info)
+SELECT 'French - Radarr', propers_repacks, enable_media_info FROM radarr_media_settings WHERE name = 'FR-Media-Base';
+INSERT INTO sonarr_media_settings (name, propers_repacks, enable_media_info)
+SELECT 'French - Sonarr', propers_repacks, enable_media_info FROM sonarr_media_settings WHERE name = 'FR-Media-Base';
+
+INSERT INTO radarr_naming (name, rename, movie_format, movie_folder_format, replace_illegal_characters, colon_replacement_format)
+SELECT 'French - Radarr', rename, movie_format, movie_folder_format, replace_illegal_characters, colon_replacement_format
+FROM radarr_naming WHERE name = 'FR-Media-Base';
+INSERT INTO sonarr_naming (name, rename, standard_episode_format, daily_episode_format, anime_episode_format, series_folder_format, season_folder_format, replace_illegal_characters, colon_replacement_format, custom_colon_replacement_format, multi_episode_style)
+SELECT 'French - Sonarr', rename, standard_episode_format, daily_episode_format, anime_episode_format, series_folder_format, season_folder_format, replace_illegal_characters, colon_replacement_format, custom_colon_replacement_format, multi_episode_style
+FROM sonarr_naming WHERE name = 'FR-Media-Base';
+
+INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
+SELECT 'French - Radarr', quality_name, min_size, max_size, preferred_size
+FROM radarr_quality_definitions WHERE name = 'FR-Media-Base';
+INSERT INTO sonarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
+SELECT 'French - Sonarr', quality_name, min_size, max_size, preferred_size
+FROM sonarr_quality_definitions WHERE name = 'FR-Media-Base';

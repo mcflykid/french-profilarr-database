@@ -4,7 +4,19 @@ Base PCD [Profilarr v2](https://v2.dictionarry.dev) — scène française (C411,
 
 **Profilarr ≥ 2.0.0** — schema [1.1.0](https://github.com/Dictionarry-Hub/schema). Après mise à jour Git : **Pull → Compile → Sync**.
 
-Dans Radarr/Sonarr, assigner le **profil qualité** et le **media management** du **même nom** (ex. `FR-Films-1080p`) — pas `FR-Media-Base` (gabarit interne).
+## Sync Profilarr (important)
+
+Le message *« Quality profiles require media management settings and a delay profile »* = config **instance** non sauvée. Voir **[docs/PROFILARR-SYNC.md](docs/PROFILARR-SYNC.md)**.
+
+Résumé par instance **Radarr** :
+
+1. **Media Management** — pour Naming, Quality definitions et Media settings : choisir **`French - Radarr`** (les 3 menus) → **Save**
+2. **Delay** — **`FR-Delay-Radarr`** → **Save**
+3. **Quality profiles** — cocher `FR-Films-1080p`, etc. → **Save** → **Sync**
+
+**Sonarr** : idem avec **`French - Sonarr`** et **`FR-Delay-Sonarr`**, puis profils `FR-Series-*` / `FR-Anime-*`.
+
+Les profils qualité (`FR-Films-*`) ne remplacent pas le preset media : c’est le modèle [Dictionarry v2](https://github.com/Dictionarry-Hub/database) (un preset `French - Radarr` / `French - Sonarr` par app).
 
 ## Profils recommandés
 
