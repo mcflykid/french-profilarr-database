@@ -1,0 +1,33 @@
+{
+  "name": "French Profilarr Database",
+  "version": "2.5.0",
+  "description": "Base PCD Profilarr v2 pour la scène française : profils FR-*, media, delays, custom formats et tests parser documentés en français.",
+  "arr_types": [
+    "radarr",
+    "sonarr"
+  ],
+  "dependencies": {
+    "https://github.com/Dictionarry-Hub/schema": "1.1.0"
+  },
+  "authors": [
+    {
+      "name": "mcflykid"
+    }
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/mcflykid/french-profilarr-database",
+  "tags": [
+    "French",
+    "2160p",
+    "1080p",
+    "720p",
+    "Anime"
+  ],
+  "links": {
+    "homepage": "https://github.com/mcflykid/french-profilarr-database",
+    "issues": "https://github.com/mcflykid/french-profilarr-database/issues"
+  },
+  "profilarr": {
+    "minimum_version": "2.0.0"
+  }
+}

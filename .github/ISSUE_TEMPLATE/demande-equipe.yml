@@ -1,0 +1,22 @@
+name: Demande équipe (FR-Team)
+description: Ajouter ou ajuster une équipe d’encodeurs
+title: "[team] "
+labels: ["enhancement"]
+body:
+  - type: input
+    id: team_name
+    attributes:
+      label: Nom du groupe (suffixe release)
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: 2–3 titres de release réels
+      description: Avec résolution, codec, tags langue si possible
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Pourquoi (qualité, volume, C411…)

@@ -1,0 +1,36 @@
+name: Bug regex / matching
+description: Un titre de release est mal classé (CF ou regex)
+title: "[regex] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: release_title
+    attributes:
+      label: Titre de release exact
+      description: Copier-coller depuis l’indexeur ou qBit
+    validations:
+      required: true
+  - type: input
+    id: expected_cf
+    attributes:
+      label: CF attendu (ou « aucun »)
+  - type: input
+    id: actual_cf
+    attributes:
+      label: CF obtenu dans Profilarr
+  - type: dropdown
+    id: profile
+    attributes:
+      label: Profil qualité
+      options:
+        - FR-Films-4K
+        - FR-Films-1080p
+        - FR-Films-720p
+        - FR-Films-Any
+        - FR-Series-4K
+        - FR-Series-1080p
+        - FR-Series-720p
+        - FR-Anime-4K
+        - FR-Anime-1080p
+        - FR-Anime-720p
+        - Autre
