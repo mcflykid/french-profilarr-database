@@ -1,7 +1,15 @@
 -- french-profilarr-database — ops/01
 -- Tags Profilarr v2 : filtres UI + liaison custom formats / profils qualité.
--- Tags requis par ops/05 et ops/06 (pas de tags catalogue inutilisés)
--- par les futurs ops/05 et ops/06 (pas de copie intégrale des tags « catalogue » inutilisés).
+-- Uniquement les tags référencés dans ops/05 et ops/06 (pas de catalogue Dictionarry inutile).
+--
+-- Repris de Dictionarry / TRaSH (catégories CF réellement utilisées) :
+--   Audio, Banned, Bleeding Edge, Codec, Colour Grade, Dolby, Edition, Enhancement,
+--   Flag, HDR, Language, Release Group, Release Group Tier, Repack, Source, Storage, Streaming Service
+-- Spécifique scène FR : French, 4K (4KLight)
+-- Profils / UI Profilarr : résolutions, anime, tv, Radarr, Sonarr, Films, Series
+-- Non importés (hors périmètre FR ou inutiles ici) :
+--   Golden Popcorn, GPPi, Balanced, Compact, Efficient, Quality, Movie, HEVC, 480p,
+--   marques Dumpstarr/Dictionarry/SIDCA/Scrubs, etc.
 
 -- Résolution / profils
 INSERT OR IGNORE INTO tags (name) VALUES ('1080p');
@@ -26,6 +34,7 @@ INSERT OR IGNORE INTO tags (name) VALUES ('Flag');
 INSERT OR IGNORE INTO tags (name) VALUES ('HDR');
 INSERT OR IGNORE INTO tags (name) VALUES ('Language');
 INSERT OR IGNORE INTO tags (name) VALUES ('Release Group');
+INSERT OR IGNORE INTO tags (name) VALUES ('Release Group Tier');
 INSERT OR IGNORE INTO tags (name) VALUES ('Repack');
 INSERT OR IGNORE INTO tags (name) VALUES ('Source');
 INSERT OR IGNORE INTO tags (name) VALUES ('Storage');

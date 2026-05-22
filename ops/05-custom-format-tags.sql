@@ -158,9 +158,13 @@ SELECT 'FR-Team-TyHD', 'French' FROM tags t WHERE t.name = 'French';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-Tier-01', 'Release Group' FROM tags t WHERE t.name = 'Release Group';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'FR-Tier-01', 'Release Group Tier' FROM tags t WHERE t.name = 'Release Group Tier';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-Tier-01', 'French' FROM tags t WHERE t.name = 'French';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-Tier-02', 'Release Group' FROM tags t WHERE t.name = 'Release Group';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'FR-Tier-02', 'Release Group Tier' FROM tags t WHERE t.name = 'Release Group Tier';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-Tier-02', 'French' FROM tags t WHERE t.name = 'French';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
@@ -177,6 +181,8 @@ INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-VOSTFR', 'French' FROM tags t WHERE t.name = 'French';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'Full Disc', 'Storage' FROM tags t WHERE t.name = 'Storage';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'Full Disc', 'Banned' FROM tags t WHERE t.name = 'Banned';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'HDR', 'Colour Grade' FROM tags t WHERE t.name = 'Colour Grade';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
@@ -199,6 +205,8 @@ INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'PCM', 'Audio' FROM tags t WHERE t.name = 'Audio';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'Remux', 'Storage' FROM tags t WHERE t.name = 'Storage';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'Remux', 'Banned' FROM tags t WHERE t.name = 'Banned';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'Season Pack', 'Enhancement' FROM tags t WHERE t.name = 'Enhancement';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
