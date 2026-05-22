@@ -82,6 +82,13 @@ RE_REGEX = re.compile(
 RE_QDEF = re.compile(
     r"FROM qualities q WHERE q\.name = '([^']+)'"
 )
+# Radarr API: min/preferred/max size must be <= 2000 (Mo/h in UI)
+RE_RADARR_QDEF_SIZES = re.compile(
+    r"INSERT INTO radarr_quality_definitions \(name, quality_name, min_size, max_size, preferred_size\)\s+"
+    r"SELECT 'FR-Media-Radarr', q\.name, (\d+), (\d+), (\d+)",
+    re.MULTILINE,
+)
+RADARR_SIZE_LIMIT = 2000
 RE_DELAY_NAME = re.compile(r"'(FR-Delay-[^']+)'")
 RE_RADARR_MEDIA = re.compile(
     r"INSERT INTO radarr_media_settings \(name, propers_repacks, enable_media_info\)\s+"
@@ -251,7 +258,20 @@ def main() -> int:
     elif "FR-Media-Base" in t07:
         fail("07-media-management.sql", "FR-Media-Base ne doit plus exister (utiliser FR-Media-Radarr/Sonarr)")
     else:
-        ok("07-media-management.sql")
+        over_radarr = [
+            (mn, mx, pr)
+            for mn, mx, pr in RE_RADARR_QDEF_SIZES.findall(t07)
+            if int(mn) > RADARR_SIZE_LIMIT
+            or int(mx) > RADARR_SIZE_LIMIT
+            or int(pr) > RADARR_SIZE_LIMIT
+        ]
+        if over_radarr:
+            fail(
+                "07-media-management.sql",
+                f"radarr_quality_definitions > {RADARR_SIZE_LIMIT}: {over_radarr[:3]}",
+            )
+        else:
+            ok("07-media-management.sql")
     print(f"\n07-media-management.sql\n  qualités invalides: {len(q_bad)}, delays: {len(delays_07)}")
 
     # --- 09 delay Sonarr (media instance = FR-Media-Radarr/Sonarr dans ops/07) ---

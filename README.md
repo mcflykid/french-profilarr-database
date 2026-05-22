@@ -401,10 +401,12 @@ Unité telle que définie dans Radarr/Sonarr pour les quality definitions (affic
 
 #### Radarr — `FR-Media-Radarr`
 
+**Limite API Radarr** : `max_size` (et en pratique `min` / `preferred` / `max`) **≤ 2000** par qualité — au-delà, sync Profilarr → Radarr échoue (`Max Size must be less than or equal to '2000'`).
+
 | Qualité | min | preferred | max | Calibré sur |
 |---------|-----|-----------|-----|-------------|
-| **Bluray-1080p** | 900 | 1750 | 2600 | BluRay x265 compact (**Winks** ~4–5,5 Go) |
-| **WEBDL/WEBRip-1080p** | 600 | 1650 | 3200 | WEB **Slay3R** H264 ~4–5 Go, H265 ~2–3 Go, pics ~9 Go |
+| **Bluray-1080p** | 900 | 1750 | **2000** | BluRay x265 compact (**Winks** ~4–5,5 Go) |
+| **WEBDL/WEBRip-1080p** | 600 | 1650 | **2000** | WEB **Slay3R** ~4–5 Go (cible) ; gros WEB ~9 Go non pénalisables via `max` au-delà de 2000 |
 | **Bluray-2160p** | 0 | 55 | 2000 | 4KLight, TyHD, AMEN (~2,5–8 Go) |
 | **WEBDL/WEBRip-2160p** | 40 | 70 | 2000 | WEB 4K compact ~7–8 Go, blockbusters ~15–23 Go (**Slay3R**) |
 | **Bluray-720p** | 800 | 1000 | 900 | *(inchangé)* |
@@ -441,9 +443,10 @@ Quand des **captures d’écran** ou listes de releases d’une **équipe / trac
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
-| 2026-05 | **Winks** (C411) | `FR-Team-Winks` 6600 ; Bluray-1080p 900/1750/2600 |
+| 2026-05 | **Winks** (C411) | `FR-Team-Winks` 6600 ; Bluray-1080p 900/1750/2000 |
 | 2026-05 | **Audio** C411/Torr9 | `AC3.5.1`, `E-AC-3`, `MULTIVFF` ; exclusion E-AC-3 du CF DD classique |
-| 2026-05 | **Slay3R** (C411) | Score 6000 ; WEB 1080p 600/1650/3200 ; regex **H264/H265/AVC** |
+| 2026-05 | **Slay3R** (C411) | Score 6000 ; WEB 1080p 600/1650/2000 ; regex **H264/H265/AVC** |
+| 2026-05 | **Fix Radarr** | `max_size` plafonné à **2000** (limite API) — corrige l’erreur sync Media Management |
 
 *(Ajouter une ligne ici à chaque calibrage terrain.)*
 
