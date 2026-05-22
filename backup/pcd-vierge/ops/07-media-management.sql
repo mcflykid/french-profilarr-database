@@ -1,0 +1,9 @@
+-- ops/07 — Media settings, quality definitions, naming, delay (Radarr + Sonarr)
+-- Profilarr v2 : un preset media par instance (3 menus = même nom), pas un preset par profil qualité.
+--
+-- INSERT INTO radarr_media_settings (name, propers_repacks, enable_media_info)
+-- VALUES ('Mon - Radarr', 'doNotPrefer', 1);
+--
+-- INSERT INTO delay_profiles (name, preferred_protocol, usenet_delay, torrent_delay,
+--   bypass_if_highest_quality, bypass_if_above_custom_format_score, minimum_custom_format_score)
+-- VALUES ('Mon-Delay-Radarr', 'prefer_usenet', 0, 0, 1, 0, NULL);

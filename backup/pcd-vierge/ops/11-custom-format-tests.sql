@@ -1,0 +1,4 @@
+-- ops/11 — Tests parser custom formats (optionnel)
+--
+-- INSERT INTO custom_format_tests (custom_format_name, title, type, should_match, description)
+-- VALUES ('MonCF', 'Release.2024.1080p.WEB-DL-GROUP', 'movie', 1, 'Doit matcher');

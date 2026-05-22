@@ -1,0 +1,7 @@
+-- ops/06 — Profils qualité, groupes, scores CF, tags profil
+--
+-- INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment)
+-- VALUES ('MonProfil-1080p', 'Description', 1, 0, 10000, 1);
+--
+-- INSERT INTO quality_groups (quality_profile_name, name)
+-- SELECT 'MonProfil-1080p', '1080p Quality' FROM quality_profiles qp WHERE qp.name = 'MonProfil-1080p';

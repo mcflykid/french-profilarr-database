@@ -1,0 +1,6 @@
+-- ops/04 — Conditions des custom formats
+-- Types courants : release_title, language, quality_modifier, size, etc.
+--
+-- INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+-- SELECT 'MonCF', 'MonRegex', 'release_title', 'all', 0, 1
+-- FROM custom_formats cf WHERE cf.name = 'MonCF';

@@ -1,0 +1,5 @@
+-- ops/02 — Expressions régulières
+-- Profilarr v2 : pas d’astérisque dans description (risque UI Sonarr).
+--
+-- INSERT INTO regular_expressions (name, pattern, description) VALUES
+--   ('MonRegex', '\bEXEMPLE\b', 'Description courte sans astérisque');

@@ -1,0 +1,20 @@
+{
+  "name": "Ma base PCD",
+  "version": "1.0.0",
+  "description": "Base Profilarr v2 — à personnaliser",
+  "arr_types": ["radarr", "sonarr"],
+  "dependencies": {
+    "https://github.com/Dictionarry-Hub/schema": "1.1.0"
+  },
+  "authors": [{ "name": "Auteur" }],
+  "license": "MIT",
+  "repository": "https://github.com/ORGANISATION/NOM-DU-DEPOT",
+  "tags": [],
+  "links": {
+    "homepage": "https://github.com/ORGANISATION/NOM-DU-DEPOT",
+    "issues": "https://github.com/ORGANISATION/NOM-DU-DEPOT/issues"
+  },
+  "profilarr": {
+    "minimum_version": "2.0.0"
+  }
+}

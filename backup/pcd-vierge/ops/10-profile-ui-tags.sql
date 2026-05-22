@@ -1,0 +1,2 @@
+-- ops/10 — Tags UI des profils qualité (optionnel)
+-- Souvent géré dans ops/06 ; laisser vide si inutile.
