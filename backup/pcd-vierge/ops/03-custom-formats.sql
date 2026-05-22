@@ -1,4 +1,0 @@
--- ops/03 — Custom formats (include_in_rename : 0 recommandé)
---
--- INSERT INTO custom_formats (name, description, include_in_rename) VALUES
---   ('MonCF', 'Description du format personnalisé', 0);

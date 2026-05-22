@@ -1,2 +1,0 @@
--- ops/01 — Tags (filtres UI Profilarr, liaison CF / profils)
--- INSERT OR IGNORE INTO tags (name) VALUES ('MonTag');

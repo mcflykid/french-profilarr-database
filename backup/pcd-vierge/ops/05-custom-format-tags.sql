@@ -1,4 +1,0 @@
--- ops/05 — Liaison custom_format ↔ tags (catégories UI)
---
--- INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
--- SELECT 'MonCF', 'Audio' FROM tags t WHERE t.name = 'Audio';

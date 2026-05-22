@@ -1,5 +1,0 @@
--- ops/12 — Simulations profil qualité (optionnel)
---
--- INSERT INTO test_entities (type, tmdb_id, title, year) VALUES ('movie', 0, 'Titre', 2024);
--- INSERT INTO test_releases (entity_type, entity_tmdb_id, title, size_bytes, languages, indexers, flags)
--- VALUES ('movie', 0, 'Release.Exemple.1080p-GROUP', 0, '[]', '[]', '[]');
