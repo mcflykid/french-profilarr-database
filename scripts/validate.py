@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CHECKS = (
     ("Intégrité ops/ (doublons, FK, profils)", "verify_ops_integrity.py"),
     ("Compile PCD (schema 1.1.0 + ops)", "verify_pcd_compile.py"),
-    ("Regex Sonarr/Radarr (pas de * en description)", "validate_regex_ops.py"),
+    ("Descriptions regex/CF (pas de *, pas de syntaxe regex)", "validate_regex_ops.py"),
 )
 
 
