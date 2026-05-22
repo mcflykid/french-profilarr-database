@@ -198,7 +198,7 @@ docker logs profilarr 2>&1 | tail -200 | grep -iE "cache|compile|Failed|UNIQUE|d
 
 **Reset :** Unlink la base → relink le dépôt → laisser **Import** + **Compile** terminer.
 
-Utiliser la branche **`main`** version PCD **3.0.0** ou plus récente.
+Commit minimum côté Git : **`fe7285c`** (correctifs compile `ops/10` / `ops/11`).
 
 ---
 

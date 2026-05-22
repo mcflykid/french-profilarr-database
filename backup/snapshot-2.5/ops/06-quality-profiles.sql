@@ -1,4 +1,4 @@
--- Fichier 06 : profils qualité FR-* + scores + tags profil (dont anime)
+-- French Profilarr Database — PCD v2 (Profilarr >= 2.0.0)
 
 -- Quality profiles
 

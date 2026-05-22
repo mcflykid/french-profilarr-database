@@ -1,4 +1,7 @@
--- Fichier 11 : tests parser custom formats (optionnel)
+-- Generated for Profilarr v2 — regression tests (parser UI)
+-- French Profilarr Database
+-- 424 titres (doublons (cf,title,type) retirés pour Compile PCD)
+-- Regenerate: python3 scripts/generate_cf_tests_sql.py
 
 INSERT INTO custom_format_tests (custom_format_name, title, type, should_match, description)
 VALUES

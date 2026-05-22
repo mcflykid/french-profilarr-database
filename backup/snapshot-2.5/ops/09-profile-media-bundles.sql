@@ -1,4 +1,6 @@
--- Fichier 09 : un preset media par profil (même nom que le profil qualité) + FR-Delay-Sonarr
+-- Profilarr v2 — bundles media (nom = profil qualité FR-*)
+-- Convention : FR-Films-* / FR-Series-* / FR-Anime-* | FR-Delay-* | FR-Media-Base
+-- Regenerate: python3 scripts/generate_profile_media_ops.py
 
 UPDATE radarr_media_settings SET propers_repacks = 'doNotPrefer' WHERE name = 'FR-Media-Base';
 UPDATE sonarr_media_settings SET propers_repacks = 'doNotPrefer' WHERE name = 'FR-Media-Base';

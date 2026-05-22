@@ -1,10 +1,7 @@
-# Maintenance (optionnel)
+# Maintenance
 
-À n’utiliser **que** si tu modifies la structure media ou les tests parser.
-
-| Script | Génère |
+| Script | Usage |
 |--------|--------|
-| `generate_profile_media_ops.py` | `ops/09-profile-media-bundles.sql` |
-| `generate_cf_tests_sql.py` | `ops/11-custom-format-tests.sql` |
+| `rebuild_ops.py` | Regénère `ops/` depuis `backup/snapshot-2.5/ops/` (réécriture en-têtes v3) |
 
-Après regénération : `python3 scripts/validate.py` puis commit.
+Après exécution : `python3 scripts/validate.py`

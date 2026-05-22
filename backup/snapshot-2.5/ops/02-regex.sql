@@ -1,5 +1,4 @@
--- Fichier 02 : expressions régulières (pattern = motif ; description = aide UI uniquement)
--- Les descriptions ne doivent pas contenir de * (Profilarr peut les concaténer au pattern pour Sonarr).
+-- French Profilarr Database — PCD v2 (Profilarr >= 2.0.0)
 
 -- Regular expressions
 -- Descriptions : texte brut uniquement (Profilarr concatène pattern + description vers les *arr).

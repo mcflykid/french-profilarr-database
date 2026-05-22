@@ -1,4 +1,4 @@
--- Fichier 10 : tags UI Radarr / Sonarr / Films / Series uniquement (pas anime → ops/06)
+-- Tags UI Profilarr v2 — filtrer / retrouver les profils dans les listes
 
 INSERT INTO tags (name) VALUES ('Radarr');
 INSERT INTO tags (name) VALUES ('Sonarr');

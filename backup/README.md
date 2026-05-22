@@ -1,13 +1,14 @@
-# Dossier backup
+# Backup — ancienne arborescence
 
-Archives et anciens outils — **pas utilisés par Profilarr**.
+Tout ce qui existait avant la réécriture **v3.0.0** est dans [`snapshot-2.5/`](snapshot-2.5/) :
 
-| Contenu | Rôle |
-|---------|------|
-| [`scripts/`](scripts/) | Anciens scripts Python (migration YAML, rapports scores, normalisation texte) |
+| Contenu | Description |
+|---------|-------------|
+| `snapshot-2.5/ops/` | Anciens SQL (base de la réécriture v3) |
+| `snapshot-2.5/docs/`, `scripts/`, `README.md`, … | Doc et outils d’origine |
+| `snapshot-2.5/backup-nested/` | Scripts archivés (migration YAML, etc.) |
+| `profiles/`, `custom_formats/`, … | YAML v1 s’ils étaient encore présents |
 
-La base active est uniquement :
+**Dépôt actif (Profilarr) :** uniquement `pcd.json` + `ops/` à la racine.
 
-- `pcd.json`
-- `ops/*.sql`
-- `docs/PROFILARR-V2.md`
+Pour régénérer `ops/` depuis le snapshot : `python3 scripts/maintain/rebuild_ops.py`

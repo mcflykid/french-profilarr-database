@@ -1,4 +1,4 @@
--- Fichier 07 : FR-Media-Base, tailles, nommage (rename=0), FR-Delay-Radarr
+-- French Profilarr Database — PCD v2 (Profilarr >= 2.0.0)
 
 -- Media management (FR defaults)
 -- Modèle de base FR-Media-Base (cloné vers chaque profil FR-* dans ops/09)

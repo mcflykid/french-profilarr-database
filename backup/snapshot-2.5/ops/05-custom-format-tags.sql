@@ -1,4 +1,4 @@
--- Fichier 05 : tags par custom format
+-- French Profilarr Database — PCD v2 (Profilarr >= 2.0.0)
 
 -- Custom format tags
 

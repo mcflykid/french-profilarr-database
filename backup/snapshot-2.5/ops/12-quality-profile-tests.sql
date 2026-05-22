@@ -1,4 +1,6 @@
--- Fichier 12 : simulations profil qualité (optionnel)
+-- Profilarr v2 — simulations profil qualité (test_entities + test_releases)
+-- UI : sélectionner un profil FR-* puis comparer le classement des releases ci-dessous.
+-- Politique : pas de Remux (CF -999999) ; encodes WEB / 4KLight privilégiés.
 
 -- =============================================================================
 -- Film : La Momie (1999) — TMDB 564 — référence FR-Films-4K

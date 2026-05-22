@@ -1,5 +1,4 @@
--- French Profilarr Database — PCD v3
--- Fichier 01 : tags (filtres Profilarr, liaison CF et profils)
+-- French Profilarr Database — PCD v2 (Profilarr >= 2.0.0)
 
 -- Tags
 

@@ -1,4 +1,4 @@
--- Fichier 04 : conditions par CF (regex, source, résolution)
+-- French Profilarr Database — PCD v2 (Profilarr >= 2.0.0)
 
 -- Custom format conditions
 
