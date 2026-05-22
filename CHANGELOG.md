@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1] — 2025-05-22
+
+### Corrigé
+
+- **Compile / 500 cache** : tags UI fusionnés dans `ops/06` + `ops/01` ; `ops/10` vidé (évite UNIQUE `quality_profile_tags`).
+- `INSERT OR IGNORE` sur tags et liaisons profil.
+- Guide [`docs/PROFILARR-RESET.md`](docs/PROFILARR-RESET.md) (Unlink → Relink → Compile).
+
 ## [3.0.0] — 2025-05-22
 
 ### Changement majeur

@@ -1,6 +1,6 @@
 {
   "name": "French Profilarr Database",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Base PCD Profilarr v2 — scène française (FR-*), sans Remux, rename désactivé.",
   "arr_types": ["radarr", "sonarr"],
   "dependencies": {

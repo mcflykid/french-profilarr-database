@@ -174,6 +174,8 @@ python3 scripts/validate.py
 
 ## 12. Erreur 500 « Database cache not available »
 
+Procédure pas à pas : [**PROFILARR-RESET.md**](PROFILARR-RESET.md).
+
 Message Profilarr quand le **cache compilé** n’est pas en mémoire (`getCache()` vide).
 
 **Causes :**

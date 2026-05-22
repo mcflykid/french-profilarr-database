@@ -1,13 +1,13 @@
 # French Profilarr Database
 
 ![CI](https://github.com/mcflykid/french-profilarr-database/actions/workflows/ci.yml/badge.svg)
-![PCD](https://img.shields.io/badge/PCD-3.0.0-green)
+![PCD](https://img.shields.io/badge/PCD-3.0.1-green)
 
 Base **[PCD](https://github.com/Dictionarry-Hub/schema) 1.1.0** pour **[Profilarr v2](https://v2.dictionarry.dev)** — Radarr et Sonarr, **scène française** (`FR-*`), **sans Remux**, **`rename = 0`**.
 
 | | |
 |---|---|
-| Version PCD | **3.0.0** |
+| Version PCD | **3.0.1** |
 | Contenu | 65 CF · 70 regex · 10 profils · delays · media par profil |
 | Ancienne version | archivée dans [`backup/snapshot-2.5/`](backup/snapshot-2.5/) |
 
@@ -56,7 +56,7 @@ Priorité langue : `FR-MULTI-VF2` > `FR-MULTI-VFF` > `FR-VF2` > `FR-VFF` > `FR-V
 
 | Problème | Action |
 |----------|--------|
-| 500 cache / Media grisé | **Pull** → **Compile** (vert) |
+| 500 cache / Media grisé | [**Reset complet**](docs/PROFILARR-RESET.md) : Unlink → Relink → **Compile** |
 | Sync Sonarr HDR en erreur | Pull **v3** (regex sans `*` dans descriptions) |
 | Compile `ops/10` UNIQUE | Pull v3 ; ne pas réinsérer tag `anime` dans `10` |
 | Delay incorrect | `FR-Delay-Radarr` / `FR-Delay-Sonarr`, pas `fr-default` |

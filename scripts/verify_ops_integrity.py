@@ -65,10 +65,12 @@ RE_CF_TEST = re.compile(
     r"\(\s*'([^']+)',\s*'((?:''|[^'])*)',\s*'(movie|series)',\s*([01]),"
 )
 RE_QPT = re.compile(
-    r"INSERT INTO quality_profile_tags \(quality_profile_name, tag_name\)\s+"
+    r"INSERT(?: OR IGNORE)? INTO quality_profile_tags \(quality_profile_name, tag_name\)\s+"
     r"SELECT '([^']+)', '([^']+)'",
 )
-RE_TAG_INSERT = re.compile(r"INSERT INTO tags \(name\) VALUES \('([^']+)'\)")
+RE_TAG_INSERT = re.compile(
+    r"INSERT(?: OR IGNORE)? INTO tags \(name\) VALUES \('([^']+)'\)"
+)
 RE_CF = re.compile(
     r"INSERT INTO custom_formats \(name, description, include_in_rename\) "
     r"VALUES \('([^']+)'"

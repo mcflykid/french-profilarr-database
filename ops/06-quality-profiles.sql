@@ -156,58 +156,94 @@ FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Series-720p' AND qg.quality_profile_name = qp.name AND qg.name = '720p Quality';
 
 -- Profile tags
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Anime-1080p', '1080p' FROM tags t WHERE t.name = '1080p';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Anime-1080p', 'anime' FROM tags t WHERE t.name = 'anime';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Anime-1080p', 'French' FROM tags t WHERE t.name = 'French';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Anime-4K', '2160p' FROM tags t WHERE t.name = '2160p';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Anime-4K', 'anime' FROM tags t WHERE t.name = 'anime';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Anime-4K', 'French' FROM tags t WHERE t.name = 'French';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Anime-720p', '720p' FROM tags t WHERE t.name = '720p';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Anime-720p', 'anime' FROM tags t WHERE t.name = 'anime';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Anime-720p', 'French' FROM tags t WHERE t.name = 'French';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Films-1080p', '1080p' FROM tags t WHERE t.name = '1080p';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Films-1080p', 'French' FROM tags t WHERE t.name = 'French';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Films-4K', '2160p' FROM tags t WHERE t.name = '2160p';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Films-4K', 'French' FROM tags t WHERE t.name = 'French';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Films-720p', '720p' FROM tags t WHERE t.name = '720p';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Films-720p', 'French' FROM tags t WHERE t.name = 'French';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Films-Any', 'any' FROM tags t WHERE t.name = 'any';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Films-Any', 'French' FROM tags t WHERE t.name = 'French';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Series-1080p', '1080p' FROM tags t WHERE t.name = '1080p';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Series-1080p', 'French' FROM tags t WHERE t.name = 'French';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Series-1080p', 'tv' FROM tags t WHERE t.name = 'tv';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Series-4K', '2160p' FROM tags t WHERE t.name = '2160p';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Series-4K', 'French' FROM tags t WHERE t.name = 'French';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Series-4K', 'tv' FROM tags t WHERE t.name = 'tv';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Series-720p', '720p' FROM tags t WHERE t.name = '720p';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Series-720p', 'French' FROM tags t WHERE t.name = 'French';
-INSERT INTO quality_profile_tags (quality_profile_name, tag_name)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
 SELECT 'FR-Series-720p', 'tv' FROM tags t WHERE t.name = 'tv';
+
+-- Tags UI Profilarr (filtrer Radarr / Sonarr / Films / Series — ex ops/10)
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Films-4K', 'Radarr' FROM tags t WHERE t.name = 'Radarr';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Films-4K', 'Films' FROM tags t WHERE t.name = 'Films';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Films-1080p', 'Radarr' FROM tags t WHERE t.name = 'Radarr';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Films-1080p', 'Films' FROM tags t WHERE t.name = 'Films';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Films-720p', 'Radarr' FROM tags t WHERE t.name = 'Radarr';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Films-720p', 'Films' FROM tags t WHERE t.name = 'Films';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Films-Any', 'Radarr' FROM tags t WHERE t.name = 'Radarr';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Films-Any', 'Films' FROM tags t WHERE t.name = 'Films';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Series-4K', 'Sonarr' FROM tags t WHERE t.name = 'Sonarr';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Series-4K', 'Series' FROM tags t WHERE t.name = 'Series';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Series-1080p', 'Sonarr' FROM tags t WHERE t.name = 'Sonarr';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Series-1080p', 'Series' FROM tags t WHERE t.name = 'Series';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Series-720p', 'Sonarr' FROM tags t WHERE t.name = 'Sonarr';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Series-720p', 'Series' FROM tags t WHERE t.name = 'Series';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Anime-4K', 'Sonarr' FROM tags t WHERE t.name = 'Sonarr';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Anime-1080p', 'Sonarr' FROM tags t WHERE t.name = 'Sonarr';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Anime-720p', 'Sonarr' FROM tags t WHERE t.name = 'Sonarr';
 
 -- Profile custom format scores
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)

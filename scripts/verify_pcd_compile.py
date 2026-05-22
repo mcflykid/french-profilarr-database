@@ -48,6 +48,17 @@ def main() -> int:
                 conn.executescript(path.read_text(encoding="utf-8"))
 
             conn.commit()
+            # Idempotence tags (doublon ops/06 + ops/10 ne doit plus planter)
+            tag_probe = """
+            INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+            SELECT 'FR-Films-4K', 'Radarr' FROM tags t WHERE t.name = 'Radarr';
+            """
+            conn.executescript(tag_probe)
+            conn.executescript(tag_probe)
+            conn.executescript((OPS / "01-tags.sql").read_text(encoding="utf-8"))
+            conn.executescript((OPS / "10-profile-ui-tags.sql").read_text(encoding="utf-8"))
+            conn.commit()
+
             row = conn.execute(
                 "SELECT COUNT(*) FROM sonarr_quality_definitions "
                 "WHERE name = 'FR-Media-Base' AND quality_name IN ('Remux-1080p', 'Remux-2160p')"
@@ -56,6 +67,25 @@ def main() -> int:
                 print(
                     f"ERROR: FR-Media-Base Sonarr remux defs expected 2, got {row[0]}"
                 )
+                return 1
+
+            dup = conn.execute(
+                """
+                SELECT quality_profile_name, tag_name, COUNT(*) AS n
+                FROM quality_profile_tags
+                GROUP BY quality_profile_name, tag_name
+                HAVING n > 1
+                """
+            ).fetchall()
+            if dup:
+                print(f"ERROR: duplicate quality_profile_tags: {dup[:5]}")
+                return 1
+
+            media = conn.execute(
+                "SELECT name FROM radarr_media_settings WHERE name LIKE 'FR-Films-%'"
+            ).fetchall()
+            if len(media) < 4:
+                print(f"ERROR: expected 4 FR-Films-* media bundles, got {len(media)}")
                 return 1
         except sqlite3.Error as e:
             print(f"ERROR: compile failed: {e}")
