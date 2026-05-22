@@ -1,87 +1,91 @@
 # French Profilarr Database
 
-Base **[PCD](https://github.com/Dictionarry-Hub/schema) 1.1.0** pour **[Profilarr v2](https://v2.dictionarry.dev)** — Radarr et Sonarr, orientée **scène française privée** (releases francophones, tags et habitudes d’encodage des trackers privés FR, sans calquer les profils « internationaux » génériques).
+Base **[PCD](https://github.com/Dictionarry-Hub/schema) 1.1.0** pour **[Profilarr v2](https://v2.dictionarry.dev)** — Radarr et Sonarr orientés **scène française privée** (releases francophones, tags et habitudes d’encodage des trackers privés FR, pas un profil « international » générique recollé).
 
 | | |
 |---|---|
-| **Format** | `pcd.json` + `ops/*.sql` uniquement (comme [Dumpstarr/Database](https://github.com/Dumpstarr/Database)) |
+| **Format** | `pcd.json` + `ops/*.sql` ([modèle Dumpstarr](https://github.com/Dumpstarr/Database)) |
 | **Profilarr** | ≥ 2.0.0 |
-| **Version PCD** | 2.0.0 |
-| **Contenu** | ~65 custom formats · ~69 regex · 10 profils qualité · presets media · delays · tests parser |
+| **Version dépôt** | 2.0.0 |
+| **Contenu** | 66 custom formats · 70 regex · 10 profils qualité · presets media · delays · ~443 tests parser |
 
-Ce dépôt n’est **pas** un fork Dictionarry « à peine retouché » : la couche **FR** (langue, équipes, signatures scène, exclusions) et l’articulation avec les profils ont été pensées **quasi depuis zéro**, en s’appuyant sur la technique audio/HDR/codec de [Dictionarry-Hub/database](https://github.com/Dictionarry-Hub/database). Des cas limites ou incohérences sont possibles — les [issues](https://github.com/mcflykid/french-profilarr-database/issues) sont les bienvenues.
+Ce dépôt n’est **pas** un fork Dictionarry « à peine retouché » : la couche **FR** (langue, équipes, signatures, exclusions) est pensée **pour la scène privée francophone**, en réutilisant la technique audio/HDR/codec de [Dictionarry-Hub/database](https://github.com/Dictionarry-Hub/database). Retours terrain bienvenus via [issues](https://github.com/mcflykid/french-profilarr-database/issues).
+
+---
+
+## Tu arrives ici — par où commencer ?
+
+1. **Utilisateur Profilarr** → [Démarrage rapide](#démarrage-rapide-profilarr) puis [Checklist Radarr/Sonarr](#checklist-radarr--sonarr).
+2. **Comprendre les choix** → [En une minute](#en-une-minute) puis [Tous les choix expliqués](#tous-les-choix-expliqués).
+3. **Mainteneur / contributeur** → [Structure du dépôt](#structure-du-dépôt) + [Tests](#tests-et-validation) + **[Maintien du README](#maintien-du-readme-obligatoire)**.
+
+```text
+Indexeur (titre release) → Radarr parse le titre → score = somme des Custom Formats
+                        → comparaison qualité native + taille (preset media)
+                        → release retenue ou upgrade
+```
 
 ---
 
 ## Table des matières
 
-1. [Objectif et public](#objectif-et-public)
-2. [Historique du dépôt](#historique-du-dépôt)
-3. [Démarrage Profilarr](#démarrage-profilarr)
-4. [Structure du dépôt](#structure-du-dépôt)
-5. [Philosophie de conception](#philosophie-de-conception)
-6. [Langue française (custom formats)](#langue-française-custom-formats)
-7. [Équipes et paliers](#équipes-et-paliers)
-8. [Signatures scène (4KLight, HDLight, Hybrid)](#signatures-scène-4klight-hdlight-hybrid)
-9. [Technique : HDR, audio, codecs](#technique--hdr-audio-codecs)
-10. [Profils qualité `FR-*`](#profils-qualité-fr-)
-11. [Media management et delays](#media-management-et-delays)
-12. [Scoring : ce que Radarr fait (et ne fait pas)](#scoring--ce-que-radarr-fait-et-ne-fait-pas)
-13. [Créneaux catalogue (slots) et tailles cibles](#créneaux-catalogue-slots-et-tailles-cibles)
-14. [Ce qu’on a volontairement rejeté](#ce-quon-a-volontairement-rejeté)
-15. [Tests et validation](#tests-et-validation)
-16. [Références](#références)
+1. [En une minute](#en-une-minute)
+2. [Démarrage rapide Profilarr](#démarrage-rapide-profilarr)
+3. [Tous les choix expliqués](#tous-les-choix-expliqués)
+4. [Langue française](#langue-française)
+5. [Équipes et paliers](#équipes-et-paliers)
+6. [Signatures scène](#signatures-scène-4klight-hdlight-hybrid-repack)
+7. [Technique : HDR, audio, codecs](#technique--hdr-audio-codecs)
+8. [Profils qualité `FR-*`](#profils-qualité-fr-)
+9. [Media management : tailles et delays](#media-management--tailles-et-delays)
+10. [Calibrage terrain (trackers)](#calibrage-terrain-trackers)
+11. [Scoring : limites Radarr](#scoring--limites-radarr)
+12. [Créneaux catalogue (slots)](#créneaux-catalogue-slots)
+13. [Ce qu’on rejette volontairement](#ce-quon-rejette-volontairement)
+14. [Tests et validation](#tests-et-validation)
+15. [Structure du dépôt](#structure-du-dépôt)
+16. [Maintien du README (obligatoire)](#maintien-du-readme-obligatoire)
+17. [Historique du dépôt](#historique-du-dépôt)
+18. [Références](#références)
 
 ---
 
-## Objectif et public
+## En une minute
 
-**But** : quand Radarr ou Sonarr choisit une release sur un indexeur, le **score custom format** reflète ce que la scène FR valorise :
+**Problème** : les profils TRaSH/Dumpstarr « internationaux » ne reflètent pas ce que la scène FR privée valorise (MULTI.VFF, 4KLight compact, équipes WEB, pas de remux catalogue).
 
-- **Langue** : MULTI avec VF2/VFF/VFQ/VOQ, puis VF mono, puis VOSTFR en secours.
-- **Format** : encodes HEVC compacts en 4K (4KLight, WEB 2160p « HC optimisé »), pas des remplissages x264@UHD ni des remux massifs.
-- **Qualité annoncée** : DV, HDR10+, audio premium quand le **titre** de la release le mentionne.
-- **Équipe** : bonus pour les groupes documentés (QTZ, TyHD, AMEN, Slay3R, etc.) sans maintenir ~900 fichiers regex « un par team ».
+**Solution** : des **Custom Formats** qui ajoutent des points au **titre de la release** tel que l’indexeur l’affiche :
 
-**Public** : utilisateurs de **trackers privés francophones** (avec ou sans « slots » catalogue), souvent en **cross-seed** (même fichier, noms parfois différents selon l’indexeur).
+| Priorité | Exemple de critère | Ordre de grandeur |
+|----------|-------------------|-------------------|
+| 1 | Langue (`FR-MULTI-VF2` > `FR-MULTI-VFF` > `FR-VFF` > `FR-VOSTFR`) | 20k–100k |
+| 2 | Équipe documentée (`FR-Team-QTZ`, `Winks`, `Slay3R`, …) | 1k–12k |
+| 3 | Signature / HDR / audio dans le titre | 100–4,5k |
+| 4 | Exclusions dures | **-999999** (Remux, AV1, blockers) |
 
-**Hors périmètre** : profils « internationaux » type TRaSH/Dumpstarr purs, usenet-first, remux-first, ou chartes qui **bannissent** certains tags (ex. VFQ) que cette base **accepte** volontairement.
+**Public** : utilisateurs de **trackers privés francophones**, souvent en **cross-seed** (même fichier, noms parfois différents selon l’indexeur).
 
----
-
-## Historique du dépôt
-
-Le projet a évolué en plusieurs étapes (commits Git ; anciennes archives `backup/` supprimées du dépôt car redondantes) :
-
-| Phase | Forme | Notes |
-|-------|--------|--------|
-| v1 | YAML (`regex_patterns/`, `custom_formats/`, `profiles/`) | Profilarr v1, annotations FR |
-| v2.5 → v3 | PCD + `ops/*.sql` | Migration schema 1.1.0 |
-| v4 / **2.0.0 actuel** | Racine = `pcd.json` + `ops/` + `scripts/` + README | Alignement [Dumpstarr](https://github.com/Dumpstarr/Database) (seuils profil) |
-
-Pour retrouver d’anciennes copies (snapshot, squelette PCD vierge, pre-reset) : `git log` puis `git show <commit>:backup/...` (ex. commit `c1d52ee` avant suppression du dossier).
-
-**À importer dans Profilarr** : uniquement la **racine** du dépôt.
+**Hors périmètre** : usenet-first, remux-first, chartes qui **bannissent VFQ** (ici VFQ passe par `FR-VF2` / `FR-MULTI-VF2`).
 
 ---
 
-## Démarrage Profilarr
+## Démarrage rapide Profilarr
 
-### 1. Base Git (dépôt PCD)
+### Base Git (dépôt PCD)
 
 1. Lier `https://github.com/mcflykid/french-profilarr-database`
-2. **Pull** — importe les 11 fichiers `ops/*.sql` (log `updated:11` = OK)
-3. **Compile** — **obligatoire** : remplit le cache (profils, delays, presets `FR-Media-Radarr` visibles dans l’UI)
+2. **Pull** — importe les 11 fichiers `ops/*.sql` (`updated:11` = OK)
+3. **Compile** — **obligatoire** : remplit le cache (profils, delays, presets `FR-Media-*` visibles dans l’UI)
 
-Sans **Compile**, les listes déroulantes peuvent rester vides ou obsolètes.
+Sans **Compile**, les listes peuvent rester vides ou obsolètes.
 
-### 2. Sync par instance Radarr / Sonarr
+### Sync par instance (Radarr / Sonarr)
 
-Le **Pull** sur la base **ne configure pas** Radarr/Sonarr. Menu **Arr** → ton instance → onglet **Sync** (ce n’est pas le Pull de la base).
+Le **Pull** sur la base **ne configure pas** Radarr/Sonarr. Menu **Arr** → instance → onglet **Sync** (≠ Pull de la base).
 
-Le bandeau *« Quality profiles require media management settings and a delay profile »* = sections **non sauvegardées** (cliquer **Save** sur chaque bloc).
+Bandeau *« Quality profiles require media management settings and a delay profile »* = section **non sauvegardée** → **Save** sur chaque bloc.
 
-**Ordre obligatoire** (tant qu’une section est « dirty », l’avertissement reste) :
+**Ordre obligatoire** :
 
 ```text
 1. Media Management  →  Save
@@ -91,7 +95,7 @@ Le bandeau *« Quality profiles require media management settings and a delay pr
 
 #### Media Management — un preset par application
 
-Ce n’est **pas** un preset par profil `FR-Films-1080p`. **Un seul triplet** pour toute l’instance Radarr (ou Sonarr) :
+**Un seul triplet** par instance (pas un preset par profil `FR-Films-4K`) :
 
 | Menu Profilarr | Radarr | Sonarr |
 |----------------|--------|--------|
@@ -99,57 +103,44 @@ Ce n’est **pas** un preset par profil `FR-Films-1080p`. **Un seul triplet** po
 | Quality definitions | **`FR-Media-Radarr`** | **`FR-Media-Sonarr`** |
 | Media settings | **`FR-Media-Radarr`** | **`FR-Media-Sonarr`** |
 
-Les **trois** menus doivent pointer vers le **même** nom (préfixe `FR-` comme les profils `FR-Films-4K`, `FR-Series-1080p`, etc.).
+Les **trois** menus doivent pointer vers le **même** nom.
 
 #### Delay profile
 
 | Instance | Choisir puis **Save** |
 |----------|----------------------|
-| Radarr | **`FR-Delay-Radarr`** |
-| Sonarr | **`FR-Delay-Sonarr`** |
+| Radarr | **`FR-Delay-Radarr`** (`ops/07`) |
+| Sonarr | **`FR-Delay-Sonarr`** (`ops/09`) |
 
-#### Profils qualité — cases à cocher
+#### Profils qualité
 
-Exemples Radarr : `FR-Films-1080p`, `FR-Films-4K`, `FR-Films-720p`, `FR-Films-Any`  
-Exemples Sonarr : `FR-Series-1080p`, `FR-Series-4K`, `FR-Anime-1080p`, etc.
+Radarr : `FR-Films-1080p`, `FR-Films-4K`, `FR-Films-720p`, `FR-Films-Any`  
+Sonarr : `FR-Series-*`, `FR-Anime-*` → **Save** → **Sync**.
 
-**Save**, puis **Sync** sur la carte instance (ou Pull → Compile → Sync si la base Git vient de changer).
+Logs `arr.sync.* (skipped)` = config instance **pas encore enregistrée** — pas une erreur SQL du dépôt.
 
-#### Logs `arr.sync.* (skipped)`
+### Checklist Radarr / Sonarr
 
-Après un Pull, tu peux voir :
-
-```text
-arr.sync.qualityProfiles (skipped)
-arr.sync.delayProfiles (skipped)
-arr.sync.mediaManagement (skipped)
-```
-
-Profilarr a lancé les jobs, mais **aucune config Sync n’est enregistrée** pour cette instance — ce n’est **pas** une erreur SQL du dépôt.
-
-**À faire :** Arr → Radarr/Sonarr → **Sync** → configurer chaque bloc → **Save** → **Sync**. Tant que les logs affichent `skipped` au lieu de `qualityProfiles: N item(s)`, la config instance n’est pas sauvegardée.
-
-#### Checklist Radarr
+**Radarr**
 
 - [ ] Base : **Pull** + **Compile**
-- [ ] Arr → Radarr → Sync → Media : `FR-Media-Radarr` sur les **3** menus → **Save**
-- [ ] Delay : **`FR-Delay-Radarr`** → **Save**
-- [ ] Quality profiles : au moins un `FR-Films-*` → **Save**
-- [ ] Bouton **Sync** sur l’instance
+- [ ] Sync → Media : `FR-Media-Radarr` sur les **3** menus → **Save**
+- [ ] Delay : `FR-Delay-Radarr` → **Save**
+- [ ] Quality profiles : au moins un `FR-Films-*` → **Save** → **Sync**
 
-#### Checklist Sonarr
+**Sonarr**
 
 - [ ] Base : **Pull** + **Compile**
-- [ ] Arr → Sonarr → Sync → Media : `FR-Media-Sonarr` × 3 → **Save**
-- [ ] Delay : **`FR-Delay-Sonarr`** → **Save**
-- [ ] Quality profiles : `FR-Series-*` / `FR-Anime-*` → **Save**
-- [ ] **Sync**
+- [ ] Sync → Media : `FR-Media-Sonarr` × 3 → **Save**
+- [ ] Delay : `FR-Delay-Sonarr` → **Save**
+- [ ] Quality profiles : `FR-Series-*` / `FR-Anime-*` → **Save** → **Sync**
 
-### 3. Docker Compose (homelab, optionnel)
+### Docker Compose (optionnel)
 
-Exemple [Profilarr v2](https://v2.dictionarry.dev/profilarr-setup/installation) + parser pour tests CF/QP. Migration v1 : sauvegarder l’appdata Profilarr puis repartir vide.
+Exemple [installation Profilarr v2](https://v2.dictionarry.dev/profilarr-setup/installation) + parser pour tests CF. Variables : `DOCKERDIR`, `PROFILARR_PORT` (6868), `TZ`, `PUID`, `PGID`. Derrière reverse proxy : `ORIGIN`. Sans parser : retirer `profilarr-parser`, `depends_on`, `PARSER_HOST`, `PARSER_PORT`.
 
-Variables utiles : `DOCKERDIR`, `PROFILARR_PORT` (défaut 6868), `TZ`, `PUID`, `PGID`. Derrière reverse proxy : définir `ORIGIN`. Sans parser : retirer le service `profilarr-parser`, `depends_on`, `PARSER_HOST` et `PARSER_PORT`.
+<details>
+<summary>Exemple compose (cliquer pour déplier)</summary>
 
 ```yaml
 name: profilarr
@@ -214,336 +205,381 @@ networks:
     external: true
 ```
 
----
-
-## Structure du dépôt
-
-```text
-pcd.json                 # Métadonnées PCD (nom, version, schema 1.1.0)
-ops/
-  01-tags.sql            # Tags UI + catégories CF
-  02-regex.sql           # Motifs (pattern = détection ; description = aide UI)
-  03-custom-formats.sql  # Définitions CF (include_in_rename = 0 partout)
-  04-custom-format-conditions.sql  # Conditions + liaisons regex
-  05-custom-format-tags.sql        # Tags par CF
-  06-quality-profiles.sql          # Profils FR-* + scores + tags profil
-  07-media-management.sql          # FR-Media-Radarr, FR-Media-Sonarr, FR-Delay-Radarr
-  09-profile-media-bundles.sql     # FR-Delay-Sonarr uniquement
-  10-profile-ui-tags.sql           # Tags Radarr/Sonarr/Films/Series (pas tag SQL "anime")
-  11-custom-format-tests.sql       # Tests parser CF (optionnel UI)
-  12-quality-profile-tests.sql     # Simulations profil (Momie, POI, etc.)
-scripts/
-  validate.py            # Intégrité + compile + regex Sonarr-safe
-```
-
-**Préfixe `FR-`** : tout ce qui est **spécifique marché français** (langue, teams, blockers, signatures, repacks). Le reste reprend les noms Dictionarry (`HDR10+`, `Dolby Vision`, `Remux`, …) pour rester compatible et rebaseable.
-
-**Descriptions regex** : texte **sans astérisque `*`** — Profilarr peut concaténer description + pattern vers Sonarr et provoquer des erreurs de sync.
+</details>
 
 ---
 
-## Philosophie de conception
+## Tous les choix expliqués
 
-### Couche technique vs couche FR
+Chaque ligne = une décision **assumée** dans ce dépôt. Si tu ne partages pas l’objectif (encodes compacts FR, pas remux), ce dépôt n’est probablement pas pour toi.
 
-| Couche | Source | Exemples |
-|--------|--------|----------|
-| **Technique** | Dictionarry / TRaSH | HDR10+, DV, DTS-HD MA, x265, streamers NF/AMZN, Full Disc |
-| **FR** | Conventions scène privée | `FR-MULTI-VFF`, `FR-4KLight`, `FR-Team-QTZ`, `FR-Blockers` |
+| Choix | On ne fait pas | Pourquoi |
+|-------|----------------|----------|
+| **Scores CF dominants** | Tout miser sur la qualité native seule | La scène FR se lit dans le **titre** (MULTI, 4KLight, équipe) |
+| **`rename = 0`** | Renommage Radarr agressif | Habitude trackers FR, cross-seed, lisibilité ratio |
+| **Remux / Full Disc / AV1 / Upscaled → -999999** | Catalogue remux / AV1 | Encodes domestiques, compat TV/box |
+| **`propers_repacks = doNotPrefer`** | Repack natif « Prefer » | Géré par **FR-Repack** / **-2** / **-3** dans le titre |
+| **Torrent only, délai 0** | Usenet / délais longs | `FR-Delay-*` : torrent, `torrent_delay = 0` |
+| **x265 favorisé en 1080p/720p** | Malus HEVC sous 4K (Dumpstarr) | Scène FR = encodes compacts HEVC |
+| **VFQ / VOQ acceptés** | Ban VFQ | Passent par **FR-VF2** / **FR-MULTI-VF2** (scores, pas exclusion) |
+| **16 équipes `FR-Team-*`** | ~900 regex « une par team » | Maintenance tenable, rebase Dictionarry possible |
+| **Un preset media par app** | Bundle media par profil `FR-Films-4K` | Exigence Profilarr v2 + une config taille par instance |
+| **Seuils profil type Dumpstarr** | `minimum = 20000` (ancienne base) | Évite upgrades bloqués ; priorité FR reste dans les CF |
 
-On a **fusionné** des regex Dictionarry en bundles projet (`FR-Regex-Streamers-Premium`, `FR-Regex-Atmos-Bundle`, …) pour limiter la duplication sans changer la sémantique de détection.
-
-### Principes tenus sur toute la base
-
-| Choix | Pourquoi |
-|-------|----------|
-| **`rename = 0`** | Conserver le nom d’annonce tel quel (habitude trackers FR, cross-seed, lisibilité ratio) |
-| **Remux / Full Disc / AV1 / Upscaled à -999999** | Encodes domestiques uniquement ; compat matériel ; pas de remplissage catalogue |
-| **`propers_repacks = doNotPrefer`** | Les repacks sont gérés par **`FR-Repack`** / **`FR-Repack-2`** / **`FR-Repack-3`** (scores CF), pas l’option native Radarr |
-| **Torrent only, délai 0** | `FR-Delay-Radarr` / `FR-Delay-Sonarr` : `only_torrent`, `torrent_delay = 0`, bypass si déjà meilleure qualité |
-| **x265 favorisé en 1080p/720p** | Contrairement à Dumpstarr qui pénalise souvent HEVC sous 2160p — la scène FR pousse les encodes compacts |
-| **Pas de ban VFQ** | VFQ/VOQ passent par **`FR-VF2`** / **`FR-MULTI-VF2`** ; politique ajustable par scores, pas par exclusion aveugle |
-| **Un preset media par app** | Modèle Profilarr v2 + Dictionarry : `FR-Media-Radarr` / `FR-Media-Sonarr`, pas un bundle par profil `FR-Films-4K` |
-
-### Seuils profil (alignement Dumpstarr)
-
-Héritage [Dumpstarr/Database](https://github.com/Dumpstarr/Database) pour les **seuils Radarr/Sonarr natifs** ; la **priorité FR** reste dans les **scores CF** :
+### Seuils profil natifs (`ops/06`)
 
 | Profil type | `minimum_custom_format_score` | `upgrade_until_score` |
-|-------------|--------------------------------|------------------------|
+|-------------|------------------------------:|----------------------:|
 | Films 1080p | **750** | 10000 |
 | Films / Series / Anime **4K** | **1000** | 10000 |
 | Series / Anime 1080p/720p, Films 720p/Any | **0** | 10000 |
 
-Ancienne base interne utilisait `minimum = 20000` et `upgrade_until = 888888` — remplacé pour coller à Dumpstarr et éviter des upgrades bloqués de façon absurde.
-
 ---
 
-## Langue française (custom formats)
+## Langue française
 
 ### Hiérarchie des scores (tous profils `FR-*`)
 
-Ordre de priorité **langue** (scores identiques sur Films / Series / Anime ; la résolution change surtout les malus codec) :
-
-| Custom format | Score | Condition (résumé) |
+| Custom format | Score | Détection (résumé) |
 |---------------|------:|---------------------|
 | **FR-MULTI-VF2** | 100 000 | `MULTI` **et** (`VF2` \| `VFQ` \| `VOQ`) |
 | **FR-MULTI-VFF** | 90 000 | `MULTI` **et** tag FR hors VF2/VFQ/VOQ |
 | **FR-VF2** | 70 000 | VF2 / VFQ / VOQ sans MULTI obligatoire |
-| **FR-VFF** | 60 000 | VFF, TRUEFRENCH, VFI, VOF, FRENCH, etc. |
+| **FR-VFF** | 60 000 | VFF, TRUEFRENCH, VFI, VOF, FRENCH, … |
 | **FR-VOSTFR** | 20 000 | VOSTFR, SUBFRENCH, FANSUB, FASTSUB |
 
-**Règle importante** : `FR-MULTI-VF2` et `FR-MULTI-VFF` sont **mutuellement exclusifs** sur une même release (deux conditions AND différentes). Une release `MULTI.VFF` ne doit **pas** matcher les deux — les tests parser (`ops/11`) vérifient ce point.
+**Règle** : `FR-MULTI-VF2` et `FR-MULTI-VFF` sont **mutuellement exclusifs** (deux AND différents). `MULTI.VFF` ne doit pas matcher les deux — vérifié dans `ops/11`.
 
 ### Regex langue (`ops/02`)
 
 | Regex | Rôle |
 |-------|------|
-| **FR-Regex-MULTI** | `MULTI`, `MULTI.FRENCH`, `MULTI.TRUEFRENCH`, `MULTITRUEFRENCH` ; `\bMULTI\b` seul (évite `MultiVerse`) |
-| **FR-Regex-VFF** | VFF, TRUEFRENCH, VFI, VOF, FRENCH, `MULTI.FRENCH`, VF générique (hors VFQ/VF2) |
-| **FR-Regex-VF2** | VF2, VFQ, VOQ |
+| **FR-Regex-MULTI** | `MULTI`, `MULTI.VFF`, **`MULTIVFF`** (collé C411), `MULTITRUEFRENCH`, `MULTI.FRENCH`, `\bMULTI\b` seul (évite `MultiVerse`) |
+| **FR-Regex-VFF** | VFF, TRUEFRENCH, VFI, VOF, **`MULTIVFF`**, `MULTI.VFF`, VF générique (hors VF2/VFQ) |
+| **FR-Regex-VF2** | VF2, VFQ, VOQ, **`MULTIVF2`** (collé) |
 | **FR-Regex-VOSTFR** | VOSTFR, SUBFRENCH, FANSUB, FASTSUB |
 
-**Variantes cross-indexeurs** couvertes : `MULTI.VFF`, `MULTI.FRENCH`, `MULTI.TRUEFRENCH`, `MULTITRUEFRENCH`, `TRUEFRENCH` seul, etc. — cas réel **La Momie** (même rip, titres C411 vs autre tracker).
+**Variantes cross-indexeurs** : `MULTI.TRUEFRENCH`, `MULTI.FRENCH`, `TRUEFRENCH` seul, etc. — cas **La Momie** (même rip, titres différents).
 
-**Limite connue** : Radarr ne lit que le **titre d’annonce**. Deux indexeurs peuvent nommer différemment la même release → écarts de score (voir [Scoring](#scoring--ce-que-radarr-fait-et-ne-fait-pas)).
+**Limite** : Radarr ne lit que **`release_title`**, pas le MediaInfo ni le hash → voir [Scoring](#scoring--limites-radarr).
 
 ---
 
 ## Équipes et paliers
 
-### Deux niveaux (choix architecture)
+### Architecture
 
 | Niveau | CF | Rôle |
 |--------|-----|------|
-| **Équipes documentées** | `FR-Team-*` (16 groupes) | Bonus **fort** et stable (QTZ, AMEN, TyHD, Winks, Slay3R, TFA, …) |
-| **Longue traîne** | `FR-Tier-01`, `FR-Tier-02` | Petits bonus pour encodeurs listés en regex compacte |
+| **Équipes** | `FR-Team-*` (16 groupes) | Bonus fort, calibrés sur releases réelles |
+| **Longue traîne** | `FR-Tier-01`, `FR-Tier-02` | Petits bonus (regex compacte) |
 
-On **n’a pas** adopté le modèle [Profilarr-database-french-regex](https://github.com/Jojont54/Profilarr-database-french-regex) (~1 regex / team × ~900 fichiers) : maintenance lourde, rebase Dictionarry difficile, peu de gain sur les cas réels observés (ex. Momie : même groupe, tags HDR différents).
+Détection : suffixe **`-TEAM`** dans le titre (`(?<=^|[\s.-])TEAM\b`, insensible à la casse → `SLAY3R` = `Slay3R`).
 
-### Scores équipes (identiques sur tous les profils)
+On **n’utilise pas** le modèle [Profilarr-database-french-regex](https://github.com/Jojont54/Profilarr-database-french-regex) (~900 fichiers / team) : coût de maintenance >> gain sur les cas observés.
 
-| Équipe | Score | Profil typique |
-|--------|------:|----------------|
-| **FR-Team-QTZ** | 12 000 | 4KLight Bluray, référence qualité/taille |
+### Scores équipes (identiques sur les 10 profils)
+
+| Équipe | Score | Profil typique / calibrage |
+|--------|------:|----------------------------|
+| **FR-Team-QTZ** | 12 000 | 4KLight Bluray, référence 4K |
 | **FR-Team-AMEN** | 9 500 | WEB 2160p compact DV/HDR10+ |
 | **FR-Team-BONBON** | 9 200 | 4KLight / WEBRip ~2,5–5 Go |
-| **FR-Team-TyHD** | 9 000 | WEB/WEBRip 2160p HEVC compact |
+| **FR-Team-TyHD** | 9 000 | WEB 2160p HEVC compact |
 | **FR-Team-THESYNDiCATE** | 8 000 | WEB 2160p x265 |
 | **FR-Team-SUPPLY** | 7 800 | WEB 2160p premium Atmos |
 | **FR-Team-BOUC** | 7 700 | WEB 2160p premium MULTI |
 | **FR-Team-TFA** | 7 500 | WEB 2160p catalogue |
 | **FR-Team-FW** | 7 200 | Forward, volume |
-| **FR-Team-ENIGMA** | 6 200 | VFQ, blockbusters |
+| **FR-Team-Winks** | 6 600 | 1080p BluRay/WEB x265 MULTI (~4–5,5 Go) |
+| **FR-Team-PopHD** | 6 500 | 1080p HDLight x264 |
 | **FR-Team-TOXIC** | 6 400 | 1080p HDLight |
-| **FR-Team-PopHD** | 6 500 | 1080p compact x264 |
-| **FR-Team-Winks** | 6 600 | 1080p BluRay/WEB x265 MULTI (~4–5,5 Go, C411) |
-| **FR-Team-Slay3R** | 6 000 | WEB 1080p/2160p/720p C411 (H264/H265, exclus) |
-| **FR-Team-HYPERION** / **OZEF** | 2 000 | Remux — détectés mais **jamais retenus** (-999999 Remux) |
-| **FR-Tier-01** | 2 000 | Longue traîne haute (BOUBA, NEOSTARK, …) |
-| **FR-Tier-02** | 1 000 | Longue traîne basse + **DELIRIUS** (séries `MULTI.FRENCH`) |
+| **FR-Team-ENIGMA** | 6 200 | WEB 1080p/2160p, VFQ |
+| **FR-Team-Slay3R** | 6 000 | WEB 1080p/2160p/720p, H264/H265, exclus |
+| **FR-Team-HYPERION** / **OZEF** | 2 000 | Remux détectés mais **jamais retenus** |
+| **FR-Tier-01** | 2 000 | BOUBA, NEOSTARK, … |
+| **FR-Tier-02** | 1 000 | Longue traîne + DELIRIUS (`MULTI.FRENCH`) |
 
-Détection groupe : suffixe `-TEAM` en fin de titre (`(?<=^|[\s.-])TEAM\b`) — pas de condition `release_group` séparée pour l’instant (le groupe est en général déjà dans le nom d’annonce FR).
-
-### Équipes « remux only »
-
-**HYPERION**, **OZEF** : reconnus pour transparence et logs, mais **Remux = -999999** sur tous les profils → aucun impact pratique sur la sélection.
+**Remux only** (HYPERION, OZEF) : reconnus pour logs, **Remux = -999999** → aucun impact sur la sélection.
 
 ---
 
-## Signatures scène (4KLight, HDLight, Hybrid)
+## Signatures scène (4KLight, HDLight, Hybrid, Repack)
 
-Tags **métier** de la scène FR (pas Dictionarry générique) :
+| CF | Détection | Scoring |
+|----|-----------|---------|
+| **FR-4KLight** | `4KLight`, `4K.Light` | Fort bonus **4K** (+2500 sur `FR-Films-4K`) |
+| **FR-HDLight** | `HDLight` | Bonus 720p/1080p ; neutre/malus relatif en 4K |
+| **FR-Hybrid** | `HYBRID` | Bonus UHD premium |
+| **FR-Repack** / **-2** / **-3** | PROPER, REPACK, REAL… | Corrections dans le titre |
 
-| CF | Détection | Usage scoring |
-|----|-----------|----------------|
-| **FR-4KLight** | `4KLight`, `4K.Light` | Fort bonus **4K** (+2500 sur `FR-Films-4K`) — cible cinéma maison compact |
-| **FR-HDLight** | `HDLight` | Bonus 720p/1080p/Any ; neutre/malus relatif en 4K |
-| **FR-Hybrid** | `HYBRID` | Bonus modéré UHD premium |
-| **FR-Repack** / **-2** / **-3** | PROPER, REPACK, REAL… | Corrections qualité dans le titre |
-
-**QTZ** est traité à la fois comme **équipe** (score team) et souvent associé aux sorties **4KLight** dans la pratique — pas de CF séparé `FR-Team-QTZ-4KLight` : un CF par **créneau**, pas par team×créneau (roadmap éventuelle : signatures dédiées sans retirer les tiers).
+**QTZ** = équipe **et** souvent 4KLight en pratique — pas de CF `FR-Team-QTZ-4KLight` (un CF par **créneau**, pas par team×créneau).
 
 ---
 
 ## Technique : HDR, audio, codecs
 
-### Pack audio (héritage Dictionarry)
+### Audio — une seule famille comptée
 
-Une seule « famille » audio comptée par release : conditions **Exclure :** entre AAC, Dolby, DTS, TrueHD, FLAC, etc. — évite de cumuler +2000 DD et +1500 DTS sur la même ligne.
+Conditions **Exclure :** entre AAC, Dolby, DTS, TrueHD, FLAC, etc. → pas de cumul absurde (+DD **et** +DTS sur la même ligne).
 
-### HDR en 4K (`FR-Films-4K`, `FR-Series-4K`, `FR-Anime-4K`)
+| Regex / CF | Détecte (exemples scène FR) |
+|------------|----------------------------|
+| **Dolby Digital** | `DD`, `AC3`, **`AC3.5.1`**, **`AC-3`**, **`AC-3.5.1`** (Torr9) — **pas** `E-AC-3` |
+| **Dolby Digital +** | `DD+`, `EAC3`, **`EAC3.5.1`**, **`E-AC-3`**, **`E-AC-3.5.1`** |
+| **FR-Regex-Atmos-Bundle** | `ATMOS`, `DDPA`, `TrueHD.A`, **`Atmos.5.1`** (WEB) |
+
+### HDR en 4K
 
 | CF | Score | Note |
 |----|------:|------|
-| Dolby Vision | 4500 | Priorité forte |
-| Dolby Vision (Without Fallback) | -500 | DV « orphelin » dans le titre |
-| **HDR10+** | **2000** | Resserré (était 2500) |
+| Dolby Vision | 4500 | |
+| DV (Without Fallback) | -500 | DV sans HDR lisible dans le titre |
+| **HDR10+** | **2000** | |
 | HDR10 | 1000 | |
-| **HDR** (générique) | **1000** | Relevé (était 500) — réduit l’écart quand un tracker omet `HDR10+` |
+| **HDR** (générique) | **1000** | Quand un indexeur omet `HDR10+` |
 | Dolby Digital + | 400 | |
-| **Dolby Digital** | **100** | Resserré (était 200) — AC3 parfois absent du titre |
+| Dolby Digital | 100 | AC3 parfois absent du titre |
 
-**Cas d’usage** : même fichier **La Momie** — `…HDR10PLUS.AC3…` vs `…HDR…TRUEFRENCH…` sur deux indexeurs → écart de score **divisé ~par deux** tout en gardant la release mieux taguée devant.
+**La Momie** : `…HDR10PLUS…` vs `…HDR…TRUEFRENCH…` → écart de score réduit tout en gardant la meilleure release devant.
 
-### Codecs et exclusions
+### Codecs
 
 | CF | Comportement |
 |----|----------------|
-| **AV1** | -999999 partout (compat TV/box) |
-| **x264 (2160p)** | -999999 en 4K (fake 4K AVC) |
-| **x265** / **h265** | Bonus positifs (250 / 220 en 4K Films) |
-| **VP9** | Malus léger (-200) |
-| **Xvid** | Malus fort sur HD (-500) |
-| **FR-Blockers** | -999999 — YIFY, FGT, NVENC, REMUX+x264 incohérent, etc. |
+| **AV1** | -999999 |
+| **x264 (2160p)** | -999999 en 4K |
+| **x265** / **h265** | Bonus 4K ; regex inclut **`H265`** / **`H264`** / **`AVC`** (naming C411) |
+| **VP9** | Malus léger |
+| **Xvid** | Malus fort HD |
+| **FR-Blockers** | -999999 — YIFY, NVENC, REMUX+x264 incohérent, … |
 
 ### Streamers
 
 | CF | Contenu |
 |----|---------|
 | **FR-Streamer-Premium** | NF, AMZN, DSNP, ATVP, HBO Max, Paramount+ |
-| **FR-Streamer-Standard** | NOW, Crunchyroll, iTunes WEB — **pas** Hulu/Peacock (peu de catalogue FR) |
+| **FR-Streamer-Standard** | NOW, Crunchyroll, iTunes WEB — pas Hulu/Peacock (peu FR) |
 
 ---
 
 ## Profils qualité `FR-*`
 
-### Tableau d’usage
-
-| Profil | App | Usage recommandé |
-|--------|-----|------------------|
+| Profil | App | Usage |
+|--------|-----|--------|
 | **FR-Films-1080p** | Radarr | Films 1080p — point de départ |
-| **FR-Films-4K** | Radarr | Films 4K — DV/HDR, 4KLight, équipes WEB |
-| **FR-Films-720p** | Radarr | Encodes compacts |
-| **FR-Films-Any** | Radarr | Secours toutes résolutions (SD → Raw-HD), **sans remux** |
-| **FR-Series-1080p** | Sonarr | Séries 1080p, Season Pack |
+| **FR-Films-4K** | Radarr | 4K — DV/HDR, 4KLight, équipes WEB |
+| **FR-Films-720p** | Radarr | Compacts |
+| **FR-Films-Any** | Radarr | Secours toutes résolutions, **sans remux** |
+| **FR-Series-1080p** | Sonarr | Séries 1080p + Season Pack |
 | **FR-Series-4K** | Sonarr | Séries 4K |
 | **FR-Series-720p** | Sonarr | Séries compactes |
-| **FR-Anime-1080p** | Sonarr | Animé 1080p (type Anime) |
-| **FR-Anime-4K** | Sonarr | Animé 4K |
-| **FR-Anime-720p** | Sonarr | Animé 720p |
+| **FR-Anime-1080p/4K/720p** | Sonarr | Animé (type Anime) |
 
-Chaque profil **exclut** : Remux, Full Disc, AV1, Upscaled (+ x264@2160p sur 4K). **`FR-Films-Any`** garde langue/équipes mais n’impose pas une résolution.
+Chaque profil **exclut** : Remux, Full Disc, AV1, Upscaled (+ x264@2160p sur 4K).
 
-### Tags profil UI (`ops/06` + `ops/10`)
-
-Tags **Radarr**, **Sonarr**, **Films**, **Series**, résolutions **1080p** / **2160p** / **720p**, **French**, **anime** (filtre Sonarr type Anime — le tag SQL s’appelle `anime` en minuscule volontairement, pas de doublon avec `ops/10`).
+Tags UI (`ops/06` + `ops/10`) : Radarr, Sonarr, Films, Series, 1080p/2160p/720p, French, **anime** (filtre Sonarr — tag SQL minuscule volontaire).
 
 ---
 
-## Media management et delays
+## Media management : tailles et delays
 
-### Presets media (`ops/07`)
+### Principe
 
-Deux presets distincts (plus de gabarit `FR-Media-Base` ni de doublon « French - Radarr » dans la liste Profilarr) :
+Les champs `min_size` / `preferred_size` / `max_size` dans **`ops/07`** (Radarr) et **`ops/09`** (delay Sonarr) guident Radarr/Sonarr vers des **tailles cohérentes avec la scène FR** (encodes compacts), en complément des scores CF.
 
-- **`FR-Media-Radarr`** — les **3** menus Profilarr Radarr (Naming, Quality definitions, Media settings) pointent sur ce nom.
-- **`FR-Media-Sonarr`** — idem pour Sonarr.
+**Deux presets** (Profilarr v2) :
 
-### Tailles 2160p (choix scène compacte)
+- **`FR-Media-Radarr`** — Naming + Quality definitions + Media settings (3 menus identiques)
+- **`FR-Media-Sonarr`** — idem Sonarr
 
-| Qualité | `preferred_size` (Mo/h) — Radarr & Sonarr |
-|---------|-------------------------------------------|
-| Bluray-2160p | **55** |
-| WEBDL-2160p / WEBRip-2160p | **60** |
+Ancien modèle abandonné : un bundle media **par** profil `FR-Films-4K`.
 
-Objectif : favoriser les **encodes compacts** (4KLight, TyHD, AMEN ~2,5–8 Go) plutôt que des WEB-DL ~15 Go ou remux — aligné créneaux **HC OPTI** / **4KLight** du catalogue privé FR.
+### Tableau des tailles (valeurs actuelles)
 
-### Tailles 1080p (Winks / scène compacte BluRay)
+Unité telle que définie dans Radarr/Sonarr pour les quality definitions (affichée **MB/h** dans l’UI). Les fourchettes ci-dessous sont des **ordres de grandeur** pour un long métrage ~2 h ; les épisodes Sonarr sont plus courts.
 
-| Qualité | `min` / `preferred` / `max` (Mo/h) — Radarr `FR-Media-Radarr` |
-|---------|----------------------------------------------------------------|
-| Bluray-1080p | **900** / **1750** / **2600** |
-| WEBDL-1080p / WEBRip-1080p | **800** / **1700** / **2600** |
+#### Radarr — `FR-Media-Radarr`
 
-Calibré sur les sorties **Winks** C411 (~3,5–7 Go, cœur **4–5,5 Go** pour un long métrage x265). Sonarr `Bluray-1080p` : **500** / **750** / **1200** (épisodes plus courts).
+| Qualité | min | preferred | max | Calibré sur |
+|---------|-----|-----------|-----|-------------|
+| **Bluray-1080p** | 900 | 1750 | 2600 | BluRay x265 compact (**Winks** ~4–5,5 Go) |
+| **WEBDL/WEBRip-1080p** | 600 | 1650 | 3200 | WEB **Slay3R** H264 ~4–5 Go, H265 ~2–3 Go, pics ~9 Go |
+| **Bluray-2160p** | 0 | 55 | 2000 | 4KLight, TyHD, AMEN (~2,5–8 Go) |
+| **WEBDL/WEBRip-2160p** | 40 | 70 | 2000 | WEB 4K compact ~7–8 Go, blockbusters ~15–23 Go (**Slay3R**) |
+| **Bluray-720p** | 800 | 1000 | 900 | *(inchangé)* |
 
-### Tailles WEB (Slay3R / scène C411)
+#### Sonarr — `FR-Media-Sonarr`
 
-| Qualité | `min` / `preferred` / `max` — Radarr `FR-Media-Radarr` |
-|---------|--------------------------------------------------------|
-| WEBDL/WEBRip-1080p | **600** / **1650** / **3200** (H264 ~4–5 Go, H265 ~2–3 Go, max ~9 Go) |
-| WEBDL/WEBRip-2160p | **40** / **70** / **2000** (compact ~7–8 Go, blockbusters ~15–23 Go) |
-| WEBDL/WEBRip-1080p — Sonarr | **150** / **400** / **650** (épisodes ~2,4–3 Go) |
+| Qualité | min | preferred | max | Calibré sur |
+|---------|-----|-----------|-----|-------------|
+| **Bluray-1080p** | 500 | 750 | 1200 | Épisodes / features courts |
+| **WEBDL/WEBRip-1080p** | 150 | 400 | 650 | Épisodes **Slay3R** ~2,4–3 Go |
+| **Bluray-2160p** | 0 | 55 | 1000 | Aligné Radarr 4K compact |
+| **WEBDL/WEBRip-2160p** | 0 | 60 | 1000 | WEB 4K série |
 
-`ops/09` ne contient **que** `FR-Delay-Sonarr` ; **`FR-Delay-Radarr`** est dans `ops/07`.
+### Delays
 
-**Ancien modèle** (commits Git antérieurs) : un bundle media **par profil** (`FR-Films-4K` = nom preset). Abandonné — Profilarr v2 impose **une config media par instance** (`FR-Media-Radarr` / `FR-Media-Sonarr`).
+| Preset | Fichier | Comportement |
+|--------|---------|--------------|
+| **FR-Delay-Radarr** | `ops/07` | Torrent only, délai 0, bypass si déjà meilleure qualité |
+| **FR-Delay-Sonarr** | `ops/09` | Idem Sonarr |
 
 ---
 
-## Scoring : ce que Radarr fait (et ne fait pas)
+## Calibrage terrain (trackers)
 
-| Situation | Profilarr / Radarr | qBittorrent cross-seed |
-|-----------|-------------------|-------------------------|
-| **Même titre** sur 2 trackers | **Même score** | Cross-seed OK |
-| **Même fichier, titres différents** (HDR, TRUEFRENCH, AC3…) | **Scores différents** | Souvent OK si taille identique |
-| **Tailles différentes** | Scores + qualité peuvent diverger | À vérifier manuellement |
-| **`.mkv` dans le nom** | Peut changer le parsing | Hors scope CF |
+Quand des **captures d’écran** ou listes de releases d’une **équipe / tracker** sont fournies, la procédure du dépôt est :
 
-**Ce n’est pas un bug Profilarr** : le score est calculé sur la **chaîne release_title** de l’indexeur, pas sur le hash ni le MediaInfo du fichier.
+1. Analyser **noms** (tags langue, codec, source) et **tailles** (min / typique / max).
+2. Mettre à jour **`ops/02`** (regex), **`ops/03–04`** (CF si nouvelle équipe), **`ops/06`** (scores), **`ops/07`** (tailles media), **`ops/11`** (tests titres réels).
+3. Lancer `python3 scripts/validate.py`.
+4. **Mettre à jour ce README** (section équipe + tableau tailles + [journal](#journal-des-calibrages-récents)).
+5. Commit avec message explicite ; **Pull → Compile → Sync** sur les instances.
 
-**Tests de référence** (`ops/12`) :
+### Journal des calibrages récents
+
+| Date | Élément | Changement principal |
+|------|---------|----------------------|
+| 2026-05 | **Winks** (C411) | `FR-Team-Winks` 6600 ; Bluray-1080p 900/1750/2600 |
+| 2026-05 | **Audio** C411/Torr9 | `AC3.5.1`, `E-AC-3`, `MULTIVFF` ; exclusion E-AC-3 du CF DD classique |
+| 2026-05 | **Slay3R** (C411) | Score 6000 ; WEB 1080p 600/1650/3200 ; regex **H264/H265/AVC** |
+
+*(Ajouter une ligne ici à chaque calibrage terrain.)*
+
+---
+
+## Scoring : limites Radarr
+
+| Situation | Comportement |
+|-----------|--------------|
+| Même titre, deux trackers | Même score CF |
+| Même fichier, **titres différents** | Scores différents (normal) |
+| Tailles différentes | Qualité native + preset media divergent |
+| `.mkv` dans le nom | Parsing parfois altéré |
+
+**Ce n’est pas un bug Profilarr** : tout part du **titre indexeur**.
+
+### Tests de référence (`ops/12`)
 
 - **La Momie** (TMDB 564) — QTZ 4KLight vs Slay3R WEB vs TyHD vs Remux vs AV1
-- Variante **TRUEFRENCH / HDR** (même taille Slay3R) pour cross-indexeur
+- Variante TRUEFRENCH / HDR (cross-indexeur)
 - **Person of Interest** — `MULTI.FRENCH` (DELIRIUS)
 - **Incendies** — VOQ sans MULTI vs MULTI.VOQ
 - **Demon Slayer** — WEB CR MULTI VFF
 
 ---
 
-## Créneaux catalogue (slots) et tailles cibles
+## Créneaux catalogue (slots)
 
-Sur une partie de la scène FR, les indexeurs avec **catalogue à slots** organisent l’UHD en créneaux (noms indicatifs) :
+Sur une partie de la scène FR (indexeurs à **slots** UHD) :
 
-| Créneau | Indications typiques | Alignement profil |
-|---------|---------------------|-------------------|
-| **COMPAT** | x264 1080p, large compat | Plutôt `FR-Films-1080p` / éviter en 4K |
-| **HC OPTI** | HEVC 2160p compact (~2,5–8 Go), DV/HDR10+ | **Cible `FR-Films-4K`** — TyHD, AMEN, BONBON |
-| **OPTI** | Gros WEB-DL 2160p (~15 Go, HDR10+, EAC3) | Accepté mais pas « rempli » par les preferred_size bas |
+| Créneau | Indications | Profil aligné |
+|---------|-------------|---------------|
+| **COMPAT** | x264 1080p | `FR-Films-1080p` |
+| **HC OPTI** | HEVC 2160p ~2,5–8 Go, DV/HDR10+ | **`FR-Films-4K`** (TyHD, AMEN, BONBON) |
+| **OPTI** | Gros WEB-DL ~15 Go | Accepté ; `preferred_size` 4K favorise plutôt le compact |
 
-Trackers **sans slots** : même logique via **tags** (`MULTI.VFF`, `MULTI.FRENCH`, `4KLight`, …) — la base ne dépend pas d’un nom de tracker.
+Trackers **sans slots** : même logique via tags (`MULTI.VFF`, `4KLight`, …).
 
 ---
 
-## Ce qu’on a volontairement rejeté
+## Ce qu’on rejette volontairement
 
 | Piste | Verdict |
 |-------|---------|
-| Fork ~1200 fichiers style Jojont54 | Non — autre produit, maintenance ×10 |
-| **Ban VFQ** comme certaines bases FR | Non — VFQ/VOQ gérés par VF2/MULTI-VF2 |
-| **`release_group`** en plus du titre | Pas urgent — le groupe est quasi toujours dans le nom FR |
-| Tiers WEB vs Bluray séparés | Pas urgent — seed surtout du WEB |
-| Bundles media par profil qualité | Remplacé par **FR-Media-Radarr/Sonarr** (Profilarr v2) |
-| Éditions / CF « Banned* » internationaux redondants | Supprimés au profit de **FR-Blockers** |
-| Repack natif Radarr « Prefer » | **doNotPrefer** + CF **FR-Repack*** |
-| Noms de trackers dans la doc publique | Remplacé par **« scène française privée »** (charte, pas marque) |
+| ~900 regex / team (Jojont54) | Non — maintenance ×10 |
+| Ban VFQ | Non — VF2 / MULTI-VF2 |
+| `release_group` séparé | Pas urgent — groupe dans le titre FR |
+| Bundles media par profil qualité | Remplacé par `FR-Media-Radarr/Sonarr` |
+| Repack natif « Prefer » | `doNotPrefer` + **FR-Repack*** |
+| Noms de trackers dans la doc | « Scène française privée » + calibrages anonymisables |
 
-**Roadmap interne** (non implémentée) : CF **signatures par créneau** (`FR-Signature-4KLight`, …) en **ajout** aux tiers, regex atomiques par team dans fichiers séparés — voir discussions projet ; ne pas retirer les tiers d’un coup.
+**Roadmap** (non implémentée) : CF signatures par créneau en **ajout** aux tiers ; pas de suppression des tiers d’un coup.
 
 ---
 
 ## Tests et validation
 
-### Validation locale (mainteneurs)
-
 ```bash
 python3 scripts/validate.py
 ```
 
-Contrôles :
+Vérifie : intégrité `ops/`, compile SQLite (schema 1.1.0), descriptions regex sans `*` (sync Sonarr-safe).
 
-- Intégrité `ops/` (doublons, FK, profils, presets `FR-Media-Radarr` / `FR-Media-Sonarr`)
-- Compile SQLite simulé (schema 1.1.0 + tous les `ops/*.sql`)
-- Descriptions regex sans `*` (sync Sonarr)
+| Fichier | Rôle |
+|---------|------|
+| **`ops/11`** | ~443 tests parser par CF (titres réels / C411 / Torr9) |
+| **`ops/12`** | Simulations profil (Momie, POI, …) |
 
-### Tests dans Profilarr (UI)
+Après modification SQL : **Pull → Compile** sur la base, puis revérifier les tests dans l’UI Profilarr.
 
-- **`ops/11`** : ~424 tests parser par CF (`doit` / `ne doit pas correspondre`)
-- **`ops/12`** : entités TMDB + releases pour simulation profil qualité
+---
 
-Après modification : **Pull → Compile** sur la base, puis revérifier les tests dans l’UI Profilarr.
+## Structure du dépôt
+
+```text
+pcd.json                 # Métadonnées PCD 2.0.0
+ops/
+  01-tags.sql            # Tags UI
+  02-regex.sql           # 70 motifs (pattern = détection)
+  03-custom-formats.sql  # 66 CF (include_in_rename = 0)
+  04-custom-format-conditions.sql
+  05-custom-format-tags.sql
+  06-quality-profiles.sql   # 10 profils FR-* + scores
+  07-media-management.sql   # FR-Media-Radarr, FR-Delay-Radarr
+  09-profile-media-bundles.sql  # FR-Delay-Sonarr
+  10-profile-ui-tags.sql
+  11-custom-format-tests.sql
+  12-quality-profile-tests.sql
+scripts/
+  validate.py            # Pipeline CI locale
+  normalize_descriptions.py
+  verify_ops_integrity.py
+  verify_pcd_compile.py
+```
+
+**Préfixe `FR-`** : spécifique marché français. Le reste reprend Dictionarry (`HDR10+`, `Remux`, …) pour rester **rebaseable**.
+
+---
+
+## Maintien du README (obligatoire)
+
+**Règle du dépôt** : toute modification fonctionnelle dans `ops/` ou `scripts/` qui change un comportement visible doit **mettre à jour ce README** dans le **même commit** (ou immédiatement après).
+
+### Checklist mainteneur
+
+- [ ] Tableau ou section concernée (langue, équipe, tailles, audio, …) à jour
+- [ ] Ligne ajoutée dans [Journal des calibrages](#journal-des-calibrages-récents) si calibrage terrain
+- [ ] Compteurs (CF, regex, tests) cohérents si le volume a changé
+- [ ] `python3 scripts/validate.py` OK
+- [ ] Mention **Pull → Compile → Sync** si changement déployable
+
+### Ce qu’il faut documenter
+
+| Type de changement | Où dans le README |
+|--------------------|------------------|
+| Nouvelle équipe `FR-Team-*` | [Équipes](#équipes-et-paliers) + journal |
+| Regex langue / audio | [Langue](#langue-française) ou [Technique](#technique--hdr-audio-codecs) |
+| `ops/07` tailles | [Media management](#media-management--tailles-et-delays) + journal |
+| Score profil / CF | Tableaux scores + journal si motivation terrain |
+| Nouveau profil `FR-*` | [Profils](#profils-qualité-fr-) |
+
+Les **agents / contributeurs** qui modifient ce dépôt doivent appliquer cette checklist sans rappel supplémentaire.
+
+---
+
+## Historique du dépôt
+
+| Phase | Forme | Notes |
+|-------|--------|--------|
+| v1 | YAML | Profilarr v1 |
+| v2.5 → v3 | PCD + `ops/*.sql` | Schema 1.1.0 |
+| **2.0.0 actuel** | Racine = `pcd.json` + `ops/` + `scripts/` | Alignement Dumpstarr (seuils profil) |
+
+Anciennes archives `backup/` : `git show <commit>:backup/...` (ex. `c1d52ee`).
+
+**À importer dans Profilarr** : uniquement la **racine** du repo.
 
 ---
 
@@ -557,4 +593,4 @@ Après modification : **Pull → Compile** sur la base, puis revérifier les tes
 
 ---
 
-*Base maintenue par [mcflykid](https://github.com/mcflykid) — inspirée par la communauté FR (TRaSH FR, bases contributives), sans être un fork officiel Dictionarry.*
+*Base maintenue par [mcflykid](https://github.com/mcflykid) — communauté FR (TRaSH FR, bases contributives), sans fork officiel Dictionarry.*
