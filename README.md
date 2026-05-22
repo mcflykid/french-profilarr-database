@@ -16,7 +16,7 @@ Radarr et Sonarr ne classent une release qu’à partir du **nom** renvoyé par 
 | **Contenu** | 65 custom formats · 70 regex · 10 profils · **sans Remux** |
 | **Licence** | MIT |
 
-> **Profilarr v2 uniquement** — source de vérité : `ops/*.sql` + `pcd.json` (plus de YAML dans le dépôt). Workflow : **Compile** → **Sync**.
+> **Profilarr v2 uniquement** — source de vérité : `ops/*.sql` + `pcd.json` (plus de YAML). Workflow : **Pull** → **Compile** → **Sync** ([guide](docs/PROFILARR-V2.md)).
 
 ---
 
@@ -120,12 +120,9 @@ scripts/
   generate_cf_tests_sql.py          fusionne ops/11 + scène FR
   generate_profile_media_ops.py   regénère ops/09
 docs/
+  PROFILARR-V2.md                 guide unique (install, Pull/Compile/Sync, 500, delays)
   DECISIONS-METADONNEES-FR.md     conventions libellés UI + décisions « pourquoi »
-  PROFILARR-V2.md                 installation, dépannage, workflow UI
-  streamers-audit.md              comparaison trash-pcd
-  BASES-PARALLELES.md             ce dépôt vs Dictionarry / trash-pcd
-  exemples-releases.md            titres de référence
-  compose-profilarr-v2.yml        exemple Docker
+  compose-profilarr-v2.yml        exemple Docker Profilarr v2
 ```
 
 **Chaîne logique :** regex (`02`) → custom format (`03`–`05`) → score dans le profil (`06`).
@@ -210,8 +207,6 @@ Scores **identiques** sur films, séries et anime. Ordre typique à techno égal
 | OZEF / HYPERION | 2 000 | Remux (bloqués en strict) |
 | Tier-01 / Tier-02 | 2 000 / 1 000 | BOUBA, NEOSTARK, TLC, … |
 
-Exemples de titres : [`docs/exemples-releases.md`](docs/exemples-releases.md).
-
 ### MULTI.FRENCH et tags langue
 
 Une release `MULTI.FRENCH` peut matcher **`FR-MULTI-VFF`** (MULTI + tag FR) et parfois aussi **`FR-VFF`** selon le titre — c’est le comportement du parser sur l’indexeur, pas un doublon à supprimer. Priorité assurée par les scores (MULTI-VFF > VFF).
@@ -270,7 +265,7 @@ Tu peux aussi ajuster via les **customisations** locales Profilarr (couche sépa
 
 | Problème | Piste |
 |----------|--------|
-| **500 database cache not available** (Naming / Media) | **Compile** a échoué — `python3 scripts/verify_pcd_compile.py` puis Pull → Compile |
+| **500 database cache not available** (Naming / Media) | **Pull → Compile** (cache RAM) — [`docs/PROFILARR-V2.md` §12](docs/PROFILARR-V2.md#12-erreur-500-database-cache-not-available) |
 | Message media / delay manquant | Choisir `FR-Delay-Radarr` ou `FR-Delay-Sonarr` + bundle media = nom du profil |
 | Sonarr `PUT customformat` Fatal | Regex invalide dans `02` → `validate_regex_ops.py` puis re-sync |
 | Écart de score entre indexeurs | Tags différents dans le **titre** — normal |

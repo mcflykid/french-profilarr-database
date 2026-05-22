@@ -2,6 +2,18 @@
 
 Format basé sur [Keep a Changelog](https://keepachangelog.com/). Versions alignées sur `pcd.json`.
 
+## [Unreleased]
+
+### Modifié
+
+- `docs/PROFILARR-V2.md` — guide unique aligné [v2.dictionarry.dev](https://v2.dictionarry.dev) (Pull → Compile → Sync, delays, media, 500).
+- README — structure `docs/` allégée, workflow corrigé.
+
+### Supprimé
+
+- Docs redondants : `DEPANNAGE-500-CACHE`, `RELEASE-2.5.0`, `BASES-PARALLELES`, `exemples-releases`, `streamers-audit`.
+- `tweaks/exemple-pas-de-remux.sql` (politique déjà dans `ops/`).
+
 ## [2.5.0] — 2025-05-19
 
 ### Ajouté
@@ -9,7 +21,7 @@ Format basé sur [Keep a Changelog](https://keepachangelog.com/). Versions align
 - `scripts/verify_team_tests.py` — chaque `FR-Team-*` a un test parser positif.
 - `ops/12` enrichi : Momie (QTZ / Slay3R / TyHD vs Remux), POI, Demon Slayer, Incendies VOQ.
 - Tests langue : VOQ sans MULTI (`FR-VF2` oui, `FR-MULTI-VF2` non).
-- Notes release : [`docs/RELEASE-2.5.0.md`](docs/RELEASE-2.5.0.md).
+- Dépannage compile / cache : [`docs/PROFILARR-V2.md`](docs/PROFILARR-V2.md).
 
 ### Supprimé (fin du support v1 dans le dépôt)
 

@@ -4,13 +4,15 @@
 
 services:
   profilarr:
-    image: ghcr.io/dictionarry-hub/profilarr:v2.0.4
+    image: ghcr.io/dictionarry-hub/profilarr:latest
     container_name: profilarr
     restart: unless-stopped
     ports:
       - "${PROFILARR_PORT:-6868}:6868"
     volumes:
       - ${DOCKERDIR}/appdata/profilarr:/config
+    tmpfs:
+      - /app/.cache
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}

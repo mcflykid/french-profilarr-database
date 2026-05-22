@@ -15,7 +15,7 @@ Le CI GitHub exécute les mêmes vérifications.
 - **`verify_ops_integrity.py`** — doublons `quality_profile_tags` (06 vs 10), tests CF (11), qualités media (07), références CF/regex.
 - **`verify_pcd_compile.py`** — simulation **Compile** Profilarr (schema 1.1.0 + tous les `ops/*.sql`).
 
-Sans compile OK, Profilarr affiche **500 database cache not available** sur Media / Naming.
+Sans compile OK, Profilarr affiche **500 database cache not available** sur Media / Naming — voir [`docs/PROFILARR-V2.md`](docs/PROFILARR-V2.md).
 
 ## Conventions
 

@@ -1,125 +1,225 @@
-# Profilarr v2 — installation
+# Utiliser cette base avec Profilarr v2
 
-Ce dépôt est une base **PCD** (SQL dans `ops/`) pour **Profilarr ≥ 2.0.0** uniquement.
+Guide d’exploitation de **french-profilarr-database** aligné sur la [documentation Profilarr v2](https://v2.dictionarry.dev) et le comportement réel de l’application (PCD, cache en mémoire, import des `ops/`).
 
-## Références
+---
 
-- [Profilarr v2](https://v2.dictionarry.dev/devlogs/profilarr-v2)
-- [Installation](https://v2.dictionarry.dev/profilarr-setup/installation)
-- [Schema PCD](https://github.com/Dictionarry-Hub/schema)
+## Avant de commencer
 
-## Lier ce dépôt
+- **Profilarr v2 n’est pas une mise à jour de v1** : installation et `/config` **neufs**. Pas de migration depuis v1 ([accueil v2](https://v2.dictionarry.dev)).
+- Ce dépôt est une **base PCD** (`pcd.json` + `ops/*.sql`), pas un fork YAML TRaSH.
+- Références utiles :
+  - [Installation](https://v2.dictionarry.dev/profilarr-setup/installation)
+  - [Profilarr v2 — annonce](https://v2.dictionarry.dev/devlogs/profilarr-v2)
+  - [Media management (catalogue Dictionarry)](https://v2.dictionarry.dev/media-management)
+  - [Quality profiles (philosophie)](https://v2.dictionarry.dev/quality-profile)
+  - [Schema PCD](https://github.com/Dictionarry-Hub/schema) **1.1.0**
+  - [Template PCD](https://github.com/Dictionarry-Hub/database-template)
 
-1. **Profilarr v2** (image `ghcr.io/dictionarry-hub/profilarr`, voir `docs/compose-profilarr-v2.yml`).
-2. UI → lier `https://github.com/mcflykid/french-profilarr-database` (PAT GitHub si privé).
-3. **Compile** puis **Sync** vers Radarr / Sonarr.
-4. Assigner les profils `FR-Films-*`, `FR-Series-*`, `FR-Anime-*`.
+---
 
-Le manifest `pcd.json` dépend de `https://github.com/Dictionarry-Hub/schema` en **1.1.0**.
+## 1. Installer Profilarr v2
 
-## Convention de noms (se repérer dans l’UI v2)
+Suis [Installation](https://v2.dictionarry.dev/profilarr-setup/installation) :
 
-Tout est préfixé **`FR-`**. Dans les listes Profilarr, les entrées se regroupent et se lisent comme une famille :
+- Image : `ghcr.io/dictionarry-hub/profilarr:latest` (ou tag piné).
+- Volume **`/config`** dédié v2 (ne pas réutiliser l’appdata v1).
+- **`ORIGIN`** si reverse proxy.
+- Conteneur **`parser`** : **optionnel** (tests CF / simulations profil uniquement). Tu peux retirer `parser` + variables `PARSER_*` si tu n’utilises pas `ops/11` ni `ops/12` dans l’UI.
+
+Exemple Compose : [`compose-profilarr-v2.yml`](compose-profilarr-v2.yml) (avec `tmpfs` sur `/app/.cache` si le conteneur est en lecture seule).
+
+Au premier lancement : **Settings → Onboarding** (lien base, instances Arr, sync).
+
+---
+
+## 2. Lier ce dépôt
+
+1. **Databases** → **Link repository**
+2. URL : `https://github.com/mcflykid/french-profilarr-database`
+3. PAT GitHub si privé (`repo` + `workflow` si tu modifies la CI du dépôt)
+4. Laisser finir le job (clone → dépendance schema → **import des `ops/`** → **compile** si la base est activée)
+
+Profilarr stocke une copie des fichiers `ops/*.sql` dans **sa base interne** ; la compile lit cette copie, pas Git directement.
+
+---
+
+## 3. Workflow obligatoire (Pull → Compile → Sync)
 
 ```text
-FR-Delay-Radarr          ← délai (une fois par instance Radarr)
-FR-Delay-Sonarr          ← délai (une fois par instance Sonarr)
-
-FR-Media-Base            ← modèle interne — ne pas assigner aux bibliothèques
-
-FR-Films-4K              ← profil qualité Radarr = bundle media (même nom)
-FR-Films-1080p
-FR-Films-720p
-FR-Films-Any
-
-FR-Series-4K             ← profil Sonarr (séries live)
-FR-Series-1080p
-FR-Series-720p
-
-FR-Anime-4K              ← profil Sonarr (type Anime)
-FR-Anime-1080p
-FR-Anime-720p
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐     ┌──────────────┐
+│ Pull / Sync │ ──► │   Compile    │ ──► │  Instances  │ ──► │ Sync vers    │
+│   (Git)     │     │ cache mémoire│     │ Radarr/Sonarr│     │ Radarr/Sonarr│
+└─────────────┘     └──────────────┘     └─────────────┘     └──────────────┘
 ```
 
-**Règle simple :** le nom du **profil qualité** = le nom du **preset Media Management**. Ne pas assigner **`FR-Media-Base`** aux bibliothèques.
+| Étape | Action | Effet |
+|--------|--------|--------|
+| **Pull** | Récupère Git + **ré-importe** les `ops/*.sql` dans Profilarr | Met à jour le SQL en base Profilarr |
+| **Compile** | Rejoue schema + ops → **cache SQLite en RAM** | Obligatoire pour ouvrir Media / Naming / Quality dans l’UI |
+| **Sync** | Envoie CF, profils, media, delays vers les *arr | Radarr/Sonarr reçoivent la config |
 
-Tags filtres (`ops/10`) : `Radarr` / `Sonarr` / `Films` / `Series` / `anime` sur les profils.
+**Piège fréquent :** si Git est déjà à jour, **Pull seul ne recompile pas**. Après chaque Pull (ou après redémarrage du conteneur), lance **Compile** jusqu’à succès.
+
+**Après un push sur GitHub :** `Pull` → **Compile** → **Sync**.
+
+---
+
+## 4. Connecter Radarr et Sonarr
+
+Dans Profilarr (**External apps** / onboarding) :
+
+- URL + clé API **admin** pour chaque instance
+- Test de connexion OK
+
+Ce n’est pas documenté sur une page `/bridging` en v2 ; c’est dans l’**onboarding** et les réglages d’instance.
+
+---
+
+## 5. Delay profile (une fois par instance)
+
+Profilarr v2 impose un **profil de délai par instance** ([delay profiles](https://github.com/Dictionarry-Hub/profilarr) — protocole, délais, bypass).
+
+| Instance Profilarr | Choisir dans l’UI |
+|--------------------|-------------------|
+| **Radarr** | `FR-Delay-Radarr` |
+| **Sonarr** | `FR-Delay-Sonarr` |
+
+Défini dans `ops/07` (Radarr) et `ops/09` (Sonarr). Torrent only, délai 0, bypass si meilleure qualité.
+
+---
+
+## 6. Media management (même nom que le profil qualité)
+
+Chaque profil qualité `FR-*` a un **bundle media** du **même nom** (naming + quality definitions + media settings) :
+
+| Profil qualité = Media | Application |
+|------------------------|-------------|
+| `FR-Films-4K`, `FR-Films-1080p`, `FR-Films-720p`, `FR-Films-Any` | Radarr |
+| `FR-Series-4K`, `FR-Series-1080p`, `FR-Series-720p` | Sonarr séries |
+| `FR-Anime-4K`, `FR-Anime-1080p`, `FR-Anime-720p` | Sonarr animé |
+
+**Ne pas assigner** `FR-Media-Base` (modèle interne dans `ops/07` / clones `ops/09`).
+
+Politique dépôt :
+
+- **`rename = 0`** — les noms restent ceux de l’indexeur ([media settings](https://v2.dictionarry.dev/media-management/media-settings/media-settings-radarr-radarr) : repacks gérés par CF `FR-Repack*`, pas par Sonarr/Radarr natif).
+- **Pas de Remux** — `Remux` / `Full Disc` à **-999999** sur tous les profils.
+
+---
+
+## 7. Sync vers les *arr
+
+Lors du **Sync**, inclure au minimum :
+
+- Custom formats  
+- Quality profiles  
+- **Media management** (naming, quality definitions, media settings)  
+- **Delay profiles**
+
+Puis dans Radarr/Sonarr : assigner le **profil qualité** `FR-*` par bibliothèque (ou via Profilarr selon ton flux).
+
+---
+
+## 8. Parser et tests (optionnel)
+
+| Fichier | Usage dans Profilarr |
+|---------|----------------------|
+| `ops/11-custom-format-tests.sql` | Tests **custom formats** (service parser) |
+| `ops/12-quality-profile-tests.sql` | Simulations **profil qualité** (Momie, POI, animé, Incendies) |
+
+Sans parser : **lier, Pull, Compile, Sync** fonctionnent quand même.
+
+---
+
+## 9. Customisations locales (recommandé en v2)
+
+Profilarr v2 propose une couche **Customisations** dans l’UI ([devlog v2](https://v2.dictionarry.dev/devlogs/profilarr-v2)) : ajustements locaux **sans** fork Git, sans conflit de merge avec upstream.
+
+Le dossier [`tweaks/`](../tweaks/) reste valide pour un **second dépôt PCD** ou des ops SQL locaux ; pour un usage simple, préfère **Customisations** dans Profilarr.
+
+---
+
+## 10. Plusieurs bases (animé, TRaSH, etc.)
+
+v2 peut lier **plusieurs bases** en parallèle ([devlog](https://v2.dictionarry.dev/devlogs/profilarr-v2)) :
+
+- **Cette base** : scène FR (`FR-*`), sans Remux, langues FR.
+- Optionnel : [TRaSH PCD](https://github.com/Dictionarry-Hub/trash-pcd) pour profils animé / international — **ne pas fusionner** la logique dans ce dépôt.
+
+---
+
+## 11. Fichiers `ops/` de ce dépôt
 
 | Fichier | Rôle |
 |---------|------|
-| `ops/06` | Profils qualité + scores CF |
-| `ops/07` | `FR-Media-Base` + `FR-Delay-Radarr` |
-| `ops/09` | Clone media par profil + `FR-Delay-Sonarr` |
-| `ops/10` | Tags UI (Radarr, Films, …) |
-| `ops/11` | Tests custom formats (parser) |
-| `ops/12` | Simulations profil qualité (`test_entities` / `test_releases`) |
+| `01-tags.sql` | Tags |
+| `02-regex.sql` | Regex |
+| `03`–`05` | Custom formats |
+| `06-quality-profiles.sql` | Profils + scores |
+| `07-media-management.sql` | `FR-Media-Base`, `FR-Delay-Radarr` |
+| `09-profile-media-bundles.sql` | Bundle media par profil + `FR-Delay-Sonarr` |
+| `10-profile-ui-tags.sql` | Tags UI Radarr/Sonarr/Films/Series |
+| `11` / `12` | Tests parser |
 
-Regénérer les clones media : `python3 scripts/generate_profile_media_ops.py`
+Regénération : `python3 scripts/generate_profile_media_ops.py` → `ops/09`.
 
-### Renommage et Remux
-
-- **Renommage désactivé** : tous les presets `FR-*` héritent de `rename = 0` (`ops/07` / `ops/09`). Les noms de fichiers restent ceux de l’indexeur.
-- **Pas de Remux** : `Remux` et `Full Disc` sont à **-999999** sur **tous** les profils, y compris `FR-Films-Any`.
-
-### Animé Sonarr
-
-Les profils `FR-Anime-*` partagent la même logique media que `FR-Series-*` (un bundle par nom de profil). Sonarr ne synchronise pas un onglet « Anime » séparé pour les tailles : les valeurs 2160p dans `ops/09` s’appliquent aussi aux bibliothèques de type Anime.
-
-## Erreur 500 « database cache not available » (Naming / Quality / Media)
-
-Ce message apparaît quand la **compilation PCD** n’a pas produit de cache SQLite (souvent après un **Pull** sans **Compile** réussi, ou une erreur SQL dans `ops/`).
-
-**À faire :**
-
-1. **Databases** → ta base FR → **Compile** et vérifier qu’il n’y a **pas d’erreur** (logs Profilarr / tâche Compile).
-2. Si Compile échoue : corriger le dépôt puis **Pull → Compile** à nouveau. Test local : `python3 scripts/verify_pcd_compile.py`.
-3. Conteneur Docker en lecture seule : monter un volume ou `tmpfs` writable sur `/app/.cache` (Deno/SQLite — voir [Profilarr #326](https://github.com/Dictionarry-Hub/profilarr/issues/326)).
-4. Après Compile OK : rouvrir **Naming settings**, **Quality definitions**, **Media settings** — les presets `FR-*` doivent s’afficher.
-
-Cause corrigée en v2.5.0+ : doublons `quality_profile_tags` dans `ops/10` (tag `anime` déjà dans `ops/06`) bloquaient toute la compilation.
-
-## Message « Quality profiles require media management settings and a delay profile »
-
-Profilarr v2 exige un **bundle media** par profil et un **delay** par instance. Ce dépôt aligne les noms pour que ce soit évident dans l’UI.
-
-### À choisir dans Profilarr
-
-| Instance | Delay profile (réglage global) | Profil + Media (par bibliothèque) |
-|----------|--------------------------------|-----------------------------------|
-| **Radarr** | `FR-Delay-Radarr` | `FR-Films-4K`, `FR-Films-1080p`, … |
-| **Sonarr** | `FR-Delay-Sonarr` | `FR-Series-*`, `FR-Anime-*` |
-
-**Workflow :** Pull → Compile → Sync → delay `FR-Delay-Radarr` ou `FR-Delay-Sonarr` → sync des profils `FR-*` (media du même nom).
-
-## Repack et upgrades
-
-- Media : `doNotPrefer` (repack géré par les CF `FR-Repack`, `FR-Repack-2`, `FR-Repack-3`).
-- Upgrades Radarr/Sonarr : `upgrades_allowed` sur les profils, scores CF pour choisir la meilleure release.
-
-## Tests
-
-Tests CF : `ops/11-custom-format-tests.sql`. Simulations profil : `ops/12-quality-profile-tests.sql` (Momie, POI, animé, Incendies). Nécessite le service **parser**.
-
-Vérification locale :
+Validation locale avant commit :
 
 ```bash
 ./scripts/check.sh
 ```
 
-## Personnalisation locale (tweaks)
+---
 
-Pour des scores ou CF locaux sans fork : voir [`tweaks/README.md`](../tweaks/README.md). Ne pas activer le renommage ni autoriser Remux si tu restes aligné avec ce dépôt.
+## 12. Erreur 500 « Database cache not available »
 
-## Dépannage Sonarr `PUT customformat` Fatal
+Message Profilarr quand le **cache compilé** n’est pas en mémoire (`getCache()` vide).
 
-Souvent une **regex invalide** dans `ops/02-regex.sql`. Corriger puis :
+**Causes :**
+
+1. **Compile** jamais réussie (SQL cassé avant correctif, ou base **désactivée** après échec).
+2. **Pull** sans **Compile** ensuite.
+3. **Redémarrage** du conteneur sans recompile (cache RAM perdu).
+
+**Procédure :**
+
+1. **Pull** (importe les ops corrigés depuis Git).
+2. Vérifier que la base est **activée** (`enabled`) dans Profilarr.
+3. **Compile** — attendre succès sans erreur.
+4. Ouvrir **Media management** → preset `FR-Films-4K` (plus de 500).
+5. **Sync** vers Radarr/Sonarr.
+
+**Logs :**
 
 ```bash
-python3 scripts/validate_regex_ops.py
+docker logs profilarr 2>&1 | tail -200 | grep -iE "cache|compile|Failed|UNIQUE|disabled|PCDCache"
 ```
 
-Puis Profilarr : Pull → Compile → Sync.
+**Reset :** Unlink la base → relink le dépôt → laisser **Import** + **Compile** terminer.
 
-## Customisations Profilarr
+Commit minimum côté Git : **`fe7285c`** (correctifs compile `ops/10` / `ops/11`).
 
-Couche optionnelle dans l’UI v2 pour ajuster scores ou CF **sans** modifier le dépôt upstream — utile pour tests personnels ; documenter les écarts si tu remontes une suggestion en issue.
+---
+
+## 13. Autres problèmes
+
+| Symptôme | Piste |
+|----------|--------|
+| *Quality profiles require media management and delay* | Delay `FR-Delay-*` + media = nom du profil |
+| Sonarr `PUT customformat` Fatal | Regex `ops/02` → `validate_regex_ops.py` → Pull → Compile → Sync |
+| Scores différents entre indexeurs | Titres différents sur le même fichier — normal |
+| Compile échoue | `./scripts/check.sh` ; schema `1.1.0` dans `pcd.json` |
+
+Conventions libellés UI : [`DECISIONS-METADONNEES-FR.md`](DECISIONS-METADONNEES-FR.md).
+
+---
+
+## 14. Mise à jour du dépôt (mainteneurs)
+
+```text
+Modifier ops/ → ./scripts/check.sh → commit → push
+→ Profilarr : Pull → Compile → Sync
+```
+
+Ne pas réinsérer les tags déjà dans `ops/06` via `ops/10` (doublon → échec compile). Les tests `ops/11` doivent être uniques par `(custom_format, title, type)`.

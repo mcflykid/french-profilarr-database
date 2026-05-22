@@ -1,20 +1,7 @@
-# Tweaks (couche locale Profilarr v2)
+# Tweaks (optionnel)
 
-Dossier pour **petits ajustements** que tu ne veux pas pousser sur le dépôt principal.
+Dossier prévu par le [template PCD](https://github.com/Dictionarry-Hub/database-template) pour des fichiers `ops/*.sql` **locaux** (second dépôt ou surcharge).
 
-## Usage
+Pour des ajustements personnels sans fork, Profilarr v2 recommande plutôt la couche **Customisations** dans l’UI ([devlog v2](https://v2.dictionarry.dev/devlogs/profilarr-v2)).
 
-1. Créer un second dépôt PCD (ou branche) qui **dépend** de `french-profilarr-database`.
-2. N’y mettre que des fichiers `ops/*.sql` qui **ajoutent** ou **surchargent** (selon workflow Profilarr).
-3. Compiler / sync après le dépôt principal.
-
-## Exemples fournis
-
-| Fichier | Effet |
-|---------|--------|
-| `exemple-pas-de-remux.sql` | Rappel : politique anti-Remux déjà dans la base principale |
-
-## Ce qu’on ne met pas ici
-
-- **Renommage actif** (`rename = 1`) — politique du dépôt : `rename = 0`.
-- Autoriser Remux sur un profil — contredit la politique **encodes uniquement**.
+Ce dépôt principal n’y place pas de SQL : la politique (anti-Remux, `rename = 0`) est entièrement dans `ops/`.
