@@ -23,7 +23,7 @@ TEAMS = {
     "FR-Team-BONBON": 5000,
     "FR-Team-TyHD": 4900,
     "FR-Team-THESYNDiCATE": 4500,
-    "FR-Team-SUPPLY": 4400,
+    "FR-Team-SUPPLY": 4800,
     "FR-Team-BOUC": 4300,
     "FR-Team-TFA": 4200,
     "FR-Team-FW": 4000,

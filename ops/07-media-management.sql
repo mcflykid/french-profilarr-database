@@ -21,7 +21,8 @@ INSERT INTO delay_profiles (
 
 -- =============================================================================
 -- FR-Media-Radarr — films (~90–150 min). Cibles : Winks ~4–5,5 Go, Slay3R WEB ~4–5 Go,
--- 4KLight ~2,5–8 Go, gros WEB 4K ~15–23 Go (max 2000 Mo/min).
+-- SUPPLY WEB 4K compact ~10–14 Go, premium DV/Atmos ~17–26 Go (max 2000 Mo/min).
+-- preferred WEB 2160p = 95 Mo/min (~10 Go @ 110 min, bande SUPPLY compact) ; WEB 1080p = 48 (~5 Go).
 -- =============================================================================
 
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
@@ -31,7 +32,7 @@ INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, 
 SELECT 'FR-Media-Radarr', q.name, 12.5, 2000, 42
 FROM qualities q WHERE q.name = 'Bluray-1080p';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
-SELECT 'FR-Media-Radarr', q.name, 17, 2000, 55
+SELECT 'FR-Media-Radarr', q.name, 17, 2000, 50
 FROM qualities q WHERE q.name = 'Bluray-2160p';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
 SELECT 'FR-Media-Radarr', q.name, 0, 2000, 1990
@@ -88,10 +89,10 @@ INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, 
 SELECT 'FR-Media-Radarr', q.name, 0, 2000, 1990
 FROM qualities q WHERE q.name = 'Unknown';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
-SELECT 'FR-Media-Radarr', q.name, 12.5, 2000, 42
+SELECT 'FR-Media-Radarr', q.name, 12.5, 2000, 48
 FROM qualities q WHERE q.name = 'WEBDL-1080p';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
-SELECT 'FR-Media-Radarr', q.name, 34.5, 2000, 70
+SELECT 'FR-Media-Radarr', q.name, 34.5, 2000, 95
 FROM qualities q WHERE q.name = 'WEBDL-2160p';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
 SELECT 'FR-Media-Radarr', q.name, 0, 2000, 1990
@@ -103,7 +104,7 @@ INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, 
 SELECT 'FR-Media-Radarr', q.name, 12.5, 2000, 42
 FROM qualities q WHERE q.name = 'WEBRip-1080p';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
-SELECT 'FR-Media-Radarr', q.name, 34.5, 2000, 70
+SELECT 'FR-Media-Radarr', q.name, 34.5, 2000, 95
 FROM qualities q WHERE q.name = 'WEBRip-2160p';
 INSERT INTO radarr_quality_definitions (name, quality_name, min_size, max_size, preferred_size)
 SELECT 'FR-Media-Radarr', q.name, 0, 2000, 1990

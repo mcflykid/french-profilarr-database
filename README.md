@@ -289,7 +289,7 @@ On **n’utilise pas** le modèle [Profilarr-database-french-regex](https://gith
 | **FR-Team-BONBON** | 5 000 | 4KLight / WEBRip ~2,5–5 Go |
 | **FR-Team-TyHD** | 4 900 | WEB 2160p HEVC compact |
 | **FR-Team-THESYNDiCATE** | 4 500 | WEB 2160p x265 |
-| **FR-Team-SUPPLY** | 4 400 | WEB 2160p premium Atmos |
+| **FR-Team-SUPPLY** | 4 800 | WEB 2160p premium DV/HDR/Atmos (C411) |
 | **FR-Team-BOUC** | 4 300 | WEB 2160p premium MULTI |
 | **FR-Team-TFA** | 4 200 | WEB 2160p catalogue |
 | **FR-Team-FW** | 4 000 | Forward, volume |
@@ -422,10 +422,10 @@ Exemple *Up in the Air* (~109 min) avec l’ancien `min = 900` sur Bluray-1080p 
 
 | Qualité | min | preferred | max | ~120 min film |
 |---------|-----|-----------|-----|----------------|
-| **Bluray / WEB 1080p** | 12,5 | **42** | 2000 | min ~1,5 Go ; cible **Winks / Slay3R** ~5 Go |
+| **Bluray / WEB 1080p** | 12,5 | **48** | 2000 | min ~1,5 Go ; cible **~5 Go** (SUPPLY compact H265 ~2–7 Go) |
 | **Bluray-720p / WEB 720p** | 12,5 | **35** | 1000–2000 | ~4,2 Go cible |
-| **Bluray-2160p** | 17 | **55** | 2000 | 4KLight ~2,5–8 Go |
-| **WEB 2160p** | 34,5 | **70** | 2000 | compact ~8 Go ; gros WEB ~15–23 Go OK via `max` |
+| **Bluray-2160p** | 17 | **50** | 2000 | 4KLight ~2,5–8 Go |
+| **WEB 2160p** | 34,5 | **95** | 2000 | **SUPPLY** compact ~10–14 Go ; DV/Atmos ~17–26 Go via `max` |
 
 #### Sonarr — `FR-Media-Sonarr` (séries)
 
@@ -516,6 +516,8 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 | 2026-05 | **Slay3R** (C411) | Score 6000 ; WEB 1080p 600/1650/2000 ; regex **H264/H265/AVC** |
 | 2026-05 | **Fix Radarr** | `max_size` plafonné à **2000** (limite API) — corrige l’erreur sync Media Management |
 | 2026-05 | **C411** | Tableau filtres recherche ↔ CF / profils (référence doc) |
+| 2026-05 | **SUPPLY** (C411) | ~200 releases : `preferred` WEB **2160p 95** (~10 Go/110 min) / **1080p 48** ; **FR-Team-SUPPLY 4800** ; tests `ops/11` ; `scripts/analyze_calibrage_supply.py` |
+| 2026-05 | **MULTI.CA** (SUPPLY) | Tag québécois C411 → **FR-MULTI-VF2** (ex. *Super Mario Galaxy* 1080p) ; exclu de **FR-MULTI-VFF** |
 
 *(Ajouter une ligne ici à chaque calibrage releases réelles.)*
 
@@ -530,7 +532,7 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 | **Upgrades** | Re-cherche de meilleures releases en bibliothèque — utile **après** un gros Sync de scores |
 | **Delay profile** | `FR-Delay-Radarr` : torrent, délai 0 (voir README section delays) |
 
-**Score `~22 000 / 60 000`** (ex. STIF 4K) : numérateur = somme CF ; dénominateur = **`upgrade_until_score`**. À **même langue**, **SUPPLY** (~24k) bat **STIF** (~22k) grâce à l’**équipe** et l’**audio**. Les **tailles** restent gérées par le preset media (`ops/07`, Mo/min). Exclusions **-999999** inchangées.
+**Score `~22 000 / 60 000`** (ex. STIF 4K) : numérateur = somme CF ; dénominateur = **`upgrade_until_score`**. À **même langue**, **SUPPLY** (~25k) bat **STIF** (~22k) grâce à l’**équipe** (4,8k) et l’**audio** (DV/Atmos). Les **tailles** restent gérées par le preset media (`ops/07`, Mo/min). Exclusions **-999999** inchangées.
 
 ---
 
