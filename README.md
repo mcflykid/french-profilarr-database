@@ -230,11 +230,11 @@ Chaque ligne = une décision **assumée** dans ce dépôt. Si tu ne partages pas
 
 | Profil type | `minimum_custom_format_score` | `upgrade_until_score` |
 |-------------|------------------------------:|----------------------:|
-| Films 1080p | **112** | **100000** |
-| Films / Series / Anime **4K** | **150** | **100000** |
-| Series / Anime 1080p/720p, Films 720p/Any | **0** | **100000** |
+| Films 1080p | **400** | **60000** |
+| Films / Series / Anime **4K** | **500** | **60000** |
+| Series / Anime 1080p/720p, Films 720p/Any | **0** | **60000** |
 
-**Grille CF ×0,15** (2026-05) : scores compacts (ex. `FR-MULTI-VF2` **15 000**, `FR-Team-QTZ` **1 800**). Une release « parfaite » ≈ **~50 000** de points CF. **`upgrade_until_score` = 100 000** : plafond d’arrêt des upgrades **au-dessus** du max réaliste — marge pour les upgrades **4K → 4K** (ex. STIF ~27k → SUPPLY ~50k) sans bloquer trop tôt. Hiérarchie inchangée (langue >> équipe >> technique).
+**Philosophie scoring** (trackers FR, 2026-05) : la **langue** = **1er tri** (écart **1k–1,5k** entre paliers, max **8k**). La **qualité** (équipe **~5,5k**, DV/HDR **~3,5k**, Atmos **~2,5k**, x265, 4KLight) **décide** entre deux releases déjà françaises. Top ≈ **22k–28k** ; plafond upgrades **60k**. Tailles : preset media `ops/07` (Mo/min).
 
 ---
 
@@ -244,11 +244,11 @@ Chaque ligne = une décision **assumée** dans ce dépôt. Si tu ne partages pas
 
 | Custom format | Score | Détection (résumé) |
 |---------------|------:|---------------------|
-| **FR-MULTI-VF2** | 15 000 | `MULTI` **et** (`VF2` \| `VFQ` \| `VOQ`) |
-| **FR-MULTI-VFF** | 13 500 | `MULTI` **et** tag FR hors VF2/VFQ/VOQ |
-| **FR-VF2** | 10 500 | VF2 / VFQ / VOQ sans MULTI obligatoire |
-| **FR-VFF** | 9 000 | VFF, TRUEFRENCH, VFI, VOF, FRENCH, … |
-| **FR-VOSTFR** | 3 000 | VOSTFR, SUBFRENCH, FANSUB, FASTSUB |
+| **FR-MULTI-VF2** | 8 000 | `MULTI` **et** (`VF2` \| `VFQ` \| `VOQ`) — **1er tri**, pas le poids dominant |
+| **FR-MULTI-VFF** | 7 000 | `MULTI` **et** tag FR hors VF2/VFQ/VOQ |
+| **FR-VF2** | 6 000 | VF2 / VFQ / VOQ sans MULTI obligatoire |
+| **FR-VFF** | 5 000 | VFF, TRUEFRENCH, VFI, VOF, FRENCH, … |
+| **FR-VOSTFR** | 1 500 | VOSTFR, SUBFRENCH, FANSUB, FASTSUB |
 
 **Règle** : `FR-MULTI-VF2` et `FR-MULTI-VFF` sont **mutuellement exclusifs** (deux AND différents). `MULTI.VFF` ne doit pas matcher les deux — vérifié dans `ops/11`.
 
@@ -284,23 +284,23 @@ On **n’utilise pas** le modèle [Profilarr-database-french-regex](https://gith
 
 | Équipe | Score | Profil typique / calibrage |
 |--------|------:|----------------------------|
-| **FR-Team-QTZ** | 1 800 | 4KLight Bluray, référence 4K |
-| **FR-Team-AMEN** | 1 425 | WEB 2160p compact DV/HDR10+ |
-| **FR-Team-BONBON** | 1 380 | 4KLight / WEBRip ~2,5–5 Go |
-| **FR-Team-TyHD** | 1 350 | WEB 2160p HEVC compact |
-| **FR-Team-THESYNDiCATE** | 1 200 | WEB 2160p x265 |
-| **FR-Team-SUPPLY** | 1 170 | WEB 2160p premium Atmos |
-| **FR-Team-BOUC** | 1 155 | WEB 2160p premium MULTI |
-| **FR-Team-TFA** | 1 125 | WEB 2160p catalogue |
-| **FR-Team-FW** | 1 080 | Forward, volume |
-| **FR-Team-Winks** | 990 | 1080p BluRay/WEB x265 MULTI (~4–5,5 Go) |
-| **FR-Team-PopHD** | 975 | 1080p HDLight x264 |
-| **FR-Team-TOXIC** | 960 | 1080p HDLight |
-| **FR-Team-ENIGMA** | 930 | WEB 1080p/2160p, VFQ |
-| **FR-Team-Slay3R** | 900 | WEB 1080p/2160p/720p, H264/H265, exclus |
-| **FR-Team-HYPERION** / **OZEF** | 300 | Remux détectés mais **jamais retenus** |
-| **FR-Tier-01** | 300 | BOUBA, NEOSTARK, … |
-| **FR-Tier-02** | 150 | Longue traîne + DELIRIUS (`MULTI.FRENCH`) |
+| **FR-Team-QTZ** | 5 500 | 4KLight Bluray, référence 4K |
+| **FR-Team-AMEN** | 5 200 | WEB 2160p compact DV/HDR10+ |
+| **FR-Team-BONBON** | 5 000 | 4KLight / WEBRip ~2,5–5 Go |
+| **FR-Team-TyHD** | 4 900 | WEB 2160p HEVC compact |
+| **FR-Team-THESYNDiCATE** | 4 500 | WEB 2160p x265 |
+| **FR-Team-SUPPLY** | 4 400 | WEB 2160p premium Atmos |
+| **FR-Team-BOUC** | 4 300 | WEB 2160p premium MULTI |
+| **FR-Team-TFA** | 4 200 | WEB 2160p catalogue |
+| **FR-Team-FW** | 4 000 | Forward, volume |
+| **FR-Team-Winks** | 3 600 | 1080p BluRay/WEB x265 MULTI (~4–5,5 Go) |
+| **FR-Team-PopHD** | 3 500 | 1080p HDLight x264 |
+| **FR-Team-TOXIC** | 3 400 | 1080p HDLight |
+| **FR-Team-ENIGMA** | 3 300 | WEB 1080p/2160p, VFQ |
+| **FR-Team-Slay3R** | 3 200 | WEB 1080p/2160p/720p, H264/H265, exclus |
+| **FR-Team-HYPERION** / **OZEF** | 800 | Remux détectés mais **jamais retenus** |
+| **FR-Tier-01** | 800 | BOUBA, NEOSTARK, … |
+| **FR-Tier-02** | 400 | Longue traîne + DELIRIUS (`MULTI.FRENCH`) |
 
 **Remux only** (HYPERION, OZEF) : reconnus pour logs, **Remux = -999999** → aucun impact sur la sélection.
 
@@ -504,8 +504,8 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
-| 2026-05 | **Grille ×0,15 + plafond 100k** | Scores CF × **0,15** (~50k release top) ; `upgrade_until_score` **100000** |
-| 2026-05 | **Grille /50k** (intermédiaire) | `upgrade_until` 50k — remplacé par 100k + scores ×0,15 |
+| 2026-05 | **Scoring qualité-first** | Langue **8k** max (1er tri) ; équipes **~5,5k** ; HDR/DV/Atmos **1k–3,5k** ; `upgrade_until` **60k** |
+| 2026-05 | **Grille ×0,15** (intermédiaire) | Remplacée par rééquilibrage qualité-first |
 | 2026-05 | **Upgrades CF** | Intermédiaire 999999 — remplacé par grille /50k |
 | 2026-05 | **Tailles Mo/min** | 3 presets : **Radarr** (films, `preferred` ~42), **Sonarr** séries (`~60` WEB), **Anime-Sonarr** (`min` 5, `preferred` ~38) |
 | 2026-05 | **Fix tailles Radarr** | Fin des `min` 900/600 (seuil ~97 Go sur *Up in the Air*) |
@@ -528,7 +528,7 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 | **Upgrades** | Re-cherche de meilleures releases en bibliothèque — utile **après** un gros Sync de scores |
 | **Delay profile** | `FR-Delay-Radarr` : torrent, délai 0 (voir README section delays) |
 
-**Score `~27 000 / 100 000`** (ex. STIF 4K après sync) : numérateur = somme CF (grille ×0,15) ; dénominateur = **`upgrade_until_score`** (plafond upgrades, pas la note max d’une release). Une release ~**50 000** peut remplacer ~**27 000** tant que **Upgrades** est activé. Exclusions **-999999** inchangées.
+**Score `~22 000 / 60 000`** (ex. STIF 4K) : numérateur = somme CF ; dénominateur = **`upgrade_until_score`**. À **même langue**, **SUPPLY** (~24k) bat **STIF** (~22k) grâce à l’**équipe** et l’**audio**. Les **tailles** restent gérées par le preset media (`ops/07`, Mo/min). Exclusions **-999999** inchangées.
 
 ---
 
