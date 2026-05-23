@@ -230,12 +230,52 @@ def main() -> int:
         )
     )
     bad_cf_scores = {cf for _, cf, _ in scores_cf if cf not in cf_names}
+    # Scoring unifié : langue + équipes identiques sur les 10 profils FR-* (Radarr + Sonarr).
+    UNIFORM_CF = (
+        "FR-MULTI-VF2",
+        "FR-MULTI-VFF",
+        "FR-VF2",
+        "FR-VFF",
+        "FR-VOSTFR",
+        "FR-Team-QTZ",
+        "FR-Team-Slay3R",
+        "FR-Tier-02",
+    )
+    SCORE_UNIFORM_TARGET = 60000
+    by_prof_cf: dict[str, dict[str, int]] = {}
+    for prof, cf, sc in scores_cf:
+        by_prof_cf.setdefault(prof, {})[cf] = int(sc)
+    prof_upgrade = {
+        m.group(1): int(m.group(2))
+        for m in re.finditer(
+            r"VALUES \('([^']+)', '[^']*', \d+, \d+, (\d+), 1\);",
+            t06,
+        )
+    }
+    score_mismatch: list[str] = []
+    for cf in UNIFORM_CF:
+        vals = {by_prof_cf.get(p, {}).get(cf) for p in ALL_PROFILES}
+        if len(vals) != 1 or None in vals:
+            score_mismatch.append(f"{cf}={vals}")
+    bad_upgrade = {
+        p: u for p, u in prof_upgrade.items() if u != SCORE_UNIFORM_TARGET
+    }
     if dup_qpt_06:
         fail("06-quality-profiles.sql", f"quality_profile_tags dupliqués: {dup_qpt_06[:3]}")
     elif missing_prof:
         fail("06-quality-profiles.sql", f"profils manquants: {missing_prof}")
     elif bad_cf_scores:
         fail("06-quality-profiles.sql", f"scores CF inconnus: {sorted(bad_cf_scores)[:5]}")
+    elif score_mismatch:
+        fail(
+            "06-quality-profiles.sql",
+            f"scores langue/équipe non uniformes sur tous les profils: {score_mismatch[:3]}",
+        )
+    elif bad_upgrade:
+        fail(
+            "06-quality-profiles.sql",
+            f"upgrade_until_score != {SCORE_UNIFORM_TARGET}: {list(bad_upgrade.items())[:3]}",
+        )
     else:
         ok("06-quality-profiles.sql")
     if extra_prof:

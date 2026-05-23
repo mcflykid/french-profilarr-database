@@ -378,6 +378,8 @@ Conditions **Exclure :** entre AAC, Dolby, DTS, TrueHD, FLAC, etc. → pas de cu
 | **FR-Series-720p** | Sonarr | Séries compactes |
 | **FR-Anime-1080p/4K/720p** | Sonarr | Animé (type Anime) |
 
+**Scoring identique sur les 10 profils** (`ops/06`) : même hiérarchie **langue 1er tri** (8k max) + **qualité** (équipe ~5,5k, HDR/DV/son sur profils **4K**). Seules les pondérations **techniques** varient selon la résolution du profil (ex. **Dolby Vision 3 500** en `FR-Films-4K` / `FR-Series-4K`, **1 200** en 1080p). **`upgrade_until_score` = 60 000** partout.
+
 Chaque profil **exclut** : Remux, Full Disc, AV1, Upscaled (+ x264@2160p sur 4K).
 
 Tags UI (`ops/06` + `ops/10`) : Radarr, Sonarr, Films, Series, 1080p/2160p/720p, French, **anime** (filtre Sonarr — tag SQL minuscule volontaire).
