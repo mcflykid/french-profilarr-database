@@ -7,7 +7,7 @@ Base **[PCD](https://github.com/Dictionarry-Hub/schema) 1.1.0** pour **[Profilar
 | **Format** | `pcd.json` + `ops/*.sql` ([modèle Dumpstarr](https://github.com/Dumpstarr/Database)) |
 | **Profilarr** | ≥ 2.0.0 |
 | **Version dépôt** | 2.0.0 |
-| **Contenu** | 66 custom formats · 70 regex · 10 profils qualité · presets media · delays · ~443 tests parser |
+| **Contenu** | 69 custom formats · 72 regex · 10 profils qualité · presets media · delays · ~450 tests parser |
 
 Ce dépôt n’est **pas** un fork Dictionarry « à peine retouché » : la couche **FR** (langue, équipes, signatures, exclusions) est pensée **pour la scène privée francophone**, en réutilisant la technique audio/HDR/codec de [Dictionarry-Hub/database](https://github.com/Dictionarry-Hub/database). Retours terrain bienvenus via [issues](https://github.com/mcflykid/french-profilarr-database/issues).
 
@@ -58,14 +58,14 @@ Indexeur (titre release) → Radarr parse le titre → score = somme des Custom 
 
 | Priorité | Exemple de critère | Ordre de grandeur |
 |----------|-------------------|-------------------|
-| 1 | Langue (`FR-MULTI-VF2` > `FR-MULTI-VFF` > `FR-VFF` > `FR-VOSTFR`) | 20k–100k |
+| 1 | Langue (`FR-MULTI-VF2` > `FR-MULTI-VFF` > `FR-VFF` > `FR-MULTI-VFQ` > `FR-VFQ` > `FR-VOSTFR`) | 20k–100k |
 | 2 | Équipe documentée (`FR-Team-QTZ`, `Winks`, `Slay3R`, …) | 1k–12k |
 | 3 | Signature / HDR / audio dans le titre | 100–4,5k |
 | 4 | Exclusions dures | **-999999** (Remux, AV1, blockers) |
 
 **Public** : utilisateurs de **trackers privés francophones**, souvent en **cross-seed** (même fichier, noms parfois différents selon l’indexeur).
 
-**Hors périmètre** : usenet-first, remux-first, chartes qui **bannissent VFQ** (ici VFQ passe par `FR-VF2` / `FR-MULTI-VF2`).
+**Hors périmètre** : usenet-first, remux-first, chartes qui **bannissent VFQ** (ici VFQ = **repli** sous VFF via `FR-MULTI-VFQ` / `FR-VFQ`).
 
 ---
 
@@ -221,7 +221,7 @@ Chaque ligne = une décision **assumée** dans ce dépôt. Si tu ne partages pas
 | **`propers_repacks = doNotPrefer`** | Repack natif « Prefer » | Géré par **FR-Repack** / **-2** / **-3** dans le titre |
 | **Torrent only, délai 0** | Usenet / délais longs | `FR-Delay-*` : torrent, `torrent_delay = 0` |
 | **x265 favorisé en 1080p/720p** | Malus HEVC sous 4K (Dumpstarr) | Scène FR = encodes compacts HEVC |
-| **VFQ / VOQ acceptés** | Ban VFQ | Passent par **FR-VF2** / **FR-MULTI-VF2** (scores, pas exclusion) |
+| **VFQ / VOQ acceptés** | Ban VFQ | **Repli** sous VFF : `FR-MULTI-VFQ` / `FR-VFQ` (pas exclusion) |
 | **16 équipes `FR-Team-*`** | ~900 regex « une par team » | Maintenance tenable, rebase Dictionarry possible |
 | **Presets media** | Bundle par profil qualité | **Radarr** + **Sonarr séries** + **Sonarr animé** (`ops/07`) |
 | **Seuils profil type Dumpstarr** | `minimum = 20000` (ancienne base) | Évite upgrades bloqués ; priorité FR reste dans les CF |
@@ -244,13 +244,24 @@ Chaque ligne = une décision **assumée** dans ce dépôt. Si tu ne partages pas
 
 | Custom format | Score | Détection (résumé) |
 |---------------|------:|---------------------|
-| **FR-MULTI-VF2** | 8 000 | `MULTI` **et** (`VF2` \| `VFQ` \| `VOQ`) — **1er tri**, pas le poids dominant |
-| **FR-MULTI-VFF** | 7 000 | `MULTI` **et** tag FR hors VF2/VFQ/VOQ |
-| **FR-VF2** | 6 000 | VF2 / VFQ / VOQ sans MULTI obligatoire |
-| **FR-VFF** | 5 000 | VFF, TRUEFRENCH, VFI, VOF, FRENCH, … |
+| **FR-MULTI-VF2** | 8 000 | `MULTI` **et** **`VF2`** (dual FR + QC) |
+| **FR-MULTI-VFF** | 7 000 | `MULTI` **et** tag France explicite (VFF, VOF, TRUEFRENCH, `MULTI.FRENCH`, …) |
+| **FR-VF2** | 6 000 | **`VF2` seul** (dual FR + QC, sans `MULTI`) |
+| **FR-MULTI-ambig** | 5 500 | **`MULTI` seul** : FR probable, variante non précisée (hors nommage C411) |
+| **FR-VFF** | 5 000 | VFF, TRUEFRENCH, … **sans** `MULTI` |
+| **FR-MULTI-VFQ** | 4 500 | `MULTI` **et** VFQ / VOQ / **`MULTI.CA`** — **sous VFF** |
+| **FR-VFQ** | 4 000 | VFQ / VOQ / CA **sans** `MULTI` — **sous VFF** |
 | **FR-VOSTFR** | 1 500 | VOSTFR, SUBFRENCH, FANSUB, FASTSUB |
 
-**Règle** : `FR-MULTI-VF2` et `FR-MULTI-VFF` sont **mutuellement exclusifs**. `FR-MULTI-VFF` inclut **`MULTI` seul** (sans VF2/VFQ) pour la **parité indexeurs** : Torr9 n’ajoute pas toujours `.FRENCH` comme YGG. `FR-VFF` ne s’ajoute **pas** si `MULTI` est déjà dans le titre (évite +5k en double sur les suffixes YGG).
+**Règle C411** : avec plusieurs pistes, `MULTI` doit être **qualifié** (`MULTI.VFF`, `MULTI.VOF`, `MULTI.VFQ`, `MULTI.VF2`, …). Sur d’autres indexeurs, un **`MULTI` nu** arrive souvent quand même → palier **`FR-MULTI-ambig`** (5,5k) : *multi avec du français, variante inconnue*, **au-dessus de VFF seul**, **sous** `MULTI.VFF` explicite. **`MULTI.FRENCH`** reste **FR-MULTI-VFF** (7k).
+
+| Situation | Tag release | CF |
+|-----------|-------------|-----|
+| 1 piste FR | `VFF`, `VOF`, `TRUEFRENCH`, `VFQ`, … | **FR-VFF** / **FR-VFQ** |
+| Multi + FR **précisé** | `MULTI.VFF`, `MULTI.VOF`, `MULTI.VFQ`, … | **FR-MULTI-VFF** / **FR-MULTI-VFQ** |
+| Multi + VFF **et** VFQ | `MULTI.VF2` | **FR-MULTI-VF2** |
+| Multi **sans** sous-tag FR | `MULTI` seul (Torr9, etc.) | **FR-MULTI-ambig** |
+| Pas de FR audio | `VOSTFR` | **FR-VOSTFR** |
 
 ### Regex langue (`ops/02`)
 
@@ -258,7 +269,8 @@ Chaque ligne = une décision **assumée** dans ce dépôt. Si tu ne partages pas
 |-------|------|
 | **FR-Regex-MULTI** | `MULTI`, `MULTI.VFF`, **`MULTIVFF`** (collé C411), `MULTITRUEFRENCH`, `MULTI.FRENCH`, `\bMULTI\b` seul (évite `MultiVerse`) |
 | **FR-Regex-VFF** | VFF, TRUEFRENCH, VFI, VOF, **`MULTIVFF`**, `MULTI.VFF`, VF générique (hors VF2/VFQ) |
-| **FR-Regex-VF2** | VF2, VFQ, VOQ, **`MULTIVF2`** (collé) |
+| **FR-Regex-VF2** | **`VF2`** / `MULTI.VF2` / **`MULTIVF2`** (dual FR+QC) |
+| **FR-Regex-VFQ** | VFQ, VOQ, **`MULTI.CA`**, **`MULTIVFQ`**, `MULTI.VFQ` |
 | **FR-Regex-VOSTFR** | VOSTFR, SUBFRENCH, FANSUB, FASTSUB |
 
 **Variantes cross-indexeurs** : `MULTI.TRUEFRENCH`, `MULTI.FRENCH`, `TRUEFRENCH` seul, etc. — cas **La Momie** (même rip, titres différents).
@@ -468,7 +480,7 @@ Sur C411, les **filtres UI** ne sont pas dans Radarr : ce sont des raccourcis de
 | **SDR, HDR10, HDR10+** | `HDR`, `HDR10`, `HDR10PLUS`… | CF `HDR`, `HDR10`, `HDR10+` |
 | **Dolby Vision, DV+HDR10(+)** | `DV`, `DoVi`, souvent + `HDR` dans le nom | CF `Dolby Vision` (+ HDR séparés) |
 | **MULTI, VFF, TRUEFRENCH** | `MULTI.VFF`, `MULTIVFF`, `TRUEFRENCH`… | `FR-MULTI-VFF`, `FR-VFF` |
-| **VOSTFR, VFQ, VF2, MULTI.VF2** | `VOSTFR`, `VFQ`, `VF2`, `MULTI.VF2` | `FR-VOSTFR`, `FR-VF2`, `FR-MULTI-VF2` |
+| **VOSTFR, VFQ, VF2, MULTI.VF2** | `VOSTFR`, `VFQ`, `VF2`, `MULTI.VF2`, `MULTI.CA` | `FR-VOSTFR`, `FR-VFQ`, `FR-VF2`, `FR-MULTI-VF2`, `FR-MULTI-VFQ` |
 | **VF** (générique) | `VF` seul (hors VF2/VFQ) | `FR-VFF` via `VF(?!Q|2)` |
 | **BluRay, WEB, WEBRip, HDTV…** | `BluRay`, `WEB`, `WEBRip`, `WEB-DL`… | Qualité native Radarr |
 | **H.265 / H.264 / AV1** | `x265`, `H265`, `H264`, `AVC`, `AV1` | CF `x265`, `h265`, `x264` ; **AV1 exclu** (-999999) |
@@ -518,6 +530,8 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 | 2026-05 | **C411** | Tableau filtres recherche ↔ CF / profils (référence doc) |
 | 2026-05 | **SUPPLY** (C411) | ~200 releases : `preferred` WEB **2160p 95** (~10 Go/110 min) / **1080p 48** ; **FR-Team-SUPPLY 4800** ; tests `ops/11` ; `scripts/analyze_calibrage_supply.py` |
 | 2026-05 | **MULTI.CA** (SUPPLY) | Tag québécois C411 → **FR-MULTI-VF2** (ex. *Super Mario Galaxy* 1080p) ; exclu de **FR-MULTI-VFF** |
+| 2026-05 | **VFQ sous VFF** | **`FR-MULTI-VFQ` 4500** / **`FR-VFQ` 4000** ; `VF2` seul = dual FR+QC (8k/6k) |
+| 2026-05 | **Règles C411 langue** | **`FR-MULTI-ambig` 5500** pour `MULTI` seul ; `MULTI.V*` explicite inchangé ; **MULTI.VOF** / **VFI** / **VFB** |
 
 *(Ajouter une ligne ici à chaque calibrage releases réelles.)*
 
@@ -538,7 +552,7 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 ## Scoring : limites Radarr
 
-| Même release, scores différents entre indexeurs | Souvent le **titre** diffère (ex. YGG ajoute `.FRENCH`) → parser CF différent. Colonne **Langue** Radarr = métadonnée indexeur, pas le score CF. Voir fix `FR-Regex-MULTI-VFF` dans `ops/02`. |
+| Même release, scores différents entre indexeurs | Titre différent (YGG ajoute `.FRENCH`) ou **`MULTI` seul** sur un indexeur : seul le titre **conforme C411** (`MULTI.VFF`, etc.) reçoit le bonus langue. Colonne **Langue** Radarr = métadonnée indexeur, pas le score CF. |
 
 | Situation | Comportement |
 |-----------|--------------|

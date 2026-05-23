@@ -70,6 +70,14 @@ SELECT 'FR-MULTI-VFF', 'Language' FROM tags t WHERE t.name = 'Language';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-MULTI-VFF', 'French' FROM tags t WHERE t.name = 'French';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'FR-MULTI-VFQ', 'Language' FROM tags t WHERE t.name = 'Language';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'FR-MULTI-VFQ', 'French' FROM tags t WHERE t.name = 'French';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'FR-MULTI-ambig', 'Language' FROM tags t WHERE t.name = 'Language';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'FR-MULTI-ambig', 'French' FROM tags t WHERE t.name = 'French';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-Repack-2', 'Flag' FROM tags t WHERE t.name = 'Flag';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-Repack-2', 'Repack' FROM tags t WHERE t.name = 'Repack';
@@ -175,6 +183,10 @@ INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-VFF', 'Language' FROM tags t WHERE t.name = 'Language';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-VFF', 'French' FROM tags t WHERE t.name = 'French';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'FR-VFQ', 'Language' FROM tags t WHERE t.name = 'Language';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'FR-VFQ', 'French' FROM tags t WHERE t.name = 'French';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-VOSTFR', 'Language' FROM tags t WHERE t.name = 'Language';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)

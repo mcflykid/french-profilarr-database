@@ -254,8 +254,17 @@ INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, 
 SELECT 'FR-MULTI-VF2', 'VF2', 'release_title', 'all', 0, 1
 FROM custom_formats cf WHERE cf.name = 'FR-MULTI-VF2';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
-SELECT 'FR-MULTI-VFF', 'MULTI VFF ou MULTI seul', 'release_title', 'all', 0, 1
+SELECT 'FR-MULTI-VFQ', 'MULTI', 'release_title', 'all', 0, 1
+FROM custom_formats cf WHERE cf.name = 'FR-MULTI-VFQ';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-MULTI-VFQ', 'VFQ', 'release_title', 'all', 0, 1
+FROM custom_formats cf WHERE cf.name = 'FR-MULTI-VFQ';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-MULTI-VFF', 'MULTI + tag FR C411', 'release_title', 'all', 0, 1
 FROM custom_formats cf WHERE cf.name = 'FR-MULTI-VFF';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-MULTI-ambig', 'MULTI sans précision FR', 'release_title', 'all', 0, 1
+FROM custom_formats cf WHERE cf.name = 'FR-MULTI-ambig';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
 SELECT 'FR-VFF', 'Pas de tag MULTI', 'release_title', 'all', 1, 1
 FROM custom_formats cf WHERE cf.name = 'FR-VFF';
@@ -379,6 +388,12 @@ FROM custom_formats cf WHERE cf.name = 'FR-Tier-02';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
 SELECT 'FR-VF2', 'VF2', 'release_title', 'all', 0, 1
 FROM custom_formats cf WHERE cf.name = 'FR-VF2';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-VFQ', 'Pas de tag MULTI', 'release_title', 'all', 1, 1
+FROM custom_formats cf WHERE cf.name = 'FR-VFQ';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-VFQ', 'VFQ', 'release_title', 'all', 0, 1
+FROM custom_formats cf WHERE cf.name = 'FR-VFQ';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
 SELECT 'FR-VFF', 'VFF', 'release_title', 'all', 0, 1
 FROM custom_formats cf WHERE cf.name = 'FR-VFF';
@@ -763,7 +778,13 @@ SELECT 'FR-MULTI-VF2', 'MULTI', re.name FROM regular_expressions re WHERE re.nam
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'FR-MULTI-VF2', 'VF2', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-VF2';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
-SELECT 'FR-MULTI-VFF', 'MULTI VFF ou MULTI seul', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-MULTI-VFF';
+SELECT 'FR-MULTI-VFQ', 'MULTI', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-MULTI';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-MULTI-VFQ', 'VFQ', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-VFQ';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-MULTI-VFF', 'MULTI + tag FR C411', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-MULTI-VFF';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-MULTI-ambig', 'MULTI sans précision FR', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-MULTI-ambig';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'FR-VFF', 'Pas de tag MULTI', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-MULTI';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
@@ -846,6 +867,10 @@ INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expr
 SELECT 'FR-Tier-02', 'Palier 02 — longue traîne basse', re.name FROM regular_expressions re WHERE re.name = 'FR-Tier-02';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'FR-VF2', 'VF2', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-VF2';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-VFQ', 'Pas de tag MULTI', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-MULTI';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-VFQ', 'VFQ', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-VFQ';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'FR-VFF', 'VFF', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-VFF';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)

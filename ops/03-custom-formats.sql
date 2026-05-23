@@ -19,8 +19,10 @@ INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-4K
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Blockers', 'Groupes bannis, GPU encode (NVENC/QSV/AMF), incohérences REMUX+encodeur. Score très négatif.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-HDLight', 'Tag HDLight (Bluray allégé). Utile 720p/1080p ; rare en 2160p.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Hybrid', 'Tag HYBRID (Bluray hybride UHD). Bonus modéré si annoncé.', 0);
-INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-MULTI-VF2', 'MULTI + VF2, VFQ ou VOQ. Meilleur score langue du système.', 0);
-INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-MULTI-VFF', 'MULTI + tag FR (VFF, TRUEFRENCH, etc.) hors VF2/VFQ/VOQ.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-MULTI-VF2', 'MULTI + VF2 (dual FR+QC). Meilleur palier langue.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-MULTI-VFF', 'MULTI + précision FR C411 (VFF, VOF, VFI, TRUEFRENCH, MULTI.FRENCH). Pas de MULTI seul.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-MULTI-VFQ', 'MULTI + VFQ/VOQ/CA (Québec). Repli sous VFF seul.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-MULTI-ambig', 'MULTI seul : plusieurs langues dont FR, sous-tag FR absent (indexeurs hors C411).', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Repack-2', 'PROPER2 / REPACK2 ou REAL puis PROPER. Bonus au-dessus de FR-Repack.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Repack-3', 'PROPER3 / REPACK3. Bonus repack maximal.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Repack', 'PROPER, REPACK, RERIP ou REAL simple. Media en doNotPrefer ; le score CF décide.', 0);
@@ -44,8 +46,9 @@ INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Te
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-Winks', 'Équipe Winks — 1080p BluRay/WEB x265 MULTI (~4–5,5 Go). Référence C411.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Tier-01', 'Palier 01 encodeurs (BOUBA, NEOSTARK, …). Sous les équipes FR-Team.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Tier-02', 'Palier 02 encodeurs (TLC, DFE, KPORAL, …). Sous FR-Tier-01.', 0);
-INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-VF2', 'VF2, VFQ ou VOQ sans MULTI. Ajuste la politique VFQ/Québec via les scores.', 0);
-INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-VFF', 'Tag FR mono-piste (VFF, TRUEFRENCH, …) sans MULTI.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-VF2', 'VF2 seul (dual FR+QC) sans MULTI. Au-dessus de VFF.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-VFF', 'Tag FR France (VFF, TRUEFRENCH, …) sans MULTI. Au-dessus du Québec.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-VFQ', 'VFQ/VOQ/CA sans MULTI. Repli Québec sous VFF.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-VOSTFR', 'VOSTFR, SUBFRENCH, FANSUB, FASTSUB. Repli si pas de doublage FR.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('Full Disc', 'Image disque complète (ISO, BDMV). Exclut WEB/Remux/encodes sur la même ligne.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('HDR', 'HDR générique hors HDR10/HDR10+ déjà gérés. Évite le double-score HDR.', 0);

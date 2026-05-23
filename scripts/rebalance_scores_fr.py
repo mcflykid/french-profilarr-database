@@ -13,7 +13,10 @@ LANG = {
     "FR-MULTI-VF2": 8000,
     "FR-MULTI-VFF": 7000,
     "FR-VF2": 6000,
+    "FR-MULTI-ambig": 5500,
     "FR-VFF": 5000,
+    "FR-MULTI-VFQ": 4500,
+    "FR-VFQ": 4000,
     "FR-VOSTFR": 1500,
 }
 

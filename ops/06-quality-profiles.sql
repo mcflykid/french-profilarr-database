@@ -253,11 +253,22 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Anime-1080p', 'FR-MULTI-VFF', 'all', 7000
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-1080p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Anime-1080p', 'FR-MULTI-ambig', 'all', 5500
+FROM quality_profiles qp WHERE qp.name = 'FR-Anime-1080p';
+
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Anime-1080p', 'FR-VF2', 'all', 6000
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-1080p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Anime-1080p', 'FR-VFF', 'all', 5000
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-1080p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Anime-1080p', 'FR-MULTI-VFQ', 'all', 4500
+FROM quality_profiles qp WHERE qp.name = 'FR-Anime-1080p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Anime-1080p', 'FR-VFQ', 'all', 4000
+FROM quality_profiles qp WHERE qp.name = 'FR-Anime-1080p';
+
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Anime-1080p', 'FR-VOSTFR', 'all', 1500
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-1080p';
@@ -427,11 +438,22 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Anime-4K', 'FR-MULTI-VFF', 'all', 7000
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Anime-4K', 'FR-MULTI-ambig', 'all', 5500
+FROM quality_profiles qp WHERE qp.name = 'FR-Anime-4K';
+
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Anime-4K', 'FR-VF2', 'all', 6000
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Anime-4K', 'FR-VFF', 'all', 5000
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-4K';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Anime-4K', 'FR-MULTI-VFQ', 'all', 4500
+FROM quality_profiles qp WHERE qp.name = 'FR-Anime-4K';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Anime-4K', 'FR-VFQ', 'all', 4000
+FROM quality_profiles qp WHERE qp.name = 'FR-Anime-4K';
+
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Anime-4K', 'FR-VOSTFR', 'all', 1500
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-4K';
@@ -616,11 +638,22 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Anime-720p', 'FR-MULTI-VFF', 'all', 7000
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-720p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Anime-720p', 'FR-MULTI-ambig', 'all', 5500
+FROM quality_profiles qp WHERE qp.name = 'FR-Anime-720p';
+
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Anime-720p', 'FR-VF2', 'all', 6000
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-720p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Anime-720p', 'FR-VFF', 'all', 5000
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Anime-720p', 'FR-MULTI-VFQ', 'all', 4500
+FROM quality_profiles qp WHERE qp.name = 'FR-Anime-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Anime-720p', 'FR-VFQ', 'all', 4000
+FROM quality_profiles qp WHERE qp.name = 'FR-Anime-720p';
+
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Anime-720p', 'FR-VOSTFR', 'all', 1500
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-720p';
@@ -754,11 +787,22 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Films-1080p', 'FR-MULTI-VFF', 'all', 7000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-1080p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-1080p', 'FR-MULTI-ambig', 'all', 5500
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-1080p';
+
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-1080p', 'FR-VF2', 'all', 6000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-1080p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-1080p', 'FR-VFF', 'all', 5000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-1080p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-1080p', 'FR-MULTI-VFQ', 'all', 4500
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-1080p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-1080p', 'FR-VFQ', 'all', 4000
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-1080p';
+
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-1080p', 'FR-VOSTFR', 'all', 1500
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-1080p';
@@ -940,11 +984,22 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Films-4K', 'FR-MULTI-VFF', 'all', 7000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-4K', 'FR-MULTI-ambig', 'all', 5500
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
+
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-4K', 'FR-VF2', 'all', 6000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-4K', 'FR-VFF', 'all', 5000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-4K', 'FR-MULTI-VFQ', 'all', 4500
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-4K', 'FR-VFQ', 'all', 4000
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
+
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-4K', 'FR-VOSTFR', 'all', 1500
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
@@ -1132,11 +1187,22 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Films-720p', 'FR-MULTI-VFF', 'all', 7000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-MULTI-ambig', 'all', 5500
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-720p', 'FR-VF2', 'all', 6000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-720p', 'FR-VFF', 'all', 5000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-MULTI-VFQ', 'all', 4500
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-VFQ', 'all', 4000
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-720p', 'FR-VOSTFR', 'all', 1500
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
@@ -1279,11 +1345,22 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Films-Any', 'FR-MULTI-VFF', 'all', 7000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-Any';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-Any', 'FR-MULTI-ambig', 'all', 5500
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-Any';
+
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-Any', 'FR-VF2', 'all', 6000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-Any';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-Any', 'FR-VFF', 'all', 5000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-Any';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-Any', 'FR-MULTI-VFQ', 'all', 4500
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-Any';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-Any', 'FR-VFQ', 'all', 4000
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-Any';
+
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-Any', 'FR-VOSTFR', 'all', 1500
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-Any';
@@ -1465,11 +1542,22 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Series-1080p', 'FR-MULTI-VFF', 'all', 7000
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-1080p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Series-1080p', 'FR-MULTI-ambig', 'all', 5500
+FROM quality_profiles qp WHERE qp.name = 'FR-Series-1080p';
+
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Series-1080p', 'FR-VF2', 'all', 6000
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-1080p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Series-1080p', 'FR-VFF', 'all', 5000
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-1080p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Series-1080p', 'FR-MULTI-VFQ', 'all', 4500
+FROM quality_profiles qp WHERE qp.name = 'FR-Series-1080p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Series-1080p', 'FR-VFQ', 'all', 4000
+FROM quality_profiles qp WHERE qp.name = 'FR-Series-1080p';
+
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Series-1080p', 'FR-VOSTFR', 'all', 1500
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-1080p';
@@ -1639,11 +1727,22 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Series-4K', 'FR-MULTI-VFF', 'all', 7000
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Series-4K', 'FR-MULTI-ambig', 'all', 5500
+FROM quality_profiles qp WHERE qp.name = 'FR-Series-4K';
+
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Series-4K', 'FR-VF2', 'all', 6000
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Series-4K', 'FR-VFF', 'all', 5000
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-4K';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Series-4K', 'FR-MULTI-VFQ', 'all', 4500
+FROM quality_profiles qp WHERE qp.name = 'FR-Series-4K';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Series-4K', 'FR-VFQ', 'all', 4000
+FROM quality_profiles qp WHERE qp.name = 'FR-Series-4K';
+
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Series-4K', 'FR-VOSTFR', 'all', 1500
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-4K';
@@ -1828,11 +1927,22 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Series-720p', 'FR-MULTI-VFF', 'all', 7000
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-720p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Series-720p', 'FR-MULTI-ambig', 'all', 5500
+FROM quality_profiles qp WHERE qp.name = 'FR-Series-720p';
+
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Series-720p', 'FR-VF2', 'all', 6000
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-720p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Series-720p', 'FR-VFF', 'all', 5000
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Series-720p', 'FR-MULTI-VFQ', 'all', 4500
+FROM quality_profiles qp WHERE qp.name = 'FR-Series-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Series-720p', 'FR-VFQ', 'all', 4000
+FROM quality_profiles qp WHERE qp.name = 'FR-Series-720p';
+
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Series-720p', 'FR-VOSTFR', 'all', 1500
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-720p';
