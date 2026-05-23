@@ -16,13 +16,15 @@ CHECKS = (
     ("Intégrité ops/ (doublons, FK, profils)", "verify_ops_integrity.py"),
     ("Compile PCD (schema 1.1.0 + ops)", "verify_pcd_compile.py"),
     ("Descriptions regex/CF (pas de *, pas de syntaxe regex)", "validate_regex_ops.py"),
+    ("Tests calibrage ops/11 (releases réelles)", "run_cf_regex_tests.py --calibrage-only"),
 )
 
 
 def run(name: str, script: str) -> int:
-    path = ROOT / "scripts" / script
+    parts = script.split()
+    path = ROOT / "scripts" / parts[0]
     print(f"\n── {name} ──")
-    r = subprocess.run([sys.executable, str(path)], cwd=ROOT)
+    r = subprocess.run([sys.executable, str(path), *parts[1:]], cwd=ROOT)
     return r.returncode
 
 

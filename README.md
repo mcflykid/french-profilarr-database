@@ -38,7 +38,7 @@ Indexeur (titre release) → Radarr parse le titre → score = somme des Custom 
 7. [Technique : HDR, audio, codecs](#technique--hdr-audio-codecs)
 8. [Profils qualité `FR-*`](#profils-qualité-fr-)
 9. [Media management : tailles et delays](#media-management--tailles-et-delays)
-10. [Calibrage terrain (trackers)](#calibrage-terrain-trackers)
+10. [Calibrage sur releases réelles](#calibrage-sur-releases-réelles-workflow-principal)
 11. [Scoring : limites Radarr](#scoring--limites-radarr)
 12. [Créneaux catalogue (slots)](#créneaux-catalogue-slots)
 13. [Ce qu’on rejette volontairement](#ce-quon-rejette-volontairement)
@@ -429,15 +429,30 @@ Unité telle que définie dans Radarr/Sonarr pour les quality definitions (affic
 
 ---
 
-## Calibrage terrain (trackers)
+## Calibrage sur releases réelles (workflow principal)
 
-Quand des **captures d’écran** ou listes de releases d’une **équipe / tracker** sont fournies, la procédure du dépôt est :
+**Releases réelles** = listes ou captures de ton **indexeur privé** (noms de fichiers + tailles en Go), comme pour **Winks** ou **Slay3R**. On ajuste la base pour coller à ce que tu vois vraiment, pas seulement à la théorie TRaSH/Dictionarry.
 
-1. Analyser **noms** (tags langue, codec, source) et **tailles** (min / typique / max).
-2. Mettre à jour **`ops/02`** (regex), **`ops/03–04`** (CF si nouvelle équipe), **`ops/06`** (scores), **`ops/07`** (tailles media), **`ops/11`** (tests titres réels).
-3. Lancer `python3 scripts/validate.py`.
-4. **Mettre à jour ce README** (section équipe + tableau tailles + [journal](#journal-des-calibrages-récents)).
-5. Commit avec message explicite ; **Pull → Compile → Sync** sur les instances.
+### Ce que tu envoies (modèle)
+
+Pour une **équipe** ou un **tracker**, envoie par message :
+
+1. **Captures** ou liste de **5–30 titres** complets (ex. `Film.2024.MULTI.VFF.1080p.WEB.AC3.5.1.H264-Slay3R`).
+2. Les **tailles** affichées (Go) — min / typique / max si possible.
+3. **Résolution** dominante (1080p WEB, 2160p, BluRay, …).
+4. Optionnel : indexeur (C411, Torr9) — reste interne, pas obligatoire dans le README public.
+
+### Ce qu’on fait dans le dépôt
+
+| Étape | Fichiers |
+|-------|----------|
+| Grammaire des titres | `ops/02`, `ops/04` |
+| Nouvelle équipe | `ops/03`, `ops/04`, `ops/06` |
+| Tailles media (Radarr **max ≤ 2000**) | `ops/07` |
+| Tests sur vrais titres | `ops/11` (description avec **C411**, **Torr9**, **Calibrage**, ou nom d’équipe) |
+| Doc | ce README + [journal](#journal-des-calibrages-récents) |
+
+Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync** sur Radarr/Sonarr.
 
 ### Journal des calibrages récents
 
@@ -448,7 +463,20 @@ Quand des **captures d’écran** ou listes de releases d’une **équipe / trac
 | 2026-05 | **Slay3R** (C411) | Score 6000 ; WEB 1080p 600/1650/2000 ; regex **H264/H265/AVC** |
 | 2026-05 | **Fix Radarr** | `max_size` plafonné à **2000** (limite API) — corrige l’erreur sync Media Management |
 
-*(Ajouter une ligne ici à chaque calibrage terrain.)*
+*(Ajouter une ligne ici à chaque calibrage releases réelles.)*
+
+---
+
+## Pages Profilarr (instance Radarr)
+
+| Page | Rôle |
+|------|------|
+| **Sync** | Pousse presets media, delay, profils qualité vers Radarr |
+| **Drift** | Alerte si quelqu’un modifie Radarr à la main (optionnel) |
+| **Upgrades** | Re-cherche de meilleures releases en bibliothèque — utile **après** un gros Sync de scores |
+| **Delay profile** | `FR-Delay-Radarr` : torrent, délai 0 (voir README section delays) |
+
+**Score `150 470 / 10 000`** dans la bibliothèque : le **10 000** est `upgrade_until_score` du profil, **pas** un plafond de note. La langue seule peut dépasser 100 000 — c’est voulu.
 
 ---
 
@@ -508,7 +536,9 @@ Trackers **sans slots** : même logique via tags (`MULTI.VFF`, `4KLight`, …).
 python3 scripts/validate.py
 ```
 
-Vérifie : intégrité `ops/`, compile SQLite (schema 1.1.0), descriptions regex sans `*` (sync Sonarr-safe).
+Vérifie : intégrité `ops/`, compile SQLite (schema 1.1.0), descriptions regex sans `*`, **tests calibrage** (`ops/11` titres C411/Torr9/équipes).
+
+CI GitHub : workflow **Validate PCD** sur chaque push/PR vers `main`.
 
 | Fichier | Rôle |
 |---------|------|
@@ -553,7 +583,7 @@ scripts/
 ### Checklist mainteneur
 
 - [ ] Tableau ou section concernée (langue, équipe, tailles, audio, …) à jour
-- [ ] Ligne ajoutée dans [Journal des calibrages](#journal-des-calibrages-récents) si calibrage terrain
+- [ ] Ligne ajoutée dans [Journal des calibrages](#journal-des-calibrages-récents) si calibrage releases réelles
 - [ ] Compteurs (CF, regex, tests) cohérents si le volume a changé
 - [ ] `python3 scripts/validate.py` OK
 - [ ] Mention **Pull → Compile → Sync** si changement déployable
