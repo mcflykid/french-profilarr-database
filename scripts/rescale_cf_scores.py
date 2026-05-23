@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OPS06 = ROOT / "ops" / "06-quality-profiles.sql"
 # Top release ~333k → ~50k ; langue 100k → 15k (hiérarchie conservée).
 FACTOR = 0.15
-UPGRADE_UNTIL = 50000
+UPGRADE_UNTIL = 100000
 
 
 def scale_score(n: int) -> int:

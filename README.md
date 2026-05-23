@@ -230,11 +230,11 @@ Chaque ligne = une décision **assumée** dans ce dépôt. Si tu ne partages pas
 
 | Profil type | `minimum_custom_format_score` | `upgrade_until_score` |
 |-------------|------------------------------:|----------------------:|
-| Films 1080p | **112** | **50000** |
-| Films / Series / Anime **4K** | **150** | **50000** |
-| Series / Anime 1080p/720p, Films 720p/Any | **0** | **50000** |
+| Films 1080p | **112** | **100000** |
+| Films / Series / Anime **4K** | **150** | **100000** |
+| Series / Anime 1080p/720p, Films 720p/Any | **0** | **100000** |
 
-**Grille /50 000** (2026-05) : tous les scores CF positifs × **0,15** par rapport à l’ancienne échelle (ex. `FR-MULTI-VF2` **15 000**, `FR-Team-QTZ` **1 800**). Une release « parfaite » tourne autour de **~50 000** ; `upgrade_until_score` = **50 000** = arrêt des upgrades une fois ce niveau atteint. Hiérarchie inchangée (langue >> équipe >> technique).
+**Grille CF ×0,15** (2026-05) : scores compacts (ex. `FR-MULTI-VF2` **15 000**, `FR-Team-QTZ` **1 800**). Une release « parfaite » ≈ **~50 000** de points CF. **`upgrade_until_score` = 100 000** : plafond d’arrêt des upgrades **au-dessus** du max réaliste — marge pour les upgrades **4K → 4K** (ex. STIF ~27k → SUPPLY ~50k) sans bloquer trop tôt. Hiérarchie inchangée (langue >> équipe >> technique).
 
 ---
 
@@ -504,7 +504,8 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
-| 2026-05 | **Grille /50 000** | Scores CF × **0,15** ; `upgrade_until_score` **50000** ; `minimum` 112/150 (ex. 750/1000 ×0.15) |
+| 2026-05 | **Grille ×0,15 + plafond 100k** | Scores CF × **0,15** (~50k release top) ; `upgrade_until_score` **100000** |
+| 2026-05 | **Grille /50k** (intermédiaire) | `upgrade_until` 50k — remplacé par 100k + scores ×0,15 |
 | 2026-05 | **Upgrades CF** | Intermédiaire 999999 — remplacé par grille /50k |
 | 2026-05 | **Tailles Mo/min** | 3 presets : **Radarr** (films, `preferred` ~42), **Sonarr** séries (`~60` WEB), **Anime-Sonarr** (`min` 5, `preferred` ~38) |
 | 2026-05 | **Fix tailles Radarr** | Fin des `min` 900/600 (seuil ~97 Go sur *Up in the Air*) |
@@ -527,7 +528,7 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 | **Upgrades** | Re-cherche de meilleures releases en bibliothèque — utile **après** un gros Sync de scores |
 | **Delay profile** | `FR-Delay-Radarr` : torrent, délai 0 (voir README section delays) |
 
-**Score `~27 000 / 50 000`** (ex. STIF 4K après sync) : numérateur = somme CF sur le fichier ; dénominateur = **`upgrade_until_score`**. Une release ~**50 000** (ex. SUPPLY iMAX Atmos) peut encore remplacer ~**27 000** tant que **Upgrades** est activé. Exclusions **-999999** inchangées.
+**Score `~27 000 / 100 000`** (ex. STIF 4K après sync) : numérateur = somme CF (grille ×0,15) ; dénominateur = **`upgrade_until_score`** (plafond upgrades, pas la note max d’une release). Une release ~**50 000** peut remplacer ~**27 000** tant que **Upgrades** est activé. Exclusions **-999999** inchangées.
 
 ---
 
