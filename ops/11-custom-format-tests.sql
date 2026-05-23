@@ -157,6 +157,8 @@ VALUES
     ('FR-4KLight', 'Trois.couleurs.Blanc.1994.VOF.2160p.BluRay.4KLight.DV.AC3.5.1.x265-QTZ', 'movie', 1, 'Test parser — FR-4KLight : doit correspondre (release réelle)'),
     ('FR-Blockers', 'Anime.S01E04.VOSTFR.1080p.BDRip.AAC.x264-Firesoul64', 'series', 0, 'Test parser — FR-Blockers : ne doit pas correspondre (release réelle)'),
     ('FR-Blockers', 'Film.2015.FRENCH.BDRip.x264-k0RE', 'movie', 1, 'Test parser — FR-Blockers : doit correspondre (release réelle)'),
+    ('FR-Blockers', 'Film.2020.FRENCH.1080p.BluRay.x265-Dread-Team', 'movie', 1, 'Torr9 — équipe interdite Dread-Team'),
+    ('FR-Blockers', 'Film.2020.MULTI.FRENCH.2160p.WEB.x265-EXTREME', 'movie', 1, 'Torr9 — équipe interdite EXTREME'),
     ('FR-Blockers', 'Film.2023.MULTI.VFF.UHD.2160p.DTS-X.x265-TFA', 'movie', 0, 'Test parser — FR-Blockers : ne doit pas correspondre (release réelle)'),
     ('FR-Blockers', 'Film.2024.1080p.WEB-DL.x264-FGT', 'movie', 1, 'Test parser — FR-Blockers : doit correspondre (release réelle)'),
     ('FR-Blockers', 'Film.2024.MULTI.VFF.1080p.WEBRip.H264-TEAM', 'movie', 0, 'Test parser — FR-Blockers : ne doit pas correspondre (release réelle)'),

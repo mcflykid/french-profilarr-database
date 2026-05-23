@@ -69,6 +69,10 @@ Si le titre contient **`IMAX`** (hors `NON-IMAX`) ou **`IMAX Enhanced`** (Disney
 
 C411 traite souvent **IMAX vs Theatrical** comme éditions distinctes (pas un doublon « même rip ») — aligné avec les CF **`IMAX`** / **`Theatrical`**.
 
+### Torr9
+
+Règles officielles, nomenclature, équipes présentes/interdites, API (15 req/min), RSS freeleech : **[torr9.md](torr9.md)**.
+
 ### Filtres de recherche C411 (référence)
 
 Sur C411, les **filtres UI** ne sont pas dans Radarr : ce sont des raccourcis de recherche sur le tracker. La base PCD vise à reconnaître les **mêmes infos dans le titre** de la release. Tableau de correspondance :
@@ -118,6 +122,7 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
+| 2026-05 | **Torr9** | Doc [torr9.md](torr9.md) ; blockers **Dread-Team**, **EXTREME** (équipes interdites tracker) |
 | 2026-05 | **C411 / parser** | Page calibrage + **`FR-WEBRip`** -750 (4K) ; bonus **IMAX** +50 % |
 | 2026-05 | **Scoring qualité-first** | Langue **8k** max (1er tri) ; équipes **~5,5k** ; HDR/DV/Atmos **1k–3,5k** ; `upgrade_until` **60k** |
 | 2026-05 | **Grille ×0,15** (intermédiaire) | Remplacée par rééquilibrage qualité-first |

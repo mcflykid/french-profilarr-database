@@ -185,6 +185,7 @@ Détail par CF : [langue.md](langue.md), [equipes.md](equipes.md), [image-son.md
 | [equipes.md](equipes.md) | Scores 16 teams, tiers, signatures 4KLight/HDLight |
 | [image-son.md](image-son.md) | HDR, audio (exclusions DD/DTS), codecs, streamers |
 | [calibrage.md](calibrage.md) | C411 vs parser, filtres UI, workflow, **journal** |
+| [torr9.md](torr9.md) | Règles Torr9, nomenclature, équipes, écarts PCD |
 | [limites.md](limites.md) | Comportement multi-indexeurs, tests `ops/12` |
 | [hors-scope.md](hors-scope.md) | Slots, rejets, roadmap |
 | [tailles.md](../installer/tailles.md) | Tableaux Mo/min Radarr/Sonarr/Anime |
