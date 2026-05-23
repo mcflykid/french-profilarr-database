@@ -433,6 +433,30 @@ Unité telle que définie dans Radarr/Sonarr pour les quality definitions (affic
 
 **Releases réelles** = listes ou captures de ton **indexeur privé** (noms de fichiers + tailles en Go), comme pour **Winks** ou **Slay3R**. On ajuste la base pour coller à ce que tu vois vraiment, pas seulement à la théorie TRaSH/Dictionarry.
 
+### Filtres de recherche C411 (référence)
+
+Sur C411, les **filtres UI** ne sont pas dans Radarr : ce sont des raccourcis de recherche sur le tracker. La base PCD vise à reconnaître les **mêmes infos dans le titre** de la release. Tableau de correspondance :
+
+| Filtre C411 | Dans le titre / Radarr | Couverture PCD |
+|-------------|------------------------|----------------|
+| **4K** | `2160p`, `4K`, UHD | Profils `FR-*-4K`, qualité native |
+| **1080p / 720p / SD** | `1080p`, `720p`, `480p`… | Profils + qualités `ops/07` |
+| **SDR, HDR10, HDR10+** | `HDR`, `HDR10`, `HDR10PLUS`… | CF `HDR`, `HDR10`, `HDR10+` |
+| **Dolby Vision, DV+HDR10(+)** | `DV`, `DoVi`, souvent + `HDR` dans le nom | CF `Dolby Vision` (+ HDR séparés) |
+| **MULTI, VFF, TRUEFRENCH** | `MULTI.VFF`, `MULTIVFF`, `TRUEFRENCH`… | `FR-MULTI-VFF`, `FR-VFF` |
+| **VOSTFR, VFQ, VF2, MULTI.VF2** | `VOSTFR`, `VFQ`, `VF2`, `MULTI.VF2` | `FR-VOSTFR`, `FR-VF2`, `FR-MULTI-VF2` |
+| **VF** (générique) | `VF` seul (hors VF2/VFQ) | `FR-VFF` via `VF(?!Q|2)` |
+| **BluRay, WEB, WEBRip, HDTV…** | `BluRay`, `WEB`, `WEBRip`, `WEB-DL`… | Qualité native Radarr |
+| **H.265 / H.264 / AV1** | `x265`, `H265`, `H264`, `AVC`, `AV1` | CF `x265`, `h265`, `x264` ; **AV1 exclu** (-999999) |
+| **Lossless / Lossy** | Pas un tag unique | Déduit : `TrueHD`, `FLAC`, `DTS-HD MA` vs `AAC`, `AC3`, `DD+` |
+| **5.1 / 2.0 / 7.1** | `AC3.5.1`, `EAC3.5.1`, `AAC.2.0`… | Regex Dolby / AAC / DTS |
+| **2D / 3D / 3D FSBS / HSBS** | `3D`, `SBS`, `half-OU`… | CF `3D` ; 3D souvent malusé / rare |
+| **H.262 / H.263** | Très rare en scène FR actuelle | Non prioritaire |
+
+**À retenir** : filtrer sur C411 **MULTI + 1080p + H.265** ne garantit pas le même tri que Radarr : chez toi, la **langue** (scores 60k–100k) et les **équipes** (`FR-Team-*`) pèsent en plus des filtres « technique ».
+
+Quand tu calibres une équipe, note quels **filtres C411** tu utilises souvent — ça aide à choisir le profil (`FR-Films-1080p` vs `FR-Films-4K`) et les tailles `ops/07`.
+
 ### Ce que tu envoies (modèle)
 
 Pour une **équipe** ou un **tracker**, envoie par message :
@@ -462,6 +486,7 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 | 2026-05 | **Audio** C411/Torr9 | `AC3.5.1`, `E-AC-3`, `MULTIVFF` ; exclusion E-AC-3 du CF DD classique |
 | 2026-05 | **Slay3R** (C411) | Score 6000 ; WEB 1080p 600/1650/2000 ; regex **H264/H265/AVC** |
 | 2026-05 | **Fix Radarr** | `max_size` plafonné à **2000** (limite API) — corrige l’erreur sync Media Management |
+| 2026-05 | **C411** | Tableau filtres recherche ↔ CF / profils (référence doc) |
 
 *(Ajouter une ligne ici à chaque calibrage releases réelles.)*
 
