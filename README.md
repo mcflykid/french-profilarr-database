@@ -230,9 +230,11 @@ Chaque ligne = une décision **assumée** dans ce dépôt. Si tu ne partages pas
 
 | Profil type | `minimum_custom_format_score` | `upgrade_until_score` |
 |-------------|------------------------------:|----------------------:|
-| Films 1080p | **750** | 10000 |
-| Films / Series / Anime **4K** | **1000** | 10000 |
-| Series / Anime 1080p/720p, Films 720p/Any | **0** | 10000 |
+| Films 1080p | **750** | **999999** |
+| Films / Series / Anime **4K** | **1000** | **999999** |
+| Series / Anime 1080p/720p, Films 720p/Any | **0** | **999999** |
+
+`upgrade_until_score` = **seuil d’arrêt des upgrades CF** (pas une note sur 10k). Avec des scores langue à 60k–100k, un plafond à **10 000** bloquait tout upgrade après le premier import (ex. STIF +178k → pas de passage vers SUPPLY +333k). **999999** laisse la hiérarchie CF intacte tout en autorisant les upgrades **4K → 4K** tant qu’une release a un score strictement supérieur (+ `upgrade_score_increment` = 1).
 
 ---
 
@@ -502,6 +504,7 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
+| 2026-05 | **Upgrades CF** | `upgrade_until_score` **999999** (plus 10000) — débloque upgrades 4K→4K quand scores langue >> 10k |
 | 2026-05 | **Tailles Mo/min** | 3 presets : **Radarr** (films, `preferred` ~42), **Sonarr** séries (`~60` WEB), **Anime-Sonarr** (`min` 5, `preferred` ~38) |
 | 2026-05 | **Fix tailles Radarr** | Fin des `min` 900/600 (seuil ~97 Go sur *Up in the Air*) |
 | 2026-05 | **Winks** (C411) | `FR-Team-Winks` 6600 ; tailles 1080p corrigées ensuite (voir ligne ci-dessus) |
@@ -523,7 +526,7 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 | **Upgrades** | Re-cherche de meilleures releases en bibliothèque — utile **après** un gros Sync de scores |
 | **Delay profile** | `FR-Delay-Radarr` : torrent, délai 0 (voir README section delays) |
 
-**Score `150 470 / 10 000`** dans la bibliothèque : le **10 000** est `upgrade_until_score` du profil, **pas** un plafond de note. La langue seule peut dépasser 100 000 — c’est voulu.
+**Score `178 200 / 999 999`** (ex. bibliothèque) : le dénominateur est **`upgrade_until_score`** (arrêt des upgrades), pas le maximum possible. Les scores CF en numérateur peuvent dépasser 100k (langue) ; tant que le total reste sous **999999**, Radarr peut encore proposer une release mieux notée (même qualité native).
 
 ---
 
