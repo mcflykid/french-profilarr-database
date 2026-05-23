@@ -223,7 +223,7 @@ Chaque ligne = une décision **assumée** dans ce dépôt. Si tu ne partages pas
 | **x265 favorisé en 1080p/720p** | Malus HEVC sous 4K (Dumpstarr) | Scène FR = encodes compacts HEVC |
 | **VFQ / VOQ acceptés** | Ban VFQ | Passent par **FR-VF2** / **FR-MULTI-VF2** (scores, pas exclusion) |
 | **16 équipes `FR-Team-*`** | ~900 regex « une par team » | Maintenance tenable, rebase Dictionarry possible |
-| **Un preset media par app** | Bundle media par profil `FR-Films-4K` | Exigence Profilarr v2 + une config taille par instance |
+| **Presets media** | Bundle par profil qualité | **Radarr** + **Sonarr séries** + **Sonarr animé** (`ops/07`) |
 | **Seuils profil type Dumpstarr** | `minimum = 20000` (ancienne base) | Évite upgrades bloqués ; priorité FR reste dans les CF |
 
 ### Seuils profil natifs (`ops/06`)
@@ -388,37 +388,57 @@ Tags UI (`ops/06` + `ops/10`) : Radarr, Sonarr, Films, Series, 1080p/2160p/720p,
 
 Les champs `min_size` / `preferred_size` / `max_size` dans **`ops/07`** (Radarr) et **`ops/09`** (delay Sonarr) guident Radarr/Sonarr vers des **tailles cohérentes avec la scène FR** (encodes compacts), en complément des scores CF.
 
-**Deux presets** (Profilarr v2) :
+**Trois presets media** (Profilarr v2 — un choix par instance / type de contenu) :
 
-- **`FR-Media-Radarr`** — Naming + Quality definitions + Media settings (3 menus identiques)
-- **`FR-Media-Sonarr`** — idem Sonarr
+| Preset | App | Contenu | Durée typique |
+|--------|-----|---------|---------------|
+| **`FR-Media-Radarr`** | Radarr | Films | ~90–150 min |
+| **`FR-Media-Sonarr`** | Sonarr | Séries live-action | ~40–50 min/ép. |
+| **`FR-Media-Anime-Sonarr`** | Sonarr | Animé (type Anime) | ~24 min/ép. |
+
+Chaque preset = Naming + Quality definitions + Media settings (les 3 menus Media Management pointent vers **le même nom** sur l’instance concernée).
+
+**Sonarr mixte (séries + animé sur une seule instance)** : une seule définition de taille active — privilégier **`FR-Media-Sonarr`** (planchers bas) ou une instance Sonarr dédiée à l’animé avec **`FR-Media-Anime-Sonarr`**.
 
 Ancien modèle abandonné : un bundle media **par** profil `FR-Films-4K`.
 
 ### Tableau des tailles (valeurs actuelles)
 
-Unité telle que définie dans Radarr/Sonarr pour les quality definitions (affichée **MB/h** dans l’UI). Les fourchettes ci-dessous sont des **ordres de grandeur** pour un long métrage ~2 h ; les épisodes Sonarr sont plus courts.
+**Unité réelle** : Radarr/Sonarr stockent des **Mo par minute** de durée du film ou de l’épisode (`min_size`, `preferred_size`, `max_size` dans `ops/07`). La taille minimale autorisée pour un titre est :
+
+`min_size (Mo/min) × durée (min) ≈ taille minimale (Mo)`
+
+Exemple *Up in the Air* (~109 min) avec l’ancien `min = 900` sur Bluray-1080p : `900 × 109 ≈ 98 100 Mo` → **~96,7 Go** minimum — d’où le rejet de releases à 7–11 Go en recherche interactive. L’UI peut afficher des libellés ambigus ; ne pas confondre avec « Mo/h ».
+
+**`preferred`** = cible Mo/min (favorise les releases proches de la taille scène FR compacte, pas « toujours le plus gros »).
 
 #### Radarr — `FR-Media-Radarr`
 
-**Limite API Radarr** : `max_size` (et en pratique `min` / `preferred` / `max`) **≤ 2000** par qualité — au-delà, sync Profilarr → Radarr échoue (`Max Size must be less than or equal to '2000'`).
+**Limite API** : `max_size` **≤ 2000** (Mo/min).
 
-| Qualité | min | preferred | max | Calibré sur |
-|---------|-----|-----------|-----|-------------|
-| **Bluray-1080p** | 900 | 1750 | **2000** | BluRay x265 compact (**Winks** ~4–5,5 Go) |
-| **WEBDL/WEBRip-1080p** | 600 | 1650 | **2000** | WEB **Slay3R** ~4–5 Go (cible) ; gros WEB ~9 Go non pénalisables via `max` au-delà de 2000 |
-| **Bluray-2160p** | 0 | 55 | 2000 | 4KLight, TyHD, AMEN (~2,5–8 Go) |
-| **WEBDL/WEBRip-2160p** | 40 | 70 | 2000 | WEB 4K compact ~7–8 Go, blockbusters ~15–23 Go (**Slay3R**) |
-| **Bluray-720p** | 800 | 1000 | 900 | *(inchangé)* |
+| Qualité | min | preferred | max | ~120 min film |
+|---------|-----|-----------|-----|----------------|
+| **Bluray / WEB 1080p** | 12,5 | **42** | 2000 | min ~1,5 Go ; cible **Winks / Slay3R** ~5 Go |
+| **Bluray-720p / WEB 720p** | 12,5 | **35** | 1000–2000 | ~4,2 Go cible |
+| **Bluray-2160p** | 17 | **55** | 2000 | 4KLight ~2,5–8 Go |
+| **WEB 2160p** | 34,5 | **70** | 2000 | compact ~8 Go ; gros WEB ~15–23 Go OK via `max` |
 
-#### Sonarr — `FR-Media-Sonarr`
+#### Sonarr — `FR-Media-Sonarr` (séries)
 
-| Qualité | min | preferred | max | Calibré sur |
-|---------|-----|-----------|-----|-------------|
-| **Bluray-1080p** | 500 | 750 | 1200 | Épisodes / features courts |
-| **WEBDL/WEBRip-1080p** | 150 | 400 | 650 | Épisodes **Slay3R** ~2,4–3 Go |
-| **Bluray-2160p** | 0 | 55 | 1000 | Aligné Radarr 4K compact |
-| **WEBDL/WEBRip-2160p** | 0 | 60 | 1000 | WEB 4K série |
+| Qualité | min | preferred | max | ~45 min épisode |
+|---------|-----|-----------|-----|-----------------|
+| **Bluray-1080p** | 17,5 | **55** | 1000 | min ~0,8 Go ; cible ~2,5 Go |
+| **WEB 1080p** | 12,5 | **60** | 1000 | **Slay3R** ~2,4–3 Go |
+| **Bluray / WEB 720p** | 12,5–17,5 | **40–45** | 500–1000 | épisodes compacts |
+| **Bluray / WEB 2160p** | 17 / 34,5 | **45 / 55** | 1000 | 4K série compact |
+
+#### Sonarr — `FR-Media-Anime-Sonarr` (animé)
+
+| Qualité | min | preferred | max | ~24 min épisode |
+|---------|-----|-----------|-----|-----------------|
+| **Bluray / WEB 1080p** | **5** | **38–42** | 1000 | min ~120 Mo ; cible ~0,9–1 Go |
+| **Bluray / WEB 720p** | **5** | **28–30** | 500 | fansub / BDRip compacts |
+| **Bluray / WEB 2160p** | 5 / 17 | **40 / 50** | 1000 | animé 4K compact |
 
 ### Delays
 
@@ -482,7 +502,9 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
-| 2026-05 | **Winks** (C411) | `FR-Team-Winks` 6600 ; Bluray-1080p 900/1750/2000 |
+| 2026-05 | **Tailles Mo/min** | 3 presets : **Radarr** (films, `preferred` ~42), **Sonarr** séries (`~60` WEB), **Anime-Sonarr** (`min` 5, `preferred` ~38) |
+| 2026-05 | **Fix tailles Radarr** | Fin des `min` 900/600 (seuil ~97 Go sur *Up in the Air*) |
+| 2026-05 | **Winks** (C411) | `FR-Team-Winks` 6600 ; tailles 1080p corrigées ensuite (voir ligne ci-dessus) |
 | 2026-05 | **Audio** C411/Torr9 | `AC3.5.1`, `E-AC-3`, `MULTIVFF` ; exclusion E-AC-3 du CF DD classique |
 | 2026-05 | **Slay3R** (C411) | Score 6000 ; WEB 1080p 600/1650/2000 ; regex **H264/H265/AVC** |
 | 2026-05 | **Fix Radarr** | `max_size` plafonné à **2000** (limite API) — corrige l’erreur sync Media Management |
@@ -547,7 +569,7 @@ Trackers **sans slots** : même logique via tags (`MULTI.VFF`, `4KLight`, …).
 | ~900 regex / team (Jojont54) | Non — maintenance ×10 |
 | Ban VFQ | Non — VF2 / MULTI-VF2 |
 | `release_group` séparé | Pas urgent — groupe dans le titre FR |
-| Bundles media par profil qualité | Remplacé par `FR-Media-Radarr/Sonarr` |
+| Bundles media par profil qualité | `FR-Media-Radarr` / `FR-Media-Sonarr` / `FR-Media-Anime-Sonarr` |
 | Repack natif « Prefer » | `doNotPrefer` + **FR-Repack*** |
 | Noms de trackers dans la doc | « Scène française privée » + calibrages anonymisables |
 

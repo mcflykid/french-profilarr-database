@@ -85,7 +85,7 @@ RE_QDEF = re.compile(
 # Radarr API: min/preferred/max size must be <= 2000 (Mo/h in UI)
 RE_RADARR_QDEF_SIZES = re.compile(
     r"INSERT INTO radarr_quality_definitions \(name, quality_name, min_size, max_size, preferred_size\)\s+"
-    r"SELECT 'FR-Media-Radarr', q\.name, (\d+), (\d+), (\d+)",
+    r"SELECT 'FR-Media-Radarr', q\.name, ([\d.]+), ([\d.]+), ([\d.]+)",
     re.MULTILINE,
 )
 RADARR_SIZE_LIMIT = 2000
@@ -255,15 +255,17 @@ def main() -> int:
         fail("07-media-management.sql", "preset FR-Media-Radarr manquant")
     elif "FR-Media-Sonarr" not in t07:
         fail("07-media-management.sql", "preset FR-Media-Sonarr manquant")
+    elif "FR-Media-Anime-Sonarr" not in t07:
+        fail("07-media-management.sql", "preset FR-Media-Anime-Sonarr manquant")
     elif "FR-Media-Base" in t07:
         fail("07-media-management.sql", "FR-Media-Base ne doit plus exister (utiliser FR-Media-Radarr/Sonarr)")
     else:
         over_radarr = [
             (mn, mx, pr)
             for mn, mx, pr in RE_RADARR_QDEF_SIZES.findall(t07)
-            if int(mn) > RADARR_SIZE_LIMIT
-            or int(mx) > RADARR_SIZE_LIMIT
-            or int(pr) > RADARR_SIZE_LIMIT
+            if float(mn) > RADARR_SIZE_LIMIT
+            or float(mx) > RADARR_SIZE_LIMIT
+            or float(pr) > RADARR_SIZE_LIMIT
         ]
         if over_radarr:
             fail(
