@@ -584,10 +584,13 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Anime-4K', 'UHD Bluray', 'all', 800
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
-SELECT 'FR-Anime-4K', 'IMAX', 'all', 1000
+SELECT 'FR-Anime-4K', 'IMAX', 'all', 1500
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
-SELECT 'FR-Anime-4K', 'IMAX Enhanced', 'all', 1300
+SELECT 'FR-Anime-4K', 'IMAX Enhanced', 'all', 1800
+FROM quality_profiles qp WHERE qp.name = 'FR-Anime-4K';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Anime-4K', 'FR-WEBRip', 'all', -750
 FROM quality_profiles qp WHERE qp.name = 'FR-Anime-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Anime-4K', 'Season Pack', 'all', 150
@@ -930,10 +933,10 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Films-1080p', 'HDR', 'all', 400
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-1080p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
-SELECT 'FR-Films-1080p', 'IMAX', 'all', 700
+SELECT 'FR-Films-1080p', 'IMAX', 'all', 1000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-1080p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
-SELECT 'FR-Films-1080p', 'IMAX Enhanced', 'all', 900
+SELECT 'FR-Films-1080p', 'IMAX Enhanced', 'all', 1200
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-1080p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-1080p', 'Theatrical', 'all', 100
@@ -1130,10 +1133,13 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Films-4K', 'UHD Bluray', 'all', 800
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
-SELECT 'FR-Films-4K', 'IMAX', 'all', 1000
+SELECT 'FR-Films-4K', 'IMAX', 'all', 1500
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
-SELECT 'FR-Films-4K', 'IMAX Enhanced', 'all', 1300
+SELECT 'FR-Films-4K', 'IMAX Enhanced', 'all', 1800
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-4K', 'FR-WEBRip', 'all', -750
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-4K', 'Theatrical', 'all', 120
@@ -1294,10 +1300,10 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Films-720p', 'Xvid', 'all', -80
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
-SELECT 'FR-Films-720p', 'IMAX', 'all', 455
+SELECT 'FR-Films-720p', 'IMAX', 'all', 650
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
-SELECT 'FR-Films-720p', 'IMAX Enhanced', 'all', 585
+SELECT 'FR-Films-720p', 'IMAX Enhanced', 'all', 845
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-720p', 'Theatrical', 'all', 65
@@ -1485,10 +1491,10 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Films-Any', 'HDR', 'all', 400
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-Any';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
-SELECT 'FR-Films-Any', 'IMAX', 'all', 700
+SELECT 'FR-Films-Any', 'IMAX', 'all', 1000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-Any';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
-SELECT 'FR-Films-Any', 'IMAX Enhanced', 'all', 900
+SELECT 'FR-Films-Any', 'IMAX Enhanced', 'all', 1200
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-Any';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-Any', 'Theatrical', 'all', 100
@@ -1873,10 +1879,13 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Series-4K', 'UHD Bluray', 'all', 800
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
-SELECT 'FR-Series-4K', 'IMAX', 'all', 1000
+SELECT 'FR-Series-4K', 'IMAX', 'all', 1500
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
-SELECT 'FR-Series-4K', 'IMAX Enhanced', 'all', 1300
+SELECT 'FR-Series-4K', 'IMAX Enhanced', 'all', 1800
+FROM quality_profiles qp WHERE qp.name = 'FR-Series-4K';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Series-4K', 'FR-WEBRip', 'all', -750
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Series-4K', 'Season Pack', 'all', 150

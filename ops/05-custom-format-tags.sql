@@ -188,6 +188,10 @@ SELECT 'FR-VFQ', 'Language' FROM tags t WHERE t.name = 'Language';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-VFQ', 'French' FROM tags t WHERE t.name = 'French';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'FR-WEBRip', 'Source' FROM tags t WHERE t.name = 'Source';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'FR-WEBRip', 'French' FROM tags t WHERE t.name = 'French';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-VOSTFR', 'Language' FROM tags t WHERE t.name = 'Language';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-VOSTFR', 'French' FROM tags t WHERE t.name = 'French';

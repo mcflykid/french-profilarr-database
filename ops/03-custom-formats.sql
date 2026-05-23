@@ -26,6 +26,7 @@ INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-MU
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Repack-2', 'PROPER2 / REPACK2 ou REAL puis PROPER. Bonus au-dessus de FR-Repack.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Repack-3', 'PROPER3 / REPACK3. Bonus repack maximal.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Repack', 'PROPER, REPACK, RERIP ou REAL simple. Media en doNotPrefer ; le score CF décide.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-WEBRip', 'Tag WEBRip dans le titre. Malus léger profils 4K (C411 : WEB-DL untouched prioritaire).', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Streamer-Premium', 'WEB premium (Netflix, Prime, Disney+, Apple TV+, HBO, Paramount+). Bonus modéré.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Streamer-Standard', 'WEB secondaires (NOW, Crunchyroll, iTunes). Utile animé et achats Apple.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-AMEN', 'Équipe AMEN — WEB 2160p compact DV/HDR10+. Bonus équipe.', 0);
