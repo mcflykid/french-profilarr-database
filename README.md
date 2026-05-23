@@ -250,7 +250,7 @@ Chaque ligne = une décision **assumée** dans ce dépôt. Si tu ne partages pas
 | **FR-VFF** | 5 000 | VFF, TRUEFRENCH, VFI, VOF, FRENCH, … |
 | **FR-VOSTFR** | 1 500 | VOSTFR, SUBFRENCH, FANSUB, FASTSUB |
 
-**Règle** : `FR-MULTI-VF2` et `FR-MULTI-VFF` sont **mutuellement exclusifs** (deux AND différents). `MULTI.VFF` ne doit pas matcher les deux — vérifié dans `ops/11`.
+**Règle** : `FR-MULTI-VF2` et `FR-MULTI-VFF` sont **mutuellement exclusifs**. `FR-MULTI-VFF` inclut **`MULTI` seul** (sans VF2/VFQ) pour la **parité indexeurs** : Torr9 n’ajoute pas toujours `.FRENCH` comme YGG. `FR-VFF` ne s’ajoute **pas** si `MULTI` est déjà dans le titre (évite +5k en double sur les suffixes YGG).
 
 ### Regex langue (`ops/02`)
 
@@ -535,6 +535,8 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 ---
 
 ## Scoring : limites Radarr
+
+| Même release, scores différents entre indexeurs | Souvent le **titre** diffère (ex. YGG ajoute `.FRENCH`) → parser CF différent. Colonne **Langue** Radarr = métadonnée indexeur, pas le score CF. Voir fix `FR-Regex-MULTI-VFF` dans `ops/02`. |
 
 | Situation | Comportement |
 |-----------|--------------|

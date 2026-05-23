@@ -254,11 +254,11 @@ INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, 
 SELECT 'FR-MULTI-VF2', 'VF2', 'release_title', 'all', 0, 1
 FROM custom_formats cf WHERE cf.name = 'FR-MULTI-VF2';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
-SELECT 'FR-MULTI-VFF', 'MULTI', 'release_title', 'all', 0, 1
+SELECT 'FR-MULTI-VFF', 'MULTI VFF ou MULTI seul', 'release_title', 'all', 0, 1
 FROM custom_formats cf WHERE cf.name = 'FR-MULTI-VFF';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
-SELECT 'FR-MULTI-VFF', 'VFF', 'release_title', 'all', 0, 1
-FROM custom_formats cf WHERE cf.name = 'FR-MULTI-VFF';
+SELECT 'FR-VFF', 'Pas de tag MULTI', 'release_title', 'all', 1, 1
+FROM custom_formats cf WHERE cf.name = 'FR-VFF';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
 SELECT 'FR-Repack-2', 'Repack — 2e itération', 'release_title', 'all', 0, 1
 FROM custom_formats cf WHERE cf.name = 'FR-Repack-2';
@@ -763,9 +763,9 @@ SELECT 'FR-MULTI-VF2', 'MULTI', re.name FROM regular_expressions re WHERE re.nam
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'FR-MULTI-VF2', 'VF2', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-VF2';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
-SELECT 'FR-MULTI-VFF', 'MULTI', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-MULTI';
+SELECT 'FR-MULTI-VFF', 'MULTI VFF ou MULTI seul', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-MULTI-VFF';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
-SELECT 'FR-MULTI-VFF', 'VFF', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-VFF';
+SELECT 'FR-VFF', 'Pas de tag MULTI', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-MULTI';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'FR-Repack-2', 'Repack — 2e itération', re.name FROM regular_expressions re WHERE re.name = 'FR-Repack-2';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
