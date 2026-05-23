@@ -51,6 +51,8 @@ scripts/
 
 **Préfixe `FR-`** : spécifique marché français. Le reste reprend Dictionarry (`HDR10+`, `Remux`, …) pour rester **rebaseable**.
 
+**Licence** : [MIT](../../LICENSE) (alignée sur `pcd.json`). Les parties dérivées de [Dictionarry-Hub/database](https://github.com/Dictionarry-Hub/database) restent soumises à leur licence d’origine si tu les réutilises hors de ce dépôt.
+
 ---
 
 
