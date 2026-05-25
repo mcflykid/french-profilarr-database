@@ -147,7 +147,28 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 | **Pourquoi** | Radarr **ne expose pas** ces signaux à la sélection ; faux sentiment de conformité C411 serait pire qu’une doc honnête. |
 | **Ne pas** | Ajouter MUET « parce que C411 » sans API Radarr fiable sur la piste muette dans le titre. |
 
-### 10. Calibrage terrain obligatoire pour les scores « équipe » et les tailles
+### 10. TrueHD malusé (foyer Plex + Apple TV 4K)
+
+| | |
+|--|--|
+| **Contexte** | TrueHD en Direct Play rare sur Apple TV 4K ; transcodage audio serveur (ex. TrueHD → FLAC) confirmé terrain (Tautulli). Foyer : ATV 4K v1/v2, Freebox ; Shield 2017 secondaire. |
+| **Alternative écartée** | Garder TrueHD +1800 en 4K (qualité « max » sur le papier). |
+| **Choix retenu** | **TrueHD −800** (4K), **−500** (1080p), **−350** (720p) ; **Atmos** / **DD+** inchangés. |
+| **Pourquoi** | Même équipe et langue : `…EAC3.5.1.Atmos…` gagne sur `…TrueHD.7.1.Atmos…` — moins de charge NAS, meilleur Direct Play ATV. |
+| **Fichiers** | `ops/06`, [image-son.md](image-son.md) |
+| **Ne pas** | Remettre TrueHD en bonus fort sans revoir la cible lecteurs. |
+
+### 11. Préférence 5.1 (malus `7.1` dans le titre)
+
+| | |
+|--|--|
+| **Contexte** | **Pas de matériel 7.1** (pas d’enceintes arrière / surround dédié) — lecture sur **TV classique** (stéréo ou downmix TV). Le **7.1** du fichier n’apporte rien à l’écoute ; il alourdit souvent le Blu-ray (`TrueHD 7.1`). Le **5.1** correspond à ce que la scène WEB annonce déjà (`EAC3.5.1`, `AC3.5.1`) et reste compatible TV / barre simple. |
+| **Alternative écartée** | CF bonus « 5.1 » redondant avec `AC3.5.1` / `EAC3.5.1` déjà dans DD+ / DD. |
+| **Choix retenu** | CF **`FR-Audio-71`** : **−400** si `7.1` apparaît dans le titre. |
+| **Pourquoi** | Ne pas « payer » en score une piste qu’on ne peut pas exploiter ; à qualité égale, privilégier `…5.1…` / WEB plutôt que `…7.1…` (souvent cumulé avec TrueHD, cf. §10). |
+| **Fichiers** | `ops/02` `FR-Regex-Audio-71`, `ops/06`, [image-son.md](image-son.md) |
+
+### 12. Calibrage terrain obligatoire pour les scores « équipe » et les tailles
 
 | | |
 |--|--|

@@ -281,6 +281,9 @@ INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, 
 SELECT 'FR-WEBRip', 'WEBRip dans le titre', 'release_title', 'all', 0, 1
 FROM custom_formats cf WHERE cf.name = 'FR-WEBRip';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Audio-71', '7.1 dans le titre', 'release_title', 'all', 0, 1
+FROM custom_formats cf WHERE cf.name = 'FR-Audio-71';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
 SELECT 'FR-Streamer-Premium', 'Streamers premium (regex FR)', 'release_title', 'all', 0, 1
 FROM custom_formats cf WHERE cf.name = 'FR-Streamer-Premium';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
@@ -798,6 +801,8 @@ INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expr
 SELECT 'FR-Repack', 'Repack', re.name FROM regular_expressions re WHERE re.name = 'FR-Repack';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'FR-WEBRip', 'WEBRip dans le titre', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-WEBRip';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-Audio-71', '7.1 dans le titre', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-Audio-71';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'FR-Streamer-Premium', 'Streamers premium (regex FR)', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-Streamers-Premium';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)

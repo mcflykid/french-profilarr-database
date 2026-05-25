@@ -122,6 +122,7 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
+| 2026-05 | **Plex / Apple TV** | **TrueHD** malusé (−800 4K) ; **FR-Audio-71** −400 (pas de matériel **7.1**, TV seule) |
 | 2026-05 | **Torr9** | Doc [torr9.md](torr9.md) ; blockers **Dread-Team**, **EXTREME** (équipes interdites tracker) |
 | 2026-05 | **C411 / parser** | Page calibrage + **`FR-WEBRip`** -750 (4K) ; bonus **IMAX** +50 % |
 | 2026-05 | **Scoring qualité-first** | Langue **8k** max (1er tri) ; équipes **~5,5k** ; HDR/DV/Atmos **1k–3,5k** ; `upgrade_until` **60k** |

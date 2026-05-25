@@ -7,7 +7,7 @@ Profils **Radarr** et **Sonarr** pour la **scène française privée** : ce que 
 | **Outil** | [Profilarr v2](https://v2.dictionarry.dev) (PCD 1.1.0) |
 | **Version** | 2.0.0 |
 | **Licence** | [MIT](LICENSE) |
-| **Contenu** | 70 formats perso · 74 règles de titre · 10 profils · ~480 tests |
+| **Contenu** | 71 formats perso · 75 regex · 10 profils · ~480 tests |
 
 Questions ou retours : [issues](https://github.com/mcflykid/french-profilarr-database/issues).
 
