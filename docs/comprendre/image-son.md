@@ -18,6 +18,33 @@
 
 À **langue / équipe / HDR égaux**, une release `…EAC3.5.1.Atmos…` ou `…DD+.Atmos…` passe devant `…TrueHD.7.1.Atmos…`.
 
+### Foyers de référence (calibrage terrain)
+
+Chaîne commune : **Apple TV 4K → Plex → HDMI → TV** (pas de barre son, pas d’AVR 7.1). Fiches constructeur / revendeurs (2025–2026).
+
+| | **Foyer principal** | **Foyer mère** |
+|--|----------------------|----------------|
+| **TV** | **Toshiba 58U2963DG** (58", LED) | **TCL 55QLED780K** (55", QLED 2025) |
+| **Image** | 4K, **Dolby Vision**, HDR10, HLG | 4K, **Dolby Vision**, HDR10+ (souvent meilleur contraste / HDR) |
+| **HDMI** | 3× **HDMI 2.0**, **ARC** (HDMI 2) | 3× **HDMI 2.1**, **eARC** |
+| **Son intégré (fiche)** | **Dolby Audio** + **Sound by Onkyo** ; DTS / TruSurround — **pas de Dolby Atmos** annoncé sur la gamme U2963DG | **2.1** (2×10 W + 15 W), **Dolby Atmos virtuel** + **DTS Virtual:X** (~35 W) |
+| **7.1 / plafond** | Non — haut-parleurs TV classiques | Non — virtualisation sur TV + petit sub, pas de vrais canaux Atmos |
+| **Plex + ATV** | TrueHD souvent **transcodé** ; flux Atmos WEB en **DD+/EAC3** plutôt Direct Play | Même logique Radarr ; la TCL *peut* virtualiser un flux Atmos reçu, mais Plex passe encore souvent par transcode sur TrueHD lourd |
+
+**Atmos « dans l’oreille »** : sur la **Toshiba**, l’immersion Atmos **n’existe pas** côté TV. Sur la **TCL**, c’est du **Atmos marketing / virtuel** (2.1) — mieux qu’une TV 2.0 pure, mais **rien à voir** avec un salon Atmos (barre avec reflexion ou AVR). Les deux foyers n’ont **pas** de raison d’acheter des releases **`TrueHD 7.1 Atmos`** Blu-ray pour le son.
+
+### Pourquoi on **garde** le bonus CF **Atmos** (pas de malus)
+
+| Raison | Détail |
+|--------|--------|
+| **Pas un malus « coût »** | Le tag **Atmos** en scène FR WEB = souvent **`DDP5.1.Atmos` / `EAC3 Atmos 5.1`** — **léger**, même taille qu’un DD+ sans Atmos ; pas comme TrueHD + 7.1 sur Remux. |
+| **Signal de bonne variante** | À langue / équipe / HDR égaux, `…WEB…DDP…Atmos…` doit rester devant `…BluRay…TrueHD.7.1.Atmos…` — c’est le cœur du calibrage Plex. |
+| **Enlever ou maluser Atmos** | Favoriserait **par erreur** les gros Blu-ray TrueHD / 7.1 — exactement ce qu’on évite avec § TrueHD et **FR-Audio-71**. |
+| **Pas de doublon inutile** | Pas besoin d’un CF « 5.1 » en plus : **5.1** est déjà dans DD+ / DD ; **7.1** est malusé ; **Atmos** reste le repère **WEB premium**. |
+| **Quand revoir** | Barre **Atmos** ou **AVR** branché en eARC/ARC sur un foyer → recalibrer (TCL déjà en **eARC** si ajout matériel). |
+
+**Décision** : **conserver Atmos +2500 (4K)** — aucune raison actuelle de l’enlever ni de le passer en malus.
+
 ### Audio — une seule famille comptée
 
 Conditions **Exclure :** entre AAC, Dolby, DTS, TrueHD, FLAC, etc. → pas de cumul absurde (+DD **et** +DTS sur la même ligne).
@@ -32,7 +59,7 @@ Conditions **Exclure :** entre AAC, Dolby, DTS, TrueHD, FLAC, etc. → pas de cu
 
 | CF | 4K | 1080p | Note |
 |----|---:|------:|------|
-| **Atmos** (bundle) | 2500 | 800 | Prioritaire si annoncé dans le titre |
+| **Atmos** (bundle) | 2500 | 800 | **Conservé** — repère WEB, pas malus (voir ci-dessus) |
 | **Dolby Digital +** | 500 | 350 | WEB FR typique (EAC3) |
 | **TrueHD** | **-800** | **-500** | Malus Plex / Apple TV |
 | **FR-Audio-71** (titre `7.1`) | **-400** | **-400** | Pas de setup **7.1** — TV normale seulement |

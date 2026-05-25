@@ -158,6 +158,8 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 | **Fichiers** | `ops/06`, [image-son.md](image-son.md) |
 | **Ne pas** | Remettre TrueHD en bonus fort sans revoir la cible lecteurs. |
 
+**Atmos (ne pas confondre)** — fiches TV : **Toshiba 58U2963DG** = Dolby Audio, **pas** d’Atmos TV ; **TCL 55QLED780K** = Atmos **virtuel** 2.1 seulement. L’immersion « plafond » n’existe pas sans barre/AVR. On **garde le bonus Atmos** : pas un coût disque comme TrueHD/7.1, mais un **repère titre** vers le WEB `DDP`/`EAC3` (léger, Direct Play). **Aucune raison** de maluser ou retirer ce CF tant que la chaîne reste ATV→Plex→TV. Détail : [image-son.md](image-son.md) (foyers + tableau « garder Atmos »).
+
 ### 11. Préférence 5.1 (malus `7.1` dans le titre)
 
 | | |
