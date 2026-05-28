@@ -61,7 +61,7 @@ Doc **complète** (tableaux, regex, journal, tests) + explication des **choix** 
 | [image-son.md](docs/comprendre/image-son.md) | HDR, Atmos, x265 |
 | [calibrage.md](docs/comprendre/calibrage.md) | Ajuster avec de vrais titres, C411, **journal** |
 | [torr9.md](docs/comprendre/torr9.md) | Règles tracker Torr9, équipes, nomenclature |
-| [limites.md](docs/comprendre/limites.md) | Ce que Radarr ne peut pas lire |
+| [limites.md](docs/comprendre/limites.md) | **Profil tracker vs Plex** ; torrent / `.mkv` ; cross-seed ; workflow tinyMediaManager |
 | [hors-scope.md](docs/comprendre/hors-scope.md) | Ce qu’on ne fait pas (remux catalogue, etc.) |
 
 ### 3 — Contribuer

@@ -122,6 +122,8 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
+| 2026-05 | **Naming ops/07** | `rename = 0` ; dossiers TMDB/TVDB ; formats fichier TRaSH d’origine (inactifs) ; Plex = tMM après archivage |
+| 2026-05 | **Doc grab / import** | [limites.md](limites.md) : profil = tracker ; Plex/tMM = autre métier ; motifs tMM films/séries ; torrent vs `.mkv` ; pas un bug profil |
 | 2026-05 | **Plex / Apple TV** | **TrueHD** malusé (−800 4K) ; **FR-Audio-71** −400 (pas de matériel **7.1**, TV seule) |
 | 2026-05 | **Matériel foyer** | Fiches TV dans [image-son.md](image-son.md) : Toshiba (DV, ARC, pas Atmos TV) ; TCL QLED (DV/HDR10+, eARC, Atmos virtuel 2.1) — **bonus CF Atmos conservé** (proxy WEB, pas malus coût) |
 | 2026-05 | **Torr9** | Doc [torr9.md](torr9.md) ; blockers **Dread-Team**, **EXTREME** (équipes interdites tracker) |

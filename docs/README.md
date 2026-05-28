@@ -39,7 +39,7 @@ Ensuite : [principes.md](comprendre/principes.md) (synthèse) → pages thémati
 | [image-son.md](comprendre/image-son.md) | HDR, audio (exclusions), codecs, streamers |
 | [calibrage.md](comprendre/calibrage.md) | C411 vs parser, filtres, workflow, **journal** |
 | [torr9.md](comprendre/torr9.md) | Règles Torr9, nomenclature, équipes, API/RSS (sans secrets) |
-| [limites.md](comprendre/limites.md) | Titre seul, multi-indexeurs, tests `ops/12` |
+| [limites.md](comprendre/limites.md) | **PCD = tracker** vs **Plex/tMM** ; torrent / `.mkv` ; motifs rename Plex, tests `ops/12` |
 | [hors-scope.md](comprendre/hors-scope.md) | Slots, rejets détaillés, roadmap |
 
 ---

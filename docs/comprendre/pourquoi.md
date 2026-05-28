@@ -83,6 +83,7 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 | **Choix retenu** | Tous les CF FR avec `include_in_rename = 0`. |
 | **Pourquoi** | Le **titre indexeur** est la source de vérité pour le score ; renommer casse la lisibilité sur le tracker et le pairing cross-seed. |
 | **Fichiers** | `ops/03-custom-formats.sql` |
+| **Voir aussi** | [limites.md — torrent OK / fichier générique](limites.md#torrent-bien-nommé-fichier-générique) (grab vs import, pas un bug profil) |
 
 ### 4. Exclusions dures (−999999) : Remux, Full Disc, AV1, Upscaled, x264@2160p
 
@@ -209,7 +210,7 @@ Détail par CF : [langue.md](langue.md), [equipes.md](equipes.md), [image-son.md
 | [image-son.md](image-son.md) | HDR, audio (exclusions DD/DTS), codecs, streamers |
 | [calibrage.md](calibrage.md) | C411 vs parser, filtres UI, workflow, **journal** |
 | [torr9.md](torr9.md) | Règles Torr9, nomenclature, équipes, écarts PCD |
-| [limites.md](limites.md) | Comportement multi-indexeurs, tests `ops/12` |
+| [limites.md](limites.md) | **Profil tracker vs archive Plex** ; torrent / `.mkv` ; workflow tinyMediaManager ; tests `ops/12` |
 | [hors-scope.md](hors-scope.md) | Slots, rejets, roadmap |
 | [tailles.md](../installer/tailles.md) | Tableaux Mo/min Radarr/Sonarr/Anime |
 | [profils.md](../installer/profils.md) | Liste des 10 profils `FR-*` |
