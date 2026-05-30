@@ -112,7 +112,7 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 |--|--|
 | **Contexte** | [Profilarr-database-french-regex](https://github.com/Jojont54/Profilarr-database-french-regex) modélise une regex par team (~900 fichiers). |
 | **Alternative écartée** | Copier le modèle Jojont54 ; ignorer les équipes (tout en tiers génériques). |
-| **Choix retenu** | **16 groupes** calibrés + `FR-Tier-01/02` ; détection `-TEAM` en fin de titre. |
+| **Choix retenu** | **17 groupes** calibrés + `FR-Tier-01/02` ; détection `-TEAM` en fin de titre. |
 | **Pourquoi** | Maintenance **tenable** et **rebase** Dictionarry possible ; gain marginal des teams rares vs coût de sync/PR. |
 | **Fichiers** | `ops/03`, `ops/04`, `ops/06`, [equipes.md](equipes.md), journal [calibrage.md](calibrage.md) |
 | **Ne pas** | Ajouter 50 teams sans releases réelles documentées dans `ops/11` + journal. |

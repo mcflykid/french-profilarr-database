@@ -22,6 +22,7 @@ LANG = {
 
 TEAMS = {
     "FR-Team-QTZ": 5500,
+    "FR-Team-Neostark": 5300,
     "FR-Team-AMEN": 5200,
     "FR-Team-BONBON": 5000,
     "FR-Team-TyHD": 4900,
@@ -79,7 +80,7 @@ TECH_4K = {
     "IMAX Enhanced": 1800,
     "Theatrical": 120,
     "3D": -100,
-    "FR-4KLight": 2000,
+    "FR-4KLight": 3000,
     "FR-Hybrid": 1200,
     "FR-Streamer-Premium": 400,
     "FR-Streamer-Standard": 250,

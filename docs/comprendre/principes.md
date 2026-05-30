@@ -49,7 +49,7 @@ Tableau rapide — le détail « contexte / alternative / ne pas casser » est d
 | **Torrent only, délai 0** | Usenet / délais longs | `FR-Delay-*` : torrent, `torrent_delay = 0` |
 | **x265 favorisé en 1080p/720p** | Malus HEVC sous 4K (Dumpstarr) | Scène FR = encodes compacts HEVC |
 | **VFQ / VOQ acceptés** | Ban VFQ | **Repli** sous VFF : `FR-MULTI-VFQ` / `FR-VFQ` (pas exclusion) |
-| **16 équipes `FR-Team-*`** | ~900 regex « une par team » | Maintenance tenable, rebase Dictionarry possible |
+| **17 équipes `FR-Team-*`** | ~900 regex « une par team » | Maintenance tenable, rebase Dictionarry possible |
 | **Presets media** | Bundle par profil qualité | **Radarr** + **Sonarr séries** + **Sonarr animé** (`ops/07`) |
 | **Seuils profil type Dumpstarr** | `minimum = 20000` (ancienne base) | Évite upgrades bloqués ; priorité FR reste dans les CF |
 

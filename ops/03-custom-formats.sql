@@ -15,7 +15,7 @@ INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('Dolby
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('Dolby Vision (Without Fallback)', 'DV sans HDR10 de secours lisible. Malus compatibilité lecteurs.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('Dolby Vision', 'DV, DoVi, Dolby Vision. Exclut les combinaisons DV+HLG/SDR triviales.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FLAC', 'Piste FLAC. Exclusions si d’autres codecs audio dominent sur la même ligne.', 0);
-INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-4KLight', 'Tag 4KLight (Bluray UHD allégé). Fort bonus sur profils 4K.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-4KLight', 'Tag 4KLight (Bluray UHD allégé). Fort bonus 4K : prioritaire sur WEBRip/WEB seul (profils 4K).', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Blockers', 'Groupes bannis, GPU encode (NVENC/QSV/AMF), incohérences REMUX+encodeur. Score très négatif.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-HDLight', 'Tag HDLight (Bluray allégé). Utile 720p/1080p ; rare en 2160p.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Hybrid', 'Tag HYBRID (Bluray hybride UHD). Bonus modéré si annoncé.', 0);
@@ -39,6 +39,7 @@ INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Te
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-OZEF', 'Équipe OZEF — Remux Blu-ray/UHD. Remux exclu (-999999).', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-PopHD', 'Équipe PopHD — 1080p HDLight x264, MULTI. Bonus 720p/1080p.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-QTZ', 'Équipe QTZ — référence 4KLight. Parmi les plus hauts scores team.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-Neostark', 'Équipe Neostark — bonus uniquement si tag 4KLight dans le titre (C411). WEBRip/WEB sans tag = pas de bonus équipe.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-SUPPLY', 'Équipe SUPPLY — WEB 2160p premium H265/DV/Atmos. Fort bonus 4K.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-Slay3R', 'Équipe Slay3R — WEB 1080p/2160p/720p C411 (H264/H265, exclus).', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-TFA', 'Équipe TFA — WEB 2160p MULTI. Bonus intermédiaire-haut.', 0);
@@ -46,7 +47,7 @@ INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Te
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-TOXIC', 'Équipe TOXIC — 1080p HDLight. Souvent cumul FR-HDLight.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-TyHD', 'Équipe TyHD — WEB 2160p HEVC compact. Bonus modéré 4K.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-Winks', 'Équipe Winks — 1080p BluRay/WEB x265 MULTI (~4–5,5 Go). Référence C411.', 0);
-INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Tier-01', 'Palier 01 encodeurs (BOUBA, NEOSTARK, …). Sous les équipes FR-Team.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Tier-01', 'Palier 01 encodeurs (BOUBA, …). Sous les équipes FR-Team (Neostark exclu).', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Tier-02', 'Palier 02 encodeurs (TLC, DFE, KPORAL, …). Sous FR-Tier-01.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-VF2', 'VF2 seul (dual FR+QC) sans MULTI. Au-dessus de VFF.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-VFF', 'Tag FR France (VFF, TRUEFRENCH, …) sans MULTI. Au-dessus du Québec.', 0);

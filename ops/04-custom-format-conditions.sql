@@ -344,6 +344,15 @@ INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, 
 SELECT 'FR-Team-QTZ', 'QTZ Group', 'release_group', 'all', 0, 0
 FROM custom_formats cf WHERE cf.name = 'FR-Team-QTZ';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Team-Neostark', 'Neostark', 'release_title', 'all', 0, 0
+FROM custom_formats cf WHERE cf.name = 'FR-Team-Neostark';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Team-Neostark', 'Neostark Group', 'release_group', 'all', 0, 0
+FROM custom_formats cf WHERE cf.name = 'FR-Team-Neostark';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Team-Neostark', '4KLight', 'release_title', 'all', 0, 1
+FROM custom_formats cf WHERE cf.name = 'FR-Team-Neostark';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
 SELECT 'FR-Team-SUPPLY', 'SUPPLY', 'release_title', 'all', 0, 0
 FROM custom_formats cf WHERE cf.name = 'FR-Team-SUPPLY';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
@@ -841,6 +850,12 @@ INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expr
 SELECT 'FR-Team-PopHD', 'PopHD Group', re.name FROM regular_expressions re WHERE re.name = 'PopHD';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'FR-Team-QTZ', 'QTZ', re.name FROM regular_expressions re WHERE re.name = 'QTZ';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-Team-Neostark', 'Neostark', re.name FROM regular_expressions re WHERE re.name = 'Neostark';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-Team-Neostark', 'Neostark Group', re.name FROM regular_expressions re WHERE re.name = 'Neostark';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-Team-Neostark', '4KLight', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-4KLight';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'FR-Team-QTZ', 'QTZ Group', re.name FROM regular_expressions re WHERE re.name = 'QTZ';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
