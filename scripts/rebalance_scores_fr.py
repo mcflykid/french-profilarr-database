@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Rééquilibre ops/06 : langue = 1er tri (modéré), qualité FR = dominant."""
+"""HISTORIQUE (2026-05) — rééquilibrage ops/06 : langue = 1er tri, qualité FR = dominant.
+
+Ne pas relancer tel quel : la grille interne écraserait les calibrages postérieurs
+(Neostark 4KLight, TrueHD/FR-Audio-71, …) et les regex supposent
+`upgrade_score_increment = 1` (passé à 500 en 2026-06).
+"""
 from __future__ import annotations
 
 import re

@@ -25,7 +25,7 @@ Trackers **sans slots** : même logique via tags (`MULTI.VFF`, `4KLight`, …).
 
 | Piste | Verdict | Pourquoi ce n’est pas dans la base |
 |-------|---------|-------------------------------------|
-| ~900 regex / team (Jojont54) | **Non** | Maintenance ×10, PR énormes ; 16 teams + tiers couvrent les cas **observés** sur C411. |
+| ~900 regex / team (Jojont54) | **Non** | Maintenance ×10, PR énormes ; 17 teams + tiers couvrent les cas **observés** sur C411. |
 | Ban VFQ | **Non** | Beaucoup de bibliothèques FR ont du VFQ ; on le **sous-classe** sous VFF, on ne l’interdit pas. |
 | `release_group` séparé | **Pas urgent** | La scène FR met le groupe **dans le titre** ; condition `release_group` en doublon peu utile aujourd’hui. |
 | Bundle media par profil qualité | **Non** | Profilarr v2 = un preset par **app** (Radarr / Sonarr / animé), pas par `FR-Films-4K`. |
