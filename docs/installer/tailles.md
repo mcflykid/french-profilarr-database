@@ -34,33 +34,41 @@ Exemple *Up in the Air* (~109 min) avec l’ancien `min = 900` sur Bluray-1080p 
 
 **`preferred`** = cible Mo/min (favorise les releases proches de la taille scène FR compacte, pas « toujours le plus gros »).
 
+**Logique des bornes (2026-06)** :
+
+- **`min` = anti-junk seulement** : il ne sert qu'à rejeter les fakes et fichiers cassés (un « 4K » de 800 Mo, un sample). Le tri qualité, c'est le travail des **scores CF**, pas du plancher. Les anciens planchers (ex. `34,5` sur WEB 2160p) rejetaient des releases **légitimes et bien scorées** — typiquement les 4KLight/WEBRip ~2,5–5 Go (Neostark, BONBON) — d'où des « release rejetée : taille trop petite » en recherche.
+- **`max` = garde-fou anti-obèses** : borne dure par grab contre les encodes énormes ou mal taggés, hors cible **scène FR compacte** (et lourds pour le disque comme pour le ratio). Calibré pour laisser passer le **premium documenté** (DV/Atmos ~17–26 Go en 4K film) et bloquer au-delà.
+- Anti-churn complémentaire : `upgrade_score_increment` **500** dans `ops/06` — pas de re-téléchargement complet pour un gain de moins de 500 points CF (Repack +120, Season Pack +120…) ; ça évite aussi de casser le seed/cross-seed pour rien.
+
 #### Radarr — `FR-Media-Radarr`
 
 **Limite API** : `max_size` **≤ 2000** (Mo/min).
 
 | Qualité | min | preferred | max | ~120 min film |
 |---------|-----|-----------|-----|----------------|
-| **Bluray / WEB 1080p** | 12,5 | **48** | 2000 | min ~1,5 Go ; cible **~5 Go** (SUPPLY compact H265 ~2–7 Go) |
-| **Bluray-720p / WEB 720p** | 12,5 | **35** | 1000–2000 | ~4,2 Go cible |
-| **Bluray-2160p** | 17 | **50** | 2000 | 4KLight ~2,5–8 Go |
-| **WEB 2160p** | 34,5 | **95** | 2000 | **SUPPLY** compact ~10–14 Go ; DV/Atmos ~17–26 Go via `max` |
+| **Bluray / WEB 1080p** | 8 | **42–48** | 150 | min ~1 Go ; cible **~5 Go** (SUPPLY compact H265 ~2–7 Go) ; plafond ~18 Go |
+| **Bluray-720p / WEB 720p** | 5 | **35** | 60 | min ~0,6 Go ; plafond ~7 Go |
+| **Bluray-2160p** | 17 | **50** | 250 | 4KLight ~2,5–8 Go ; plafond ~30 Go |
+| **WEB 2160p** | 17 | **95** | 250 | 4KLight WEBRip ~2,5–5 Go **passe** ; **SUPPLY** compact ~10–14 Go ; DV/Atmos ~17–26 Go ; plafond ~30 Go |
+
+Qualités de secours (`FR-Films-Any` : Unknown, SDTV, DVD, WEBDL-480p, HDTV, Raw-HD) : `min 0`, `max` plafonné (40–150 selon la qualité), `preferred` aligné sur la résolution équivalente — plus de `preferred 1990` qui visait « le plus gros possible ».
 
 #### Sonarr — `FR-Media-Sonarr` (séries)
 
 | Qualité | min | preferred | max | ~45 min épisode |
 |---------|-----|-----------|-----|-----------------|
-| **Bluray-1080p** | 17,5 | **55** | 1000 | min ~0,8 Go ; cible ~2,5 Go |
-| **WEB 1080p** | 12,5 | **60** | 1000 | **Slay3R** ~2,4–3 Go |
-| **Bluray / WEB 720p** | 12,5–17,5 | **40–45** | 500–1000 | épisodes compacts |
-| **Bluray / WEB 2160p** | 17 / 34,5 | **45 / 55** | 1000 | 4K série compact |
+| **Bluray-1080p** | 8 | **55** | 120 | min ~0,36 Go ; cible ~2,5 Go ; plafond ~5,4 Go |
+| **WEB / HDTV 1080p** | 8 | **50–60** | 100 | **Slay3R** ~2,4–3 Go ; plafond ~4,5 Go |
+| **Bluray / WEB / HDTV 720p** | 5 | **35–45** | 50 | épisodes compacts ; plafond ~2,3 Go |
+| **Bluray / WEB 2160p** | 17 | **45 / 55** | 150 | 4K série compact (~1–1,5 Go/ép. accepté) ; plafond ~6,8 Go |
 
 #### Sonarr — `FR-Media-Anime-Sonarr` (animé)
 
 | Qualité | min | preferred | max | ~24 min épisode |
 |---------|-----|-----------|-----|-----------------|
-| **Bluray / WEB 1080p** | **5** | **38–42** | 1000 | min ~120 Mo ; cible ~0,9–1 Go |
-| **Bluray / WEB 720p** | **5** | **28–30** | 500 | fansub / BDRip compacts |
-| **Bluray / WEB 2160p** | 5 / 17 | **40 / 50** | 1000 | animé 4K compact |
+| **Bluray / WEB 1080p** | **5** | **38–42** | 80 | min ~120 Mo ; cible ~0,9–1 Go ; plafond ~1,9 Go |
+| **Bluray / WEB 720p** | **5** | **25–30** | 40 | fansub / BDRip compacts ; plafond ~1 Go |
+| **Bluray / WEB 2160p** | 5 / 17 | **40 / 50** | 120 | animé 4K compact ; plafond ~2,9 Go |
 
 ### Delays
 

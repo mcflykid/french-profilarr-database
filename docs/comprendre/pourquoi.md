@@ -123,10 +123,10 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 |--|--|
 | **Contexte** | Films ~2h, épisodes séries ~45 min, animé ~24 min — mêmes Mo/min ≠ mêmes Go cibles. |
 | **Alternative écartée** | Un bundle `FR-Media-*` par profil `FR-Films-4K` (ancien modèle). |
-| **Choix retenu** | `FR-Media-Radarr`, `FR-Media-Sonarr`, `FR-Media-Anime-Sonarr` ; **max_size ≤ 2000** (limite API). |
-| **Pourquoi** | Profilarr v2 : **un triplet** media par instance ; évite les seuils absurdes (ex. `min` 900 → ~97 Go sur *Up in the Air*). |
+| **Choix retenu** | `FR-Media-Radarr`, `FR-Media-Sonarr`, `FR-Media-Anime-Sonarr` ; `min` = **anti-junk seulement** (1080p 8, 2160p 17, 720p 5) ; `max` = **garde-fou anti-encodes obèses** par qualité (films 2160p 250 ≈ 30 Go, 1080p 150 ≈ 18 Go @120 min — limite API ≤ 2000). |
+| **Pourquoi** | Profilarr v2 : **un triplet** media par instance ; évite les seuils absurdes (ex. `min` 900 → ~97 Go sur *Up in the Air*). Le tri qualité appartient aux **scores CF** : un `min` « ambitieux » (ex. 34,5 sur WEB 2160p) rejetait des 4KLight ~2,5–5 Go pourtant scorés +5000. Le `max` borne chaque grab contre les encodes hors cible **scène FR compacte** sans bloquer le premium documenté (DV/Atmos ~17–26 Go). |
 | **Fichiers** | `ops/07`, [tailles.md](../installer/tailles.md) |
-| **Ne pas** | Remonter les `min` Radarr vers des valeurs « TRaSH international » sans recalcul Mo/min × durée. |
+| **Ne pas** | Remonter les `min` au-dessus du niveau anti-junk (ça re-crée des rejets de releases bien scorées) ; remonter les `max` sans penser à la cible compacte ; valeurs « TRaSH international » sans recalcul Mo/min × durée. |
 
 ### 8. WEB-DL vs WEBRip en 4K (malus léger, pas interdit)
 
@@ -206,7 +206,7 @@ Détail par CF : [langue.md](langue.md), [equipes.md](equipes.md), [image-son.md
 |------|-------------------------------|
 | [principes.md](principes.md) | Tableau synthèse choix + seuils `ops/06` |
 | [langue.md](langue.md) | Scores, regex `ops/02`, cas C411 / cross-indexeur |
-| [equipes.md](equipes.md) | Scores 16 teams, tiers, signatures 4KLight/HDLight |
+| [equipes.md](equipes.md) | Scores 17 teams, tiers, signatures 4KLight/HDLight |
 | [image-son.md](image-son.md) | HDR, audio (exclusions DD/DTS), codecs, streamers |
 | [calibrage.md](calibrage.md) | C411 vs parser, filtres UI, workflow, **journal** |
 | [torr9.md](torr9.md) | Règles Torr9, nomenclature, équipes, écarts PCD |

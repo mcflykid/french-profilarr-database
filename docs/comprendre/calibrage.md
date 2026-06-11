@@ -122,6 +122,9 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
+| 2026-06 | **Tailles : planchers anti-junk** | Fin des rejets « taille trop petite » : `min` WEB 2160p **34,5 → 17** (les 4KLight/WEBRip ~2,5–5 Go scorés +5000 étaient rejetés), 1080p **→ 8**, 720p **→ 5** (Radarr + Sonarr séries) |
+| 2026-06 | **Tailles : plafonds anti-obèses** | `max` réels par qualité (films : 2160p **250** ≈ 30 Go, 1080p **150** ≈ 18 Go @120 min ; séries : 100–150 ; animé : 40–120) — borne dure contre les encodes hors cible scène FR compacte ; premium DV/Atmos ~17–26 Go toujours accepté |
+| 2026-06 | **Anti-churn upgrades** | `upgrade_score_increment` **1 → 500** (10 profils) : pas de re-téléchargement complet pour un gain CF < 500 (Repack +120, Season Pack +120, x265 vs h265 +150) — protège ratio et cross-seed |
 | 2026-05 | **Neostark (C411)** | `FR-Team-Neostark` **5300** si **4KLight** dans le titre ; `FR-4KLight` **3000** ; WEBRip sans tag → pas de bonus équipe |
 | 2026-05 | **Naming ops/07** | `rename = 0` ; dossiers TMDB/TVDB ; formats fichier TRaSH d’origine (inactifs) ; Plex = tMM après archivage |
 | 2026-05 | **Doc grab / import** | [limites.md](limites.md) : profil = tracker ; Plex/tMM = autre métier ; motifs tMM films/séries ; torrent vs `.mkv` ; pas un bug profil |
