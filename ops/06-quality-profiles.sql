@@ -1,17 +1,17 @@
 -- french-profilarr-database — ops/06
 -- Profils qualité FR-* + groupes, scores, tags profil (Radarr/Sonarr/Films/Series/anime).
 
--- Seuils : minimum 400/500 ; upgrade_until 60000. Langue 1er tri (8k max), équipe/HDR/son dominant (2026-05).
-INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Anime-1080p', 'Profil Sonarr 1080p — animé, trackers FR. Objectif : 1080p efficient, HDTV-1080p, Season Pack. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 0, 60000, 1);
-INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Anime-4K', 'Profil Sonarr 4K — animé (type Anime), trackers FR. Objectif : UHD HEVC, langue FR, DV/HDR, bonus 4KLight/Hybrid. Exclut : x264@2160p, Remux, Full Disc, AV1, Upscaled.', 1, 500, 60000, 1);
-INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Anime-720p', 'Profil Sonarr 720p — animé, trackers FR. Objectif : 720p compact, HDTV-720p. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 0, 60000, 1);
-INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Films-1080p', 'Profil Radarr 1080p — trackers scène FR. Objectif : WEB/Bluray 1080p efficient (x265/h265), langue FR, audio premium, éditions IMAX/Theatrical. Priorité : hiérarchie langue FR + équipes + streamers. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 400, 60000, 1);
-INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Films-4K', 'Profil Radarr 4K — scène française privée. Objectif : UHD encode HEVC, langue FR, DV puis HDR10+/HDR10, audio premium. Priorité : MULTI VF2 > MULTI VFF > VF2 > VFF > VOSTFR ; équipes FR (team puis tier). Exclut : x264@2160p, Remux, Full Disc, AV1 (-999999), Upscaled.', 1, 500, 60000, 1);
-INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Films-720p', 'Profil Radarr 720p — trackers scène FR. Objectif : encodes compacts, langue FR, audio modéré. Priorité : langue FR + équipes FR. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 0, 60000, 1);
-INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Films-Any', 'Profil Radarr « toute qualité » — secours sur trackers FR. Objectif : garder langue FR + équipes + audio/édition sans imposer de résolution (SD → Raw-HD). Exclut : Remux, Full Disc, FR-Blockers, AV1, Upscaled (pas de remux — encodes uniquement).', 1, 0, 60000, 1);
-INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Series-1080p', 'Profil Sonarr 1080p — séries sur trackers FR. Objectif : 1080p efficient, HDTV-1080p toléré (TV cap), Season Pack. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 0, 60000, 1);
-INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Series-4K', 'Profil Sonarr 4K — séries sur trackers FR. Objectif : UHD HEVC, langue FR, DV/HDR, audio premium, bonus Season Pack. Priorité : langue FR + équipes. Exclut : x264@UHD, Remux, Full Disc, AV1, Upscaled.', 1, 500, 60000, 1);
-INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Series-720p', 'Profil Sonarr 720p — séries sur trackers FR. Objectif : 720p compact, HDTV-720p, Season Pack. Exclut : Remux, AV1, Upscaled.', 1, 0, 60000, 1);
+-- Seuils : minimum 400/500 ; upgrade_until 60000 ; increment 500 (anti-churn : pas de re-téléchargement sous +500 CF — ex. Repack +120, Season Pack +120 ; protège ratio et cross-seed). Langue 1er tri (8k max), équipe/HDR/son dominant (2026-05).
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Anime-1080p', 'Profil Sonarr 1080p — animé, trackers FR. Objectif : 1080p efficient, HDTV-1080p, Season Pack. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 0, 60000, 500);
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Anime-4K', 'Profil Sonarr 4K — animé (type Anime), trackers FR. Objectif : UHD HEVC, langue FR, DV/HDR, bonus 4KLight/Hybrid. Exclut : x264@2160p, Remux, Full Disc, AV1, Upscaled.', 1, 500, 60000, 500);
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Anime-720p', 'Profil Sonarr 720p — animé, trackers FR. Objectif : 720p compact, HDTV-720p. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 0, 60000, 500);
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Films-1080p', 'Profil Radarr 1080p — trackers scène FR. Objectif : WEB/Bluray 1080p efficient (x265/h265), langue FR, audio premium, éditions IMAX/Theatrical. Priorité : hiérarchie langue FR + équipes + streamers. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 400, 60000, 500);
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Films-4K', 'Profil Radarr 4K — scène française privée. Objectif : UHD encode HEVC, langue FR, DV puis HDR10+/HDR10, audio premium. Priorité : MULTI VF2 > MULTI VFF > VF2 > VFF > VOSTFR ; équipes FR (team puis tier). Exclut : x264@2160p, Remux, Full Disc, AV1 (-999999), Upscaled.', 1, 500, 60000, 500);
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Films-720p', 'Profil Radarr 720p — trackers scène FR. Objectif : encodes compacts, langue FR, audio modéré. Priorité : langue FR + équipes FR. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 0, 60000, 500);
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Films-Any', 'Profil Radarr « toute qualité » — secours sur trackers FR. Objectif : garder langue FR + équipes + audio/édition sans imposer de résolution (SD → Raw-HD). Exclut : Remux, Full Disc, FR-Blockers, AV1, Upscaled (pas de remux — encodes uniquement).', 1, 0, 60000, 500);
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Series-1080p', 'Profil Sonarr 1080p — séries sur trackers FR. Objectif : 1080p efficient, HDTV-1080p toléré (TV cap), Season Pack. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 0, 60000, 500);
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Series-4K', 'Profil Sonarr 4K — séries sur trackers FR. Objectif : UHD HEVC, langue FR, DV/HDR, audio premium, bonus Season Pack. Priorité : langue FR + équipes. Exclut : x264@UHD, Remux, Full Disc, AV1, Upscaled.', 1, 500, 60000, 500);
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Series-720p', 'Profil Sonarr 720p — séries sur trackers FR. Objectif : 720p compact, HDTV-720p, Season Pack. Exclut : Remux, AV1, Upscaled.', 1, 0, 60000, 500);
 
 -- Quality groups
 INSERT INTO quality_groups (quality_profile_name, name)
@@ -36,82 +36,82 @@ INSERT INTO quality_groups (quality_profile_name, name)
 SELECT 'FR-Series-720p', '720p Quality' FROM quality_profiles qp WHERE qp.name = 'FR-Series-720p';
 
 -- Quality group members
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Anime-1080p', '1080p Quality', q.name FROM qualities q WHERE q.name = 'Bluray-1080p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Anime-1080p', '1080p Quality', q.name FROM qualities q WHERE q.name = 'WEBDL-1080p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Anime-1080p', '1080p Quality', q.name FROM qualities q WHERE q.name = 'WEBRip-1080p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Anime-1080p', '1080p Quality', q.name FROM qualities q WHERE q.name = 'HDTV-1080p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Anime-4K', '2160p Quality', q.name FROM qualities q WHERE q.name = 'Bluray-2160p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Anime-4K', '2160p Quality', q.name FROM qualities q WHERE q.name = 'WEBDL-2160p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Anime-4K', '2160p Quality', q.name FROM qualities q WHERE q.name = 'WEBRip-2160p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Anime-720p', '720p Quality', q.name FROM qualities q WHERE q.name = 'Bluray-720p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Anime-720p', '720p Quality', q.name FROM qualities q WHERE q.name = 'WEBDL-720p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Anime-720p', '720p Quality', q.name FROM qualities q WHERE q.name = 'WEBRip-720p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Anime-720p', '720p Quality', q.name FROM qualities q WHERE q.name = 'HDTV-720p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-1080p', '1080p Quality', q.name FROM qualities q WHERE q.name = 'Bluray-1080p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-1080p', '1080p Quality', q.name FROM qualities q WHERE q.name = 'WEBDL-1080p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-1080p', '1080p Quality', q.name FROM qualities q WHERE q.name = 'WEBRip-1080p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-4K', '2160p Quality', q.name FROM qualities q WHERE q.name = 'Bluray-2160p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-4K', '2160p Quality', q.name FROM qualities q WHERE q.name = 'WEBDL-2160p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-4K', '2160p Quality', q.name FROM qualities q WHERE q.name = 'WEBRip-2160p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-720p', '720p Quality', q.name FROM qualities q WHERE q.name = 'Bluray-720p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-720p', '720p Quality', q.name FROM qualities q WHERE q.name = 'WEBDL-720p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-720p', '720p Quality', q.name FROM qualities q WHERE q.name = 'WEBRip-720p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-Any', 'Any Quality', q.name FROM qualities q WHERE q.name = 'Unknown';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-Any', 'Any Quality', q.name FROM qualities q WHERE q.name = 'SDTV';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-Any', 'Any Quality', q.name FROM qualities q WHERE q.name = 'DVD';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-Any', 'Any Quality', q.name FROM qualities q WHERE q.name = 'WEBDL-480p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-Any', 'Any Quality', q.name FROM qualities q WHERE q.name = 'HDTV-720p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-Any', 'Any Quality', q.name FROM qualities q WHERE q.name = 'HDTV-1080p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Films-Any', 'Any Quality', q.name FROM qualities q WHERE q.name = 'Raw-HD';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Series-1080p', '1080p Quality', q.name FROM qualities q WHERE q.name = 'Bluray-1080p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Series-1080p', '1080p Quality', q.name FROM qualities q WHERE q.name = 'WEBDL-1080p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Series-1080p', '1080p Quality', q.name FROM qualities q WHERE q.name = 'WEBRip-1080p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Series-1080p', '1080p Quality', q.name FROM qualities q WHERE q.name = 'HDTV-1080p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Series-4K', '2160p Quality', q.name FROM qualities q WHERE q.name = 'Bluray-2160p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Series-4K', '2160p Quality', q.name FROM qualities q WHERE q.name = 'WEBDL-2160p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Series-4K', '2160p Quality', q.name FROM qualities q WHERE q.name = 'WEBRip-2160p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Series-720p', '720p Quality', q.name FROM qualities q WHERE q.name = 'Bluray-720p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Series-720p', '720p Quality', q.name FROM qualities q WHERE q.name = 'WEBDL-720p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Series-720p', '720p Quality', q.name FROM qualities q WHERE q.name = 'WEBRip-720p';
-INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name)
-SELECT 'FR-Series-720p', '720p Quality', q.name FROM qualities q WHERE q.name = 'HDTV-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-1080p', '1080p Quality', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-1080p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-1080p', '1080p Quality', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-1080p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-1080p', '1080p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-1080p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-1080p', '1080p Quality', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-1080p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-4K', '2160p Quality', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-2160p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-4K', '2160p Quality', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-2160p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-4K', '2160p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-2160p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-720p', '720p Quality', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-720p', '720p Quality', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-720p', '720p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-720p', '720p Quality', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-1080p', '1080p Quality', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-1080p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-1080p', '1080p Quality', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-1080p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-1080p', '1080p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-1080p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-4K', '2160p Quality', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-2160p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-4K', '2160p Quality', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-2160p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-4K', '2160p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-2160p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-720p', '720p Quality', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-720p', '720p Quality', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-720p', '720p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-Any', 'Any Quality', q.name, 0 FROM qualities q WHERE q.name = 'Unknown';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-Any', 'Any Quality', q.name, 1 FROM qualities q WHERE q.name = 'SDTV';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-Any', 'Any Quality', q.name, 2 FROM qualities q WHERE q.name = 'DVD';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-Any', 'Any Quality', q.name, 3 FROM qualities q WHERE q.name = 'WEBDL-480p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-Any', 'Any Quality', q.name, 4 FROM qualities q WHERE q.name = 'HDTV-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-Any', 'Any Quality', q.name, 5 FROM qualities q WHERE q.name = 'HDTV-1080p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-Any', 'Any Quality', q.name, 6 FROM qualities q WHERE q.name = 'Raw-HD';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-1080p', '1080p Quality', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-1080p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-1080p', '1080p Quality', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-1080p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-1080p', '1080p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-1080p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-1080p', '1080p Quality', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-1080p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-4K', '2160p Quality', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-2160p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-4K', '2160p Quality', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-2160p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-4K', '2160p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-2160p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-720p', '720p Quality', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-720p', '720p Quality', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-720p', '720p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-720p', '720p Quality', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-720p';
 
 -- Quality profile qualities (order + upgrade_until)
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)

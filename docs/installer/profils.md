@@ -17,7 +17,7 @@
 | **FR-Series-720p** | Sonarr | Séries compactes |
 | **FR-Anime-1080p/4K/720p** | Sonarr | Animé (type Anime) |
 
-**Scoring identique sur les 10 profils** (`ops/06`) : même hiérarchie **langue 1er tri** (8k max) + **qualité** (équipe ~5,5k, HDR/DV/son sur profils **4K**). Seules les pondérations **techniques** varient selon la résolution du profil (ex. **Dolby Vision 3 500** en `FR-Films-4K` / `FR-Series-4K`, **1 200** en 1080p). **`upgrade_until_score` = 60 000** partout.
+**Scoring identique sur les 10 profils** (`ops/06`) : même hiérarchie **langue 1er tri** (8k max) + **qualité** (équipe ~5,5k, HDR/DV/son sur profils **4K**). Seules les pondérations **techniques** varient selon la résolution du profil (ex. **Dolby Vision 3 500** en `FR-Films-4K` / `FR-Series-4K`, **1 200** en 1080p). **`upgrade_until_score` = 60 000** et **`upgrade_score_increment` = 500** partout (un upgrade ne se re-télécharge que s'il rapporte au moins +500 points — anti-churn, voir [tailles.md](tailles.md)).
 
 Chaque profil **exclut** : Remux, Full Disc, AV1, Upscaled (+ x264@2160p sur 4K).
 

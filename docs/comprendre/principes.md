@@ -55,13 +55,15 @@ Tableau rapide — le détail « contexte / alternative / ne pas casser » est d
 
 ### Seuils profil natifs (`ops/06`)
 
-| Profil type | `minimum_custom_format_score` | `upgrade_until_score` |
-|-------------|------------------------------:|----------------------:|
-| Films 1080p | **400** | **60000** |
-| Films / Series / Anime **4K** | **500** | **60000** |
-| Series / Anime 1080p/720p, Films 720p/Any | **0** | **60000** |
+| Profil type | `minimum_custom_format_score` | `upgrade_until_score` | `upgrade_score_increment` |
+|-------------|------------------------------:|----------------------:|--------------------------:|
+| Films 1080p | **400** | **60000** | **500** |
+| Films / Series / Anime **4K** | **500** | **60000** | **500** |
+| Series / Anime 1080p/720p, Films 720p/Any | **0** | **60000** | **500** |
 
 **Philosophie scoring** (trackers FR, 2026-05) : la **langue** = **1er tri** (écart **1k–1,5k** entre paliers, max **8k**). La **qualité** (équipe **~5,5k**, DV/HDR **~3,5k**, Atmos **~2,5k**, x265, 4KLight) **décide** entre deux releases déjà françaises. Top ≈ **22k–28k** ; plafond upgrades **60k**. Tailles : preset media `ops/07` (Mo/min).
+
+**Incrément 500 (2026-06, anti-churn)** : un upgrade n'est re-téléchargé que s'il rapporte **au moins +500** points CF — un vrai saut (palier langue, équipe supérieure, DV vs HDR10), pas un bonus cosmétique (Repack +120, Season Pack +120, x265 vs h265 +150). Re-télécharger plusieurs Go pour un gain cosmétique n'apporte rien à l'écran et interrompt le seed/cross-seed.
 
 ---
 
