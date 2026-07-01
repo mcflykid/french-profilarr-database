@@ -2,22 +2,26 @@
 -- Profils qualité FR-* + groupes, scores, tags profil (Radarr/Sonarr/Films/Series/anime).
 
 -- Seuils : minimum 400/500 ; upgrade_until 60000 ; increment 500 (anti-churn : pas de re-téléchargement sous +500 CF — ex. Repack +120, Season Pack +120 ; protège ratio et cross-seed). Langue 1er tri (8k max), équipe/HDR/son dominant (2026-05).
-INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Anime-1080p', 'Profil Sonarr 1080p — animé, trackers FR. Objectif : 1080p efficient, HDTV-1080p, Season Pack. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 0, 60000, 500);
-INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Anime-4K', 'Profil Sonarr 4K — animé (type Anime), trackers FR. Objectif : UHD HEVC, langue FR, DV/HDR, bonus 4KLight/Hybrid. Fallback 1080p si aucune release UHD (upgrade auto vers 2160p ensuite). Exclut : x264@2160p, Remux, Full Disc, AV1, Upscaled.', 1, 500, 60000, 500);
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Anime-1080p', 'Profil Sonarr 1080p — animé, trackers FR. Objectif : 1080p efficient, HDTV-1080p, Season Pack. Fallback 720p si aucune release 1080p (upgrade auto). Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 0, 60000, 500);
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Anime-4K', 'Profil Sonarr 4K — animé (type Anime), trackers FR. Objectif : UHD HEVC, langue FR, DV/HDR, bonus 4KLight/Hybrid. Fallback 1080p puis 720p si aucune release UHD (upgrade auto vers 2160p ensuite). Exclut : x264@2160p, Remux, Full Disc, AV1, Upscaled.', 1, 500, 60000, 500);
 INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Anime-720p', 'Profil Sonarr 720p — animé, trackers FR. Objectif : 720p compact, HDTV-720p. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 0, 60000, 500);
 INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Films-1080p', 'Profil Radarr 1080p — trackers scène FR. Objectif : WEB/Bluray 1080p efficient (x265/h265), langue FR, audio premium, éditions IMAX/Theatrical. Fallback 720p si aucune release 1080p (upgrade auto). Priorité : hiérarchie langue FR + équipes + streamers. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 400, 60000, 500);
 INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Films-4K', 'Profil Radarr 4K — scène française privée. Objectif : UHD encode HEVC, langue FR, DV puis HDR10+/HDR10, audio premium. Fallback 1080p puis 720p si aucune release UHD (upgrade auto vers 2160p ensuite). Priorité : MULTI VF2 > MULTI VFF > VF2 > VFF > VOSTFR ; équipes FR (team puis tier). Exclut : x264@2160p, Remux, Full Disc, AV1 (-999999), Upscaled.', 1, 500, 60000, 500);
-INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Series-1080p', 'Profil Sonarr 1080p — séries sur trackers FR. Objectif : 1080p efficient, HDTV-1080p toléré (TV cap), Season Pack. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 0, 60000, 500);
-INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Series-4K', 'Profil Sonarr 4K — séries sur trackers FR. Objectif : UHD HEVC, langue FR, DV/HDR, audio premium, bonus Season Pack. Priorité : langue FR + équipes. Fallback 1080p si aucune release UHD (upgrade auto vers 2160p ensuite). Exclut : x264@UHD, Remux, Full Disc, AV1, Upscaled.', 1, 500, 60000, 500);
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Series-1080p', 'Profil Sonarr 1080p — séries sur trackers FR. Objectif : 1080p efficient, HDTV-1080p toléré (TV cap), Season Pack. Fallback 720p si aucune release 1080p (upgrade auto). Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 0, 60000, 500);
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Series-4K', 'Profil Sonarr 4K — séries sur trackers FR. Objectif : UHD HEVC, langue FR, DV/HDR, audio premium, bonus Season Pack. Priorité : langue FR + équipes. Fallback 1080p puis 720p si aucune release UHD (upgrade auto vers 2160p ensuite). Exclut : x264@UHD, Remux, Full Disc, AV1, Upscaled.', 1, 500, 60000, 500);
 INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Series-720p', 'Profil Sonarr 720p — séries sur trackers FR. Objectif : 720p compact, HDTV-720p, Season Pack. Exclut : Remux, AV1, Upscaled.', 1, 0, 60000, 500);
 
 -- Quality groups
 INSERT INTO quality_groups (quality_profile_name, name)
 SELECT 'FR-Anime-1080p', '1080p Quality' FROM quality_profiles qp WHERE qp.name = 'FR-Anime-1080p';
 INSERT INTO quality_groups (quality_profile_name, name)
+SELECT 'FR-Anime-1080p', '720p Fallback' FROM quality_profiles qp WHERE qp.name = 'FR-Anime-1080p';
+INSERT INTO quality_groups (quality_profile_name, name)
 SELECT 'FR-Anime-4K', '2160p Quality' FROM quality_profiles qp WHERE qp.name = 'FR-Anime-4K';
 INSERT INTO quality_groups (quality_profile_name, name)
 SELECT 'FR-Anime-4K', '1080p Fallback' FROM quality_profiles qp WHERE qp.name = 'FR-Anime-4K';
+INSERT INTO quality_groups (quality_profile_name, name)
+SELECT 'FR-Anime-4K', '720p Fallback' FROM quality_profiles qp WHERE qp.name = 'FR-Anime-4K';
 INSERT INTO quality_groups (quality_profile_name, name)
 SELECT 'FR-Anime-720p', '720p Quality' FROM quality_profiles qp WHERE qp.name = 'FR-Anime-720p';
 INSERT INTO quality_groups (quality_profile_name, name)
@@ -34,9 +38,13 @@ SELECT 'FR-Films-4K', '720p Fallback' FROM quality_profiles qp WHERE qp.name = '
 INSERT INTO quality_groups (quality_profile_name, name)
 SELECT 'FR-Series-1080p', '1080p Quality' FROM quality_profiles qp WHERE qp.name = 'FR-Series-1080p';
 INSERT INTO quality_groups (quality_profile_name, name)
+SELECT 'FR-Series-1080p', '720p Fallback' FROM quality_profiles qp WHERE qp.name = 'FR-Series-1080p';
+INSERT INTO quality_groups (quality_profile_name, name)
 SELECT 'FR-Series-4K', '2160p Quality' FROM quality_profiles qp WHERE qp.name = 'FR-Series-4K';
 INSERT INTO quality_groups (quality_profile_name, name)
 SELECT 'FR-Series-4K', '1080p Fallback' FROM quality_profiles qp WHERE qp.name = 'FR-Series-4K';
+INSERT INTO quality_groups (quality_profile_name, name)
+SELECT 'FR-Series-4K', '720p Fallback' FROM quality_profiles qp WHERE qp.name = 'FR-Series-4K';
 INSERT INTO quality_groups (quality_profile_name, name)
 SELECT 'FR-Series-720p', '720p Quality' FROM quality_profiles qp WHERE qp.name = 'FR-Series-720p';
 
@@ -49,6 +57,14 @@ INSERT INTO quality_group_members (quality_profile_name, quality_group_name, qua
 SELECT 'FR-Anime-1080p', '1080p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-1080p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Anime-1080p', '1080p Quality', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-1080p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-1080p', '720p Fallback', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-1080p', '720p Fallback', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-1080p', '720p Fallback', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-1080p', '720p Fallback', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-720p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Anime-4K', '2160p Quality', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-2160p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
@@ -63,6 +79,14 @@ INSERT INTO quality_group_members (quality_profile_name, quality_group_name, qua
 SELECT 'FR-Anime-4K', '1080p Fallback', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-1080p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Anime-4K', '1080p Fallback', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-1080p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-4K', '720p Fallback', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-4K', '720p Fallback', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-4K', '720p Fallback', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-4K', '720p Fallback', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-720p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Anime-720p', '720p Quality', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-720p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
@@ -120,6 +144,14 @@ SELECT 'FR-Series-1080p', '1080p Quality', q.name, 2 FROM qualities q WHERE q.na
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Series-1080p', '1080p Quality', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-1080p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-1080p', '720p Fallback', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-1080p', '720p Fallback', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-1080p', '720p Fallback', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-1080p', '720p Fallback', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Series-4K', '2160p Quality', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-2160p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Series-4K', '2160p Quality', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-2160p';
@@ -134,6 +166,14 @@ SELECT 'FR-Series-4K', '1080p Fallback', q.name, 2 FROM qualities q WHERE q.name
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Series-4K', '1080p Fallback', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-1080p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-4K', '720p Fallback', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-4K', '720p Fallback', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-4K', '720p Fallback', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-4K', '720p Fallback', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Series-720p', '720p Quality', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-720p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Series-720p', '720p Quality', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-720p';
@@ -144,16 +184,24 @@ SELECT 'FR-Series-720p', '720p Quality', q.name, 3 FROM qualities q WHERE q.name
 
 -- Quality profile qualities (order + upgrade_until)
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 0, 1
+SELECT qp.name, qg.name, 0, 0
+FROM quality_profiles qp, quality_groups qg
+WHERE qp.name = 'FR-Anime-1080p' AND qg.quality_profile_name = qp.name AND qg.name = '720p Fallback';
+INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
+SELECT qp.name, qg.name, 1, 1
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Anime-1080p' AND qg.quality_profile_name = qp.name AND qg.name = '1080p Quality';
 -- FR-Anime-4K : 1080p Fallback (position 0) < 2160p Quality (position 1, cutoff upgrade_until).
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
 SELECT qp.name, qg.name, 0, 0
 FROM quality_profiles qp, quality_groups qg
+WHERE qp.name = 'FR-Anime-4K' AND qg.quality_profile_name = qp.name AND qg.name = '720p Fallback';
+INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
+SELECT qp.name, qg.name, 1, 0
+FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Anime-4K' AND qg.quality_profile_name = qp.name AND qg.name = '1080p Fallback';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 1, 1
+SELECT qp.name, qg.name, 2, 1
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Anime-4K' AND qg.quality_profile_name = qp.name AND qg.name = '2160p Quality';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
@@ -182,16 +230,24 @@ SELECT qp.name, qg.name, 2, 1
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Films-4K' AND qg.quality_profile_name = qp.name AND qg.name = '2160p Quality';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 0, 1
+SELECT qp.name, qg.name, 0, 0
+FROM quality_profiles qp, quality_groups qg
+WHERE qp.name = 'FR-Series-1080p' AND qg.quality_profile_name = qp.name AND qg.name = '720p Fallback';
+INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
+SELECT qp.name, qg.name, 1, 1
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Series-1080p' AND qg.quality_profile_name = qp.name AND qg.name = '1080p Quality';
 -- FR-Series-4K : 1080p Fallback (position 0) < 2160p Quality (position 1, cutoff upgrade_until).
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
 SELECT qp.name, qg.name, 0, 0
 FROM quality_profiles qp, quality_groups qg
+WHERE qp.name = 'FR-Series-4K' AND qg.quality_profile_name = qp.name AND qg.name = '720p Fallback';
+INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
+SELECT qp.name, qg.name, 1, 0
+FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Series-4K' AND qg.quality_profile_name = qp.name AND qg.name = '1080p Fallback';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 1, 1
+SELECT qp.name, qg.name, 2, 1
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Series-4K' AND qg.quality_profile_name = qp.name AND qg.name = '2160p Quality';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
