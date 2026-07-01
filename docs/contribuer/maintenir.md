@@ -18,7 +18,7 @@ CI GitHub : workflow **Validate PCD** sur chaque push/PR vers `main`.
 
 | Fichier | Rôle |
 |---------|------|
-| **`ops/11`** | ~480 tests parser par CF (titres réels / C411 / Torr9) |
+| **`ops/11`** | ~498 tests parser par CF (titres réels / C411 / Torr9) |
 | **`ops/12`** | Simulations profil (Momie, POI, …) |
 
 Après modification SQL : **Pull → Compile** sur la base, puis revérifier les tests dans l’UI Profilarr.
@@ -32,8 +32,8 @@ Après modification SQL : **Pull → Compile** sur la base, puis revérifier les
 pcd.json                 # Métadonnées PCD 2.0.0
 ops/
   01-tags.sql            # Tags UI
-  02-regex.sql           # 74 motifs (pattern = détection)
-  03-custom-formats.sql  # 70 CF (include_in_rename = 0)
+  02-regex.sql           # 76 motifs (pattern = détection)
+  03-custom-formats.sql  # 74 CF (include_in_rename = 0)
   04-custom-format-conditions.sql
   05-custom-format-tags.sql
   06-quality-profiles.sql   # 10 profils FR-* + scores

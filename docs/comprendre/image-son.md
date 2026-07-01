@@ -71,13 +71,13 @@ Conditions **Exclure :** entre AAC, Dolby, DTS, TrueHD, FLAC, etc. → pas de cu
 
 | CF | Score | Note |
 |----|------:|------|
-| Dolby Vision | 4500 | |
-| DV (Without Fallback) | -500 | DV sans HDR lisible dans le titre |
-| **HDR10+** | **2000** | |
-| HDR10 | 1000 | |
-| **HDR** (générique) | **1000** | Quand un indexeur omet `HDR10+` |
-| Dolby Digital + | 400 | |
-| Dolby Digital | 100 | AC3 parfois absent du titre |
+| Dolby Vision | 3500 | |
+| DV (Without Fallback) | -50 | DV sans HDR lisible dans le titre |
+| **HDR10+** | **2200** | |
+| HDR10 | 1300 | |
+| **HDR** (générique) | **1300** | Quand un indexeur omet `HDR10+` |
+| Dolby Digital + | 500 | |
+| Dolby Digital | 120 | AC3 parfois absent du titre |
 
 **La Momie** : `…HDR10PLUS…` vs `…HDR…TRUEFRENCH…` → écart de score réduit tout en gardant la meilleure release devant.
 
