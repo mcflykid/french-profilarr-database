@@ -199,6 +199,8 @@ VALUES
     ('FR-VFF', 'Film.2024.FRENCH.1080p.WEB.H264-TEAM', 'movie', 1, 'FRENCH seul → FR-VFF inchangé'),
     ('FR-MULTI-VFF', 'Film.2024.MULTI.TRUEFRENCH.VF2.1080p.WEB.H264-TEAM', 'movie', 0, 'TRUEFRENCH+VF2 : palier FR-MULTI-VF2 seul (un palier langue par release)'),
     ('FR-MULTI-VF2', 'Film.2024.MULTI.TRUEFRENCH.VF2.1080p.WEB.H264-TEAM', 'movie', 1, 'TRUEFRENCH+VF2 → FR-MULTI-VF2'),
+    ('DTS', 'Movie.DTS-ES.DD5.1.720p.BluRay.x264-GROUP', 'movie', 0, 'DTS-ES majuscules : exclusion casse (fix (?i) 2026-07) — DTS-ES seul'),
+    ('DTS-HD MA', 'Film.DTS-HD.HRA.5.1.720p.BluRay.x264-GROUP', 'movie', 0, 'DTS-HD.HRA majuscules : pas MA (fix (?i) 2026-07)'),
     ('FR-MULTI-VF2', 'Film.2024.VOSTFR.WEB-DL.1080p.x264-TEAM', 'movie', 0, 'Test parser — FR-MULTI-VF2 : ne doit pas correspondre (release réelle)'),
     ('FR-MULTI-VF2', 'Incendies.2010.MULTI.VOQ.2160p.BluRay.DDP.x265-QTZ', 'movie', 0, 'MULTI + VOQ — réservé FR-MULTI-VFQ'),
     ('FR-MULTI-VFQ', 'Incendies.2010.MULTI.VOQ.2160p.BluRay.DDP.x265-QTZ', 'movie', 1, 'MULTI + VOQ — FR-MULTI-VFQ'),

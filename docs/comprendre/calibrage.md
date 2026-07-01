@@ -122,6 +122,7 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
+| 2026-07 | **Fix casse DTS + audit exclusivité** | La regex d'exclusion `DTS-HD HRA ES` était sensible à la casse (seule sans `(?i)`) → `DTS-ES`/`DTS-HD.HRA` en majuscules cumulaient avec `DTS`/`DTS-HD MA`. Audit systématique sur 248 titres réels (langue, codecs, audio, HDR) : plus aucun cumul |
 | 2026-07 | **Fix cumul VFF+VF2** | `FR-VFF` (5000, via `FRENCH`) se cumulait avec `FR-VF2` (6000) sur les titres `FRENCH.VF2` (*Enola* Floppy, +12150 au lieu de +7150). Négations « Pas de tag VF2 / VFQ » ajoutées à `FR-VFF` — un seul palier langue par release |
 | 2026-07 | **Fix cumul x265+h265** | La regex `x265` matchait aussi `H265`/`HEVC` déjà couverts par `h265` → +1850 au lieu de +850 sur les titres `H265` (*Enola Holmes 3* FW). `x265` restreint au tag littéral (+`DS4K`) ; 4 tests d'exclusivité |
 | 2026-07 | **Fix double langue VF2** | `FR-VF2` (6000) n'avait pas la condition « Pas de tag MULTI » (présente sur `FR-VFF`/`FR-VFQ`) → chaque `MULTI.VF2` cumulait 8000 + 6000 (*Enola Holmes 3*, +20200 au lieu de +14200). Condition ajoutée + tests. Aussi : **HDTV-2160p** ajouté aux groupes 2160p (parser Radarr devine HDTV quand DV/HDR précède WEB dans le titre) |

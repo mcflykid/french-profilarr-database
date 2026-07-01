@@ -8,7 +8,7 @@ INSERT INTO regular_expressions (name, pattern, description) VALUES ('AV1', '\b(
 INSERT INTO regular_expressions (name, pattern, description) VALUES ('Basic HDR Formats', '(?:(?<=^(?!.*\b(HLG|PQ|SDR)(\b|\d)).*?)HDR)|\b(dv(?![ .](HLG|SDR))|dovi|dolby[ .]?vision)\b', 'Mention HDR ou DV / Dolby Vision, hors combinaisons HLG, PQ ou SDR trompeuses.');
 INSERT INTO regular_expressions (name, pattern, description) VALUES ('DTS Basic', 'DTS[ .]?[1-9]', 'DTS suivi d’un chiffre de canaux (ex. DTS.5, DTS 5). Variante télégraphique ancienne.');
 INSERT INTO regular_expressions (name, pattern, description) VALUES ('DTS-ES', '(?i)dts[-. ]?es\b', 'DTS-ES (Extended Surround), extension matricielle 6.1 sur vieux DVD/Bluray.');
-INSERT INTO regular_expressions (name, pattern, description) VALUES ('DTS-HD HRA ES', 'dts[-. ]?(es|(hd[. ]?)?(hr|hi))', 'Variantes DTS-ES et DTS high resolution (HR, HI) pour éviter les doublons audio.');
+INSERT INTO regular_expressions (name, pattern, description) VALUES ('DTS-HD HRA ES', '(?i)dts[-. ]?(es|(hd[. ]?)?(hr|hi))', 'Variantes DTS-ES et DTS high resolution (HR, HI) pour éviter les doublons audio.');
 INSERT INTO regular_expressions (name, pattern, description) VALUES ('DTS-HD HRA', '(?i)dts[-. ]?(hd[. ]?)?(hra?|hi\b)', 'DTS-HD High Resolution (HRA). Couche intermédiaire entre DTS core et DTS-HD MA.');
 INSERT INTO regular_expressions (name, pattern, description) VALUES ('DTS-HD MA', '(?i)\b(dts[-_. ]?(ma|hd([-_. ]?ma)?|xll))(\b|\d)', 'DTS-HD Master Audio (MA, XLL). Lossless fréquent sur Blu-ray, UHD et WEB premium.');
 INSERT INTO regular_expressions (name, pattern, description) VALUES ('DTS-X', '(?i)\b(dts[-_. :]?x)\b(?!\d)', 'DTS:X (audio objet). Distinct de DTS-HD MA et du DTS classique.');
