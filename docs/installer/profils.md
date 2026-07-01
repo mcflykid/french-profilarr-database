@@ -10,14 +10,12 @@
 |--------|-----|--------|
 | **FR-Films-1080p** | Radarr | Films 1080p — point de départ |
 | **FR-Films-4K** | Radarr | 4K — DV/HDR, 4KLight, équipes WEB |
-| **FR-Films-720p** | Radarr | Compacts |
-| **FR-Films-Any** | Radarr | Secours toutes résolutions, **sans remux** |
 | **FR-Series-1080p** | Sonarr | Séries 1080p + Season Pack |
 | **FR-Series-4K** | Sonarr | Séries 4K |
 | **FR-Series-720p** | Sonarr | Séries compactes |
 | **FR-Anime-1080p/4K/720p** | Sonarr | Animé (type Anime) |
 
-**Scoring identique sur les 10 profils** (`ops/06`) : même hiérarchie **langue 1er tri** (8k max) + **qualité** (équipe ~5,5k, HDR/DV/son sur profils **4K**). Seules les pondérations **techniques** varient selon la résolution du profil (ex. **Dolby Vision 3 500** en `FR-Films-4K` / `FR-Series-4K`, **1 200** en 1080p). **`upgrade_until_score` = 60 000** et **`upgrade_score_increment` = 500** partout (un upgrade ne se re-télécharge que s'il rapporte au moins +500 points — anti-churn, voir [tailles.md](tailles.md)).
+**Scoring identique sur les 8 profils** (`ops/06`) : même hiérarchie **langue 1er tri** (8k max) + **qualité** (équipe ~5,5k, HDR/DV/son sur profils **4K**). Seules les pondérations **techniques** varient selon la résolution du profil (ex. **Dolby Vision 3 500** en `FR-Films-4K` / `FR-Series-4K`, **1 200** en 1080p). **`upgrade_until_score` = 60 000** et **`upgrade_score_increment` = 500** partout (un upgrade ne se re-télécharge que s'il rapporte au moins +500 points — anti-churn, voir [tailles.md](tailles.md)).
 
 Chaque profil **exclut** : Remux, Full Disc, AV1, Upscaled (+ x264@2160p sur 4K).
 

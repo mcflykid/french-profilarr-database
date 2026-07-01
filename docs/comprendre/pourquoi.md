@@ -12,7 +12,7 @@ Chaque changement dans `ops/` doit rester **aligné** avec les intentions ci-des
 | Question | Réponse |
 |----------|---------|
 | **Quel problème ?** | Les profils TRaSH / Dumpstarr « internationaux » ne reflètent pas ce que les **trackers privés FR** valorisent dans le **titre** des releases. |
-| **Quelle solution ?** | Des **Custom Formats** (points sur le nom de fichier) + **tailles** cibles + **10 profils** `FR-*`, calibrés sur de **vraies releases** (C411, Torr9, …). |
+| **Quelle solution ?** | Des **Custom Formats** (points sur le nom de fichier) + **tailles** cibles + **8 profils** `FR-*`, calibrés sur de **vraies releases** (C411, Torr9, …). |
 | **Principe n°1** | **Langue d’abord** (écart ~1k–1,5k entre paliers, plafond **8k**) — puis équipe, puis image/son. |
 | **Principe n°2** | On lit ce que **Radarr peut lire** : le **titre** et la **taille** — pas le MediaInfo, pas les slots C411. |
 | **Principe n°3** | **Encodes compacts** pour la maison (HEVC, 4KLight, WEB par équipes) — **pas** remux catalogue / AV1 / full disc. |
@@ -94,7 +94,7 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 | **Choix retenu** | Score **−999999** (jamais sélectionné) sur ces CF. |
 | **Pourquoi** | Un malus « fort » peut encore perdre sur un edge case ; −999999 garantit l’intention même avec d’autres CF positifs. |
 | **Fichiers** | `ops/06`, CF `Remux`, `AV1`, `Full Disc`, etc. |
-| **Ne pas** | Assouplir pour « un film en remux » sans profil dédié `FR-Films-Any` + conscience du ratio. |
+| **Ne pas** | Assouplir pour « un film en remux » sans conscience du ratio (les profils films excluent le remux). |
 
 ### 5. Repacks : `doNotPrefer` natif + CF `FR-Repack*`
 
@@ -213,7 +213,7 @@ Détail par CF : [langue.md](langue.md), [equipes.md](equipes.md), [image-son.md
 | [limites.md](limites.md) | **Profil tracker vs archive Plex** ; torrent / `.mkv` ; workflow tinyMediaManager ; tests `ops/12` |
 | [hors-scope.md](hors-scope.md) | Slots, rejets, roadmap |
 | [tailles.md](../installer/tailles.md) | Tableaux Mo/min Radarr/Sonarr/Anime |
-| [profils.md](../installer/profils.md) | Liste des 10 profils `FR-*` |
+| [profils.md](../installer/profils.md) | Liste des 8 profils `FR-*` |
 | [maintenir.md](../contribuer/maintenir.md) | CI, structure `ops/`, règles de mise à jour doc |
 
 ---

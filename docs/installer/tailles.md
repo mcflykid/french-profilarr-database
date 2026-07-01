@@ -51,7 +51,7 @@ Exemple *Up in the Air* (~109 min) avec l’ancien `min = 900` sur Bluray-1080p 
 | **Bluray-2160p** | 17 | **50** | 250 | 4KLight ~2,5–8 Go ; plafond ~30 Go |
 | **WEB 2160p** | 17 | **95** | 250 | 4KLight WEBRip ~2,5–5 Go **passe** ; **SUPPLY** compact ~10–14 Go ; DV/Atmos ~17–26 Go ; plafond ~30 Go |
 
-Qualités de secours (`FR-Films-Any` : Unknown, SDTV, DVD, WEBDL-480p, HDTV, Raw-HD) : `min 0`, `max` plafonné (40–150 selon la qualité), `preferred` aligné sur la résolution équivalente — plus de `preferred 1990` qui visait « le plus gros possible ».
+Qualités de secours (720p/HDTV en fallback des profils films) : `min` anti-junk, `max` plafonné, `preferred` aligné sur la résolution équivalente — plus de `preferred 1990` qui visait « le plus gros possible ».
 
 #### Sonarr — `FR-Media-Sonarr` (séries)
 
