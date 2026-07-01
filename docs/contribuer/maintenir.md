@@ -36,7 +36,7 @@ ops/
   03-custom-formats.sql  # 70 CF (include_in_rename = 0)
   04-custom-format-conditions.sql
   05-custom-format-tags.sql
-  06-quality-profiles.sql   # 9 profils FR-* + scores
+  06-quality-profiles.sql   # 10 profils FR-* + scores
   07-media-management.sql   # FR-Media-Radarr, FR-Delay-Radarr
   09-profile-media-bundles.sql  # FR-Delay-Sonarr
   10-profile-ui-tags.sql

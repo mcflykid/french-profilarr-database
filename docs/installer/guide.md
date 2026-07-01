@@ -58,7 +58,7 @@ Les **trois** menus doivent pointer vers le **même** nom.
 
 #### Profils qualité
 
-Radarr : `FR-Films-720p`, `FR-Films-1080p`, `FR-Films-4K`  
+Radarr : `FR-Films-720p`, `FR-Films-1080p`, `FR-Films-4K`, `FR-Films-Any`  
 Sonarr : `FR-Series-*`, `FR-Anime-*` → **Save** → **Sync**.
 
 Logs `arr.sync.* (skipped)` = config instance **pas encore enregistrée** — pas une erreur SQL du dépôt.
