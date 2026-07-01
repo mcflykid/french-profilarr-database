@@ -93,7 +93,7 @@ Sur C411, les **filtres UI** ne sont pas dans Radarr : ce sont des raccourcis de
 | **2D / 3D / 3D FSBS / HSBS** | `3D`, `SBS`, `half-OU`… | CF `3D` ; 3D souvent malusé / rare |
 | **H.262 / H.263** | Très rare en scène FR actuelle | Non prioritaire |
 
-**À retenir** : filtrer sur C411 **MULTI + 1080p + H.265** ne garantit pas le même tri que Radarr : chez toi, la **langue** (scores 60k–100k) et les **équipes** (`FR-Team-*`) pèsent en plus des filtres « technique ».
+**À retenir** : filtrer sur C411 **MULTI + 1080p + H.265** ne garantit pas le même tri que Radarr : chez toi, la **langue** (jusqu'à 8k, 1er tri) et les **équipes** (`FR-Team-*`, ~5,5k) pèsent en plus des filtres « technique ».
 
 Quand tu calibres une équipe, note quels **filtres C411** tu utilises souvent — ça aide à choisir le profil (`FR-Films-1080p` vs `FR-Films-4K`) et les tailles `ops/07`.
 
