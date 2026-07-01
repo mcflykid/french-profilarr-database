@@ -269,6 +269,12 @@ INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, 
 SELECT 'FR-VFF', 'Pas de tag MULTI', 'release_title', 'all', 1, 1
 FROM custom_formats cf WHERE cf.name = 'FR-VFF';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-VFF', 'Pas de tag VF2', 'release_title', 'all', 1, 1
+FROM custom_formats cf WHERE cf.name = 'FR-VFF';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-VFF', 'Pas de tag VFQ', 'release_title', 'all', 1, 1
+FROM custom_formats cf WHERE cf.name = 'FR-VFF';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
 SELECT 'FR-Repack-2', 'Repack — 2e itération', 'release_title', 'all', 0, 1
 FROM custom_formats cf WHERE cf.name = 'FR-Repack-2';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
@@ -805,6 +811,10 @@ INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expr
 SELECT 'FR-MULTI-ambig', 'MULTI sans précision FR', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-MULTI-ambig';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'FR-VFF', 'Pas de tag MULTI', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-MULTI';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-VFF', 'Pas de tag VF2', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-VF2';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-VFF', 'Pas de tag VFQ', re.name FROM regular_expressions re WHERE re.name = 'FR-Regex-VFQ';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'FR-Repack-2', 'Repack — 2e itération', re.name FROM regular_expressions re WHERE re.name = 'FR-Repack-2';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
