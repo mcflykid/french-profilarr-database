@@ -1040,3 +1040,29 @@ FROM custom_format_conditions c WHERE c.custom_format_name = 'FR-Tres-Lourd-1080
 INSERT INTO condition_sizes (custom_format_name, condition_name, min_bytes, max_bytes)
 SELECT 'FR-Tres-Lourd-1080p', 'Taille 8 Gio et plus', 8589934592, 1099511627776
 FROM custom_format_conditions c WHERE c.custom_format_name = 'FR-Tres-Lourd-1080p' AND c.name = 'Taille 8 Gio et plus';
+
+-- Malus poids 2160p (Radarr) : même logique que 1080p — préférence 4K compacts.
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Lourd-2160p', '2160p', 'resolution', 'radarr', 0, 1
+FROM custom_formats cf WHERE cf.name = 'FR-Lourd-2160p';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Lourd-2160p', 'Taille 20 Gio et plus', 'size', 'radarr', 0, 1
+FROM custom_formats cf WHERE cf.name = 'FR-Lourd-2160p';
+INSERT INTO condition_resolutions (custom_format_name, condition_name, resolution)
+SELECT 'FR-Lourd-2160p', '2160p', '2160p'
+FROM custom_format_conditions c WHERE c.custom_format_name = 'FR-Lourd-2160p' AND c.name = '2160p';
+INSERT INTO condition_sizes (custom_format_name, condition_name, min_bytes, max_bytes)
+SELECT 'FR-Lourd-2160p', 'Taille 20 Gio et plus', 21474836480, 1099511627776
+FROM custom_format_conditions c WHERE c.custom_format_name = 'FR-Lourd-2160p' AND c.name = 'Taille 20 Gio et plus';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Tres-Lourd-2160p', '2160p', 'resolution', 'radarr', 0, 1
+FROM custom_formats cf WHERE cf.name = 'FR-Tres-Lourd-2160p';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Tres-Lourd-2160p', 'Taille 28 Gio et plus', 'size', 'radarr', 0, 1
+FROM custom_formats cf WHERE cf.name = 'FR-Tres-Lourd-2160p';
+INSERT INTO condition_resolutions (custom_format_name, condition_name, resolution)
+SELECT 'FR-Tres-Lourd-2160p', '2160p', '2160p'
+FROM custom_format_conditions c WHERE c.custom_format_name = 'FR-Tres-Lourd-2160p' AND c.name = '2160p';
+INSERT INTO condition_sizes (custom_format_name, condition_name, min_bytes, max_bytes)
+SELECT 'FR-Tres-Lourd-2160p', 'Taille 28 Gio et plus', 30064771072, 1099511627776
+FROM custom_format_conditions c WHERE c.custom_format_name = 'FR-Tres-Lourd-2160p' AND c.name = 'Taille 28 Gio et plus';

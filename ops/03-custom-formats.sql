@@ -18,6 +18,8 @@ INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FLAC'
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-4KLight', 'Tag 4KLight (Bluray UHD allégé). Fort bonus 4K : prioritaire sur WEBRip/WEB seul (profils 4K).', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Blockers', 'Groupes bannis, GPU encode (NVENC/QSV/AMF), incohérences REMUX+encodeur. Score très négatif.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-HDLight', 'Tag HDLight (Bluray allégé). Utile 720p/1080p ; rare en 2160p.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Lourd-2160p', 'Release 2160p de 20 Gio ou plus (Radarr). Malus poids : préférence aux encodes 4K compacts (4KLight, WEBRip premium ~4 Gio).', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Tres-Lourd-2160p', 'Release 2160p de 28 Gio ou plus (Radarr). Malus additionnel, cumulé avec FR-Lourd-2160p contre les très gros fichiers.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Lourd-1080p', 'Release 1080p de 5 Gio ou plus (Radarr). Malus poids : préférence aux encodes légers type HDLight ou x265 compact.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Tres-Lourd-1080p', 'Release 1080p de 8 Gio ou plus (Radarr). Malus additionnel, cumulé avec FR-Lourd-1080p contre les très gros fichiers.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Hybrid', 'Tag HYBRID (Bluray hybride UHD). Bonus modéré si annoncé.', 0);

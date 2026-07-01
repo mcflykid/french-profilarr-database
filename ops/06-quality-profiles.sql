@@ -1291,6 +1291,12 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Films-4K', 'FR-4KLight', 'all', 3000
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-4K', 'FR-Lourd-2160p', 'radarr', -1200
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-4K', 'FR-Tres-Lourd-2160p', 'radarr', -1800
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-4K', 'FR-Lourd-1080p', 'radarr', -1200
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
@@ -2259,6 +2265,12 @@ SELECT 'FR-Films-Any', 'FR-Streamer-Premium', 'all', 300
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-Any';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-Any', 'FR-Streamer-Standard', 'all', 180
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-Any';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-Any', 'FR-Lourd-2160p', 'radarr', -1200
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-Any';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-Any', 'FR-Tres-Lourd-2160p', 'radarr', -1800
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-Any';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-Any', 'FR-Lourd-1080p', 'radarr', -1200
