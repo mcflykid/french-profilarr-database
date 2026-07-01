@@ -23,7 +23,7 @@ Ensuite : [principes.md](comprendre/principes.md) (synthèse) → pages thémati
 |---------|-----------------|
 | [guide.md](installer/guide.md) | Pull, Compile, Sync, ordre Save, checklist Radarr/Sonarr, Docker |
 | [interface.md](installer/interface.md) | Sync, Drift, Upgrades, lecture du score 22k/60k |
-| [profils.md](installer/profils.md) | 8 profils `FR-*`, exclusions, tags UI |
+| [profils.md](installer/profils.md) | 9 profils `FR-*`, exclusions, tags UI |
 | [tailles.md](installer/tailles.md) | Mo/min, tableaux Radarr/Sonarr/Anime, delays, limite API 2000 |
 
 ---

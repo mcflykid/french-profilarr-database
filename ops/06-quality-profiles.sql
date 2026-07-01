@@ -1890,3 +1890,188 @@ FROM quality_profiles qp WHERE qp.name = 'FR-Series-720p';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Series-720p', 'FR-Repack', 'all', 78
 FROM quality_profiles qp WHERE qp.name = 'FR-Series-720p';
+
+-- FR-Films-720p restauré (symétrie 720p/1080p/4K par catégorie) — profil conservé mais peu utilisé.
+INSERT INTO quality_profiles (name, description, upgrades_allowed, minimum_custom_format_score, upgrade_until_score, upgrade_score_increment) VALUES ('FR-Films-720p', 'Profil Radarr 720p — trackers scène FR. Objectif : encodes compacts, langue FR, audio modéré. Priorité : langue FR + équipes FR. Exclut : Remux, Full Disc, AV1, Upscaled.', 1, 0, 60000, 500);
+INSERT INTO quality_groups (quality_profile_name, name)
+SELECT 'FR-Films-720p', '720p Quality' FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-720p', '720p Quality', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-720p', '720p Quality', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-720p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-720p', '720p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-720p';
+INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
+SELECT qp.name, qg.name, 0, 1
+FROM quality_profiles qp, quality_groups qg
+WHERE qp.name = 'FR-Films-720p' AND qg.quality_profile_name = qp.name AND qg.name = '720p Quality';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Films-720p', '720p' FROM tags t WHERE t.name = '720p';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Films-720p', 'French' FROM tags t WHERE t.name = 'French';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Films-720p', 'Radarr' FROM tags t WHERE t.name = 'Radarr';
+INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
+SELECT 'FR-Films-720p', 'Films' FROM tags t WHERE t.name = 'Films';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-MULTI-VF2', 'all', 8000
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-MULTI-VFF', 'all', 7000
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-MULTI-ambig', 'all', 5500
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-VF2', 'all', 6000
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-VFF', 'all', 5000
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-MULTI-VFQ', 'all', 4500
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-VFQ', 'all', 4000
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-VOSTFR', 'all', 1500
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-QTZ', 'all', 5500
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-Neostark', 'all', 5300
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-AMEN', 'all', 5200
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-BONBON', 'all', 5000
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-TyHD', 'all', 4900
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-THESYNDiCATE', 'all', 4500
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-SUPPLY', 'all', 4800
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-BOUC', 'all', 4300
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-TFA', 'all', 4200
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-FW', 'all', 4000
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-ENIGMA', 'all', 3300
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-TOXIC', 'all', 3400
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-Slay3R', 'all', 3200
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-PopHD', 'all', 3500
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-Winks', 'all', 3600
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-OZEF', 'all', 800
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Team-HYPERION', 'all', 800
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Tier-01', 'all', 800
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Tier-02', 'all', 400
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'Atmos', 'all', 520
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'TrueHD', 'all', -350
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Audio-71', 'all', -400
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'DTS-X', 'all', 520
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'DTS-HD MA', 'all', 325
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'Dolby Digital +', 'all', 227
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'Dolby Digital', 'all', 52
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'AAC', 'all', 32
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FLAC', 'all', 227
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'x265', 'all', 700
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'h265', 'all', 600
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'Xvid', 'all', -80
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'IMAX', 'all', 650
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'IMAX Enhanced', 'all', 845
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'Theatrical', 'all', 65
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', '3D', 'all', -50
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Streamer-Premium', 'all', 195
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Streamer-Standard', 'all', 117
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-HDLight', 'all', 200
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Blockers', 'all', -999999
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'Remux', 'all', -999999
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'Full Disc', 'all', -999999
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'AV1', 'all', -999999
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'Upscaled', 'all', -999999
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Repack-3', 'all', 175
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Repack-2', 'all', 117
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-720p', 'FR-Repack', 'all', 78
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-720p';

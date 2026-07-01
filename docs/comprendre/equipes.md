@@ -19,7 +19,7 @@ Détection : suffixe **`-TEAM`** dans le titre (`(?<=^|[\s.-])TEAM\b`, insensibl
 
 On **n’utilise pas** le modèle [Profilarr-database-french-regex](https://github.com/Jojont54/Profilarr-database-french-regex) (~900 fichiers / team) : coût de maintenance >> gain sur les cas observés.
 
-### Scores équipes (identiques sur les 8 profils)
+### Scores équipes (identiques sur les 9 profils)
 
 | Équipe | Score | Profil typique / calibrage |
 |--------|------:|----------------------------|
