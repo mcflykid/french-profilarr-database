@@ -122,6 +122,10 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
+| 2026-07 | **Échelles fallback** | Plus de rejet « rien trouvé » : profils **4K** = 720p < 1080p < **2160p** (cutoff), profils **1080p** = 720p < **1080p**, `FR-Films-Any` = **SD < 720p < 1080p < 2160p** ; upgrade auto de qualité vers le cutoff (⚠️ re-téléchargement quand la meilleure qualité sort — coût ratio assumé). Hiérarchie perso : **4KLight > 4K > HDLight > 1080p > 720p** |
+| 2026-07 | **Malus poids 1080p** | `FR-Lourd-1080p` **−1200** (≥ 5 Gio) et `FR-Tres-Lourd-1080p` **−1800** cumulé (≥ 8 Gio) — préférence fichiers légers (HDLight, x265 compact) vs gros Bluray audio-premium ; **Radarr seul** (season packs Sonarr fausseraient la taille) ; 1er usage de `condition_sizes`. Limite connue : taille absolue, un film de 3 h peut être malusé à tort |
+| 2026-07 | **HDLight sur profils 4K** | `FR-HDLight` **+250** ajouté aux 3 profils 4K (cohérence fallback 1080p) ; rappel parser : HDLight « nu » (sans mot-source) deviné HDTV/WEBDL de façon instable par Radarr — les CF tags scorent quand même |
+| 2026-07 | **Profils Radarr** | `FR-Films-Any` conservé (Radarr refuse la suppression) et recalé SD → 4K ; `FR-Films-720p` restauré pour la symétrie 3 profils par catégorie (10 profils au total) |
 | 2026-06 | **Tailles : planchers anti-junk** | Fin des rejets « taille trop petite » : `min` WEB 2160p **34,5 → 17** (les 4KLight/WEBRip ~2,5–5 Go scorés +5000 étaient rejetés), 1080p **→ 8**, 720p **→ 5** (Radarr + Sonarr séries) |
 | 2026-06 | **Tailles : plafonds anti-obèses** | `max` réels par qualité (films : 2160p **250** ≈ 30 Go, 1080p **150** ≈ 18 Go @120 min ; séries : 100–150 ; animé : 40–120) — borne dure contre les encodes hors cible scène FR compacte ; premium DV/Atmos ~17–26 Go toujours accepté |
 | 2026-06 | **Anti-churn upgrades** | `upgrade_score_increment` **1 → 500** (10 profils) : pas de re-téléchargement complet pour un gain CF < 500 (Repack +120, Season Pack +120, x265 vs h265 +150) — protège ratio et cross-seed |
