@@ -197,6 +197,8 @@ VALUES
     ('FR-VFF', 'Enola.Holmes.3.2026.FRENCH.VF2.1080p.WEBRip.x264.EAC3.Atmos.5.1-Floppy', 'movie', 0, 'Torr9 Enola — FRENCH.VF2 : palier FR-VF2 seul, pas FR-VFF (cumul 2026-07)'),
     ('FR-VF2', 'Enola.Holmes.3.2026.FRENCH.VF2.1080p.WEBRip.x264.EAC3.Atmos.5.1-Floppy', 'movie', 1, 'Torr9 Enola — FRENCH.VF2 → FR-VF2'),
     ('FR-VFF', 'Film.2024.FRENCH.1080p.WEB.H264-TEAM', 'movie', 1, 'FRENCH seul → FR-VFF inchangé'),
+    ('FR-MULTI-VFF', 'Film.2024.MULTI.TRUEFRENCH.VF2.1080p.WEB.H264-TEAM', 'movie', 0, 'TRUEFRENCH+VF2 : palier FR-MULTI-VF2 seul (un palier langue par release)'),
+    ('FR-MULTI-VF2', 'Film.2024.MULTI.TRUEFRENCH.VF2.1080p.WEB.H264-TEAM', 'movie', 1, 'TRUEFRENCH+VF2 → FR-MULTI-VF2'),
     ('FR-MULTI-VF2', 'Film.2024.VOSTFR.WEB-DL.1080p.x264-TEAM', 'movie', 0, 'Test parser — FR-MULTI-VF2 : ne doit pas correspondre (release réelle)'),
     ('FR-MULTI-VF2', 'Incendies.2010.MULTI.VOQ.2160p.BluRay.DDP.x265-QTZ', 'movie', 0, 'MULTI + VOQ — réservé FR-MULTI-VFQ'),
     ('FR-MULTI-VFQ', 'Incendies.2010.MULTI.VOQ.2160p.BluRay.DDP.x265-QTZ', 'movie', 1, 'MULTI + VOQ — FR-MULTI-VFQ'),
