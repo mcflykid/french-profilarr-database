@@ -12,7 +12,7 @@
 python3 scripts/validate.py
 ```
 
-Vérifie : intégrité `ops/`, compile SQLite (schema 1.1.0), descriptions regex sans `*`, **tests calibrage** (`ops/11` titres C411/Torr9/équipes).
+Vérifie : intégrité `ops/`, compile SQLite (schema 1.1.0), descriptions regex sans `*`, **tests calibrage** (`ops/11` titres C411/Torr9/équipes), **cohérence doc ↔ SQL** (`verify_doc_scores.py` : les scores cités dans langue.md / equipes.md / image-son.md et les compteurs README doivent correspondre à `ops/06` — ajouté après une dérive de 7 scores dans image-son.md).
 
 CI GitHub : workflow **Validate PCD** sur chaque push/PR vers `main`.
 
@@ -47,6 +47,7 @@ scripts/
   normalize_descriptions.py
   verify_ops_integrity.py
   verify_pcd_compile.py
+  verify_doc_scores.py    # Cohérence doc <-> SQL (scores, compteurs)
 ```
 
 **Préfixe `FR-`** : spécifique marché français. Le reste reprend Dictionarry (`HDR10+`, `Remux`, …) pour rester **rebaseable**.
