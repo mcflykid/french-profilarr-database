@@ -77,4 +77,4 @@ INSERT INTO regular_expressions (name, pattern, description) VALUES ('TOXIC', '(
 INSERT INTO regular_expressions (name, pattern, description) VALUES ('TyHD', '(?i)(?:^|[\s.-])TyHD\b', 'Groupe TyHD — WEB 2160p HEVC compact. Lié au CF FR-Team-TyHD.');
 INSERT INTO regular_expressions (name, pattern, description) VALUES ('Winks', '(?i)(?:^|[\s.-])Winks\b', 'Groupe Winks — 1080p BluRay/WEB x265 MULTI (C411). Lié au CF FR-Team-Winks.');
 INSERT INTO regular_expressions (name, pattern, description) VALUES ('x264', '^(?!.*(?i:remux)).*(?:[xh][\s.-]?264\b|\bAVC\b|DVDRip)', 'x264, H264, AVC ou DVDRip (C411 Slay3R), hors Remux.');
-INSERT INTO regular_expressions (name, pattern, description) VALUES ('x265', '^(?!.*(?i:remux))(?=.*(?:[xh][\s.-]?265\b|HEVC|\bDS4K\b)).*$', 'x265, H265, HEVC ou DS4K (C411 Slay3R), hors Remux.');
+INSERT INTO regular_expressions (name, pattern, description) VALUES ('x265', '^(?!.*(?i:remux))(?=.*(?:(?i:x[\s.-]?265)\b|\bDS4K\b)).*$', 'Tag x265 littéral ou DS4K, hors Remux. H265/HEVC générique : CF h265 (exclusifs, pas de cumul).');

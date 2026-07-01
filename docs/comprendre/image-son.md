@@ -87,7 +87,7 @@ Conditions **Exclure :** entre AAC, Dolby, DTS, TrueHD, FLAC, etc. → pas de cu
 |----|----------------|
 | **AV1** | -999999 |
 | **x264 (2160p)** | -999999 en 4K |
-| **x265** / **h265** | Bonus 4K ; regex inclut **`H265`** / **`H264`** / **`AVC`** (naming C411) |
+| **x265** / **h265** | Exclusifs : `x265` = tag littéral (+`DS4K`), `h265` = `H265` / `HEVC` — pas de cumul ; bonus sous 4K (à 2160p, HEVC est la norme, pas de bonus) |
 | **VP9** | Malus léger |
 | **Xvid** | Malus fort HD |
 | **FR-Blockers** | -999999 — YIFY, NVENC, REMUX+x264 incohérent, … |

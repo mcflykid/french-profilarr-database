@@ -122,6 +122,7 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
+| 2026-07 | **Fix cumul x265+h265** | La regex `x265` matchait aussi `H265`/`HEVC` déjà couverts par `h265` → +1850 au lieu de +850 sur les titres `H265` (*Enola Holmes 3* FW). `x265` restreint au tag littéral (+`DS4K`) ; 4 tests d'exclusivité |
 | 2026-07 | **Fix double langue VF2** | `FR-VF2` (6000) n'avait pas la condition « Pas de tag MULTI » (présente sur `FR-VFF`/`FR-VFQ`) → chaque `MULTI.VF2` cumulait 8000 + 6000 (*Enola Holmes 3*, +20200 au lieu de +14200). Condition ajoutée + tests. Aussi : **HDTV-2160p** ajouté aux groupes 2160p (parser Radarr devine HDTV quand DV/HDR précède WEB dans le titre) |
 | 2026-07 | **Fix double langue (espaces)** | `FR-MULTI-ambig` matchait aussi les titres à **espaces** (`MULTI VFi` TR4KER) déjà couverts par `FR-MULTI-VFF` → +5500 fantômes (+14200 au lieu de +8700 sur *Detachment*). Lookahead élargi `\.` → `[ ._-]?`. Aussi : `max_bytes` explicite (1 Tio) sur les CF poids |
 | 2026-07 | **Échelles fallback** | Plus de rejet « rien trouvé » : profils **4K** = 720p < 1080p < **2160p** (cutoff), profils **1080p** = 720p < **1080p**, `FR-Films-Any` = **SD < 720p < 1080p < 2160p** ; upgrade auto de qualité vers le cutoff (⚠️ re-téléchargement quand la meilleure qualité sort — coût ratio assumé). Hiérarchie perso : **4KLight > 4K > HDLight > 1080p > 720p** |
