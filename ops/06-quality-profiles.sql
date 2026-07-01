@@ -72,6 +72,8 @@ SELECT 'FR-Anime-4K', '2160p Quality', q.name, 1 FROM qualities q WHERE q.name =
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Anime-4K', '2160p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-2160p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Anime-4K', '2160p Quality', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-2160p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Anime-4K', '1080p Fallback', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-1080p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Anime-4K', '1080p Fallback', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-1080p';
@@ -120,6 +122,8 @@ SELECT 'FR-Films-4K', '2160p Quality', q.name, 1 FROM qualities q WHERE q.name =
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Films-4K', '2160p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-2160p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-4K', '2160p Quality', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-2160p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Films-4K', '1080p Fallback', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-1080p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Films-4K', '1080p Fallback', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-1080p';
@@ -157,6 +161,8 @@ INSERT INTO quality_group_members (quality_profile_name, quality_group_name, qua
 SELECT 'FR-Series-4K', '2160p Quality', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-2160p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Series-4K', '2160p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-2160p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Series-4K', '2160p Quality', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-2160p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Series-4K', '1080p Fallback', q.name, 0 FROM qualities q WHERE q.name = 'Bluray-1080p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
@@ -2331,6 +2337,8 @@ INSERT INTO quality_group_members (quality_profile_name, quality_group_name, qua
 SELECT 'FR-Films-Any', '2160p Quality', q.name, 1 FROM qualities q WHERE q.name = 'WEBDL-2160p';
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Films-Any', '2160p Quality', q.name, 2 FROM qualities q WHERE q.name = 'WEBRip-2160p';
+INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
+SELECT 'FR-Films-Any', '2160p Quality', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-2160p';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
 SELECT qp.name, qg.name, 0, 0
 FROM quality_profiles qp, quality_groups qg
