@@ -18,6 +18,8 @@ INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FLAC'
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-4KLight', 'Tag 4KLight (Bluray UHD allégé). Fort bonus 4K : prioritaire sur WEBRip/WEB seul (profils 4K).', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Blockers', 'Groupes bannis, GPU encode (NVENC/QSV/AMF), incohérences REMUX+encodeur. Score très négatif.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-HDLight', 'Tag HDLight (Bluray allégé). Utile 720p/1080p ; rare en 2160p.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Lourd-1080p', 'Release 1080p de 5 Gio ou plus (Radarr). Malus poids : préférence aux encodes légers type HDLight ou x265 compact.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Tres-Lourd-1080p', 'Release 1080p de 8 Gio ou plus (Radarr). Malus additionnel, cumulé avec FR-Lourd-1080p contre les très gros fichiers.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Hybrid', 'Tag HYBRID (Bluray hybride UHD). Bonus modéré si annoncé.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-MULTI-VF2', 'MULTI + VF2 (dual FR+QC). Meilleur palier langue.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-MULTI-VFF', 'MULTI + précision FR C411 (VFF, VOF, VFI, TRUEFRENCH, MULTI.FRENCH). Pas de MULTI seul.', 0);
