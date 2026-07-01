@@ -122,6 +122,7 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
+| 2026-07 | **Fix DDP5.1 collé** | La regex `Dolby Digital +` ratait `DDP5.1` sans séparateur (*Obsession* BATGirl 4KLight, −500) et `DD+` littéral ; `DDP.5.1` pointé passait. Pattern élargi, `DDPA` (bundle Atmos) toujours exclu |
 | 2026-07 | **Malus poids 2160p** | `FR-Lourd-2160p` **−1200** (≥ 20 Gio) et `FR-Tres-Lourd-2160p` **−1800** cumulé (≥ 28 Gio), Radarr seul, sur `FR-Films-4K`/`FR-Films-Any` — symétrique du malus 1080p ; le premium 17–26 Gio reste accepté mais passe derrière les 4K compacts (*Michael* : SUPPLY 22,9 Gio 16600 → 15400, Amen 3,9 Gio 18650 inchangé) |
 | 2026-07 | **Fix casse DTS + audit exclusivité** | La regex d'exclusion `DTS-HD HRA ES` était sensible à la casse (seule sans `(?i)`) → `DTS-ES`/`DTS-HD.HRA` en majuscules cumulaient avec `DTS`/`DTS-HD MA`. Audit systématique sur 248 titres réels (langue, codecs, audio, HDR) : plus aucun cumul |
 | 2026-07 | **Fix cumul VFF+VF2** | `FR-VFF` (5000, via `FRENCH`) se cumulait avec `FR-VF2` (6000) sur les titres `FRENCH.VF2` (*Enola* Floppy, +12150 au lieu de +7150). Négations « Pas de tag VF2 / VFQ » ajoutées à `FR-VFF` — un seul palier langue par release |

@@ -200,6 +200,8 @@ VALUES
     ('FR-MULTI-VFF', 'Film.2024.MULTI.TRUEFRENCH.VF2.1080p.WEB.H264-TEAM', 'movie', 0, 'TRUEFRENCH+VF2 : palier FR-MULTI-VF2 seul (un palier langue par release)'),
     ('FR-MULTI-VF2', 'Film.2024.MULTI.TRUEFRENCH.VF2.1080p.WEB.H264-TEAM', 'movie', 1, 'TRUEFRENCH+VF2 → FR-MULTI-VF2'),
     ('DTS', 'Movie.DTS-ES.DD5.1.720p.BluRay.x264-GROUP', 'movie', 0, 'DTS-ES majuscules : exclusion casse (fix (?i) 2026-07) — DTS-ES seul'),
+    ('Dolby Digital +', 'Obsession.2025.MULTI.VF2.2160p.4KLight.DV.HDR.WEBRip.HEVC.DDP5.1.Atmos-PSA-BATGirl', 'movie', 1, 'C411 Obsession — DDP5.1 collé → DD+ (fix 2026-07)'),
+    ('Dolby Digital', 'Obsession.2025.MULTI.VF2.2160p.4KLight.DV.HDR.WEBRip.HEVC.DDP5.1.Atmos-PSA-BATGirl', 'movie', 0, 'DDP5.1 = DD+, pas DD'),
     ('DTS-HD MA', 'Film.DTS-HD.HRA.5.1.720p.BluRay.x264-GROUP', 'movie', 0, 'DTS-HD.HRA majuscules : pas MA (fix (?i) 2026-07)'),
     ('FR-MULTI-VF2', 'Film.2024.VOSTFR.WEB-DL.1080p.x264-TEAM', 'movie', 0, 'Test parser — FR-MULTI-VF2 : ne doit pas correspondre (release réelle)'),
     ('FR-MULTI-VF2', 'Incendies.2010.MULTI.VOQ.2160p.BluRay.DDP.x265-QTZ', 'movie', 0, 'MULTI + VOQ — réservé FR-MULTI-VFQ'),
