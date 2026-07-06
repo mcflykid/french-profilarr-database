@@ -70,7 +70,7 @@ Conditions **Exclure :** entre AAC, Dolby, DTS, TrueHD, FLAC, etc. → pas de cu
 | **DTS** | **-300** | **-300** | DTS simple — transcode ATV |
 | **FLAC** | **-300** | **-300** | Lossless |
 | **PCM** | **-300** | **-300** | Lossless non compressé |
-| **FR-Audio-71** (titre `7.1`) | **-400** | **-400** | Pas de setup **7.1** — TV normale seulement |
+| **FR-Audio-71** (titre `7.1`) | **-800** | **-800** | Rien au-dessus de 5.1 voulu — un 7.1 perd nettement face au 5.1 |
 | **Dolby Digital** | 120 | 80 | AC3 / **5.1** dans le titre — repli après DD+ |
 
 **5.1 vs 7.1** : pas de CF bonus « 5.1 » (déjà couvert par `EAC3.5.1` / `AC3.5.1` → DD+ / DD). Le malus **`7.1`** reflète l’usage réel : **aucun matériel surround 7.1**, lecture sur **TV classique** — une piste 7.1 n’améliore pas l’écoute, elle favorise souvent les gros Blu-ray (`TrueHD 7.1`). On préfère les variantes **`EAC3 5.1`** quand elles existent.
