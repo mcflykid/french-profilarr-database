@@ -148,18 +148,16 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 | **Pourquoi** | Radarr **ne expose pas** ces signaux à la sélection ; faux sentiment de conformité C411 serait pire qu’une doc honnête. |
 | **Ne pas** | Ajouter MUET « parce que C411 » sans API Radarr fiable sur la piste muette dans le titre. |
 
-### 10. TrueHD malusé (foyer Plex + Apple TV 4K)
+### 10. Audio objets / lossless malusés — cible DD+ 5.1 (révisé 2026-07)
 
 | | |
 |--|--|
-| **Contexte** | TrueHD en Direct Play rare sur Apple TV 4K ; transcodage audio serveur (ex. TrueHD → FLAC) confirmé terrain (Tautulli). Foyer : ATV 4K v1/v2, Freebox ; Shield 2017 secondaire. |
-| **Alternative écartée** | Garder TrueHD +1800 en 4K (qualité « max » sur le papier). |
-| **Choix retenu** | **TrueHD −800** (4K), **−500** (1080p), **−350** (720p) ; **Atmos** / **DD+** inchangés. |
-| **Pourquoi** | Même équipe et langue : `…EAC3.5.1.Atmos…` gagne sur `…TrueHD.7.1.Atmos…` — moins de charge NAS, meilleur Direct Play ATV. |
+| **Contexte** | Aucun ampli/AVR : enceintes TV (Toshiba sans Atmos, TCL Atmos virtuel 2.1) et **AirPods Pro 2** via Apple TV. Un flux **E-AC-3 JOC (DDP Atmos)** force l'ATV à décoder les objets + spatialiser en Bluetooth → **micro-lags** constatés (*Enola Holmes 3*, fichier sain). TrueHD : transcodage serveur confirmé (Tautulli). |
+| **Alternative écartée** | Garder les bonus Atmos/DTS:X (« qualité max sur le papier ») — décision 2026-05, inversée avec le nouveau terrain AirPods. Rejet dur (−999999) écarté : trop de bons WEB FR taggés `DDP.Atmos`. |
+| **Choix retenu** | **Atmos / DTS:X / TrueHD −1500**, **DTS-HD MA −800**, **FLAC/PCM −300** (10 profils) ; **DD+ 5.1 / DD 5.1** deviennent l'audio cible. |
+| **Pourquoi** | Le tag audio le plus « premium » n'apporte rien sans matériel dédié et coûte du décodage ; à qualité égale un `…EAC3.5.1…` simple bat un `…DDP.Atmos…`, qui reste grabable s'il est seul. |
 | **Fichiers** | `ops/06`, [image-son.md](image-son.md) |
-| **Ne pas** | Remettre TrueHD en bonus fort sans revoir la cible lecteurs. |
-
-**Atmos (ne pas confondre)** — fiches TV : **Toshiba 58U2963DG** = Dolby Audio, **pas** d’Atmos TV ; **TCL 55QLED780K** = Atmos **virtuel** 2.1 seulement. L’immersion « plafond » n’existe pas sans barre/AVR. On **garde le bonus Atmos** : pas un coût disque comme TrueHD/7.1, mais un **repère titre** vers le WEB `DDP`/`EAC3` (léger, Direct Play). **Aucune raison** de maluser ou retirer ce CF tant que la chaîne reste ATV→Plex→TV. Détail : [image-son.md](image-son.md) (foyers + tableau « garder Atmos »).
+| **Ne pas** | Remettre Atmos/TrueHD en bonus sans barre Atmos/AVR réel ; oublier que Radarr ne voit pas le **JOC non taggé** (filet : format audio forcé DD 5.1 sur l'ATV). |
 
 ### 11. Préférence 5.1 (malus `7.1` dans le titre)
 
