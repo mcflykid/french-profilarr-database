@@ -1066,3 +1066,23 @@ FROM custom_format_conditions c WHERE c.custom_format_name = 'FR-Tres-Lourd-2160
 INSERT INTO condition_sizes (custom_format_name, condition_name, min_bytes, max_bytes)
 SELECT 'FR-Tres-Lourd-2160p', 'Taille 28 Gio et plus', 30064771072, 1099511627776
 FROM custom_format_conditions c WHERE c.custom_format_name = 'FR-Tres-Lourd-2160p' AND c.name = 'Taille 28 Gio et plus';
+
+-- Malus poids episode 1080p (Sonarr) : episode seul >= 3,5 Gio, packs de saison exclus.
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Lourd-Episode-1080p', '1080p', 'resolution', 'sonarr', 0, 1
+FROM custom_formats cf WHERE cf.name = 'FR-Lourd-Episode-1080p';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Lourd-Episode-1080p', 'Taille 3,5 Gio et plus', 'size', 'sonarr', 0, 1
+FROM custom_formats cf WHERE cf.name = 'FR-Lourd-Episode-1080p';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Lourd-Episode-1080p', 'Exclure : pack de saison', 'release_type', 'sonarr', 1, 1
+FROM custom_formats cf WHERE cf.name = 'FR-Lourd-Episode-1080p';
+INSERT INTO condition_resolutions (custom_format_name, condition_name, resolution)
+SELECT 'FR-Lourd-Episode-1080p', '1080p', '1080p'
+FROM custom_format_conditions c WHERE c.custom_format_name = 'FR-Lourd-Episode-1080p' AND c.name = '1080p';
+INSERT INTO condition_sizes (custom_format_name, condition_name, min_bytes, max_bytes)
+SELECT 'FR-Lourd-Episode-1080p', 'Taille 3,5 Gio et plus', 3758096384, 1099511627776
+FROM custom_format_conditions c WHERE c.custom_format_name = 'FR-Lourd-Episode-1080p' AND c.name = 'Taille 3,5 Gio et plus';
+INSERT INTO condition_release_types (custom_format_name, condition_name, release_type)
+SELECT 'FR-Lourd-Episode-1080p', 'Exclure : pack de saison', 'season_pack'
+FROM custom_format_conditions c WHERE c.custom_format_name = 'FR-Lourd-Episode-1080p' AND c.name = 'Exclure : pack de saison';

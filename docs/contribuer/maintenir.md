@@ -33,7 +33,7 @@ pcd.json                 # Métadonnées PCD 2.0.0
 ops/
   01-tags.sql            # Tags UI
   02-regex.sql           # 76 motifs (pattern = détection)
-  03-custom-formats.sql  # 76 CF (include_in_rename = 0)
+  03-custom-formats.sql  # 77 CF (include_in_rename = 0)
   04-custom-format-conditions.sql
   05-custom-format-tags.sql
   06-quality-profiles.sql   # 10 profils FR-* + scores

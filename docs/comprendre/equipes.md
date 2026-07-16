@@ -29,7 +29,7 @@ On **n’utilise pas** le modèle [Profilarr-database-french-regex](https://gith
 | **FR-Team-BONBON** | 5 000 | 4KLight / WEBRip ~2,5–5 Go |
 | **FR-Team-TyHD** | 4 900 | WEB 2160p HEVC compact |
 | **FR-Team-THESYNDiCATE** | 4 500 | WEB 2160p x265 |
-| **FR-Team-SUPPLY** | 4 000 | WEB 2160p premium DV/HDR. **Baissé de 4 800 (2026-07)** — *pas* une faute de l'équipe : SUPPLY nomme **sobrement** (`MULTi.1080p.WEB.H265-SUPPLY`, cf. Torr9) et son `.mkv` interne suit cette convention ; c'est **C411 qui enrichit le titre du torrent** (+`VFF`, +`EAC3.5.1` = **+1850**) sans renommer le fichier. Le score C411 est donc gonflé de 1850 et ne survit pas à l'import → le −800 compense en partie. Leur H265 et leur 4K DV restent devant (Silo 2160p ≈ 17 200) |
+| **FR-Team-SUPPLY** | 4 800 | WEB 2160p premium DV/HDR (C411). Score **rendu** après un malus injustifié (2026-07) : leurs fichiers **contiennent bien** VFF + EAC3 — l'**obligation de nommage C411 garantit** ce qu'il y a dedans. Si le score chute de **1850** à l'import, c'est une **perte d'information** (le `.mkv`, nommé sobrement à la Torr9, n'a pas cette obligation), pas un défaut de qualité. La préférence « compact » passe par les malus **poids**, pas par le score équipe |
 | **FR-Team-BOUC** | 4 300 | WEB 2160p premium MULTI |
 | **FR-Team-TFA** | 4 200 | WEB 2160p catalogue |
 | **FR-Team-FW** | 4 000 | Forward, volume |
