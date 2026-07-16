@@ -38,7 +38,7 @@ Exemple *Up in the Air* (~109 min) avec l’ancien `min = 900` sur Bluray-1080p 
 
 - **`min` = anti-junk seulement** : il ne sert qu'à rejeter les fakes et fichiers cassés (un « 4K » de 800 Mo, un sample). Le tri qualité, c'est le travail des **scores CF**, pas du plancher. Les anciens planchers (ex. `34,5` sur WEB 2160p) rejetaient des releases **légitimes et bien scorées** — typiquement les 4KLight/WEBRip ~2,5–5 Go (Neostark, BONBON) — d'où des « release rejetée : taille trop petite » en recherche.
 - **`max` = garde-fou anti-obèses** : borne dure par grab contre les encodes énormes ou mal taggés, hors cible **scène FR compacte** (et lourds pour le disque comme pour le ratio). Calibré pour laisser passer le **premium documenté** (DV/Atmos ~17–26 Go en 4K film) et bloquer au-delà.
-- Anti-churn complémentaire : `upgrade_score_increment` **500** dans `ops/06` — pas de re-téléchargement complet pour un gain de moins de 500 points CF (Repack +120, Season Pack +120…) ; ça évite aussi de casser le seed/cross-seed pour rien.
+- Anti-churn complémentaire : `upgrade_score_increment` **1400** dans `ops/06` (renforcé 2026-07) — pas de re-téléchargement complet sous +1400 points CF (≈ un palier de langue) ; bloque les boucles grab-vs-import et évite de casser le seed/cross-seed pour rien.
 
 #### Radarr — `FR-Media-Radarr`
 

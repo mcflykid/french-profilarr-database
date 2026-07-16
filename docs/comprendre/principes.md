@@ -57,13 +57,13 @@ Tableau rapide — le détail « contexte / alternative / ne pas casser » est d
 
 | Profil type | `minimum_custom_format_score` | `upgrade_until_score` | `upgrade_score_increment` |
 |-------------|------------------------------:|----------------------:|--------------------------:|
-| Films 1080p | **400** | **60000** | **500** |
-| Films / Series / Anime **4K** | **500** | **60000** | **500** |
-| Series / Anime 1080p/720p, Films 720p/Any | **0** | **60000** | **500** |
+| Films 1080p | **400** | **60000** | **1400** |
+| Films / Series / Anime **4K** | **500** | **60000** | **1400** |
+| Series / Anime 1080p/720p, Films 720p/Any | **0** | **60000** | **1400** |
 
 **Philosophie scoring** (trackers FR, 2026-05) : la **langue** = **1er tri** (écart **1k–1,5k** entre paliers, max **8k**). La **qualité** (équipe **~5,5k**, DV/HDR **~3,5k**, Atmos **~2,5k**, x265, 4KLight) **décide** entre deux releases déjà françaises. Top ≈ **22k–28k** ; plafond upgrades **60k**. Tailles : preset media `ops/07` (Mo/min).
 
-**Incrément 500 (2026-06, anti-churn)** : un upgrade n'est re-téléchargé que s'il rapporte **au moins +500** points CF — un vrai saut (palier langue, équipe supérieure, DV vs HDR10), pas un bonus cosmétique (Repack +120, Season Pack +120, x265 vs h265 +150). Re-télécharger plusieurs Go pour un gain cosmétique n'apporte rien à l'écran et interrompt le seed/cross-seed.
+**Incrément 1400 (2026-07, anti-churn renforcé)** : un upgrade n'est re-téléchargé que s'il rapporte **au moins +1400** points CF ≈ **un palier de langue complet** (ex. `MULTI` ambigu → `MULTI.VFF` = +1500). En dessous, pas de re-téléchargement : ni équipe légèrement supérieure, ni codec (x265 vs h265 +150/+850), ni bonus cosmétique (Repack +120, Season Pack +120). **Pourquoi si haut** : bloque les **boucles grab-vs-import** — une release au titre gonflé (ex. SUPPLY `…VFF…H264` scoré au grab mais dont le `.mkv` générique retombe plus bas à l'import) ping-pongait sans fin avec une release stable ([limites.md — grab vs import](../comprendre/limites.md#grab-vs-import-pourquoi-ça-bloque)). L'ancien 500 laissait passer ces écarts (~1200). Compromis assumé : moins d'upgrades marginaux, mais fini les re-téléchargements en boucle — cohérent avec la priorité **ratio / cross-seed / fichiers compacts**.
 
 ---
 
