@@ -29,7 +29,7 @@ On **n’utilise pas** le modèle [Profilarr-database-french-regex](https://gith
 | **FR-Team-BONBON** | 5 000 | 4KLight / WEBRip ~2,5–5 Go |
 | **FR-Team-TyHD** | 4 900 | WEB 2160p HEVC compact |
 | **FR-Team-THESYNDiCATE** | 4 500 | WEB 2160p x265 |
-| **FR-Team-SUPPLY** | 4 800 | WEB 2160p premium DV/HDR/Atmos (C411) |
+| **FR-Team-SUPPLY** | 4 000 | WEB 2160p premium DV/HDR (C411). **Baissé de 4 800 (2026-07)** : `.mkv` interne générique (perd VFF/EAC3 → écart grab-vs-import, cf. churn HotD). Leur H264 perd désormais face à une équipe H265 au fichier propre (ex. ENIGMA) ; leur H265 reste devant |
 | **FR-Team-BOUC** | 4 300 | WEB 2160p premium MULTI |
 | **FR-Team-TFA** | 4 200 | WEB 2160p catalogue |
 | **FR-Team-FW** | 4 000 | Forward, volume |
