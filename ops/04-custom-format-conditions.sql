@@ -584,9 +584,6 @@ INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, 
 SELECT 'h265', 'h265', 'release_title', 'all', 0, 1
 FROM custom_formats cf WHERE cf.name = 'h265';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
-SELECT 'h265', 'Exclure : résolution 2160p', 'resolution', 'all', 1, 1
-FROM custom_formats cf WHERE cf.name = 'h265';
-INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
 SELECT 'x264 (2160p)', '2160p', 'resolution', 'all', 0, 1
 FROM custom_formats cf WHERE cf.name = 'x264 (2160p)';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
@@ -594,9 +591,6 @@ SELECT 'x264 (2160p)', 'x264', 'release_title', 'all', 0, 1
 FROM custom_formats cf WHERE cf.name = 'x264 (2160p)';
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
 SELECT 'x265', 'x265', 'release_title', 'all', 0, 1
-FROM custom_formats cf WHERE cf.name = 'x265';
-INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
-SELECT 'x265', 'Exclure : résolution 2160p', 'resolution', 'all', 1, 1
 FROM custom_formats cf WHERE cf.name = 'x265';
 
 -- condition_sources
@@ -621,14 +615,8 @@ INSERT INTO condition_resolutions (custom_format_name, condition_name, resolutio
 SELECT 'UHD Bluray', '1080p', '1080p'
 FROM custom_format_conditions c WHERE c.custom_format_name = 'UHD Bluray' AND c.name = '1080p';
 INSERT INTO condition_resolutions (custom_format_name, condition_name, resolution)
-SELECT 'h265', 'Exclure : résolution 2160p', '2160p'
-FROM custom_format_conditions c WHERE c.custom_format_name = 'h265' AND c.name = 'Exclure : résolution 2160p';
-INSERT INTO condition_resolutions (custom_format_name, condition_name, resolution)
 SELECT 'x264 (2160p)', '2160p', '2160p'
 FROM custom_format_conditions c WHERE c.custom_format_name = 'x264 (2160p)' AND c.name = '2160p';
-INSERT INTO condition_resolutions (custom_format_name, condition_name, resolution)
-SELECT 'x265', 'Exclure : résolution 2160p', '2160p'
-FROM custom_format_conditions c WHERE c.custom_format_name = 'x265' AND c.name = 'Exclure : résolution 2160p';
 
 -- condition_release_types
 INSERT INTO condition_release_types (custom_format_name, condition_name, release_type)

@@ -30,6 +30,9 @@ RE_COND = re.compile(
 RE_PATTERN_LINK = re.compile(
     r"SELECT '([^']+)', '([^']+)', re\.name FROM regular_expressions re WHERE re\.name = '([^']+)'"
 )
+RE_RESOLUTION_LINK = re.compile(
+    r"SELECT '([^']+)', '([^']+)', '(480p|576p|720p|1080p|2160p)'"
+)
 RE_TEST = re.compile(
     r"\(\s*'([^']+)',\s*'((?:''|[^'])*)',\s*'(movie|series)',\s*([01]),"
 )
@@ -42,6 +45,7 @@ class Condition:
     negate: bool
     required: bool
     patterns: list[str] = field(default_factory=list)
+    resolutions: list[str] = field(default_factory=list)
 
 
 def unesc(s: str) -> str:
@@ -77,6 +81,9 @@ def load_cf_conditions() -> dict[str, list[Condition]]:
     for cf, cname, rname in RE_PATTERN_LINK.findall(text):
         if cf in cfs and cname in cfs[cf]:
             cfs[cf][cname].patterns.append(rname)
+    for cf, cname, resolution in RE_RESOLUTION_LINK.findall(text):
+        if cf in cfs and cname in cfs[cf]:
+            cfs[cf][cname].resolutions.append(resolution)
     return {cf: list(conds.values()) for cf, conds in cfs.items()}
 
 
@@ -103,17 +110,20 @@ def is_calibrage_test(description: str) -> bool:
 
 
 def condition_matches(cond: Condition, title: str, regex: dict[str, re.Pattern[str]]) -> bool:
-    if cond.ctype not in ("release_title", "release_group"):
+    if cond.ctype in ("release_title", "release_group"):
+        if not cond.patterns:
+            return False
+        hit = any(regex[p].search(title) for p in cond.patterns if p in regex)
+    elif cond.ctype == "resolution":
+        hit = any(re.search(rf"(?i)\\b{re.escape(value)}\\b", title) for value in cond.resolutions)
+    else:
         return True
-    if not cond.patterns:
-        return False
-    hit = any(regex[p].search(title) for p in cond.patterns if p in regex)
     return not hit if cond.negate else hit
 
 
 def cf_matches(conditions: list[Condition], title: str, regex: dict[str, re.Pattern[str]]) -> bool | None:
-    """None = CF non évaluable (conditions resolution / size / langue, etc.)."""
-    if any(c.ctype not in ("release_title", "release_group") for c in conditions):
+    """None = CF non évaluable (conditions source / taille / langue, etc.)."""
+    if any(c.ctype not in ("release_title", "release_group", "resolution") for c in conditions):
         return None
     evaluable = conditions
     required = [c for c in evaluable if c.required]

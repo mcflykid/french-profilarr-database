@@ -353,7 +353,7 @@ VALUES
     ('FR-Team-Slay3R', 'Hellboy.2019.VFF.1080p.WEB.AC3.5.1.H264-Slay3R', 'movie', 1, 'C411 Slay3R — WEB 1080p H264'),
     ('FR-Team-Slay3R', 'ON.SERA.HEUREUX.2025.VFQ.1080p.WEB.H264-SLAY3R', 'movie', 1, 'C411 Slay3R — groupe SLAY3R (casse)'),
     ('FR-MULTI-VFF', 'Beast.2026.MULTIVFF.1080p.WEB.AC3.5.1.H264-Slay3R', 'movie', 1, 'C411 Slay3R — MULTIVFF collé'),
-    ('x265', 'Venom.The.Last.Dance.2024.MULTI.VFF.1080p.WEB.H265-Slay3R', 'movie', 1, 'C411 Slay3R — H265 sans préfixe x'),
+    ('x265', 'Venom.The.Last.Dance.2024.MULTI.VFF.1080p.WEB.H265-Slay3R', 'movie', 0, 'C411 Slay3R — H265 générique : h265 seul, pas x265'),
     ('h265', 'Venom.The.Last.Dance.2024.MULTI.VFF.1080p.WEB.H265-Slay3R', 'movie', 1, 'C411 Slay3R — CF h265 sur H265'),
     ('FR-HDLight', 'VR.Fighter.2022.MULTI.VFI.1080p.BLURAY.HDLight.AC3.5.1.x264-Slay3R', 'movie', 1, 'C411 Slay3R — BLURAY.HDLight'),
     ('FR-Team-TFA', 'Canari.Noir.2024.MULTI.VF2.2160p.WEB.HDR10Plus.EAC3.5.1.H265-TFA', 'movie', 1, 'Test parser — FR-Team-TFA : doit correspondre (release réelle)'),
