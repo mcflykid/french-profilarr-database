@@ -47,7 +47,7 @@ Tableau rapide — le détail « contexte / alternative / ne pas casser » est d
 | **Remux / Full Disc / AV1 / Upscaled → -999999** | Catalogue remux / AV1 | Encodes domestiques, compat TV/box |
 | **`propers_repacks = doNotPrefer`** | Repack natif « Prefer » | Géré par **FR-Repack** / **-2** / **-3** dans le titre |
 | **Torrent only, délai 0** | Usenet / délais longs | `FR-Delay-*` : torrent, `torrent_delay = 0` |
-| **x265 favorisé en 1080p/720p** | Malus HEVC sous 4K (Dumpstarr) | Scène FR = encodes compacts HEVC |
+| **x265 / H265 favorisés** | Malus HEVC sous 4K (Dumpstarr) | Scène FR = encodes compacts HEVC à toute résolution ; en 4K, ce score permet aussi de franchir le seuil minimal quand aucun autre tag fiable n’est présent |
 | **VFQ / VOQ acceptés** | Ban VFQ | **Repli** sous VFF : `FR-MULTI-VFQ` / `FR-VFQ` (pas exclusion) |
 | **17 équipes `FR-Team-*`** | ~900 regex « une par team » | Maintenance tenable, rebase Dictionarry possible |
 | **Presets media** | Bundle par profil qualité | **Radarr** + **Sonarr séries** + **Sonarr animé** (`ops/07`) |

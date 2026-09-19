@@ -185,7 +185,7 @@ def main() -> int:
             print(f"  … et {len(failures) - 20} autres")
         return 1
     if fail == 0:
-        print("OK — tests regex alignés avec ops/11 (hors CF resolution/size/langue)")
+        print("OK — tests regex alignés avec ops/11 (hors CF source/taille/langue)")
     return 0 if fail == 0 else 1
 
 

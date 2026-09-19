@@ -64,9 +64,9 @@ Les modérateurs soignent le **nom de release** ; l’encodeur ne renomme pas to
 
 Le projet privilégie le **comportement torrent** (seed, cross-seed) plutôt que d’encourager des fichiers internes toujours bien tagués. **Baisser les seuils** ou « contourner » côté profil reviendrait à valider une mauvaise habitude des encodeurs — ce n’est pas l’intention du dépôt.
 
-### Ce n’est pas un problème de profil
+### Quand ce n’est pas un problème de profil
 
-- Ce n’est **pas** un bug des scores `FR-*`, ni un mauvais réglage Radarr/Sonarr, ni un seuil `minimum_custom_format_score` à tort.
+- Dans ce cas précis de perte d'information entre le torrent et le fichier, ce n’est **pas** un bug des scores `FR-*`, ni un mauvais réglage Radarr/Sonarr, ni un seuil `minimum_custom_format_score` à tort. Les défauts de règle détectés sont documentés séparément dans le [journal de calibrage](calibrage.md#journal-des-calibrages-récents).
 - C’est la combinaison **pratique des torrents** (fichier générique) + **limite Radarr/Sonarr** (à l’import, le logiciel ne peut pas deviner ce qui n’était écrit que dans le nom du torrent).
 - Sans renommage du fichier, le logiciel **ne peut pas** reconstituer équipe / langue / HDR à partir d’un `Film.mkv` seul.
 
