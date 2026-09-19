@@ -17,7 +17,7 @@ flowchart LR
   T2 -.->|non reproduit| radarr
 ```
 
-[← Index doc](../README.md) · [Pourquoi — calibrage terrain](pourquoi.md#10-calibrage-terrain-obligatoire-pour-les-scores-équipe-et-les-tailles) · [Équipes](equipes.md) · [Journal](#journal-des-calibrages-récents)
+[← Index doc](../README.md) · [Pourquoi — calibrage terrain](pourquoi.md#12-calibrage-terrain-obligatoire-pour-les-scores-équipe-et-les-tailles) · [Équipes](equipes.md) · [Journal](#journal-des-calibrages-récents)
 
 ---
 
@@ -122,6 +122,7 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
+| 2026-09 | **Version 2.0.1 et garde-fous CI** | Version PCD **2.0.1** : le pipeline valide désormais les liens et ancres Markdown. Sur GitHub Actions, le parser Profilarr réel valide aussi le cas de régression 4K HEVC (`2160p.H265` détecté, score +1000, seuil 500 et cutoff 2160p). |
 | 2026-09 | **Fix éligibilité HEVC 4K** | `x265` et `h265` étaient scorés dans `FR-Films-4K` (+1200 / +1000), mais leurs conditions les excluaient à 2160p. Une 4K HEVC sans tag HDR, langue ou équipe pouvait donc obtenir **0**, sous le seuil minimal **500**, et rester rejetée alors qu'un 720p mieux tagué était accepté. L'exclusion 2160p est retirée : les codecs restent exclusifs (`x265` littéral ou `h265` / `HEVC`), mais donnent désormais le score prévu à toute résolution. Le script de tests vérifie aussi les conditions de résolution ; compilation PCD et **72** releases de calibrage validées. |
 | 2026-07 | **SUPPLY 4000 → rendu 4800** | Malus annulé (double correction) : le fichier SUPPLY **contient bien** VFF+EAC3 — l'**obligation de nommage C411 est une garantie** (dit ce qu'il y a *vraiment* dedans), pas une inflation. La chute de **1850** à l'import est une **perte d'info** (le `.mkv` sobre n'a pas l'obligation), pas un défaut équipe. Baisser le score équipe était traiter un bon fichier comme mauvais |
 | 2026-07 | **Malus poids épisode (Sonarr)** | `FR-Lourd-Episode-1080p` **−1200** (≥ 3,5 Gio, épisode seul, packs de saison exclus via `release_type`) sur les 4 profils Sonarr 1080p/4K — comble le trou : le contrôle de taille était **Radarr-only**, les séries n'avaient rien. C'est le **bon levier** pour préférer le compact HEVC : sur le poids réel, pas sur le score équipe. Un épisode SUPPLY 4.6 Go prend −1200 → un ENIGMA 1.4 Go passe devant sans pénaliser SUPPLY ailleurs |

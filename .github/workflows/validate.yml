@@ -9,10 +9,17 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    services:
+      parser:
+        image: ghcr.io/dictionarry-hub/profilarr-parser:2
+        ports:
+          - 5000:5000
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - name: Validation complète
+        env:
+          PARSER_URL: http://localhost:5000
         run: python3 scripts/validate.py

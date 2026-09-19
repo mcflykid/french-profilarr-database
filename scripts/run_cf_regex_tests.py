@@ -3,7 +3,8 @@
 Exécute les tests ops/11 contre la logique regex de ops/02 + ops/04.
 
 Approximation du parser Radarr (release_title / release_group + required/optional).
-Les CF avec conditions resolution/size/language sont ignorés (signalés en WARN).
+Les CF avec conditions source/taille/langue restent ignorés (signalés en WARN) ;
+les conditions de résolution sont évaluées.
 
 Usage :
   python3 scripts/run_cf_regex_tests.py              # tous les tests (bruyant)

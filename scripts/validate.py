@@ -17,7 +17,9 @@ CHECKS = (
     ("Compile PCD (schema 1.1.0 + ops)", "verify_pcd_compile.py"),
     ("Descriptions regex/CF (pas de *, pas de syntaxe regex)", "validate_regex_ops.py"),
     ("Tests calibrage ops/11 (releases réelles)", "run_cf_regex_tests.py --calibrage-only"),
+    ("Régression 4K HEVC (parser réel en CI)", "test_4k_hevc_parser.py"),
     ("Cohérence doc ↔ SQL (scores, compteurs)", "verify_doc_scores.py"),
+    ("Liens et ancres de la documentation", "verify_docs.py"),
 )
 
 

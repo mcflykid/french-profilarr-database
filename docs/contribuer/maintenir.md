@@ -12,14 +12,14 @@
 python3 scripts/validate.py
 ```
 
-Vérifie : intégrité `ops/`, compile SQLite (schema 1.1.0), descriptions regex sans `*`, **tests calibrage** (`ops/11` titres C411/Torr9/équipes), **cohérence doc ↔ SQL** (`verify_doc_scores.py` : les scores cités dans langue.md / equipes.md / image-son.md et les compteurs README doivent correspondre à `ops/06` — ajouté après une dérive de 7 scores dans image-son.md).
+Vérifie : intégrité `ops/`, compile SQLite (schema 1.1.0), descriptions regex sans `*`, **tests calibrage** (`ops/11` titres C411/Torr9/équipes), **cohérence doc ↔ SQL** (`verify_doc_scores.py` : les scores cités dans langue.md / equipes.md / image-son.md et les compteurs README doivent correspondre à `ops/06`), et liens / ancres Markdown locaux (`verify_docs.py`). En CI, le parser Profilarr réel vérifie aussi la régression 4K HEVC.
 
 CI GitHub : workflow **Validate PCD** sur chaque push/PR vers `main`.
 
 | Fichier | Rôle |
 |---------|------|
-| **`ops/11`** | ~498 tests parser par CF (titres réels / C411 / Torr9) |
-| **`ops/12`** | Simulations profil (Momie, POI, …) |
+| **`ops/11`** | 517 tests parser par CF (titres réels / C411 / Torr9) |
+| **`ops/12`** | Simulations profil (Momie, POI, …) ; la régression 4K HEVC est vérifiée par `test_4k_hevc_parser.py` |
 
 Après modification SQL : **Pull → Compile** sur la base, puis revérifier les tests dans l’UI Profilarr.
 
@@ -48,6 +48,8 @@ scripts/
   verify_ops_integrity.py
   verify_pcd_compile.py
   verify_doc_scores.py    # Cohérence doc <-> SQL (scores, compteurs)
+  verify_docs.py          # Liens / ancres Markdown locaux
+  test_4k_hevc_parser.py  # Régression 4K avec le parser Profilarr réel (CI)
 ```
 
 **Préfixe `FR-`** : spécifique marché français. Le reste reprend Dictionarry (`HDR10+`, `Remux`, …) pour rester **rebaseable**.
@@ -68,6 +70,7 @@ scripts/
 - [ ] Ligne ajoutée dans [Journal des calibrages](../comprendre/calibrage.md#journal-des-calibrages-récents) si calibrage releases réelles
 - [ ] Compteurs (CF, regex, tests) cohérents si le volume a changé
 - [ ] `python3 scripts/validate.py` OK
+- [ ] Liens et ancres Markdown valides (`verify_docs.py`)
 - [ ] Mention **Pull → Compile → Sync** si changement déployable
 
 ### Ce qu’il faut documenter
@@ -100,7 +103,7 @@ Les **agents / contributeurs** qui modifient ce dépôt doivent appliquer cette 
 |-------|--------|--------|
 | v1 | YAML | Profilarr v1 |
 | v2.5 → v3 | PCD + `ops/*.sql` | Schema 1.1.0 |
-| **2.0.0 actuel** | Racine = `pcd.json` + `ops/` + `scripts/` | Alignement Dumpstarr (seuils profil) |
+| **2.0.1 actuel** | Racine = `pcd.json` + `ops/` + `scripts/` | Correctif éligibilité HEVC 4K, tests parser et documentation renforcés |
 
 Anciennes archives `backup/` : `git show <commit>:backup/...` (ex. `c1d52ee`).
 

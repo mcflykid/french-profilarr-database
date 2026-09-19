@@ -134,7 +134,7 @@ def main() -> int:
     n_tests = conn.execute("SELECT count(*) FROM custom_format_tests").fetchone()[0]
 
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    m = re.search(r"(\d+) formats perso · (\d+) regex · (\d+) profils · ~(\d+) tests", readme)
+    m = re.search(r"(\d+) formats perso · (\d+) regex · (\d+) profils · ~?(\d+) tests", readme)
     if not m:
         errors.append("README.md : ligne « Contenu » introuvable ou format changé")
     else:
