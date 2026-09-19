@@ -54,6 +54,15 @@ def main() -> int:
     if not re.search(r"FR-Films-4K'.*?'2160p Quality'.*?, 2, 1", profile, re.DOTALL):
         print("ERROR: le cutoff 2160p du profil 4K est absent")
         return 1
+    if not re.search(r"'FR-Films-4K', 'FR-Team-QTZ-4KLight', 'all', 4000", profile):
+        print("ERROR: bonus QTZ + 4KLight attendu (+4000) absent du profil Films 4K")
+        return 1
+    other_qtz_bonus = re.findall(
+        r"'([^']+)', 'FR-Team-QTZ-4KLight', 'all', 4000", profile
+    )
+    if other_qtz_bonus != ["FR-Films-4K"]:
+        print(f"ERROR: bonus QTZ + 4KLight hors Films 4K: {other_qtz_bonus}")
+        return 1
 
     parsed = post(f"{parser_url.rstrip('/')}/parse", {"title": TITLE, "type": "movie"})
     if parsed.get("resolution") != 2160:
@@ -66,7 +75,7 @@ def main() -> int:
         print("ERROR: le parser ne détecte pas H265 pour la release 4K de régression")
         return 1
 
-    print("OK: 2160p H265 détecté, score +1000 >= minimum 500, cutoff 4K actif")
+    print("OK: 2160p H265 détecté, cutoff 4K actif, bonus QTZ + 4KLight limité aux Films 4K")
     return 0
 
 

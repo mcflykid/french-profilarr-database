@@ -23,7 +23,7 @@ On **n’utilise pas** le modèle [Profilarr-database-french-regex](https://gith
 
 | Équipe | Score | Profil typique / calibrage |
 |--------|------:|----------------------------|
-| **FR-Team-QTZ** | 5 500 | 4KLight Bluray, référence 4K |
+| **FR-Team-QTZ** | 5 500 | 4KLight Bluray, référence 4K ; le combo QTZ + 4KLight reçoit +4 000 supplémentaires dans **FR-Films-4K** seulement |
 | **FR-Team-Neostark** | 5 300 | **Uniquement** si `4KLight` **dans le titre** (C411 ~3–5 Go) ; WEBRip/WEB sans tag → pas de bonus équipe |
 | **FR-Team-AMEN** | 5 200 | WEB 2160p compact DV/HDR10+ |
 | **FR-Team-BONBON** | 5 000 | 4KLight / WEBRip ~2,5–5 Go |
@@ -58,7 +58,7 @@ On **n’utilise pas** le modèle [Profilarr-database-french-regex](https://gith
 | **FR-WEBRip** | `WEBRip`, `WEB.Rip` | Malus **-750** profils **4K** (C411 : préférer WEB-DL) |
 **Neostark** : bonus équipe **+5300** seulement avec tag **4KLight** dans le nom du torrent (~**8 300** cumulé avec `FR-4KLight` en 4K). Sans tag → **0** bonus Neostark ; les autres équipes (SUPPLY, TyHD, QTZ…) prennent le relais.
 
-**QTZ** = équipe **et** souvent 4KLight en pratique — pas de CF `FR-Team-QTZ-4KLight` (un CF par **créneau**, pas par team×créneau).
+**QTZ + 4KLight** : exception volontaire au principe « un CF par créneau ». Le CF composé `FR-Team-QTZ-4KLight` vaut **+4 000**, uniquement dans **FR-Films-4K**. Il corrige le cas observé où une release QTZ 4KLight Atmos/TrueHD était pénalisée par l'audio et perdait face à TyHD. QTZ sans tag 4KLight garde seulement son bonus équipe de **+5 500** ; les profils Séries, Anime, 1080p et 720p ne changent pas.
 
 ---
 

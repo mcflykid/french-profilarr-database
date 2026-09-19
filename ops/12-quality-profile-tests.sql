@@ -3,7 +3,7 @@
 
 -- =============================================================================
 -- Film : La Momie (1999) — TMDB 564 — référence FR-Films-4K
--- Attendu avec FR-Films-4K (scores ops/06) : QTZ 4KLight ≈ Slay3R WEB > TyHD > Remux/AV1 exclus
+-- Attendu avec FR-Films-4K (scores ops/06) : QTZ 4KLight > TyHD > Slay3R WEB > Remux/AV1 exclus
 -- =============================================================================
 INSERT INTO test_entities (type, tmdb_id, title, year) VALUES ('movie', 564, 'La Momie', 1999);
 

@@ -179,7 +179,7 @@ Exemples de noms obtenus (illustration) :
 
 ### Tests de référence (`ops/12`)
 
-- **La Momie** (TMDB 564) — QTZ 4KLight vs Slay3R WEB vs TyHD vs Remux vs AV1
+- **La Momie** (TMDB 564) — QTZ 4KLight prioritaire vs TyHD, Slay3R WEB, Remux et AV1
 - Variante TRUEFRENCH / HDR (cross-indexeur)
 - **Person of Interest** — `MULTI.FRENCH` (DELIRIUS)
 - **Incendies** — VOQ sans MULTI vs MULTI.VOQ

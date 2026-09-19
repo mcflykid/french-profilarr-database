@@ -1143,6 +1143,9 @@ INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_
 SELECT 'FR-Films-4K', 'FR-Team-QTZ', 'all', 5500
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
+SELECT 'FR-Films-4K', 'FR-Team-QTZ-4KLight', 'all', 4000
+FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
+INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)
 SELECT 'FR-Films-4K', 'FR-Team-Neostark', 'all', 5300
 FROM quality_profiles qp WHERE qp.name = 'FR-Films-4K';
 INSERT INTO quality_profile_custom_formats (quality_profile_name, custom_format_name, arr_type, score)

@@ -18,7 +18,7 @@ CI GitHub : workflow **Validate PCD** sur chaque push/PR vers `main`.
 
 | Fichier | Rôle |
 |---------|------|
-| **`ops/11`** | 517 tests parser par CF (titres réels / C411 / Torr9) |
+| **`ops/11`** | 519 tests parser par CF (titres réels / C411 / Torr9) |
 | **`ops/12`** | Simulations profil (Momie, POI, …) ; la régression 4K HEVC est vérifiée par `test_4k_hevc_parser.py` |
 
 Après modification SQL : **Pull → Compile** sur la base, puis revérifier les tests dans l’UI Profilarr.
@@ -33,7 +33,7 @@ pcd.json                 # Métadonnées PCD 2.0.0
 ops/
   01-tags.sql            # Tags UI
   02-regex.sql           # 76 motifs (pattern = détection)
-  03-custom-formats.sql  # 77 CF (include_in_rename = 0)
+  03-custom-formats.sql  # 78 CF (include_in_rename = 0)
   04-custom-format-conditions.sql
   05-custom-format-tags.sql
   06-quality-profiles.sql   # 10 profils FR-* + scores
@@ -103,7 +103,7 @@ Les **agents / contributeurs** qui modifient ce dépôt doivent appliquer cette 
 |-------|--------|--------|
 | v1 | YAML | Profilarr v1 |
 | v2.5 → v3 | PCD + `ops/*.sql` | Schema 1.1.0 |
-| **2.0.1 actuel** | Racine = `pcd.json` + `ops/` + `scripts/` | Correctif éligibilité HEVC 4K, tests parser et documentation renforcés |
+| **2.0.2 actuel** | Racine = `pcd.json` + `ops/` + `scripts/` | Calibrage QTZ + 4KLight dans FR-Films-4K, avec tests parser et documentation |
 
 Anciennes archives `backup/` : `git show <commit>:backup/...` (ex. `c1d52ee`).
 

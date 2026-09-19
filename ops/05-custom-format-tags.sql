@@ -140,6 +140,12 @@ SELECT 'FR-Team-QTZ', 'Release Group' FROM tags t WHERE t.name = 'Release Group'
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-Team-QTZ', 'French' FROM tags t WHERE t.name = 'French';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'FR-Team-QTZ-4KLight', 'Release Group' FROM tags t WHERE t.name = 'Release Group';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'FR-Team-QTZ-4KLight', 'French' FROM tags t WHERE t.name = 'French';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
+SELECT 'FR-Team-QTZ-4KLight', '4K' FROM tags t WHERE t.name = '4K';
+INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-Team-Neostark', 'Release Group' FROM tags t WHERE t.name = 'Release Group';
 INSERT OR IGNORE INTO custom_format_tags (custom_format_name, tag_name)
 SELECT 'FR-Team-Neostark', 'French' FROM tags t WHERE t.name = 'French';

@@ -44,6 +44,7 @@ INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Te
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-OZEF', 'Équipe OZEF — Remux Blu-ray/UHD. Remux exclu (-999999).', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-PopHD', 'Équipe PopHD — 1080p HDLight x264, MULTI. Bonus 720p/1080p.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-QTZ', 'Équipe QTZ — référence 4KLight. Parmi les plus hauts scores team.', 0);
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-QTZ-4KLight', 'Bonus composé QTZ + 4KLight, réservé au profil FR-Films-4K : priorise ce créneau malgré les malus audio Atmos/TrueHD.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-Neostark', 'Équipe Neostark — bonus uniquement si tag 4KLight dans le titre (C411). WEBRip/WEB sans tag = pas de bonus équipe.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-SUPPLY', 'Équipe SUPPLY — WEB 2160p premium H265/DV/Atmos. Fort bonus 4K.', 0);
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-Slay3R', 'Équipe Slay3R — WEB 1080p/2160p/720p C411 (H264/H265, exclus).', 0);
