@@ -63,6 +63,8 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 | **Fichiers** | `ops/06-quality-profiles.sql`, [principes.md](principes.md) |
 | **Ne pas** | Remonter `minimum_custom_format_score` vers 20k+ (bloque les upgrades) sans recalibrer toute la grille. |
 
+**Priorité entre résolutions (audit 2026-09-20)** : les groupes natifs priment entre résolutions : **2160p > 1080p > 720p** sur les profils 4K. Les CF départagent les releases de même rang ; ils ne compensent pas un ordre de groupes inversé. La position PCD **0** désigne le haut de la liste : [Profilarr inverse cette liste pour les API Arr](https://github.com/Dictionarry-Hub/profilarr/blob/4b877913c50ff2964f179255c6bf2f517920a123/src/lib/server/sync/qualityProfiles/transformer.ts). L'incrément CF **1400** concerne les améliorations de score à qualité équivalente, pas le passage d'un fallback vers une qualité supérieure avant le cutoff ([logique Radarr](https://github.com/Radarr/Radarr/blob/develop/src/NzbDrone.Core/DecisionEngine/Specifications/UpgradableSpecification.cs)). Le contrôle `verify_quality_profiles.py` vérifie ces prérequis sur les dix profils compilés ; il ne remplace pas la vérification de la synchronisation dans les applications.
+
 ### 2. Langue = premier tri (hiérarchie explicite)
 
 | | |

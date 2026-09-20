@@ -12,7 +12,7 @@
 python3 scripts/validate.py
 ```
 
-Vérifie : intégrité `ops/`, compile SQLite (schema 1.1.0), descriptions regex sans `*`, **tests calibrage** (`ops/11` titres C411/Torr9/équipes), **cohérence doc ↔ SQL** (`verify_doc_scores.py` : les scores cités dans langue.md / equipes.md / image-son.md et les compteurs README doivent correspondre à `ops/06`), et liens / ancres Markdown locaux (`verify_docs.py`). En CI, le parser Profilarr réel vérifie aussi la régression 4K HEVC.
+Vérifie : intégrité `ops/`, compile SQLite (schema 1.1.0), audit des **dix profils compilés** (ordre, membres, activation, cutoff et seuils via `verify_quality_profiles.py`), descriptions regex sans `*`, **tests calibrage** (`ops/11` titres C411/Torr9/équipes), **cohérence doc ↔ SQL** (`verify_doc_scores.py` : les scores cités dans langue.md / equipes.md / image-son.md et les compteurs README doivent correspondre à `ops/06`), et liens / ancres Markdown locaux (`verify_docs.py`). En CI, le parser Profilarr réel vérifie aussi la régression 4K HEVC. Les contrôles de profils et les règles statiques HEVC/QTZ s'exécutent également en local sans parser.
 
 CI GitHub : workflow **Validate PCD** sur chaque push/PR vers `main`.
 
@@ -29,7 +29,7 @@ Après modification SQL : **Pull → Compile** sur la base, puis revérifier les
 ## Structure du dépôt
 
 ```text
-pcd.json                 # Métadonnées PCD 2.0.0
+pcd.json                 # Version du dépôt et version minimale de Profilarr
 ops/
   01-tags.sql            # Tags UI
   02-regex.sql           # 76 motifs (pattern = détection)
@@ -47,6 +47,7 @@ scripts/
   normalize_descriptions.py
   verify_ops_integrity.py
   verify_pcd_compile.py
+  verify_quality_profiles.py # Audit SQL des dix profils, appelé après compilation
   verify_doc_scores.py    # Cohérence doc <-> SQL (scores, compteurs)
   verify_docs.py          # Liens / ancres Markdown locaux
   test_4k_hevc_parser.py  # Régression 4K avec le parser Profilarr réel (CI)
@@ -83,6 +84,8 @@ scripts/
 | `ops/07` tailles | [Tailles](../installer/tailles.md) + journal |
 | Score profil / CF | Tableaux scores + journal si motivation terrain |
 | Nouveau profil `FR-*` | [Profils](../installer/profils.md) |
+
+Pour modifier les résolutions autorisées, mettre à jour `PROFILE_TARGETS` dans `verify_quality_profiles.py` et le tableau de [l'audit des profils](../installer/profils.md#audit-des-dix-profils--20-septembre-2026). La position PCD **0 est la meilleure** ; le cutoff reste sur la cible. Tester le résultat compilé : une regex recherchant un nombre dans `ops/06` peut traverser plusieurs profils et donner un faux succès.
 
 Les **agents / contributeurs** qui modifient ce dépôt doivent appliquer cette checklist sans rappel supplémentaire.
 

@@ -108,11 +108,6 @@ RE_ENTITY = re.compile(
     r"INSERT INTO test_entities \(type, tmdb_id, title, year\)\s+"
     r"VALUES \('([^']+)', (\d+),"
 )
-RE_PROFILE_GROUP_ORDER = re.compile(
-    r"INSERT INTO quality_profile_qualities \(quality_profile_name, quality_group_name, position, upgrade_until\)\s+"
-    r"SELECT qp\.name, qg\.name, (\d+), ([01])\s+FROM quality_profiles qp, quality_groups qg\s+"
-    r"WHERE qp\.name = '([^']+)' AND qg\.quality_profile_name = qp\.name AND qg\.name = '([^']+)'"
-)
 
 
 def read(name: str) -> str:
@@ -249,55 +244,16 @@ def main() -> int:
         "FR-Team-Slay3R",
         "FR-Tier-02",
     )
-    SCORE_UNIFORM_TARGET = 60000
     by_prof_cf: dict[str, dict[str, int]] = {}
     for prof, cf, sc in scores_cf:
         by_prof_cf.setdefault(prof, {})[cf] = int(sc)
-    prof_upgrade = {
-        m.group(1): int(m.group(2))
-        for m in re.finditer(
-            r"VALUES \('([^']+)', '[^']*', \d+, \d+, (\d+), 1\);",
-            t06,
-        )
-    }
     score_mismatch: list[str] = []
     for cf in UNIFORM_CF:
         vals = {by_prof_cf.get(p, {}).get(cf) for p in ALL_PROFILES}
         if len(vals) != 1 or None in vals:
             score_mismatch.append(f"{cf}={vals}")
-    bad_upgrade = {
-        p: u for p, u in prof_upgrade.items() if u != SCORE_UNIFORM_TARGET
-    }
-    group_orders = {
-        (profile, group): (int(position), int(cutoff))
-        for position, cutoff, profile, group in RE_PROFILE_GROUP_ORDER.findall(t06)
-    }
-    expected_group_orders = {
-        ("FR-Anime-1080p", "1080p Quality"): (0, 1),
-        ("FR-Anime-1080p", "720p Fallback"): (1, 0),
-        ("FR-Anime-4K", "2160p Quality"): (0, 1),
-        ("FR-Anime-4K", "1080p Fallback"): (1, 0),
-        ("FR-Anime-4K", "720p Fallback"): (2, 0),
-        ("FR-Films-1080p", "1080p Quality"): (0, 1),
-        ("FR-Films-1080p", "720p Fallback"): (1, 0),
-        ("FR-Films-4K", "2160p Quality"): (0, 1),
-        ("FR-Films-4K", "1080p Fallback"): (1, 0),
-        ("FR-Films-4K", "720p Fallback"): (2, 0),
-        ("FR-Series-1080p", "1080p Quality"): (0, 1),
-        ("FR-Series-1080p", "720p Fallback"): (1, 0),
-        ("FR-Series-4K", "2160p Quality"): (0, 1),
-        ("FR-Series-4K", "1080p Fallback"): (1, 0),
-        ("FR-Series-4K", "720p Fallback"): (2, 0),
-        ("FR-Films-Any", "2160p Quality"): (0, 1),
-        ("FR-Films-Any", "1080p Fallback"): (1, 0),
-        ("FR-Films-Any", "720p Fallback"): (2, 0),
-        ("FR-Films-Any", "SD Fallback"): (3, 0),
-    }
-    bad_group_orders = {
-        key: (group_orders.get(key), expected)
-        for key, expected in expected_group_orders.items()
-        if group_orders.get(key) != expected
-    }
+    # Ordre, cutoffs, seuils et upgrades : audit SQL des dix profils compilés
+    # dans verify_quality_profiles.py, appelé par verify_pcd_compile.py.
     if dup_qpt_06:
         fail("06-quality-profiles.sql", f"quality_profile_tags dupliqués: {dup_qpt_06[:3]}")
     elif missing_prof:
@@ -308,16 +264,6 @@ def main() -> int:
         fail(
             "06-quality-profiles.sql",
             f"scores langue/équipe non uniformes sur tous les profils: {score_mismatch[:3]}",
-        )
-    elif bad_upgrade:
-        fail(
-            "06-quality-profiles.sql",
-            f"upgrade_until_score != {SCORE_UNIFORM_TARGET}: {list(bad_upgrade.items())[:3]}",
-        )
-    elif bad_group_orders:
-        fail(
-            "06-quality-profiles.sql",
-            f"ordre cible → fallback invalide: {list(bad_group_orders.items())[:3]}",
         )
     else:
         ok("06-quality-profiles.sql")

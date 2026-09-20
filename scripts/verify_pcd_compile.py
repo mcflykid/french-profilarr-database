@@ -9,6 +9,8 @@ import tempfile
 import urllib.request
 from pathlib import Path
 
+from verify_quality_profiles import audit_quality_profiles
+
 ROOT = Path(__file__).resolve().parents[1]
 OPS = ROOT / "ops"
 SCHEMA_TAG = "1.1.0"
@@ -48,6 +50,11 @@ def main() -> int:
                 conn.executescript(path.read_text(encoding="utf-8"))
 
             conn.commit()
+            profile_errors = audit_quality_profiles(conn)
+            if profile_errors:
+                for error in profile_errors:
+                    print(f"ERROR: {error}")
+                return 1
             # Idempotence tags (doublon ops/06 + ops/10 ne doit plus planter)
             tag_probe = """
             INSERT OR IGNORE INTO quality_profile_tags (quality_profile_name, tag_name)
