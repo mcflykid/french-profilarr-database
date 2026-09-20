@@ -122,6 +122,8 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
+| 2026-09 | **Ordre qualité Radarr corrigé** | L'interface Radarr privilégie le haut de la liste. Les groupes étaient envoyés dans l'ordre inverse (`720p`, `1080p`, `2160p`) : un film `WEBDL-720p` pouvait donc rejeter un `Bluray-1080p` avec « Not an upgrade ». Les profils 4K sont maintenant ordonnés **2160p → 1080p → 720p**, les profils 1080p **1080p → 720p**, et `FR-Films-Any` **2160p → 1080p → 720p → SD**. |
+| 2026-09 | **Version 2.0.3** | Publication du correctif d'ordre des qualités et ajout d'un contrôle d'intégrité dédié. Après Sync, vérifier que le haut de chaque profil est bien sa qualité cible. |
 | 2026-09 | **QTZ 4KLight prioritaire dans Films 4K** | Cas Profilarr observé sur *La Momie* : QTZ 4KLight/Atmos/TrueHD était à **15 100**, derrière TyHD WEB H265 à **18 720**, car Atmos et TrueHD enlèvent chacun 1 500. Ajout du CF composé `FR-Team-QTZ-4KLight` (**+4 000**) dans **FR-Films-4K seulement** : QTZ atteint **19 100** et devient prioritaire de 380 points. QTZ sans 4KLight et tous les profils Séries/Anime/1080p/720p restent inchangés. |
 | 2026-09 | **Version 2.0.2** | Publication du calibrage QTZ + 4KLight, avec deux tests parser positif/négatif pour empêcher un bonus sur une release QTZ sans tag 4KLight. |
 | 2026-09 | **Version 2.0.1 et garde-fous CI** | Version PCD **2.0.1** : le pipeline valide désormais les liens et ancres Markdown. Sur GitHub Actions, le parser Profilarr réel valide aussi le cas de régression 4K HEVC (`2160p.H265` détecté, score +1000, seuil 500 et cutoff 2160p). |

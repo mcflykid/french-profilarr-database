@@ -21,6 +21,8 @@
 
 Chaque profil **exclut** : Remux, Full Disc, AV1, Upscaled (+ x264@2160p sur 4K).
 
+**Ordre des qualités** : dans Radarr/Sonarr, le haut de la liste est prioritaire. Les profils 4K affichent donc **2160p**, puis **1080p**, puis **720p** ; les profils 1080p affichent **1080p**, puis **720p**. Cet ordre permet l'upgrade `WEBDL-720p → Bluray-1080p` tant que le cutoff 2160p n'est pas atteint.
+
 Tags UI (`ops/06` + `ops/10`) : Radarr, Sonarr, Films, Series, 1080p/2160p/720p, French, **anime** (filtre Sonarr — tag SQL minuscule volontaire).
 
 ---

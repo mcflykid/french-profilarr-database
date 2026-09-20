@@ -188,18 +188,18 @@ SELECT 'FR-Series-720p', '720p Quality', q.name, 2 FROM qualities q WHERE q.name
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Series-720p', '720p Quality', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-720p';
 
--- Quality profile qualities (order + upgrade_until)
+-- Ordre Radarr/Sonarr : le haut de la liste (position 0) est prioritaire. Cible > fallbacks.
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 0, 0
+SELECT qp.name, qg.name, 1, 0
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Anime-1080p' AND qg.quality_profile_name = qp.name AND qg.name = '720p Fallback';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 1, 1
+SELECT qp.name, qg.name, 0, 1
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Anime-1080p' AND qg.quality_profile_name = qp.name AND qg.name = '1080p Quality';
--- FR-Anime-4K : 1080p Fallback (position 0) < 2160p Quality (position 1, cutoff upgrade_until).
+-- FR-Anime-4K : 2160p en tête (cutoff), puis 1080p et 720p en fallbacks.
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 0, 0
+SELECT qp.name, qg.name, 2, 0
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Anime-4K' AND qg.quality_profile_name = qp.name AND qg.name = '720p Fallback';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
@@ -207,7 +207,7 @@ SELECT qp.name, qg.name, 1, 0
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Anime-4K' AND qg.quality_profile_name = qp.name AND qg.name = '1080p Fallback';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 2, 1
+SELECT qp.name, qg.name, 0, 1
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Anime-4K' AND qg.quality_profile_name = qp.name AND qg.name = '2160p Quality';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
@@ -215,16 +215,16 @@ SELECT qp.name, qg.name, 0, 1
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Anime-720p' AND qg.quality_profile_name = qp.name AND qg.name = '720p Quality';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 0, 0
+SELECT qp.name, qg.name, 1, 0
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Films-1080p' AND qg.quality_profile_name = qp.name AND qg.name = '720p Fallback';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 1, 1
+SELECT qp.name, qg.name, 0, 1
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Films-1080p' AND qg.quality_profile_name = qp.name AND qg.name = '1080p Quality';
--- FR-Films-4K : 1080p Fallback (position 0, bas) < 2160p Quality (position 1, cutoff upgrade_until).
+-- FR-Films-4K : 2160p en tête (cutoff), puis 1080p et 720p en fallbacks.
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 0, 0
+SELECT qp.name, qg.name, 2, 0
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Films-4K' AND qg.quality_profile_name = qp.name AND qg.name = '720p Fallback';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
@@ -232,20 +232,20 @@ SELECT qp.name, qg.name, 1, 0
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Films-4K' AND qg.quality_profile_name = qp.name AND qg.name = '1080p Fallback';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 2, 1
+SELECT qp.name, qg.name, 0, 1
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Films-4K' AND qg.quality_profile_name = qp.name AND qg.name = '2160p Quality';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 0, 0
+SELECT qp.name, qg.name, 1, 0
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Series-1080p' AND qg.quality_profile_name = qp.name AND qg.name = '720p Fallback';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 1, 1
+SELECT qp.name, qg.name, 0, 1
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Series-1080p' AND qg.quality_profile_name = qp.name AND qg.name = '1080p Quality';
--- FR-Series-4K : 1080p Fallback (position 0) < 2160p Quality (position 1, cutoff upgrade_until).
+-- FR-Series-4K : 2160p en tête (cutoff), puis 1080p et 720p en fallbacks.
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 0, 0
+SELECT qp.name, qg.name, 2, 0
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Series-4K' AND qg.quality_profile_name = qp.name AND qg.name = '720p Fallback';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
@@ -253,7 +253,7 @@ SELECT qp.name, qg.name, 1, 0
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Series-4K' AND qg.quality_profile_name = qp.name AND qg.name = '1080p Fallback';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 2, 1
+SELECT qp.name, qg.name, 0, 1
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Series-4K' AND qg.quality_profile_name = qp.name AND qg.name = '2160p Quality';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
@@ -2367,18 +2367,18 @@ SELECT 'FR-Films-Any', '2160p Quality', q.name, 2 FROM qualities q WHERE q.name 
 INSERT INTO quality_group_members (quality_profile_name, quality_group_name, quality_name, position)
 SELECT 'FR-Films-Any', '2160p Quality', q.name, 3 FROM qualities q WHERE q.name = 'HDTV-2160p';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 0, 0
+SELECT qp.name, qg.name, 3, 0
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Films-Any' AND qg.quality_profile_name = qp.name AND qg.name = 'SD Fallback';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 1, 0
+SELECT qp.name, qg.name, 2, 0
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Films-Any' AND qg.quality_profile_name = qp.name AND qg.name = '720p Fallback';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 2, 0
+SELECT qp.name, qg.name, 1, 0
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Films-Any' AND qg.quality_profile_name = qp.name AND qg.name = '1080p Fallback';
 INSERT INTO quality_profile_qualities (quality_profile_name, quality_group_name, position, upgrade_until)
-SELECT qp.name, qg.name, 3, 1
+SELECT qp.name, qg.name, 0, 1
 FROM quality_profiles qp, quality_groups qg
 WHERE qp.name = 'FR-Films-Any' AND qg.quality_profile_name = qp.name AND qg.name = '2160p Quality';

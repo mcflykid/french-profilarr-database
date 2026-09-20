@@ -103,7 +103,7 @@ Les **agents / contributeurs** qui modifient ce dépôt doivent appliquer cette 
 |-------|--------|--------|
 | v1 | YAML | Profilarr v1 |
 | v2.5 → v3 | PCD + `ops/*.sql` | Schema 1.1.0 |
-| **2.0.2 actuel** | Racine = `pcd.json` + `ops/` + `scripts/` | Calibrage QTZ + 4KLight dans FR-Films-4K, avec tests parser et documentation |
+| **2.0.3 actuel** | Racine = `pcd.json` + `ops/` + `scripts/` | Ordre des qualités cible → fallback, pour autoriser les upgrades 720p → 1080p → 2160p |
 
 Anciennes archives `backup/` : `git show <commit>:backup/...` (ex. `c1d52ee`).
 
