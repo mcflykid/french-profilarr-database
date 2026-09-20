@@ -51,8 +51,8 @@ def main() -> int:
     if not re.search(r"'FR-Films-4K', 'h265', 'all', 1000", profile):
         print("ERROR: score h265 4K attendu (+1000) absent")
         return 1
-    if not re.search(r"FR-Films-4K'.*?'2160p Quality'.*?, 2, 1", profile, re.DOTALL):
-        print("ERROR: le cutoff 2160p du profil 4K est absent")
+    if not re.search(r"FR-Films-4K'.*?'2160p Quality'.*?, 0, 1", profile, re.DOTALL):
+        print("ERROR: le cutoff 2160p prioritaire du profil 4K est absent")
         return 1
     if not re.search(r"'FR-Films-4K', 'FR-Team-QTZ-4KLight', 'all', 4000", profile):
         print("ERROR: bonus QTZ + 4KLight attendu (+4000) absent du profil Films 4K")
