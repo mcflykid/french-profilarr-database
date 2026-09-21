@@ -167,7 +167,7 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 |--|--|
 | **Contexte** | **Pas de matériel 7.1** (pas d’enceintes arrière / surround dédié) — lecture sur **TV classique** (stéréo ou downmix TV). Le **7.1** du fichier n’apporte rien à l’écoute ; il alourdit souvent le Blu-ray (`TrueHD 7.1`). Le **5.1** correspond à ce que la scène WEB annonce déjà (`EAC3.5.1`, `AC3.5.1`) et reste compatible TV / barre simple. |
 | **Alternative écartée** | CF bonus « 5.1 » redondant avec `AC3.5.1` / `EAC3.5.1` déjà dans DD+ / DD. |
-| **Choix retenu** | CF **`FR-Audio-71`** : **−400** si `7.1` apparaît dans le titre. |
+| **Choix retenu** | CF **`FR-Audio-71`** : **−800** si `7.1` apparaît dans le titre. |
 | **Pourquoi** | Ne pas « payer » en score une piste qu’on ne peut pas exploiter ; à qualité égale, privilégier `…5.1…` / WEB plutôt que `…7.1…` (souvent cumulé avec TrueHD, cf. §10). |
 | **Fichiers** | `ops/02` `FR-Regex-Audio-71`, `ops/06`, [image-son.md](image-son.md) |
 

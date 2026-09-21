@@ -8,7 +8,7 @@
 
 ### Principe
 
-Les champs `min_size` / `preferred_size` / `max_size` dans **`ops/07`** (Radarr) et **`ops/09`** (delay Sonarr) guident Radarr/Sonarr vers des **tailles cohérentes avec la scène FR** (encodes compacts), en complément des scores CF.
+Les champs `min_size` / `preferred_size` / `max_size` dans **`ops/07`** (les trois presets Radarr/Sonarr) guident Radarr/Sonarr vers des **tailles cohérentes avec la scène FR** (encodes compacts), en complément des scores CF. `ops/09` contient seulement le délai Sonarr.
 
 **Trois presets media** (Profilarr v2 — un choix par instance / type de contenu) :
 
@@ -49,9 +49,9 @@ Exemple *Up in the Air* (~109 min) avec l’ancien `min = 900` sur Bluray-1080p 
 | **Bluray / WEB 1080p** | 8 | **42–48** | 150 | min ~1 Go ; cible **~5 Go** (SUPPLY compact H265 ~2–7 Go) ; plafond ~18 Go |
 | **Bluray-720p / WEB 720p** | 5 | **35** | 60 | min ~0,6 Go ; plafond ~7 Go |
 | **Bluray-2160p** | 17 | **50** | 250 | 4KLight ~2,5–8 Go ; plafond ~30 Go |
-| **WEB 2160p** | 17 | **95** | 250 | 4KLight WEBRip ~2,5–5 Go **passe** ; **SUPPLY** compact ~10–14 Go ; DV/Atmos ~17–26 Go ; plafond ~30 Go |
+| **WEB / HDTV 2160p** | 17 | **95** | 250 | 4KLight WEBRip ~2,5–5 Go **passe** ; **SUPPLY** compact ~10–14 Go ; DV/Atmos ~17–26 Go ; plafond ~30 Go |
 
-Qualités de secours (720p/HDTV en fallback des profils films) : `min` anti-junk, `max` plafonné, `preferred` aligné sur la résolution équivalente — plus de `preferred 1990` qui visait « le plus gros possible ».
+Qualités HDTV des profils films : 720p `0 / 35 / 60`, 1080p `0 / 48 / 150`, 2160p `17 / 95 / 250` (min / preferred / max). Les planchers nuls 720p/1080p restent des replis permissifs ; le 2160p suit les bornes WEB de même résolution.
 
 #### Sonarr — `FR-Media-Sonarr` (séries)
 
@@ -60,7 +60,7 @@ Qualités de secours (720p/HDTV en fallback des profils films) : `min` anti-junk
 | **Bluray-1080p** | 8 | **55** | 120 | min ~0,36 Go ; cible ~2,5 Go ; plafond ~5,4 Go |
 | **WEB / HDTV 1080p** | 8 | **50–60** | 100 | **Slay3R** ~2,4–3 Go ; plafond ~4,5 Go |
 | **Bluray / WEB / HDTV 720p** | 5 | **35–45** | 50 | épisodes compacts ; plafond ~2,3 Go |
-| **Bluray / WEB 2160p** | 17 | **45 / 55** | 150 | 4K série compact (~1–1,5 Go/ép. accepté) ; plafond ~6,8 Go |
+| **Bluray / WEB / HDTV 2160p** | 17 | **45 / 55 / 55** | 150 | 4K série compact (~1–1,5 Go/ép. accepté) ; plafond ~6,8 Go |
 
 #### Sonarr — `FR-Media-Anime-Sonarr` (animé)
 
@@ -68,7 +68,17 @@ Qualités de secours (720p/HDTV en fallback des profils films) : `min` anti-junk
 |---------|-----|-----------|-----|-----------------|
 | **Bluray / WEB 1080p** | **5** | **38–42** | 80 | min ~120 Mo ; cible ~0,9–1 Go ; plafond ~1,9 Go |
 | **Bluray / WEB 720p** | **5** | **25–30** | 40 | fansub / BDRip compacts ; plafond ~1 Go |
-| **Bluray / WEB 2160p** | 5 / 17 | **40 / 50** | 120 | animé 4K compact ; plafond ~2,9 Go |
+| **Bluray / WEB / HDTV 2160p** | 5 / 17 / 17 | **40 / 50 / 50** | 120 | animé 4K compact ; plafond ~2,9 Go |
+
+### Contrôle des presets — 21 septembre 2026
+
+L'audit a trouvé des valeurs HDTV-2160p restées génériques : `preferred / max` de `1990 / 2000` en Radarr et `990 / 1000` sur les deux presets Sonarr. Cette qualité est autorisée dans les trois profils 4K et `FR-Films-Any` : elle contournait donc les plafonds compacts, avec une cible proche de 240 Go pour un film de 120 minutes. Les valeurs sont maintenant alignées sur le WEB 2160p, comme dans les tableaux ci-dessus.
+
+`scripts/verify_media_profiles.py` contrôle les **74 définitions** des trois presets, leur correspondance avec les qualités des dix profils, les bornes numériques et API, les plafonds compacts et les planchers anti-junk. Il vérifie aussi les trois ensembles Naming/Media settings et les deux délais torrent.
+
+Le réglage de ponctuation Sonarr **Smart Replace** doit être stocké en entier **4** dans la base PCD (Radarr conserve le texte `smart`). Le texte `smart` autrefois présent dans les deux lignes Sonarr était converti silencieusement en suppression des deux-points par Profilarr. La valeur et son contrôle sont corrigés ; le renommage des fichiers reste désactivé, conformément au fonctionnement cross-seed.
+
+Après mise à jour : **Pull → Compile → Sync**, en incluant **Media Management** sur chaque instance. Les tailles sont des réglages d'instance : changer uniquement le profil qualité d'un film ou d'une série ne les applique pas.
 
 ### Delays
 

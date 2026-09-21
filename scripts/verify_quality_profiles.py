@@ -44,7 +44,8 @@ def audit_quality_profiles(conn: sqlite3.Connection, *, verbose: bool = True) ->
         arr_type = "radarr" if name.startswith("FR-Films-") else "sonarr"
         if upgrades != 1:
             errors.append(f"{name}: mises à niveau désactivées")
-        if not 0 <= minimum < score_cutoff or score_cutoff != 60000 or increment != 1400:
+        expected_minimum = 500 if name.endswith('-4K') else 400 if name == 'FR-Films-1080p' else 0
+        if minimum != expected_minimum or score_cutoff != 60000 or increment != 1400:
             errors.append(f"{name}: seuils CF incohérents ({minimum}, {score_cutoff}, {increment})")
 
         # PCD : position croissante = meilleur vers moins bon. Profilarr inverse

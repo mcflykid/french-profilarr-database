@@ -100,6 +100,12 @@ Conditions **Exclure :** entre AAC, Dolby, DTS, TrueHD, FLAC, etc. → pas de cu
 | **Xvid** | Malus fort HD |
 | **FR-Blockers** | -999999 — YIFY, NVENC, REMUX+x264 incohérent, … |
 
+### Disques et éditions — contrôle du 21 septembre 2026
+
+Le filtre **Full Disc** ne doit pas confondre le codec **AVC** d'un Blu-ray complet avec un encode **x264**. L'ancienne exclusion réutilisait le motif x264 général, qui inclut AVC : quatre titres de disques dans les tests échappaient donc au malus. Une exclusion dédiée aux encodes explicites corrige ce conflit ; WEB AVC, Remux et encodes x264 restent distincts des disques complets.
+
+**IMAX Enhanced** (Disney/Bravia WEB) ne cumule pas le bonus **IMAX** simple. Les tests audio/HDR ont également été corrigés : une piste AAC ne doit pas reconnaître du FLAC, et SDR ne doit pas recevoir de bonus HDR. Les scores audio et image restent inchangés.
+
 ### Streamers
 
 | CF | Contenu |

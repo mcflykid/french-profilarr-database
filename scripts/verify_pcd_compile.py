@@ -10,6 +10,7 @@ import urllib.request
 from pathlib import Path
 
 from verify_quality_profiles import audit_quality_profiles
+from verify_media_profiles import audit_media_profiles
 
 ROOT = Path(__file__).resolve().parents[1]
 OPS = ROOT / "ops"
@@ -50,7 +51,7 @@ def main() -> int:
                 conn.executescript(path.read_text(encoding="utf-8"))
 
             conn.commit()
-            profile_errors = audit_quality_profiles(conn)
+            profile_errors = audit_quality_profiles(conn) + audit_media_profiles(conn)
             if profile_errors:
                 for error in profile_errors:
                     print(f"ERROR: {error}")

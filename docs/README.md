@@ -49,3 +49,4 @@ Ensuite : [principes.md](comprendre/principes.md) (synthèse) → pages thémati
 | Fichier | Contenu complet |
 |---------|-----------------|
 | [maintenir.md](contribuer/maintenir.md) | `validate.py`, arborescence `ops/`, checklist doc, **règles IA** |
+| [Audit du 21 septembre 2026](contribuer/audit-2026-09-21.md) | Défauts corrigés, couverture des dix profils et limites de la vérification |

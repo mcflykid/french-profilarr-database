@@ -32,6 +32,8 @@ flowchart BT
 
 Cas terrain documentés : `ops/11` (Damsel `MULTI` seul, *La Momie* TRUEFRENCH/HDR, MULTI.CA). Journal : [calibrage.md](calibrage.md#journal-des-calibrages-récents).
 
+**Audit du 21 septembre 2026** : `MULTI.VF` suit le VF générique déjà admis comme VFF et reçoit uniquement **FR-MULTI-VFF**, pas le palier ambigu. Cas réel : *Sept Écossais du Texas*. À l'inverse, `FRENCH.SUBS` désigne des sous-titres : **FR-VOSTFR**, jamais un bonus de doublage VFF, y compris après `MULTI`. `VOQ` reste québécois : VFQ, pas VF2. Aucun score de langue n'a changé.
+
 ---
 
 ### Tableau des scores (tous profils `FR-*`)
@@ -44,7 +46,7 @@ Cas terrain documentés : `ops/11` (Damsel `MULTI` seul, *La Momie* TRUEFRENCH/H
 | **FR-MULTI-ambig** | 5 500 | **`MULTI` seul** : FR probable, variante non précisée (hors nommage C411) |
 | **FR-VFF** | 5 000 | VFF, TRUEFRENCH, … **sans** `MULTI` |
 | **FR-MULTI-VFQ** | 4 500 | `MULTI` **et** VFQ / VOQ / **`MULTI.CA`** — **sous VFF** |
-| **FR-VFQ** | 4 000 | VFQ / VOQ / CA **sans** `MULTI` — **sous VFF** |
+| **FR-VFQ** | 4 000 | VFQ / VOQ **sans** `MULTI` — **sous VFF** ; CA seul est ambigu et non reconnu |
 | **FR-VOSTFR** | 1 500 | VOSTFR, SUBFRENCH, FANSUB, FASTSUB |
 
 **Règle C411** : avec plusieurs pistes, `MULTI` doit être **qualifié** (`MULTI.VFF`, `MULTI.VOF`, `MULTI.VFQ`, `MULTI.VF2`, …). Sur d’autres indexeurs, un **`MULTI` nu** arrive souvent quand même → palier **`FR-MULTI-ambig`** (5,5k) : *multi avec du français, variante inconnue*, **au-dessus de VFF seul**, **sous** `MULTI.VFF` explicite. **`MULTI.FRENCH`** reste **FR-MULTI-VFF** (7k).

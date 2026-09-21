@@ -101,7 +101,7 @@ VALUES (
 
 -- =============================================================================
 -- Film : Incendies (2010) — TMDB 41283 — langue VOQ sans MULTI
--- Attendu parser : FR-VF2 oui ; FR-MULTI-VF2 non ; FR-MULTI-VFF non
+-- Attendu parser : VOQ = FR-VFQ ; MULTI.VOQ = FR-MULTI-VFQ ; jamais VF2 ni MULTI-VFF
 -- (vérifier aussi dans ops/11-custom-format-tests.sql)
 -- =============================================================================
 INSERT INTO test_entities (type, tmdb_id, title, year) VALUES ('movie', 41283, 'Incendies', 2010);

@@ -13,6 +13,7 @@ Ajouté en 2026-07 après dérive constatée (image-son.md : 7 scores faux vs SQ
 from __future__ import annotations
 
 import re
+import json
 import sqlite3
 import sys
 import urllib.request
@@ -142,18 +143,24 @@ def main() -> int:
                                    ("profils", int(m[3]), n_pr)):
             if doc_v != real:
                 errors.append(f"README.md : {label} annoncé {doc_v}, réel {real}")
-        if abs(int(m[4]) - n_tests) > 15:
-            errors.append(f"README.md : ~{m[4]} tests annoncés, réel {n_tests}")
+        if int(m[4]) != n_tests:
+            errors.append(f"README.md : {m[4]} tests annoncés, réel {n_tests}")
+
+    version = json.loads((ROOT / 'pcd.json').read_text(encoding='utf-8'))['version']
+    version_match = re.search(r'\| \*\*Version\*\* \| ([^ |]+) \|', readme)
+    if not version_match or version_match[1] != version:
+        errors.append('README.md : version absente ou différente de pcd.json')
 
     maintenir = (ROOT / "docs/contribuer/maintenir.md").read_text(encoding="utf-8")
     for pattern, real, label in (
         (r"# (\d+) motifs", n_rx, "regex (02)"),
         (r"# (\d+) CF", n_cf, "CF (03)"),
         (r"# (\d+) profils FR-", n_pr, "profils (06)"),
+        (r"\*\*`ops/11`\*\*\s*\|\s*(\d+) tests", n_tests, "tests (11)"),
     ):
         m = re.search(pattern, maintenir)
-        if m and int(m[1]) != real:
-            errors.append(f"maintenir.md : {label} annoncé {m[1]}, réel {real}")
+        if not m or int(m[1]) != real:
+            errors.append(f"maintenir.md : {label} absent ou incorrect, attendu {real}")
 
     if errors:
         print(f"ÉCHEC — {len(errors)} incohérence(s) doc ↔ SQL :")

@@ -9,14 +9,17 @@ from __future__ import annotations
 
 import subprocess
 import sys
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CHECKS = (
     ("Intégrité ops/ (doublons, FK, profils)", "verify_ops_integrity.py"),
     ("Compile PCD (schema 1.1.0 + ops)", "verify_pcd_compile.py"),
+    ("Non-régression des garde-fous (injections en mémoire)", "test_audit_guards.py"),
     ("Descriptions regex/CF (pas de *, pas de syntaxe regex)", "validate_regex_ops.py"),
-    ("Tests calibrage ops/11 (releases réelles)", "run_cf_regex_tests.py --calibrage-only"),
+    ("Tous les cas CF ops/11 (parser .NET)", "test_all_custom_formats.py"),
+    ("Comportement des dix profils (parser .NET)", "test_profile_behaviour.py"),
     ("Régression 4K HEVC (parser réel en CI)", "test_4k_hevc_parser.py"),
     ("Cohérence doc ↔ SQL (scores, compteurs)", "verify_doc_scores.py"),
     ("Liens et ancres de la documentation", "verify_docs.py"),
@@ -41,7 +44,10 @@ def main() -> int:
     if failed:
         print(f"ÉCHEC : {', '.join(failed)}")
         return 1
-    print("OK — base prête pour Profilarr : Pull → Compile → Sync")
+    if os.environ.get("PARSER_URL"):
+        print("OK — contrôles statiques et parser réussis : Pull → Compile → Sync")
+    else:
+        print("OK PARTIEL — contrôles statiques seulement ; tests parser NON exécutés. Définir PARSER_URL avant publication.")
     return 0
 
 

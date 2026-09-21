@@ -923,7 +923,7 @@ SELECT 'Full Disc', 'Full Disc', re.name FROM regular_expressions re WHERE re.na
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'Full Disc', 'Exclure : Remux', re.name FROM regular_expressions re WHERE re.name = 'Remux';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
-SELECT 'Full Disc', 'Exclure : x264', re.name FROM regular_expressions re WHERE re.name = 'x264';
+SELECT 'Full Disc', 'Exclure : x264', re.name FROM regular_expressions re WHERE re.name = 'Full Disc - encodes AVC';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
 SELECT 'Full Disc', 'Exclure : x265', re.name FROM regular_expressions re WHERE re.name = 'x265';
 INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
