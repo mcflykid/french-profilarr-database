@@ -38,7 +38,8 @@ Ensuite : [principes.md](comprendre/principes.md) (synthèse) → pages thémati
 | [equipes.md](comprendre/equipes.md) | Scores `FR-Team-*`, tiers, 4KLight/HDLight/WEBRip |
 | [image-son.md](comprendre/image-son.md) | HDR, audio (exclusions), codecs, streamers |
 | [calibrage.md](comprendre/calibrage.md) | C411 vs parser, filtres, workflow, **journal** |
-| [torr9.md](comprendre/torr9.md) | Règles Torr9, nomenclature, équipes, API/RSS (sans secrets) |
+| [trackers.md](comprendre/trackers.md) | Périmètre exclusif : C411, TR4ker et Gemini Tracker |
+| [torr9.md](comprendre/torr9.md) | Archive historique — hors périmètre actif, aucune configuration à appliquer |
 | [limites.md](comprendre/limites.md) | **PCD = tracker** vs **Plex/tMM** ; torrent / `.mkv` ; motifs rename Plex, tests `ops/12` |
 | [hors-scope.md](comprendre/hors-scope.md) | Slots, rejets détaillés, roadmap |
 

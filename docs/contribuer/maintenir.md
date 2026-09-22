@@ -4,6 +4,8 @@
 
 [← Index doc](../README.md) · [Pourquoi — référence IA](../comprendre/pourquoi.md)
 
+**Trackers actifs exclusivement : C411, [TR4ker](https://tr4ker.net), [Gemini Tracker](https://gemini-tracker.org).** Respecter le [périmètre](../comprendre/trackers.md) ; les mentions Torr9 dans les anciens tests/journaux sont historiques, pas une cible de développement.
+
 ---
 
 ## Tests et validation

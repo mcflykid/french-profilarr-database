@@ -1,6 +1,8 @@
-# Calibrage et C411
+# Calibrage — C411, TR4ker et Gemini
 
 **En bref** : tu envoies de **vrais noms de fichiers** vus sur ton tracker ; on ajuste scores et tailles. Le PCD imite une partie des **règles C411** via le **titre** seulement — pas les slots ni le MediaInfo.
+
+Les seuls trackers concernés sont **C411**, **[TR4ker](https://tr4ker.net)** et **[Gemini Tracker](https://gemini-tracker.org)**. Les règles C411 ci-dessous ne sont pas automatiquement celles des deux autres trackers. [Périmètre et archives](trackers.md).
 
 ```mermaid
 flowchart LR
@@ -23,7 +25,7 @@ flowchart LR
 
 ## Calibrage sur releases réelles
 
-Envoie **5 à 30 titres complets** + tailles en Go (ex. captures C411). On met à jour regex, scores équipe, `ops/07` (poids cible).
+Envoie **5 à 30 titres complets** + tailles en Go, provenant de C411, TR4ker ou Gemini. On met à jour regex, scores équipe, `ops/07` (poids cible).
 
 ## C411 vs ce que Radarr voit
 
@@ -69,9 +71,9 @@ Si le titre contient **`IMAX`** (hors `NON-IMAX`) ou **`IMAX Enhanced`** (Disney
 
 C411 traite souvent **IMAX vs Theatrical** comme éditions distinctes (pas un doublon « même rip ») — aligné avec les CF **`IMAX`** / **`Theatrical`**.
 
-### Torr9
+### Archive Torr9 — hors périmètre
 
-Règles officielles, nomenclature, équipes présentes/interdites, API (15 req/min), RSS freeleech : **[torr9.md](torr9.md)**.
+L'ancienne page **[torr9.md](torr9.md)** est conservée comme archive ; ne plus utiliser ses indications API/RSS ni cibler ce tracker pour de nouveaux calibrages.
 
 ### Filtres de recherche C411 (référence)
 
@@ -104,7 +106,7 @@ Pour une **équipe** ou un **tracker**, envoie par message :
 1. **Captures** ou liste de **5–30 titres** complets (ex. `Film.2024.MULTI.VFF.1080p.WEB.AC3.5.1.H264-Slay3R`).
 2. Les **tailles** affichées (Go) — min / typique / max si possible.
 3. **Résolution** dominante (1080p WEB, 2160p, BluRay, …).
-4. Optionnel : indexeur (C411, Torr9) — reste interne, pas obligatoire dans le README public.
+4. Indexeur concerné : **C411, TR4ker ou Gemini** ; sans URL privée ni identifiants.
 
 ### Ce qu’on fait dans le dépôt
 
@@ -113,7 +115,7 @@ Pour une **équipe** ou un **tracker**, envoie par message :
 | Grammaire des titres | `ops/02`, `ops/04` |
 | Nouvelle équipe | `ops/03`, `ops/04`, `ops/06` |
 | Tailles media (Radarr **max ≤ 2000**) | `ops/07` |
-| Tests sur vrais titres | `ops/11` (description avec **C411**, **Torr9**, **Calibrage**, ou nom d’équipe) |
+| Tests sur vrais titres | `ops/11` (nouveaux cas : **C411**, **TR4ker**, **Gemini**, **Calibrage**, ou nom d’équipe ; Torr9 uniquement historique) |
 | Doc | cette page + [journal](#journal-des-calibrages-récents) |
 
 Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync** sur Radarr/Sonarr.
@@ -122,6 +124,7 @@ Puis : `python3 scripts/validate.py` → commit → **Pull → Compile → Sync*
 
 | Date | Élément | Changement principal |
 |------|---------|----------------------|
+| 2026-09-22 | **Périmètre des trackers** | Confirmation utilisateur : **C411, TR4ker et Gemini uniquement**. Torr9 retiré du périmètre actif ; page dédiée explicitement archivée et consignes de calibrage actualisées. Les anciens titres restent des tests de non-régression, sans fausse attribution aux trackers actuels. Aucun changement SQL, score ou réglage d'instance ; version conservée à 2.0.4. |
 | 2026-09-21 | **Version 2.0.4 — audit étendu** | Le pipeline ne jouait que 74 des 519 cas historiques. Passage à 528 cas avec le parser .NET, correction de 120 attentes incohérentes, 149 assertions sur les dix profils et les simulations terrain, 91 défauts injectés pour éprouver les garde-fous. Correction des plafonds HDTV-2160p, du type Smart Replace Sonarr, de FRENCH.SUBS, de MULTI.VF et du conflit Full Disc/AVC. Scores et priorité QTZ préservés. [Rapport, profils et limites](../contribuer/audit-2026-09-21.md). Pull → Compile → Sync avec Media Management ; état Nexus non vérifié en direct. |
 | 2026-09-20 | **Audit complet des dix profils** | Les **22 groupes / 87 membres** ont le bon ordre après le correctif 2.0.3, y compris les trois profils 720p. Remplacement des contrôles d'ordre/cutoff par un audit du SQL compilé : l'ancien test Films-4K pouvait lire le cutoff d'un autre profil ; le test du plafond CF ne lisait aucun profil car il attendait encore un incrément de 1. Vérification des activations, membres, correspondances API et seuils, indépendante du parser. Lors de l'audit, **64 configurations défectueuses injectées en mémoire** ont été détectées (inversions, cutoff absent/déplacé, cible désactivée, upgrades désactivés, seuil incohérent, groupe vide). Aucun nouveau changement de score ou d'ordre ; version du dépôt conservée à **2.0.3**. L'état appliqué sur Nexus reste à vérifier après Sync Radarr/Sonarr. |
 | 2026-09 | **Ordre qualité Radarr corrigé** | L'interface Radarr privilégie le haut de la liste. Les groupes étaient envoyés dans l'ordre inverse (`720p`, `1080p`, `2160p`) : un film `WEBDL-720p` pouvait donc rejeter un `Bluray-1080p` avec « Not an upgrade ». Les profils 4K sont maintenant ordonnés **2160p → 1080p → 720p**, les profils 1080p **1080p → 720p**, et `FR-Films-Any` **2160p → 1080p → 720p → SD**. |

@@ -1,6 +1,8 @@
-# Torr9.net — règles tracker et alignement PCD
+# Archive historique Torr9 — hors périmètre
 
-**En bref** : Torr9 impose une **nomenclature** proche de C411 (`MULTI`, `FRENCH`, `TRUEFRENCH`, `VOSTFR`). La base PCD est déjà calibrée sur des titres Torr9 (Damsel `MULTI` seul, DELIRIUS `MULTI.FRENCH`, TyHD, AC-3/E-AC-3). Cette page documente le tracker pour les calibrages futurs — **sans secrets** (passkey, cookie).
+**Archive, pas un guide actuel.** L'utilisateur n'utilise plus Torr9 et signale sa disparition. Le projet concerne exclusivement **C411, TR4ker et Gemini** : voir [le périmètre actif](trackers.md). Les règles, équipes et indications API/RSS ci-dessous sont des notes anciennes, non maintenues : **ne pas les appliquer ni les transposer aux trackers actuels**.
+
+Les anciens titres (Damsel `MULTI` seul, DELIRIUS `MULTI.FRENCH`, TyHD, AC-3/E-AC-3) sont conservés comme tests de non-régression, sans maintenir une intégration Torr9.
 
 [← Index doc](../README.md) · [Calibrage](calibrage.md) · [Langue](langue.md) · [Équipes](equipes.md)
 
@@ -94,7 +96,7 @@ Pour ajouter une équipe au palier **FR-Team-*** : envoyer **5–30 titres** + t
 
 ---
 
-## Calibrage : quoi envoyer pour Torr9
+## Ancien protocole de calibrage — archivé
 
 1. **Captures** ou liste de titres complets (format ci-dessus).
 2. **Tailles** en Go (min / typique / max).
@@ -107,7 +109,7 @@ Exemples déjà dans la base : DELIRIUS POI, Damsel `MULTI`, Mario TyHD / BATGir
 
 ## Pour les IA
 
-Avant d’ajouter une regex « pour Torr9 » : vérifier un **titre réel**, documenter ici ou dans [calibrage.md](calibrage.md#journal-des-calibrages-récents), et ne **jamais** committer de passkey.
+**Ne plus ajouter de calibrage pour Torr9.** Lire [trackers.md](trackers.md), puis travailler uniquement sur C411, TR4ker ou Gemini. Garder les fixtures historiques et leur provenance ; ne jamais présenter les anciennes règles ci-dessus comme des exigences des trackers actuels.
 
 ---
 

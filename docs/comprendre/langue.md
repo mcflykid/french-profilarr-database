@@ -56,7 +56,7 @@ Cas terrain documentés : `ops/11` (Damsel `MULTI` seul, *La Momie* TRUEFRENCH/H
 | 1 piste FR | `VFF`, `VOF`, `TRUEFRENCH`, `VFQ`, … | **FR-VFF** / **FR-VFQ** |
 | Multi + FR **précisé** | `MULTI.VFF`, `MULTI.VOF`, `MULTI.VFQ`, … | **FR-MULTI-VFF** / **FR-MULTI-VFQ** |
 | Multi + VFF **et** VFQ | `MULTI.VF2` | **FR-MULTI-VF2** |
-| Multi **sans** sous-tag FR | `MULTI` seul (Torr9, etc.) | **FR-MULTI-ambig** |
+| Multi **sans** sous-tag FR | `MULTI` seul (cas historiques conservés) | **FR-MULTI-ambig** |
 | Pas de FR audio | `VOSTFR` | **FR-VOSTFR** |
 
 ### Regex langue (`ops/02`)

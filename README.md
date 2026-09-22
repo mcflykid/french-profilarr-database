@@ -1,6 +1,6 @@
 # French Profilarr Database
 
-Profils **Radarr** et **Sonarr** pour la **scène française privée** : ce que tu vois sur C411 et les autres trackers (langue dans le titre, équipes, 4K compact…), pas un profil « international » générique.
+Profils **Radarr** et **Sonarr** pour **C411**, **[TR4ker](https://tr4ker.net)** et **[Gemini Tracker](https://gemini-tracker.org)** uniquement : langue dans le titre, équipes, 4K compact… Torr9 ne fait plus partie du projet actif. Voir le [périmètre des trackers](docs/comprendre/trackers.md).
 
 | | |
 |---|---|
@@ -60,7 +60,8 @@ Doc **complète** (tableaux, regex, journal, tests) + explication des **choix** 
 | [equipes.md](docs/comprendre/equipes.md) | QTZ, SUPPLY, 4KLight… |
 | [image-son.md](docs/comprendre/image-son.md) | HDR, Atmos, x265 |
 | [calibrage.md](docs/comprendre/calibrage.md) | Ajuster avec de vrais titres, C411, **journal** |
-| [torr9.md](docs/comprendre/torr9.md) | Règles tracker Torr9, équipes, nomenclature |
+| [trackers.md](docs/comprendre/trackers.md) | Périmètre actif : C411, TR4ker et Gemini Tracker |
+| [torr9.md](docs/comprendre/torr9.md) | Archive historique uniquement — tracker retiré |
 | [limites.md](docs/comprendre/limites.md) | **Profil tracker vs Plex** ; torrent / `.mkv` ; cross-seed ; workflow tinyMediaManager |
 | [hors-scope.md](docs/comprendre/hors-scope.md) | Ce qu’on ne fait pas (remux catalogue, etc.) |
 

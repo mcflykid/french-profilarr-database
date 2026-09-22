@@ -3,6 +3,8 @@
 **Document de référence** pour comprendre — et pour toute personne ou **IA** qui modifiera la base plus tard.  
 Chaque changement dans `ops/` doit rester **aligné** avec les intentions ci-dessous. Si une règle métier change, **mettre à jour cette page** en même temps que le SQL.
 
+**Périmètre actif exclusif : C411, [TR4ker](https://tr4ker.net) et [Gemini Tracker](https://gemini-tracker.org).** Torr9 est retiré ; ses exemples restent uniquement historiques. Voir [trackers.md](trackers.md) avant tout nouveau calibrage.
+
 [← Index doc](../README.md) · [Principes](principes.md) · [Langue](langue.md) · [Calibrage](calibrage.md)
 
 ---
@@ -12,7 +14,7 @@ Chaque changement dans `ops/` doit rester **aligné** avec les intentions ci-des
 | Question | Réponse |
 |----------|---------|
 | **Quel problème ?** | Les profils TRaSH / Dumpstarr « internationaux » ne reflètent pas ce que les **trackers privés FR** valorisent dans le **titre** des releases. |
-| **Quelle solution ?** | Des **Custom Formats** (points sur le nom de fichier) + **tailles** cibles + **10 profils** `FR-*`, calibrés sur de **vraies releases** (C411, Torr9, …). |
+| **Quelle solution ?** | Des **Custom Formats** (points sur le nom de fichier) + **tailles** cibles + **10 profils** `FR-*`, pour C411, TR4ker et Gemini ; calibrages réels et tests historiques conservés. |
 | **Principe n°1** | **Langue d’abord** (écart ~1k–1,5k entre paliers, plafond **8k**) — puis équipe, puis image/son. |
 | **Principe n°2** | On lit ce que **Radarr peut lire** : le **titre** et la **taille** — pas le MediaInfo, pas les slots C411. |
 | **Principe n°3** | **Encodes compacts** pour la maison (HEVC, 4KLight, WEB par équipes) — **pas** remux catalogue / AV1 / full disc. |
@@ -69,7 +71,7 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 
 | | |
 |--|--|
-| **Contexte** | C411 exige un `MULTI` **qualifié** ; Torr9/YGG envoient parfois `MULTI` seul ou suffixes `.FRENCH` incohérents. |
+| **Contexte** | C411 exige un `MULTI` **qualifié** ; les anciens cas Torr9/YGG ont montré des `MULTI` seuls ou suffixes `.FRENCH` incohérents. Ces cas historiques ne désignent plus des trackers actifs. |
 | **Alternative écartée** | Un seul CF « français » ; traiter `MULTI` nu comme `MULTI.VFF` (7k) ; mettre VFQ au même niveau que VFF. |
 | **Choix retenu** | Paliers séparés : `FR-MULTI-VF2` (8k) > `FR-MULTI-VFF` (7k) > … > `FR-MULTI-ambig` (5,5k) pour `MULTI` seul > `FR-VFF` (5k) > `FR-MULTI-VFQ` / `FR-VFQ` (4,5k / 4k) > `FR-VOSTFR` (1,5k). |
 | **Pourquoi** | Refléter la **priorité France** tout en **ne punissant pas** les indexeurs hors C411 (`MULTI` ambigu ≠ 0) ; VFQ reste un **repli** sous VFF France confirmé. |
@@ -209,7 +211,8 @@ Détail par CF : [langue.md](langue.md), [equipes.md](equipes.md), [image-son.md
 | [equipes.md](equipes.md) | Scores 17 teams, tiers, signatures 4KLight/HDLight |
 | [image-son.md](image-son.md) | HDR, audio (exclusions DD/DTS), codecs, streamers |
 | [calibrage.md](calibrage.md) | C411 vs parser, filtres UI, workflow, **journal** |
-| [torr9.md](torr9.md) | Règles Torr9, nomenclature, équipes, écarts PCD |
+| [trackers.md](trackers.md) | Périmètre actif exclusif : C411, TR4ker et Gemini Tracker |
+| [torr9.md](torr9.md) | Archive historique Torr9, hors périmètre actif |
 | [limites.md](limites.md) | **Profil tracker vs archive Plex** ; torrent / `.mkv` ; workflow tinyMediaManager ; tests `ops/12` |
 | [hors-scope.md](hors-scope.md) | Slots, rejets, roadmap |
 | [tailles.md](../installer/tailles.md) | Tableaux Mo/min Radarr/Sonarr/Anime |
