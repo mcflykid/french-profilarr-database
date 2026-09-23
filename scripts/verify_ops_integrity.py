@@ -241,6 +241,7 @@ def main() -> int:
         "FR-VFQ",
         "FR-VOSTFR",
         "FR-Team-QTZ",
+        "FR-Team-SpK79",
         "FR-Team-Slay3R",
         "FR-Tier-02",
     )

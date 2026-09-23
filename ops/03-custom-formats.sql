@@ -1,4 +1,5 @@
 -- french-profilarr-database — ops/03
+INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('FR-Team-SpK79', 'Équipe SpK79 — préférence utilisateur pour les encodes C411, sous QTZ. Le tag 4KLight reste un bonus distinct.', 0);
 -- Custom formats Radarr + Sonarr (include_in_rename = 0, repacks via FR-Repack*).
 
 INSERT INTO custom_formats (name, description, include_in_rename) VALUES ('3D', 'Contenu stéréoscopique 3D. Malus : peu d’installations 3D actives.', 0);

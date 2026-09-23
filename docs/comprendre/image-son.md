@@ -91,6 +91,8 @@ Conditions **Exclure :** entre AAC, Dolby, DTS, TrueHD, FLAC, etc. → pas de cu
 
 ### Codecs
 
+**Tags des captures C411 du 23 septembre** : `DV` était déjà reconnu comme **Dolby Vision**, `HDR10Plus` comme **HDR10+** et `EAC3.5.1` comme **Dolby Digital +**. Pas de nouveau CF équivalent ni de double bonus. Dans Films-4K : DV +3500, HDR10+ +2200, 4KLight +3000 et DD+ +500 ; TrueHD −1500 et 7.1 −800 restent conformes au matériel du foyer. L'absence d'un tag ne permet pas de l'inventer ou de modifier le nom du fichier. [Tests sur les 26 exemples](spk79-2026-09-23.md).
+
 | CF | Comportement |
 |----|----------------|
 | **AV1** | -999999 |

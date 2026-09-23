@@ -20,6 +20,7 @@ CHECKS = (
     ("Descriptions regex/CF (pas de *, pas de syntaxe regex)", "validate_regex_ops.py"),
     ("Tous les cas CF ops/11 (parser .NET)", "test_all_custom_formats.py"),
     ("Comportement des dix profils (parser .NET)", "test_profile_behaviour.py"),
+    ("Calibrage C411 : SpK79, QTZ et tags des 26 exemples", "test_c411_samples.py"),
     ("Régression 4K HEVC (parser réel en CI)", "test_4k_hevc_parser.py"),
     ("Cohérence doc ↔ SQL (scores, compteurs)", "verify_doc_scores.py"),
     ("Liens et ancres de la documentation", "verify_docs.py"),

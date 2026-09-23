@@ -1,0 +1,18 @@
+{
+  "source": "Capture C411 fournie par l'utilisateur le 2026-09-23 à 22:08:04",
+  "size_note": "Tailles affichées arrondies en Go ; octets exacts et durées non fournis. Ne pas déduire 4KLight ou DV de la taille.",
+  "releases": [
+    {"id": "bagarre", "title": "Bagarre.2026.VOF.2160p.WEBRip.DV.HDR10Plus.EAC3.5.1.x265-SpK79", "displayed_size_go": 2.9},
+    {"id": "marty_supreme", "title": "Marty.Supreme.2025.MULTI.VF2.2160p.4KLight.DV.HDR10Plus.EAC3.5.1.Atmos.x265-SpK79", "displayed_size_go": 8.7},
+    {"id": "pressure", "title": "Pressure.2026.MULTi.VFQ.2160p.HDR.DV.WEBrip.AC3.5.1.x265-SpK79", "displayed_size_go": 3},
+    {"id": "vie_privee", "title": "Vie.Privee.2025.VOF.2160p.WEBRip.DV.HDR.EAC3.5.1.x265-SpK79", "displayed_size_go": 3.1},
+    {"id": "obsession", "title": "Obsession.2026.REPACK.MULTI.VF2.2160p.WEBRip.DV.HDR10Plus.EAC3.5.1.x265-SpK79", "displayed_size_go": 4},
+    {"id": "scary_movie", "title": "Scary.Movie.2026.MULTi.VF2.2160p.WEBRip.DV.HDR10Plus.EAC3.5.1.Atmos.x265-SpK79", "displayed_size_go": 3.5},
+    {"id": "disclosure_spk", "title": "Disclosure.Day.2026.MULTI.VF2.2160p.WEBRip.DV.HDR10Plus.EAC3.5.1.x265-SpK79", "displayed_size_go": 5.7},
+    {"id": "supergirl_web", "title": "Supergirl.2026.REPACK.MULTI.VF2.2160p.WEB.DV.HDR10Plus.EAC3.5.1.H265-SpK79", "displayed_size_go": 19.6},
+    {"id": "supergirl_rip", "title": "Supergirl.2026.MULTI.VF2.2160p.WEBRip.DV.HDR10Plus.EAC3.5.1.x265-SpK79", "displayed_size_go": 3.9},
+    {"id": "specialistes", "title": "Les.Specialistes.2026.MULTI.VFF.2160p.WEBRip.DV.HDR10Plus.EAC3.5.1.x265-SpK79", "displayed_size_go": 3.6},
+    {"id": "projet_chance", "title": "Projet.Derniere.Chance.2026.IMAX.MULTI.VF2.2160p.BluRay.4KLight.DV.HDR10Plus.EAC3.5.1.x265-SpK79", "displayed_size_go": 10},
+    {"id": "leviticus", "title": "Leviticus.2026.MULTI.VFQ.2160p.WEBRip.DV.HDR10Plus.EAC3.5.1.x265-SpK79", "displayed_size_go": 2.5}
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "name": "French Profilarr Database",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Base PCD Profilarr v2 — scène française (FR-*), sans Remux, rename=0. Seuils profil type Dumpstarr, scores langue FR.",
   "arr_types": ["radarr", "sonarr"],
   "dependencies": {

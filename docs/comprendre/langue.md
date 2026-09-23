@@ -38,6 +38,8 @@ Cas terrain documentés : `ops/11` (Damsel `MULTI` seul, *La Momie* TRUEFRENCH/H
 
 ### Tableau des scores (tous profils `FR-*`)
 
+**Correction 2.0.5 — Aliens** : `MULTi.HYBRiD.VFF` est reconnu comme **FR-MULTI-VFF**, sans cumul avec FR-MULTI-ambig. Seul le tag technique `HYBRID` peut ainsi s'intercaler ; la détection n'est pas élargie à des mots arbitraires du titre. Les variantes VF2/VFQ et FRENCH.SUBS conservent leur traitement. Le cas fourni passe de **17900 à 19400** dans Films-4K (+1500 de langue), sans changement des valeurs de score.
+
 | Custom format | Score | Détection (résumé) |
 |---------------|------:|---------------------|
 | **FR-MULTI-VF2** | 8 000 | `MULTI` **et** **`VF2`** (dual FR + QC) |

@@ -14,17 +14,17 @@
 python3 scripts/validate.py
 ```
 
-Vérifie : intégrité `ops/`, compilation SQLite (schema 1.1.0), **dix profils compilés** (ordre, membres, activation, cutoff et seuils exacts), **trois presets media / 74 définitions**, descriptions regex, **528 cas CF complets** avec le parser .NET, **149 assertions de score sur les dix profils**, régression HEVC, **91 injections de défauts en mémoire**, cohérence des scores/compteurs documentés et liens Markdown. Détail et limites : [audit du projet](audit-2026-09-21.md).
+Vérifie : intégrité `ops/`, compilation SQLite (schema 1.1.0), **dix profils compilés** (ordre, membres, activation, cutoff et seuils exacts), **trois presets media / 74 définitions**, descriptions regex, **555 cas CF complets** avec le parser .NET, **149 assertions de score sur les dix profils**, **497 contrôles C411 sur 26 titres**, régression HEVC, **91 injections de défauts en mémoire**, cohérence des scores/compteurs documentés et liens Markdown. Détail et limites : [audit initial](audit-2026-09-21.md) et [calibrage SpK79](../comprendre/spk79-2026-09-23.md).
 
 Avec `PARSER_URL` défini (obligatoire en CI), tous les cas `ops/11` sont exécutés, sans filtre de description. En local sans parser, le résultat est explicitement **OK PARTIEL** : les tests parser sont ignorés, pas déclarés réussis. L'ancienne commande `run_cf_regex_tests.py --calibrage-only` appelle désormais la suite complète. Les contrôles statiques restent disponibles sans parser.
 
-La suite CF ajoute **44 cas complémentaires** (dont les bornes de taille, impossibles à renseigner dans `ops/11`) et impose une couverture positive des **78 CF**. Les compteurs du README, ceux du guide et la version de `pcd.json` sont vérifiés exactement, sans tolérance silencieuse.
+La suite CF ajoute **44 cas complémentaires** (dont les bornes de taille, impossibles à renseigner dans `ops/11`) et impose une couverture positive des **79 CF**. Les compteurs du README, ceux du guide et la version de `pcd.json` sont vérifiés exactement, sans tolérance silencieuse.
 
 CI GitHub : workflow **Validate PCD** sur chaque push/PR vers `main`.
 
 | Fichier | Rôle |
 |---------|------|
-| **`ops/11`** | 528 tests parser par CF ; les anciens titres Torr9 restent des régressions historiques, les trackers actuels sont C411, Gemini Tracker et TR4ker |
+| **`ops/11`** | 555 tests parser par CF ; les anciens titres Torr9 restent des régressions historiques, les trackers actuels sont C411, Gemini Tracker et TR4ker |
 | **`ops/12`** | 12 simulations profil (Momie, POI, …), toutes contrôlées par `test_profile_behaviour.py` ; régression HEVC complémentaire |
 
 Après modification SQL : **Pull → Compile** sur la base, puis revérifier les tests dans l’UI Profilarr.
@@ -38,8 +38,8 @@ Après modification SQL : **Pull → Compile** sur la base, puis revérifier les
 pcd.json                 # Version du dépôt et version minimale de Profilarr
 ops/
   01-tags.sql            # Tags UI
-  02-regex.sql           # 77 motifs (pattern = détection)
-  03-custom-formats.sql  # 78 CF (include_in_rename = 0)
+  02-regex.sql           # 78 motifs (pattern = détection)
+  03-custom-formats.sql  # 79 CF (include_in_rename = 0)
   04-custom-format-conditions.sql
   05-custom-format-tags.sql
   06-quality-profiles.sql   # 10 profils FR-* + scores
@@ -59,6 +59,7 @@ scripts/
   parser_audit.py            # Métadonnées et regex via le parser .NET
   test_all_custom_formats.py # Tous les cas ops/11, sans sélection
   test_profile_behaviour.py  # Scores des dix profils et des cas ops/12
+  test_c411_samples.py       # 26 titres et tailles affichées dans tests/fixtures/
   verify_doc_scores.py    # Cohérence doc <-> SQL (scores, compteurs)
   verify_docs.py          # Liens / ancres Markdown locaux
   test_4k_hevc_parser.py  # Régression 4K avec le parser Profilarr réel (CI)
@@ -118,7 +119,8 @@ Les **agents / contributeurs** qui modifient ce dépôt doivent appliquer cette 
 | v1 | YAML | Profilarr v1 |
 | v2.5 → v3 | PCD + `ops/*.sql` | Schema 1.1.0 |
 | 2.0.3 | Racine = `pcd.json` + `ops/` + `scripts/` | Ordre des qualités cible → fallback, pour autoriser les upgrades 720p → 1080p → 2160p |
-| **2.0.4 actuel** | Même structure | Audit étendu, plafonds HDTV 4K, langues/disques et validation complète .NET |
+| 2.0.4 | Même structure | Audit étendu, plafonds HDTV 4K, langues/disques et validation complète .NET |
+| **2.0.5 actuel** | Même structure + échantillons `tests/fixtures/` | Préférence SpK79 sous QTZ, langue HYBRID corrigée et 26 exemples C411 testés |
 
 Anciennes archives `backup/` : `git show <commit>:backup/...` (ex. `c1d52ee`).
 

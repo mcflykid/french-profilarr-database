@@ -110,13 +110,13 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 | **Pourquoi** | Contrôle fin du **score** (repack 3 > repack 2 > repack) et cohérence avec les titres réels. |
 | **Fichiers** | `ops/07`, `ops/06`, [equipes.md](equipes.md) (signatures) |
 
-### 6. Équipes : 16× `FR-Team-*`, pas ~900 regex
+### 6. Équipes : 18 groupes `FR-Team-*`, pas ~900 regex
 
 | | |
 |--|--|
 | **Contexte** | [Profilarr-database-french-regex](https://github.com/Jojont54/Profilarr-database-french-regex) modélise une regex par team (~900 fichiers). |
 | **Alternative écartée** | Copier le modèle Jojont54 ; ignorer les équipes (tout en tiers génériques). |
-| **Choix retenu** | **17 groupes** calibrés + `FR-Tier-01/02` ; détection `-TEAM` en fin de titre. |
+| **Choix retenu** | **18 groupes** calibrés + `FR-Tier-01/02` ; détection `-TEAM` en fin de titre. SpK79 ajouté à la demande de l'utilisateur sous QTZ (+5400 contre +5500). |
 | **Pourquoi** | Maintenance **tenable** et **rebase** Dictionarry possible ; gain marginal des teams rares vs coût de sync/PR. |
 | **Fichiers** | `ops/03`, `ops/04`, `ops/06`, [equipes.md](equipes.md), journal [calibrage.md](calibrage.md) |
 | **Ne pas** | Ajouter 50 teams sans releases réelles documentées dans `ops/11` + journal. |
@@ -208,7 +208,7 @@ Détail par CF : [langue.md](langue.md), [equipes.md](equipes.md), [image-son.md
 |------|-------------------------------|
 | [principes.md](principes.md) | Tableau synthèse choix + seuils `ops/06` |
 | [langue.md](langue.md) | Scores, regex `ops/02`, cas C411 / cross-indexeur |
-| [equipes.md](equipes.md) | Scores 17 teams, tiers, signatures 4KLight/HDLight |
+| [equipes.md](equipes.md) | Scores 18 teams, tiers, signatures 4KLight/HDLight |
 | [image-son.md](image-son.md) | HDR, audio (exclusions DD/DTS), codecs, streamers |
 | [calibrage.md](calibrage.md) | C411 vs parser, filtres UI, workflow, **journal** |
 | [trackers.md](trackers.md) | Périmètre actif exclusif : C411, TR4ker et Gemini Tracker |

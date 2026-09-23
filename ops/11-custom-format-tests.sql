@@ -1,4 +1,13 @@
 -- french-profilarr-database — ops/11
+-- C411 23 septembre : SpK79 est une préférence équipe, pas un tag de titre arbitraire.
+INSERT INTO custom_format_tests (custom_format_name, title, type, should_match, description) VALUES
+    ('FR-Team-SpK79', 'Serie.S01E01.MULTI.VFF.1080p.WEB-DL.x265-SpK79', 'series', 1, 'Calibrage SpK79 — groupe également reconnu par Sonarr'),
+    ('FR-Team-SpK79', 'Bagarre.2026.VOF.2160p.WEBRip.DV.HDR10Plus.EAC3.5.1.x265-SpK79', 'movie', 1, 'C411 SpK79 — suffixe réel WEBRip sans 4KLight'),
+    ('FR-Team-SpK79', 'Projet.Derniere.Chance.2026.IMAX.MULTI.VF2.2160p.BluRay.4KLight.DV.HDR10Plus.EAC3.5.1.x265-SpK79', 'movie', 1, 'C411 SpK79 — suffixe réel BluRay 4KLight'),
+    ('FR-Team-SpK79', 'Film.2025.MULTI.VFF.2160p.BluRay.x265-spk79.mkv', 'movie', 1, 'Calibrage SpK79 — casse et extension de fichier'),
+    ('FR-Team-SpK79', 'SpK79.Film.2025.MULTI.VFF.2160p.BluRay.x265-QTZ', 'movie', 0, 'Calibrage SpK79 — nom dans le titre, autre groupe'),
+    ('FR-Team-SpK79', 'Film.2025.MULTI.VFF.2160p.BluRay.x265-SpK790', 'movie', 0, 'Calibrage SpK79 — groupe voisin interdit'),
+    ('FR-Team-SpK79', 'Film.2025.MULTI.VFF.2160p.BluRay.x265-SpK79FAKE', 'movie', 0, 'Calibrage SpK79 — suffixe prolongé interdit');
 -- Audit 2026-09-21 : régressions complémentaires langue, disque et édition.
 INSERT INTO custom_format_tests (custom_format_name, title, type, should_match, description) VALUES
     ('FR-VOSTFR', 'Film.2024.FRENCH.SUBS.1080p.WEB-DL.x264-TEAM', 'movie', 1, 'Audit langue — sous-titres français, pas doublage'),
@@ -533,3 +542,26 @@ VALUES
     ('x265', 'Aqua Teen Hunger Force (2000) S00E13 (480p DVD x265 SDR AAC 2.0 English - r00t QxR)', 'series', 1, 'Test parser — x265 : doit correspondre (release réelle)'),
     ('x265', 'Planet Earth II S01 REPACK UHD BluRay 2160p DD5.1 HDR x265-BHDStudio', 'series', 1, 'Test parser — x265 : doit correspondre (release réelle)'),
     ('x265', 'Spider-Man Across the Spider-Verse 2023 1080p UHD BluRay DDP7 1 DoVi HDR10x265-c0kE', 'movie', 1, 'Test parser — x265 : doit correspondre (release réelle)');
+
+-- Calibrage C411 2026-09-23 : HYBRID interposé ne rend pas une langue explicite ambiguë.
+INSERT INTO custom_format_tests (custom_format_name, title, type, should_match, description) VALUES
+    ('FR-MULTI-VFF', 'Aliens.1986.MULTi.HYBRiD.VFF.2160p.BluRay.4KLight.DV.HDR10Plus.EAC3.5.1.x265-J4CK', 'movie', 1, 'C411 Aliens — MULTI.HYBRID.VFF garde le palier France explicite'),
+    ('FR-MULTI-ambig', 'Aliens.1986.MULTi.HYBRiD.VFF.2160p.BluRay.4KLight.DV.HDR10Plus.EAC3.5.1.x265-J4CK', 'movie', 0, 'C411 Aliens — pas de double bonus ambigu'),
+    ('FR-MULTI-VFF', 'Film 2024 multi hybrid vff 2160p BluRay x265-TEAM', 'movie', 1, 'Régression HYBRID — espaces et casse ignorée'),
+    ('FR-MULTI-ambig', 'Film 2024 multi hybrid vff 2160p BluRay x265-TEAM', 'movie', 0, 'Régression HYBRID — espaces sans cumul ambigu'),
+    ('FR-MULTI-VFQ', 'Film.2024.MULTI.HYBRID.VFQ.2160p.BluRay.x265-TEAM', 'movie', 1, 'Régression HYBRID — VFQ reste Québec'),
+    ('FR-MULTI-VFF', 'Film.2024.MULTI.HYBRID.VFQ.2160p.BluRay.x265-TEAM', 'movie', 0, 'Régression HYBRID — VFQ ne devient pas VFF'),
+    ('FR-MULTI-ambig', 'Film.2024.MULTI.HYBRID.VFQ.2160p.BluRay.x265-TEAM', 'movie', 0, 'Régression HYBRID — VFQ explicite sans cumul ambigu'),
+    ('FR-MULTI-VF2', 'Film.2024.MULTI.HYBRID.VF2.2160p.BluRay.x265-TEAM', 'movie', 1, 'Régression HYBRID — VF2 conserve le palier dual France Québec'),
+    ('FR-MULTI-VFF', 'Film.2024.MULTI.HYBRID.VF2.2160p.BluRay.x265-TEAM', 'movie', 0, 'Régression HYBRID — VF2 ne devient pas VFF'),
+    ('FR-MULTI-ambig', 'Film.2024.MULTI.HYBRID.VF2.2160p.BluRay.x265-TEAM', 'movie', 0, 'Régression HYBRID — VF2 explicite sans cumul ambigu'),
+    ('FR-VOSTFR', 'Film.2024.MULTI.HYBRID.FRENCH.SUBS.2160p.BluRay.x265-TEAM', 'movie', 1, 'Régression HYBRID — FRENCH SUBS reste sous-titré'),
+    ('FR-MULTI-VFF', 'Film.2024.MULTI.HYBRID.FRENCH.SUBS.2160p.BluRay.x265-TEAM', 'movie', 0, 'Régression HYBRID — sous-titres sans bonus doublage'),
+    ('FR-MULTI-ambig', 'Film.2024.MULTI.HYBRID.FRENCH.SUBS.2160p.BluRay.x265-TEAM', 'movie', 0, 'Régression HYBRID — sous-titres sans bonus audio ambigu'),
+    ('FR-MULTI-ambig', 'Film.2024.MULTI.HYBRID.2160p.BluRay.x265-TEAM', 'movie', 1, 'Régression HYBRID — HYBRID seul ne précise pas la langue'),
+    ('FR-MULTI-VFF', 'Film.2024.MULTI.HYBRID.2160p.BluRay.x265-TEAM', 'movie', 0, 'Régression HYBRID — aucune invention de doublage France'),
+    ('FR-MULTI-VFF', 'Film.2024.MULTI.OTHER.VFF.2160p.BluRay.x265-TEAM', 'movie', 0, 'Régression HYBRID — aucun saut arbitraire entre MULTI et VFF'),
+    ('FR-MULTI-ambig', 'Film.2024.MULTI.OTHER.VFF.2160p.BluRay.x265-TEAM', 'movie', 1, 'Régression HYBRID — seule la variante documentée est élargie'),
+    ('FR-MULTI-VFF', 'Film.2024.MULTI.HYBRID.VFF.VF2.2160p.BluRay.x265-TEAM', 'movie', 0, 'Régression HYBRID — VF2 explicite conserve sa priorité sur VFF'),
+    ('FR-MULTI-VF2', 'Film.2024.MULTI.HYBRID.VFF.VF2.2160p.BluRay.x265-TEAM', 'movie', 1, 'Régression HYBRID — présence VF2 prioritaire'),
+    ('FR-MULTI-VFF', 'Film.2024.MULTI.HYBRIDIZED.VFF.2160p.BluRay.x265-TEAM', 'movie', 0, 'Régression HYBRID — mot entier uniquement');

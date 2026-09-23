@@ -1,4 +1,14 @@
 -- french-profilarr-database — ops/04
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Team-SpK79', 'Suffixe SpK79', 'release_title', 'all', 0, 1
+FROM custom_formats cf WHERE cf.name = 'FR-Team-SpK79';
+INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)
+SELECT 'FR-Team-SpK79', 'Groupe SpK79', 'release_group', 'all', 0, 1
+FROM custom_formats cf WHERE cf.name = 'FR-Team-SpK79';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-Team-SpK79', 'Suffixe SpK79', re.name FROM regular_expressions re WHERE re.name = 'SpK79';
+INSERT INTO condition_patterns (custom_format_name, condition_name, regular_expression_name)
+SELECT 'FR-Team-SpK79', 'Groupe SpK79', re.name FROM regular_expressions re WHERE re.name = 'SpK79';
 -- Conditions CF (regex, release_title, langue, qualité, négations « Exclure : »).
 
 INSERT INTO custom_format_conditions (custom_format_name, name, type, arr_type, negate, required)

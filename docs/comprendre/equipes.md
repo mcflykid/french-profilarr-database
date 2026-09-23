@@ -12,7 +12,7 @@
 
 | Niveau | CF | Rôle |
 |--------|-----|------|
-| **Équipes** | `FR-Team-*` (17 groupes) | Bonus fort, calibrés sur releases réelles |
+| **Équipes** | `FR-Team-*` (18 groupes) | Bonus fort, calibrés sur releases réelles |
 | **Longue traîne** | `FR-Tier-01`, `FR-Tier-02` | Petits bonus (regex compacte) |
 
 Détection : suffixe **`-TEAM`** dans le titre (`(?<=^|[\s.-])TEAM\b`, insensible à la casse → `SLAY3R` = `Slay3R`).
@@ -24,6 +24,7 @@ On **n’utilise pas** le modèle [Profilarr-database-french-regex](https://gith
 | Équipe | Score | Profil typique / calibrage |
 |--------|------:|----------------------------|
 | **FR-Team-QTZ** | 5 500 | 4KLight Bluray, référence 4K ; le combo QTZ + 4KLight reçoit +4 000 supplémentaires dans **FR-Films-4K** seulement |
+| **FR-Team-SpK79** | 5 400 | Préférence utilisateur, juste sous QTZ ; 18 exemples C411 (WEB, WEBRip et 4KLight), détection stricte du suffixe/groupe |
 | **FR-Team-Neostark** | 5 300 | **Uniquement** si `4KLight` **dans le titre** (C411 ~3–5 Go) ; WEBRip/WEB sans tag → pas de bonus équipe |
 | **FR-Team-AMEN** | 5 200 | WEB 2160p compact DV/HDR10+ |
 | **FR-Team-BONBON** | 5 000 | 4KLight / WEBRip ~2,5–5 Go |
@@ -59,6 +60,8 @@ On **n’utilise pas** le modèle [Profilarr-database-french-regex](https://gith
 **Neostark** : bonus équipe **+5300** seulement avec tag **4KLight** dans le nom du torrent (~**8 300** cumulé avec `FR-4KLight` en 4K). Sans tag → **0** bonus Neostark ; les autres équipes (SUPPLY, TyHD, QTZ…) prennent le relais.
 
 **QTZ + 4KLight** : exception volontaire au principe « un CF par créneau ». Le CF composé `FR-Team-QTZ-4KLight` vaut **+4 000**, uniquement dans **FR-Films-4K**. Il corrige le cas observé où une release QTZ 4KLight Atmos/TrueHD était pénalisée par l'audio et perdait face à TyHD. QTZ sans tag 4KLight garde seulement son bonus équipe de **+5 500** ; les profils Séries, Anime, 1080p et 720p ne changent pas.
+
+**SpK79 (2.0.5)** : +5400 sur les dix profils, sous QTZ +5500 à autres caractéristiques identiques. Le tag `4KLight` reçoit séparément son bonus habituel seulement lorsqu'il est présent. QTZ conserve son bonus composé Films-4K : l'écart est alors de **4100**, sinon de **100**. Cette préférence relative n'impose pas de remplacer un fichier existant pour seulement 100 points (incrément minimal 1400), ni de choisir un QTZ de langue/audio différents. [Calibrage et exemples](spk79-2026-09-23.md).
 
 ---
 
