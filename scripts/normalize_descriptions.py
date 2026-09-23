@@ -31,7 +31,7 @@ REGEX_DESCRIPTIONS: dict[str, str] = {
     "FLAC": "Piste FLAC annoncée dans le titre. Distinct du PCM/LPCM.",
     "FR-Regex-4KLight": "Tag 4KLight (Bluray UHD allégé). Référence scène FR (QTZ, BONBON).",
     "FR-Regex-Atmos-Bundle": "Atmos, DDPA et variante TrueHD.A 5.1/7.1 (BTN) en un seul motif.",
-    "FR-Regex-Blockers": "Groupes bannis, encodeurs GPU (NVENC, QSV, AMF) et incohérences REMUX+encodeur.",
+    "FR-Regex-Blockers": "Groupes bannis historiques dont k0RE, et suffixes WebVision, AgroaQc, kORE, R3Z, Arkas, FYR3N. Encodeurs GPU et incohérences REMUX+encodeur exclus.",
     "FR-Regex-HDLight": "Tag HDLight (Bluray allégé). Courant en 1080p/720p sur trackers FR.",
     "FR-Regex-Hybrid": "Tag HYBRID (Bluray hybride multi-sources). Bonus UHD sur profils 4K.",
     "FR-Regex-MULTI": "Tag MULTI : MULTI.VFF, MULTIVFF collé (C411), MULTITRUEFRENCH, etc. Mot entier MULTI seul.",

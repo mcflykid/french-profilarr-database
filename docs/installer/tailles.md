@@ -84,6 +84,8 @@ Après mise à jour : **Pull → Compile → Sync**, en incluant **Media Managem
 
 Les [14 releases fournies](../comprendre/c411-2026-09-23.md) vont de **3,5 à 12 Go** en 2160p/4KLight. Les tailles affichées et titres sont conservés pour le calibrage. Sans durée ni taille exacte, cet échantillon ne justifie pas de modifier les bornes Mo/min ni de déclarer tous les fichiers admissibles. Les trois paires audio ont des tailles différentes, mais cela n'isole pas le poids de l'audio des autres différences d'encodage.
 
+**Complément 2.0.6, à la demande de l'utilisateur** : les deux captures totalisent 26 releases. Les durées publiques de **neuf films / douze releases** ont maintenant été sourcées et rapprochées des tailles affichées. En tenant compte des éditions et marges d'arrondi, les douze restent compatibles avec **17–250 Mio/min** : bornes **et preferred inchangés**. Le minimum protège les petits encodes ; abaisser le maximum à 150 rejetterait le WEB Supergirl à 19,6 Go. Cela ne certifie pas la durée réelle du fichier ni la métadonnée présente dans Radarr. [Tableau, sources et méthode](../comprendre/tailles-c411-2026-09-23.md).
+
 ### Delays
 
 | Preset | Fichier | Comportement |

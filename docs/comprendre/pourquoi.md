@@ -100,6 +100,8 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 | **Fichiers** | `ops/06`, CF `Remux`, `AV1`, `Full Disc`, etc. |
 | **Ne pas** | Assouplir pour « un film en remux » sans conscience du ratio (les profils films excluent le remux). |
 
+Les exclusions du §4 comprennent aussi **FR-Blockers** : demande utilisateur du 23 septembre 2026 d'interdire **WebVision, AgroaQc, kORE, R3Z, Arkas, FYR3N** sur les dix profils, en conservant `k0RE` et les autres blocages historiques. Détection des nouveaux noms en suffixe strict pour ne pas bannir un film sur un simple mot du titre. Ce choix personnel est couvert par des tests synthétiques identifiés comme tels (pas de captures disponibles de ces équipes). Voir [équipes](equipes.md).
+
 ### 5. Repacks : `doNotPrefer` natif + CF `FR-Repack*`
 
 | | |
@@ -131,6 +133,8 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 | **Pourquoi** | Profilarr v2 : **un triplet** media par instance ; évite les seuils absurdes (ex. `min` 900 → ~97 Go sur *Up in the Air*). Le tri qualité appartient aux **scores CF** : un `min` « ambitieux » (ex. 34,5 sur WEB 2160p) rejetait des 4KLight ~2,5–5 Go pourtant scorés +5000. Le `max` borne chaque grab contre les encodes hors cible **scène FR compacte** sans bloquer le premium documenté (DV/Atmos ~17–26 Go). |
 | **Fichiers** | `ops/07`, [tailles.md](../installer/tailles.md) |
 | **Ne pas** | Remonter les `min` au-dessus du niveau anti-junk (ça re-crée des rejets de releases bien scorées) ; remonter les `max` sans penser à la cible compacte ; valeurs « TRaSH international » sans recalcul Mo/min × durée. |
+
+**Calibrage du 23 septembre 2026** : les durées publiques sourcées de neuf films permettent de recalculer douze releases C411, avec marges pour unités, arrondis et éditions. Elles passent toutes dans **17–250** ; bornes et cibles préférées restent inchangées. Les quatorze autres titres ne sont pas déclarés vérifiés côté durée. [Sources et calculs reproductibles](tailles-c411-2026-09-23.md).
 
 ### 8. WEB-DL vs WEBRip en 4K (malus léger, pas interdit)
 

@@ -1,0 +1,137 @@
+{
+  "checked_at": "2026-09-23",
+  "note": "Références publiques, pas des durées mesurées dans les fichiers C411. Calcul prudent : +/- 1 minute, tailles +/- 0.05 Go (ou +/- 0.5 si entier affiché), unités décimale et binaire. Les autres releases restent hors de ce sous-échantillon de durées.",
+  "films": [
+    {
+      "film": "The Phoenician Scheme (2025)",
+      "release_ids": [
+        "phoenician_truehd",
+        "phoenician_eac3"
+      ],
+      "runtime_seconds": [
+        6060,
+        6060
+      ],
+      "edition": "Référence cinéma BFI, 101 min ; fichier exact non mesuré.",
+      "sources": [
+        "https://whatson.bfi.org.uk/Online/default.asp?BOparam%3A%3AWScontent%3A%3AloadArticle%3A%3Apermalink=phoenician-scheme"
+      ]
+    },
+    {
+      "film": "Captain America: Brave New World (2025)",
+      "release_ids": [
+        "captain_america"
+      ],
+      "runtime_seconds": [
+        7080,
+        7080
+      ],
+      "edition": "Répertoire du Québec : cinéma, DVD et IMAX, 118 min.",
+      "sources": [
+        "https://repertoire.cinema.mcc.gouv.qc.ca/film/capitaine-america-le-meilleur-des-mondes-439775/"
+      ]
+    },
+    {
+      "film": "Fall (2022)",
+      "release_ids": [
+        "fall_truehd",
+        "fall_eac3"
+      ],
+      "runtime_seconds": [
+        6420,
+        6420
+      ],
+      "edition": "Lionsgate UHD Unrated, 107 min ; correspond au tag Unrated.",
+      "sources": [
+        "https://lionsgatelimited.com/products/fall-4k-steelbook"
+      ]
+    },
+    {
+      "film": "Aliens (1986)",
+      "release_ids": [
+        "aliens"
+      ],
+      "runtime_seconds": [
+        8220,
+        9240
+      ],
+      "edition": "Cinéma 137 min ; Special Edition 154 min. HYBRID ne permet pas de choisir une édition.",
+      "sources": [
+        "https://www.20thcenturystudios.com/movies/aliens",
+        "https://play.google.com/store/movies/details/Aliens_Special_Edition?hl=en-US&id=IcrGdgrXHsI"
+      ]
+    },
+    {
+      "film": "Leviticus (2026)",
+      "release_ids": [
+        "leviticus"
+      ],
+      "runtime_seconds": [
+        5269,
+        5269
+      ],
+      "edition": "BBFC cinéma 87 min 49 s, Adrian Chiarella.",
+      "sources": [
+        "https://www.bbfc.co.uk/release/leviticus-q29sbgvjdglvbjpwwc0xmte4ntc2"
+      ]
+    },
+    {
+      "film": "Supergirl (2026)",
+      "release_ids": [
+        "supergirl_web",
+        "supergirl_rip"
+      ],
+      "runtime_seconds": [
+        6197,
+        6476
+      ],
+      "edition": "BBFC vidéo/VOD 103 min 17 s ; cinéma 107 min 56 s. Version C411 non identifiée.",
+      "sources": [
+        "https://www.bbfc.co.uk/release/supergirl-q29sbgvjdglvbjpwwc0xmte3ntc3"
+      ]
+    },
+    {
+      "film": "Bagarre (2026)",
+      "release_ids": [
+        "bagarre"
+      ],
+      "runtime_seconds": [
+        5820,
+        5820
+      ],
+      "edition": "CNC visa 162631, Julien Royal, 97 min.",
+      "sources": [
+        "https://www.cnc.fr/professionnels/visas-et-classification/162631"
+      ]
+    },
+    {
+      "film": "Pressure (2026)",
+      "release_ids": [
+        "pressure"
+      ],
+      "runtime_seconds": [
+        5979,
+        5985
+      ],
+      "edition": "Anthony Maras, pas le film de 2015 ; BBFC VOD 99 min 39 s, cinéma 99 min 45 s.",
+      "sources": [
+        "https://www.bbfc.co.uk/release/pressure-q29sbgvjdglvbjpwwc0xmdmyotg0"
+      ]
+    },
+    {
+      "film": "Les Spécialistes / In the Grey (2026)",
+      "release_ids": [
+        "specialistes"
+      ],
+      "runtime_seconds": [
+        5797,
+        5797
+      ],
+      "edition": "BBFC VOD 96 min 37 s ; identité française confirmée par Prime Video (Guy Ritchie).",
+      "sources": [
+        "https://www.bbfc.co.uk/release/in-the-grey-q29sbgvjdglvbjpwwc0xmte2nzgy",
+        "https://www.primevideo.com/-/fr/detail/0PY32WKABX8Z7J927C5H52QG1D?tr=tt"
+      ]
+    }
+  ]
+}

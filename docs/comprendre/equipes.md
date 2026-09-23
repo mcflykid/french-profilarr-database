@@ -8,6 +8,14 @@
 
 ## Équipes
 
+### Équipes interdites — 23 septembre 2026
+
+À la demande de l'utilisateur : **WebVision, AgroaQc, kORE, R3Z, Arkas et FYR3N** sont exclus via **FR-Blockers = −999999 sur les dix profils**. Le `k0RE` historique (zéro) reste également exclu. Ce sont des interdictions personnelles, pas un classement public de qualité.
+
+Les six nouveaux noms sont reconnus sans distinction de casse en fin de titre, avec extension `.mkv` ou `.mp4` facultative. Les noms voisins (`Arkas2`, `XWebVision`) et un mot dans le titre d'un film terminé par `-QTZ` ne déclenchent pas cette nouvelle règle. Les anciens blocages sont conservés. Aucun fichier déjà présent n'est supprimé ; l'interdiction dépend d'un nom de groupe encore visible dans le titre.
+
+Validation : 37 cas synthétiques explicitement identifiés dans `ops/11` et 751 contrôles transversaux sur les dix profils, dont l'impossibilité de compenser le malus par tous les bonus cumulés. Aucun titre de release réelle n'a été inventé pour ces équipes.
+
 ### Architecture
 
 | Niveau | CF | Rôle |

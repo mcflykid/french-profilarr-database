@@ -40,6 +40,7 @@ Ensuite : [principes.md](comprendre/principes.md) (synthèse) → pages thémati
 | [calibrage.md](comprendre/calibrage.md) | C411 vs parser, filtres, workflow, **journal** |
 | [Échantillon C411 du 23 septembre](comprendre/c411-2026-09-23.md) | 14 titres avec tailles, constat historique et suivi du défaut Aliens corrigé |
 | [SpK79 et tags C411](comprendre/spk79-2026-09-23.md) | Deuxième capture, préférence QTZ > SpK79 et contrôles sur les 26 titres |
+| [Tailles C411 et durées sourcées](comprendre/tailles-c411-2026-09-23.md) | Neuf films, douze releases, arrondis et éditions : validation des bornes actuelles |
 | [trackers.md](comprendre/trackers.md) | Périmètre exclusif : C411, TR4ker et Gemini Tracker |
 | [torr9.md](comprendre/torr9.md) | Archive historique — hors périmètre actif, aucune configuration à appliquer |
 | [limites.md](comprendre/limites.md) | **PCD = tracker** vs **Plex/tMM** ; torrent / `.mkv` ; motifs rename Plex, tests `ops/12` |
