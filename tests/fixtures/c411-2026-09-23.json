@@ -1,0 +1,20 @@
+{
+  "source": "Capture C411 fournie par l'utilisateur le 2026-09-23 à 22:00:39",
+  "size_note": "Tailles affichées arrondies en Go ; octets exacts et durées non fournis.",
+  "releases": [
+    {"id": "phoenician_truehd", "title": "The.Phoenician.Scheme.2025.MULTI.VF2.2160p.BluRay.4KLight.DV.HDR10Plus.TrueHD.7.1.x265.PROPER-SpK79", "displayed_size_go": 8.1},
+    {"id": "phoenician_eac3", "title": "The.Phoenician.Scheme.2025.PROPER.MULTI.VF2.2160p.BluRay.4KLight.DV.HDR10Plus.EAC3.5.1.x265-SpK79", "displayed_size_go": 6.5},
+    {"id": "captain_america", "title": "Captain.America.Brave.New.World.2025.AD.MULTI.VFI.2160p.4KLight.DV.HDR10Plus.EAC3.7.1.x265-Amen", "displayed_size_go": 4.7},
+    {"id": "fall_truehd", "title": "Fall.2022.Unrated.MULTI.VF2.2160p.BluRay.4KLight.DV.HDR10Plus.TrueHD.Atmos.7.1.x265-SpK79", "displayed_size_go": 12},
+    {"id": "fall_eac3", "title": "Fall.2022.Unrated.MULTI.VF2.2160p.BluRay.4KLight.DV.HDR10Plus.EAC3.5.1.x265-SpK79", "displayed_size_go": 4.9},
+    {"id": "disclosure_day", "title": "Disclosure.Day.2026.4KLight.MULTI.VF2.2160p.WEBRip.DV.HDR10PLUS.EAC3.5.1.x265-LiHDL", "displayed_size_go": 5.6},
+    {"id": "barbare_dts", "title": "Barbare.2022.MULTI.VFI.2160p.BluRay.4KLight.DV.HDR10Plus.DTS.HD.MA.5.1.x265-SpK79", "displayed_size_go": 7.9},
+    {"id": "normal", "title": "Normal.2026.MULTI.VFQ.2160p.BluRay.4KLight.DV.HDR10Plus.EAC3.5.1.Atmos.x265-Ifrit", "displayed_size_go": 4.7},
+    {"id": "aliens", "title": "Aliens.1986.MULTi.HYBRiD.VFF.2160p.BluRay.4KLight.DV.HDR10Plus.EAC3.5.1.x265-J4CK", "displayed_size_go": 6},
+    {"id": "homme_colere", "title": "Un.Homme.en.colere.2021.MULTi.VF2.2160p.BluRay.4KLight.DV.HDR10Plus.EAC3.7.1.x265-D4RK", "displayed_size_go": 8},
+    {"id": "little_dixie", "title": "Little.Dixie.2023.MULTI.VFI.2160p.4KLight.DV.HDR10Plus.EAC3.5.1.x265-SAKADOX", "displayed_size_go": 5.1},
+    {"id": "district_9", "title": "District.9.2009.MULTi.VF2.2160p.BluRay.4KLight.DV.HDR10Plus.EAC3.5.1.x265-TTK", "displayed_size_go": 9.3},
+    {"id": "hokum", "title": "Hokum.2026.MULTI.VF2.2160p.BluRay.4KLight.DV.HDR10PLUS.EAC3.5.1.x265-Amen", "displayed_size_go": 3.5},
+    {"id": "barbare_eac3", "title": "Barbare.2022.MULTI.VFI.2160p.BluRay.4KLight.DV.HDR10Plus.EAC3.5.1.x265-SpK79", "displayed_size_go": 5}
+  ]
+}
