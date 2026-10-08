@@ -12,6 +12,8 @@ Procédure, résultats et limites : [audit du 8 octobre](../contribuer/audit-202
 
 Complément de garde-fou le même jour : le test natif refuse explicitement zéro cas pour l'application demandée ; contrôle négatif vérifié avec une liste vide.
 
+Déploiement observé le même jour : Pull automatique 2.0.7 à 15:08:53 UTC, puis Sync Radarr/Sonarr. Nouvel export : **7500 pour QTZ sur les dix profils, 0 écart au SQL** ; essais natifs répétés sur cet export réel **42/42 + 46/46**. Détail horodaté dans l'audit lié ci-dessus.
+
 **En bref** : tu envoies de **vrais noms de fichiers** vus sur ton tracker ; on ajuste scores et tailles. Le PCD imite une partie des **règles C411** via le **titre** seulement — pas les slots ni le MediaInfo.
 
 Les seuls trackers concernés sont **C411**, **[TR4ker](https://tr4ker.net)** et **[Gemini Tracker](https://gemini-tracker.org)**. Les règles C411 ci-dessous ne sont pas automatiquement celles des deux autres trackers. [Périmètre et archives](trackers.md).
