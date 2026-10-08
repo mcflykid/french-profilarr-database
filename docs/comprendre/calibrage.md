@@ -10,6 +10,8 @@ La vérification relie le SQL, les dix profils effectivement installés et les b
 
 Procédure, résultats et limites : [audit du 8 octobre](../contribuer/audit-2026-10-08.md). Les valeurs figurant dans les entrées historiques ci-dessous décrivent leur version respective.
 
+Complément de garde-fou le même jour : le test natif refuse explicitement zéro cas pour l'application demandée ; contrôle négatif vérifié avec une liste vide.
+
 **En bref** : tu envoies de **vrais noms de fichiers** vus sur ton tracker ; on ajuste scores et tailles. Le PCD imite une partie des **règles C411** via le **titre** seulement — pas les slots ni le MediaInfo.
 
 Les seuls trackers concernés sont **C411**, **[TR4ker](https://tr4ker.net)** et **[Gemini Tracker](https://gemini-tracker.org)**. Les règles C411 ci-dessous ne sont pas automatiquement celles des deux autres trackers. [Périmètre et archives](trackers.md).

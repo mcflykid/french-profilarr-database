@@ -109,6 +109,7 @@ foreach (var test in casesDocument.RootElement.EnumerateArray().Where(c => c.Get
     count++;
     if (outcome != expected) { failures++; Console.WriteLine($"FAIL {name}: {test.GetProperty("label").GetString()}: expected={expected}, actual={outcome}"); }
 }
+if (count == 0) throw new InvalidOperationException("No upgrade cases for the requested Arr application");
 Console.WriteLine($"Native upgrades {app} {core.GetName().Version}: {count-failures}/{count} cases, {failures} failures; API profiles and installed assemblies");
 Environment.ExitCode = failures == 0 ? 0 : 1;
 
