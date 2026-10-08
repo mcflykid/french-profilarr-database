@@ -5,7 +5,7 @@
 ```mermaid
 flowchart TB
   L[1 — Langue dans le titre<br/>jusqu'à ~8 000 pts]
-  E[2 — Équipe FR-Team-*<br/>jusqu'à ~5 500 pts]
+  E[2 — Équipe FR-Team-*<br/>jusqu'à ~7 500 pts]
   T[3 — HDR, Atmos, 4KLight…<br/>quelques milliers]
   X[4 — Interdits : Remux, AV1…<br/>−999999]
   L --> E --> T
@@ -25,7 +25,7 @@ Les profils « internationaux » (TRaSH, Dumpstarr) ne collent pas à la scène 
 | Étape | Ce qu’on regarde | Ordre de grandeur |
 |-------|------------------|-------------------|
 | 1 | Langue (MULTI.VFF, VFF, VFQ…) | jusqu’à **8 000** |
-| 2 | Équipe (−QTZ, SUPPLY…) | jusqu’à **~5 500** |
+| 2 | Équipe (−QTZ, SUPPLY…) | jusqu’à **~7 500** |
 | 3 | HDR, Atmos, 4KLight dans le titre | **100 – 4 500** |
 | 4 | Interdit (Remux, AV1…) | **−999999** |
 

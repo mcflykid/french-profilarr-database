@@ -2,7 +2,7 @@
 
 **En bref** : le **profil PCD** sert au **choix des releases sur le tracker** ; le fichier interne et l’**archive Plex** sont un autre métier ([deux métiers](#deux-métiers--profil-pcd-vs-fichier-interne-vs-plex)). Radarr/Sonarr ne lisent que le **nom** (+ taille), pas le MediaInfo ni les slots C411. Voir [torrent OK / `.mkv` générique](#torrent-bien-nommé-fichier-générique).
 
-[← Index doc](../README.md) · [Calibrage](calibrage.md) · [Pourquoi — pas de rename](pourquoi.md#3-pas-de-renommage-radarr-include_in_rename--0)
+[← Index doc](../README.md) · [Calibrage](calibrage.md) · [Pourquoi — pas de rename](pourquoi.md#3-pas-de-renommage-radarr-rename--0)
 
 ---
 
@@ -86,7 +86,7 @@ flowchart LR
 
 ### Dossiers oui, rename du fichier non (choix du dépôt)
 
-Le PCD utilise **`rename = 0`** : le **fichier vidéo** garde son nom d’origine dans le torrent (ex. `Matrix.mkv`), pour le **ratio** et le **cross-seed** — re-seeder le **même fichier** sur plusieurs trackers sans le dupliquer ni le renommer. Voir [pourquoi.md §3](pourquoi.md#3-pas-de-renommage-radarr-include_in_rename--0).
+Le PCD utilise **`rename = 0`** : le **fichier vidéo** garde son nom d’origine dans le torrent (ex. `Matrix.mkv`), pour le **ratio** et le **cross-seed** — re-seeder le **même fichier** sur plusieurs trackers sans le dupliquer ni le renommer. Voir [pourquoi.md §3](pourquoi.md#3-pas-de-renommage-radarr-rename--0).
 
 Si Radarr/Sonarr renommaient tout (guides TRaSH), beaucoup d’imports auto passeraient plus facilement, mais le seed serait plus pénible : c’est le **parti pris** du dépôt.
 
@@ -146,6 +146,8 @@ Les dossiers TMDB/TVDB **ne remplacent pas** un titre de release dans le fichier
 - **Défaut du dépôt** : `rename = 0` pour la communauté FR en cross-seed.
 - Le dépôt garde **`rename = 0`** : cross-seed FR. Renommage **Plex** = **tinyMediaManager**, pas Radarr.
 
+`include_in_rename = 0` sur un Custom Format règle uniquement l'inclusion de son nom dans les tokens de renommage. L'arrêt du renommage des fichiers dépend de `rename = 0` dans les presets media, à synchroniser séparément des profils qualité. [Code Radarr](https://github.com/Radarr/Radarr/blob/v6.4.4.10685/src/NzbDrone.Core/Organizer/FileNameBuilder.cs).
+
 ### Workflow hybride (exemple maintainer, hors PCD)
 
 Combinaison **seed** (profil PCD + `rename = 0`) puis **archive Plex** (tinyMediaManager). Ce n’est **pas** imposé par le dépôt ; les motifs ci-dessous sont un **exemple** pour que Plex identifie bien les fichiers (connecteur **Plex**, métadonnées **TMDB** films / **TVDB** séries, NFO `fr`).
@@ -171,7 +173,7 @@ Exemples de noms obtenus (illustration) :
 
 **Limites de ce workflow**
 
-- Après rename Plex, **plus de seed / cross-seed** sur ces copies (fichier et chemin ne correspondent plus au torrent d’origine).
+- Renommer ou déplacer les chemins suivis par un torrent peut interrompre son seed tant que le client ne retrouve pas ses fichiers. Le cross-seed de données renommées reste possible avec le linking et `matchMode: flexible`, selon la [documentation officielle](https://www.cross-seed.org/docs/tutorials/data-based-matching#setting-up-data-based-matching). Le workflow du dépôt conserve les noms d'origine pour simplifier cette gestion ; aucun changement de chemins n'est requis ici.
 - Les CF **ne matchent plus** les suffixes Plex (`[1080p, H265, …]`) comme un titre C411 : l’archive sert à **Plex**, pas à re-scorer la scène FR.
 - Un re-import depuis l’archive ne « répare » pas magiquement les upgrades : il faut toujours une **release** cohérente en base Radarr/Sonarr (voir [Si ça bloque](#si-ça-bloque-chez-toi)).
 

@@ -15,6 +15,21 @@ PROFILE_TARGETS = {
     "FR-Films-Any": (2160, 1080, 720, 480),
 }
 
+# Contrat indépendant du SQL : une résolution présente ne suffit pas si une
+# source recherchée a disparu du groupe (ex. WEB-DL 2160p).
+EXPECTED_QUALITIES = {
+    level: frozenset(f"{source}-{level}p" for source in ("Bluray", "WEBDL", "WEBRip", "HDTV"))
+    for level in (720, 1080, 2160)
+}
+EXPECTED_QUALITIES[480] = frozenset(("Unknown", "SDTV", "DVD", "WEBDL-480p"))
+
+
+def expected_qualities(profile: str, level: int) -> frozenset[str]:
+    # Le profil Films-720p compact admet les trois sources disque/WEB ; HDTV
+    # reste admis dans les fallbacks des profils Films supérieurs et en Sonarr.
+    qualities = EXPECTED_QUALITIES[level]
+    return qualities - {"HDTV-720p"} if profile == "FR-Films-720p" else qualities
+
 
 def resolution(quality: str) -> int | None:
     """SD et Unknown partagent le dernier palier du profil de secours Any."""
@@ -78,6 +93,14 @@ def audit_quality_profiles(conn: sqlite3.Connection, *, verbose: bool = True) ->
                 actual.append(None)
             else:
                 actual.append(next(iter(levels)))
+            if 0 <= position < len(expected):
+                wanted = expected_qualities(name, expected[position])
+                missing, unexpected = wanted - set(members), set(members) - wanted
+                if missing or unexpected:
+                    errors.append(
+                        f"{name}/{group}: sources manquantes {sorted(missing)}, "
+                        f"sources inattendues {sorted(unexpected)}"
+                    )
             all_members.extend(members)
             for member in members:
                 mapping = conn.execute(

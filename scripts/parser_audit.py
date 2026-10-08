@@ -63,10 +63,15 @@ class ParserAudit:
         for title, media_type in releases:
             parsed = self.parsed[(title, media_type)]
             texts.update(t for t in (title, parsed.get("releaseGroup"), parsed.get("edition")) if t)
-        texts = list(texts - self.matches.keys())
-        for offset in range(0, len(texts), 100):
-            result = self.post("/match/batch", {"texts": texts[offset:offset+100], "patterns": self.patterns})
-            self.matches.update(result["results"])
+        # /match/batch compiles regexes and silently turns 100 ms timeouts
+        # into False. On a CPU-limited parser this produced unstable failures.
+        # Use the sequential, interpreted endpoint without relaxing patterns.
+        for text in sorted(texts - self.matches.keys()):
+            result = self.post("/match", {"text": text, "patterns": self.patterns})
+            matches = result["results"]
+            if set(matches) != set(self.patterns) or any(type(value) is not bool for value in matches.values()):
+                raise ValueError("Réponse regex incomplète ou invalide du parser")
+            self.matches[text] = matches
 
     def condition(self, cond, title, parsed, size=None, languages=None):
         kind = cond["type"]

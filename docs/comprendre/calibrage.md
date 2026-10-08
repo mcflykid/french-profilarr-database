@@ -1,5 +1,15 @@
 # Calibrage — C411, TR4ker et Gemini
 
+## 8 octobre 2026 — Version 2.0.7 : QTZ nettement préféré et vérification native
+
+À la demande de l'utilisateur, `FR-Team-QTZ` passe de **5500 à 7500 sur les dix profils**. TyHD reste à **4900**, SpK79 à **5400** et le bonus composé QTZ+4KLight à **4000 dans Films-4K seulement**. Les scores totaux restent prioritaires à qualité égale : ce n'est pas une garantie absolue quels que soient langue, exclusions et caractéristiques.
+
+Sur le cas réel *La Momie*, QTZ atteint **21100**, contre **18720** pour TyHD : l'écart de **2380** dépasse maintenant l'incrément de **1400**. À tags identiques, QTZ dépasse SpK79 de **2100**, ou **6100** avec le combo Films-4K. Les tests attendent désormais un remplacement accepté pour ces trois cas.
+
+La vérification relie le SQL, les dix profils effectivement installés et les bibliothèques natives Radarr/Sonarr. Les garde-fous passent de **91 à 179 mutations** : suppression de chacun des 87 membres de groupe et introduction d'une source SD indésirable. Documentation corrigée sur le caractère additif de la langue, le renommage réellement désactivé et la portée des malus audio. Le client d'audit utilise `/match` séquentiel plutôt que `/match/batch`, dont les timeouts regex sont silencieusement transformés en faux sur le parser limité en CPU. Aucun motif ou résultat attendu n'est assoupli.
+
+Procédure, résultats et limites : [audit du 8 octobre](../contribuer/audit-2026-10-08.md). Les valeurs figurant dans les entrées historiques ci-dessous décrivent leur version respective.
+
 **En bref** : tu envoies de **vrais noms de fichiers** vus sur ton tracker ; on ajuste scores et tailles. Le PCD imite une partie des **règles C411** via le **titre** seulement — pas les slots ni le MediaInfo.
 
 Les seuls trackers concernés sont **C411**, **[TR4ker](https://tr4ker.net)** et **[Gemini Tracker](https://gemini-tracker.org)**. Les règles C411 ci-dessous ne sont pas automatiquement celles des deux autres trackers. [Périmètre et archives](trackers.md).

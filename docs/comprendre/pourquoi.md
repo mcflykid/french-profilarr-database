@@ -15,7 +15,7 @@ Chaque changement dans `ops/` doit rester **aligné** avec les intentions ci-des
 |----------|---------|
 | **Quel problème ?** | Les profils TRaSH / Dumpstarr « internationaux » ne reflètent pas ce que les **trackers privés FR** valorisent dans le **titre** des releases. |
 | **Quelle solution ?** | Des **Custom Formats** (points sur le nom de fichier) + **tailles** cibles + **10 profils** `FR-*`, pour C411, TR4ker et Gemini ; calibrages réels et tests historiques conservés. |
-| **Principe n°1** | **Langue d’abord** (écart ~1k–1,5k entre paliers, plafond **8k**) — puis équipe, puis image/son. |
+| **Principe n°1** | **Français favorisé par des scores** (plafond **8k**) additionnés à l'équipe et à l'image/son ; les paliers de langue ne constituent pas un ordre impératif. |
 | **Principe n°2** | On lit ce que **Radarr peut lire** : le **titre** et la **taille** — pas le MediaInfo, pas les slots C411. |
 | **Principe n°3** | **Encodes compacts** pour la maison (HEVC, 4KLight, WEB par équipes) — **pas** remux catalogue / AV1 / full disc. |
 
@@ -78,15 +78,17 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 | **Fichiers** | `ops/02` (regex), `ops/04`, `ops/06`, [langue.md](langue.md), tests `ops/11` (La Momie, Damsel, …) |
 | **Ne pas** | Fusionner VF2/VFQ dans une regex « VF » unique ; remettre `MULTI` seul en `FR-MULTI-VFF` sans cas de test. |
 
-### 3. Pas de renommage Radarr (`include_in_rename = 0`)
+**Portée de la préférence** : le score total additionne toutes les couches. À autres caractéristiques identiques, VOSTFR (+1500) avec QTZ (+7500) atteint 9000 points, davantage que VFF seul (+5000) sans bonus d'équipe. De même, le bonus h265 (+1000) dépasse à lui seul le minimum Films-4K (500). Ces CF ne rendent donc pas le français obligatoire ; le profil Radarr utilise la langue native **Any**. Imposer une piste française ou une priorité absolue demanderait une décision distincte, en tenant compte du repli VOSTFR. Voir [langue.md](langue.md).
+
+### 3. Pas de renommage Radarr (`rename = 0`)
 
 | | |
 |--|--|
 | **Contexte** | Cross-seed et ratio : le nom sur le tracker doit rester lisible et stable. |
 | **Alternative écartée** | Renommage TRaSH agressif `{Movie Title}…`. |
-| **Choix retenu** | Tous les CF FR avec `include_in_rename = 0`. |
-| **Pourquoi** | Le **titre indexeur** est la source de vérité pour le score ; renommer casse la lisibilité sur le tracker et le pairing cross-seed. |
-| **Fichiers** | `ops/03-custom-formats.sql` |
+| **Choix retenu** | `rename = 0` dans les presets media de `ops/07` ; les CF FR ont aussi `include_in_rename = 0` dans `ops/03`. |
+| **Pourquoi** | Conserver les noms et chemins utilisés par le client torrent simplifie le seed et le rapprochement des releases. `include_in_rename` décide seulement si le nom du CF figure dans les tokens de renommage ; il ne désactive pas le renommage des fichiers. |
+| **Fichiers** | `ops/07-media-management.sql` (activation), `ops/03-custom-formats.sql` (tokens CF) |
 | **Voir aussi** | [limites.md — torrent OK / fichier générique](limites.md#torrent-bien-nommé-fichier-générique) (grab vs import, pas un bug profil) |
 
 ### 4. Exclusions dures (−999999) : Remux, Full Disc, AV1, Upscaled, x264@2160p
@@ -112,13 +114,15 @@ Les exclusions du §4 comprennent aussi **FR-Blockers** : demande utilisateur du
 | **Pourquoi** | Contrôle fin du **score** (repack 3 > repack 2 > repack) et cohérence avec les titres réels. |
 | **Fichiers** | `ops/07`, `ops/06`, [equipes.md](equipes.md) (signatures) |
 
+**Effet sur un fichier déjà présent** : les bonus Films-4K REPACK / REPACK2 / REPACK3 sont **150 / 220 / 330**, sous l'incrément minimal **1400**. À qualité et autres tags identiques, la seule correction REPACK ne suffit donc pas à remplacer l'original, puisque `doNotPrefer` désactive aussi la priorité native des révisions. Ces bonus départagent les candidats au tri initial. C'est un compromis de la protection contre les téléchargements répétés ; les scores restent inchangés lors de la vérification du 8 octobre 2026. [Logique Radarr 6.4.4](https://github.com/Radarr/Radarr/blob/v6.4.4.10685/src/NzbDrone.Core/DecisionEngine/Specifications/UpgradableSpecification.cs).
+
 ### 6. Équipes : 18 groupes `FR-Team-*`, pas ~900 regex
 
 | | |
 |--|--|
 | **Contexte** | [Profilarr-database-french-regex](https://github.com/Jojont54/Profilarr-database-french-regex) modélise une regex par team (~900 fichiers). |
 | **Alternative écartée** | Copier le modèle Jojont54 ; ignorer les équipes (tout en tiers génériques). |
-| **Choix retenu** | **18 groupes** calibrés + `FR-Tier-01/02` ; détection `-TEAM` en fin de titre. SpK79 ajouté à la demande de l'utilisateur sous QTZ (+5400 contre +5500). |
+| **Choix retenu** | **18 groupes** calibrés + `FR-Tier-01/02` ; détection `-TEAM` en fin de titre. SpK79 ajouté à la demande de l'utilisateur sous QTZ (+5400 contre +7500). |
 | **Pourquoi** | Maintenance **tenable** et **rebase** Dictionarry possible ; gain marginal des teams rares vs coût de sync/PR. |
 | **Fichiers** | `ops/03`, `ops/04`, `ops/06`, [equipes.md](equipes.md), journal [calibrage.md](calibrage.md) |
 | **Ne pas** | Ajouter 50 teams sans releases réelles documentées dans `ops/11` + journal. |
@@ -167,6 +171,8 @@ Les exclusions du §4 comprennent aussi **FR-Blockers** : demande utilisateur du
 | **Fichiers** | `ops/06`, [image-son.md](image-son.md) |
 | **Ne pas** | Remettre Atmos/TrueHD en bonus sans barre Atmos/AVR réel ; oublier que Radarr ne voit pas le **JOC non taggé** (filet : format audio forcé DD 5.1 sur l'ATV). |
 
+**Limite du titre C411** : le guide fourni choisit le tag lossless selon la piste ayant le plus de canaux, quelle que soit sa langue, souvent la VO. `MULTI.VFF…TrueHD.7.1` peut ainsi contenir une VF EAC3 5.1. Les malus sont une préférence fondée sur les tags, pas une preuve d'incompatibilité de la VF ; consulter le NFO/MediaInfo et la piste réellement sélectionnée pour diagnostiquer la lecture.
+
 ### 11. Préférence 5.1 (malus `7.1` dans le titre)
 
 | | |
@@ -196,7 +202,7 @@ Ordre de grandeur **entre releases déjà en français** (hors −999999) :
 | Couche | Exemples | Plafond typique |
 |--------|----------|-----------------|
 | Langue | `FR-MULTI-VF2` … `FR-VOSTFR` | **8 000** |
-| Équipe | `FR-Team-QTZ` … `FR-Tier-02` | **~5 500** |
+| Équipe | `FR-Team-QTZ` … `FR-Tier-02` | **~7 500** |
 | Image / son | DV, HDR10+, Atmos, x265, `FR-4KLight` | **~4 500** cumul possible |
 | Édition | IMAX, Theatrical | **~1 800** |
 | Malus source | `FR-WEBRip` (4K) | **−750** |

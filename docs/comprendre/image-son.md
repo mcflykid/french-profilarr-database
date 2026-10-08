@@ -18,6 +18,8 @@
 
 À **langue / équipe / HDR égaux**, une release `…EAC3.5.1…` (sans Atmos) passe devant `…DDP.Atmos…`, elle-même devant `…TrueHD.7.1.Atmos…`.
 
+**Ce que prouve le titre** : le guide C411 fourni demande que le tag lossy décrive la VF ayant le plus de canaux, mais choisit le tag lossless sur la piste ayant le plus de canaux **quelle que soit sa langue** (souvent la VO). Un `MULTI.VFF…TrueHD.7.1` peut donc proposer une VF EAC3 5.1. Le classement ci-dessus exprime la préférence du profil sur les tags ; il ne démontre pas que la VF sera transcodée ou provoquera des lags. Vérifier NFO/MediaInfo, langue et codec de la piste sélectionnée, puis la session Plex réelle. Les malus personnels sont conservés.
+
 ### Foyers de référence (calibrage terrain)
 
 Chaîne commune : **Apple TV 4K → Plex → HDMI → TV** (pas de barre son, pas d’AVR 7.1). Fiches constructeur / revendeurs (2025–2026).

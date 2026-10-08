@@ -34,6 +34,18 @@ def main():
         reject('DELETE FROM quality_group_members WHERE quality_profile_name=?', (name,))
         if len(levels) > 1:
             reject('UPDATE quality_profile_qualities SET position=10-position WHERE quality_profile_name=?', (name,))
+        # Chaque source requise doit être protégée, même si le groupe restant
+        # conserve la bonne résolution et des membres parfaitement valides.
+        members = conn.execute(
+            'SELECT quality_group_name, quality_name FROM quality_group_members '
+            'WHERE quality_profile_name=?', (name,)
+        ).fetchall()
+        for group, quality in members:
+            reject('DELETE FROM quality_group_members WHERE quality_profile_name=? '
+                   'AND quality_group_name=? AND quality_name=?', (name, group, quality))
+    # Source native valide de même palier SD, mais hors du contrat Films-Any.
+    reject('UPDATE quality_group_members SET quality_name=? WHERE quality_profile_name=? '
+           'AND quality_name=?', ('WEBRip-480p', 'FR-Films-Any', 'WEBDL-480p'))
     for preset, (arr, _, _) in PRESETS.items():
         for column, value in (('max_size', 2000), ('min_size', 900), ('preferred_size', -1)):
             reject(f'UPDATE {arr}_quality_definitions SET {column}=? WHERE name=? AND quality_name=?',

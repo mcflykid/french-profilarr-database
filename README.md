@@ -5,7 +5,7 @@ Profils **Radarr** et **Sonarr** pour **C411**, **[TR4ker](https://tr4ker.net)**
 | | |
 |---|---|
 | **Outil** | [Profilarr v2](https://v2.dictionarry.dev) (PCD 1.1.0) |
-| **Version** | 2.0.6 |
+| **Version** | 2.0.7 |
 | **Licence** | [MIT](LICENSE) |
 | **Contenu** | 79 formats perso · 78 regex · 10 profils · 592 tests |
 

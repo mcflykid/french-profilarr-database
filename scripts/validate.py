@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
-Validation unique du dépôt PCD (équivalent Compile Profilarr + sync Sonarr safe).
+Validation du dépôt PCD : compilation SQL et tests de scores/conditions.
+
+La synchronisation et les décisions réelles d'import/upgrade Arr nécessitent
+une vérification séparée dans les applications.
 
 Usage : python3 scripts/validate.py
 """

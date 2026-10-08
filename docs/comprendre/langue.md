@@ -2,6 +2,8 @@
 
 **En bref** : plus le français est **clair dans le titre**, plus la release monte. Le meilleur cas : **MULTI.VF2** (France + Québec). **VOSTFR** reste en bas. Un **`MULTI` seul** (sans précision) = palier intermédiaire.
 
+Il s'agit des **points de langue**, additionnés aux autres CF. Ils ne garantissent ni une piste française obligatoire ni la victoire du meilleur palier de langue dans toute comparaison. Par exemple, VOSTFR (+1500) + QTZ (+7500) dépasse VFF seul (+5000) sans équipe, à autres tags identiques. Dans Films-4K, h265 seul (+1000) dépasse le seuil global de 500 ; la langue native Radarr est **Any**. Le repli VOSTFR reste volontaire ; aucun filtre linguistique supplémentaire n'est ajouté par la vérification du 8 octobre 2026.
+
 ```mermaid
 flowchart BT
   A[FR-MULTI-VF2 · 8k]

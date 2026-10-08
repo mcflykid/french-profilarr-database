@@ -10,11 +10,13 @@
 
 ## Tests et validation
 
+Pour une preuve portant sur les profils installés et les décisions de remplacement, compléter les tests SQL/parser par la [procédure d'export API et d'essai natif](audit-2026-10-08.md). Une validation du dépôt n'est pas une preuve de déploiement.
+
 ```bash
 python3 scripts/validate.py
 ```
 
-Vérifie : intégrité `ops/`, compilation SQLite (schema 1.1.0), **dix profils compilés** (ordre, membres, activation, cutoff et seuils exacts), **trois presets media / 74 définitions**, descriptions regex, **592 cas CF complets** avec le parser .NET, **149 assertions de score sur les dix profils**, **751 contrôles des équipes interdites**, **497 contrôles C411 sur 26 titres**, **48 comparaisons taille/durée + deux mutations**, régression HEVC, **91 injections de défauts en mémoire**, cohérence des scores/compteurs documentés et liens Markdown. Détail et limites : [audit initial](audit-2026-09-21.md), [calibrage SpK79](../comprendre/spk79-2026-09-23.md) et [durées sourcées](../comprendre/tailles-c411-2026-09-23.md).
+Vérifie : intégrité `ops/`, compilation SQLite (schema 1.1.0), **dix profils compilés** (ordre, membres, activation, cutoff et seuils exacts), **trois presets media / 74 définitions**, descriptions regex, **592 cas CF complets** avec le parser .NET, **149 assertions de score sur les dix profils**, **751 contrôles des équipes interdites**, **497 contrôles C411 sur 26 titres**, **48 comparaisons taille/durée + deux mutations**, régression HEVC, **179 injections de défauts en mémoire**, cohérence des scores/compteurs documentés et liens Markdown. Détail et limites : [audit initial](audit-2026-09-21.md), [calibrage SpK79](../comprendre/spk79-2026-09-23.md) et [durées sourcées](../comprendre/tailles-c411-2026-09-23.md).
 
 Avec `PARSER_URL` défini (obligatoire en CI), tous les cas `ops/11` sont exécutés, sans filtre de description. En local sans parser, le résultat est explicitement **OK PARTIEL** : les tests parser sont ignorés, pas déclarés réussis. L'ancienne commande `run_cf_regex_tests.py --calibrage-only` appelle désormais la suite complète. Les contrôles statiques restent disponibles sans parser.
 

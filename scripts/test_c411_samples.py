@@ -83,7 +83,7 @@ def main():
         for row in spk:
             score = audit.scores(profile, row['title'], 'movie')[0]
             qtz = audit.scores(profile, clones[row['id']], 'movie')[0]
-            delta = 4100 if profile == 'FR-Films-4K' and row['id'] in lights else 100
+            delta = 6100 if profile == 'FR-Films-4K' and row['id'] in lights else 2100
             check(qtz - score == delta, profile + '/' + row['id'] + ': QTZ doit devancer SpK79 à autres tags identiques')
     _, matched = audit.scores('FR-Films-4K', plain, 'movie')
     check(not {'FR-4KLight', 'Dolby Vision', 'HDR10+'}.intersection(matched), 'Aucun bonus de tag absent')

@@ -68,7 +68,7 @@ def main():
     # Référence terrain : capture utilisateur du 19/09/2026, valeurs explicites
     # indépendantes du calcul afin de détecter une régression des conditions/CF.
     momie_scores = {
-        "La.Momie.1999.MULTI.VFF.2160p.BluRay.4KLight.HDR10Plus.TrueHD.7.1.Atmos.x265-QTZ": 19100,
+        "La.Momie.1999.MULTI.VFF.2160p.BluRay.4KLight.HDR10Plus.TrueHD.7.1.Atmos.x265-QTZ": 21100,
         "La.Momie.1999.MULTI.VFF.2160p.WEB.DV.HDR10PLUS.AC3.5.1.H265-Slay3R": 17020,
         "La.Momie.1999.MULTI.TRUEFRENCH.2160p.WEB.DV.HDR.DV.WEB-DL.H265-Slay3R": 16000,
         "La.Momie.1999.MULTI.VFF.2160p.WEB.DV.HDR10PLUS.AC3.5.1.H265-TyHD": 18720,
