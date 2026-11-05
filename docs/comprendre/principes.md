@@ -6,7 +6,7 @@
 flowchart TB
   L[1 — Langue dans le titre<br/>jusqu'à ~8 000 pts]
   E[2 — Équipe FR-Team-*<br/>jusqu'à ~7 500 pts]
-  T[3 — HDR, Atmos, 4KLight…<br/>quelques milliers]
+  T[3 — HDR, 4KLight…<br/>quelques milliers]
   X[4 — Interdits : Remux, AV1…<br/>−999999]
   L --> E --> T
   X -.->|élimine| L
@@ -26,7 +26,7 @@ Les profils « internationaux » (TRaSH, Dumpstarr) ne collent pas à la scène 
 |-------|------------------|-------------------|
 | 1 | Langue (MULTI.VFF, VFF, VFQ…) | jusqu’à **8 000** |
 | 2 | Équipe (−QTZ, SUPPLY…) | jusqu’à **~7 500** |
-| 3 | HDR, Atmos, 4KLight dans le titre | **100 – 4 500** |
+| 3 | HDR, 4KLight dans le titre | **100 – 4 500** |
 | 4 | Interdit (Remux, AV1…) | **−999999** |
 
 **Pour qui** : trackers privés FR, souvent **cross-seed** (même fichier, titres parfois différents).
@@ -61,7 +61,7 @@ Tableau rapide — le détail « contexte / alternative / ne pas casser » est d
 | Films / Series / Anime **4K** | **500** | **60000** | **1400** |
 | Series / Anime 1080p/720p, Films 720p/Any | **0** | **60000** | **1400** |
 
-**Philosophie scoring** (trackers FR, 2026-05) : la **langue** = **1er tri** (écart **1k–1,5k** entre paliers, max **8k**). La **qualité** (équipe **~5,5k**, DV/HDR **~3,5k**, Atmos **~2,5k**, x265, 4KLight) **décide** entre deux releases déjà françaises. Top ≈ **22k–28k** ; plafond upgrades **60k**. Tailles : preset media `ops/07` (Mo/min).
+**Philosophie scoring** (trackers FR, 2026-05) : la **langue** pèse fort, mais QTZ peut passer devant (écart **1k–1,5k** entre paliers, max **8k**). La **qualité** (équipe **jusqu'à 7,5k**, DV/HDR **~3,5k**, Atmos **−1,5k (malus)**, x265, 4KLight) **décide** entre deux releases déjà françaises. Top ≈ **22k–28k** ; plafond upgrades **60k**. Tailles : preset media `ops/07` (Mo/min).
 
 **Incrément 1400 (2026-07, anti-churn renforcé)** : **à qualité équivalente**, un remplacement fondé sur le score exige **au moins +1400** points CF ≈ **un palier de langue complet** (ex. `MULTI` ambigu → `MULTI.VFF` = +1500). En dessous, ni équipe légèrement supérieure, ni changement de codec, ni bonus cosmétique ne suffisent à eux seuls. **Pourquoi si haut** : réduit les **boucles grab-vs-import** — une release au titre gonflé (ex. SUPPLY `…VFF…H264` scoré au grab mais dont le `.mkv` générique retombe plus bas à l'import) ping-pongait avec une release stable ([limites.md — grab vs import](../comprendre/limites.md#grab-vs-import-pourquoi-ça-bloque)). L'ancien 500 laissait passer ces écarts (~1200). Compromis assumé : moins d'upgrades marginaux, cohérent avec la priorité **ratio / cross-seed / fichiers compacts**. Le passage **720p → 1080p → 2160p**, avant le cutoff et avec les groupes correctement ordonnés, ne requiert pas ce gain de score ; les autres critères d'acceptation restent applicables.
 

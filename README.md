@@ -5,9 +5,9 @@ Profils **Radarr** et **Sonarr** pour **C411**, **[TR4ker](https://tr4ker.net)**
 | | |
 |---|---|
 | **Outil** | [Profilarr v2](https://v2.dictionarry.dev) (PCD 1.1.0) |
-| **Version** | 2.0.7 |
+| **Version** | 2.0.8 |
 | **Licence** | [MIT](LICENSE) |
-| **Contenu** | 79 formats perso · 78 regex · 10 profils · 592 tests |
+| **Contenu** | 79 formats perso · 78 regex · 10 profils · 616 tests |
 
 Questions ou retours : [issues](https://github.com/mcflykid/french-profilarr-database/issues).
 
@@ -22,6 +22,11 @@ flowchart LR
 ```
 
 ---
+
+### Points clés de la version 2.0.8
+
+- **QTZ gagne** : préférence assumée, jusqu'à passer devant une meilleure langue. Seules les exclusions à −999999 restent prioritaires.
+- **Le nom du film ne compte plus** : *Waves*, *Drive* ou *The French Dispatch* ne déclenchent plus de groupe banni, de palier ou de faux tag FRENCH.
 
 ## Par où commencer ?
 

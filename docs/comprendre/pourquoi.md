@@ -60,7 +60,7 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 |--|--|
 | **Contexte** | Sur la scène FR, la langue et l’équipe sont souvent dans le **nom** ; la qualité native `WEBDL-1080p` vs `WEBRip-1080p` ne suffit pas à trancher. |
 | **Alternative écartée** | Profil type « qualité seule » (Dumpstarr pur) sans hiérarchie FR forte. |
-| **Choix retenu** | Somme de CF sur le **titre** ; `upgrade_until_score` = **60 000** ; langue max **8k**, équipes ~**5,5k**, HDR/DV en second plan. |
+| **Choix retenu** | Somme de CF sur le **titre** ; `upgrade_until_score` = **60 000** ; langue max **8k**, équipes jusqu'à **7,5k**, HDR/DV en second plan. |
 | **Pourquoi** | Deux releases « WEB 1080p » peuvent avoir le même rang Radarr mais des titres `MULTI.VFF` vs `VOSTFR` — sans CF, la mauvaise gagne. |
 | **Fichiers** | `ops/06-quality-profiles.sql`, [principes.md](principes.md) |
 | **Ne pas** | Remonter `minimum_custom_format_score` vers 20k+ (bloque les upgrades) sans recalibrer toute la grille. |
@@ -68,6 +68,8 @@ Chaque bloc suit le même format : **contexte → alternative écartée → choi
 **Priorité entre résolutions (audit 2026-09-20)** : les groupes natifs priment entre résolutions : **2160p > 1080p > 720p** sur les profils 4K. Les CF départagent les releases de même rang ; ils ne compensent pas un ordre de groupes inversé. La position PCD **0** désigne le haut de la liste : [Profilarr inverse cette liste pour les API Arr](https://github.com/Dictionarry-Hub/profilarr/blob/4b877913c50ff2964f179255c6bf2f517920a123/src/lib/server/sync/qualityProfiles/transformer.ts). L'incrément CF **1400** concerne les améliorations de score à qualité équivalente, pas le passage d'un fallback vers une qualité supérieure avant le cutoff ([logique Radarr](https://github.com/Radarr/Radarr/blob/develop/src/NzbDrone.Core/DecisionEngine/Specifications/UpgradableSpecification.cs)). Le contrôle `verify_quality_profiles.py` vérifie ces prérequis sur les dix profils compilés ; il ne remplace pas la vérification de la synchronisation dans les applications.
 
 ### 2. Langue = premier tri (hiérarchie explicite)
+
+**Exception assumée depuis 2.0.7 : QTZ gagne.** Un VOSTFR QTZ (9000) bat un MULTI.VFF sans équipe connue (7000), et un MULTI.VFQ QTZ (12000) bat un MULTI.VFF TyHD (11900). Ce n'est pas une victoire absolue : un MULTI.VF2 SpK79 (13400) bat un VOSTFR QTZ (9000), et les exclusions à −999999 restent prioritaires.
 
 | | |
 |--|--|
@@ -203,7 +205,7 @@ Ordre de grandeur **entre releases déjà en français** (hors −999999) :
 |--------|----------|-----------------|
 | Langue | `FR-MULTI-VF2` … `FR-VOSTFR` | **8 000** |
 | Équipe | `FR-Team-QTZ` … `FR-Tier-02` | **~7 500** |
-| Image / son | DV, HDR10+, Atmos, x265, `FR-4KLight` | **~4 500** cumul possible |
+| Image / son | DV, HDR10+, x265, `FR-4KLight` | **~4 500** cumul possible |
 | Édition | IMAX, Theatrical | **~1 800** |
 | Malus source | `FR-WEBRip` (4K) | **−750** |
 

@@ -16,7 +16,7 @@ Pour une preuve portant sur les profils installés et les décisions de remplace
 python3 scripts/validate.py
 ```
 
-Vérifie : intégrité `ops/`, compilation SQLite (schema 1.1.0), **dix profils compilés** (ordre, membres, activation, cutoff et seuils exacts), **trois presets media / 74 définitions**, descriptions regex, **592 cas CF complets** avec le parser .NET, **149 assertions de score sur les dix profils**, **751 contrôles des équipes interdites**, **497 contrôles C411 sur 26 titres**, **48 comparaisons taille/durée + deux mutations**, régression HEVC, **179 injections de défauts en mémoire**, cohérence des scores/compteurs documentés et liens Markdown. Détail et limites : [audit initial](audit-2026-09-21.md), [calibrage SpK79](../comprendre/spk79-2026-09-23.md) et [durées sourcées](../comprendre/tailles-c411-2026-09-23.md).
+Vérifie : intégrité `ops/`, compilation SQLite (schema 1.1.0), **dix profils compilés** (ordre, membres, activation, cutoff et seuils exacts), **trois presets media / 74 définitions**, descriptions regex, **616 cas CF complets** avec le parser .NET, **149 assertions de score sur les dix profils**, **751 contrôles des équipes interdites**, **497 contrôles C411 sur 26 titres**, **48 comparaisons taille/durée + deux mutations**, régression HEVC, **179 injections de défauts en mémoire**, cohérence des scores/compteurs documentés et liens Markdown. Détail et limites : [audit initial](audit-2026-09-21.md), [calibrage SpK79](../comprendre/spk79-2026-09-23.md) et [durées sourcées](../comprendre/tailles-c411-2026-09-23.md).
 
 Avec `PARSER_URL` défini (obligatoire en CI), tous les cas `ops/11` sont exécutés, sans filtre de description. En local sans parser, le résultat est explicitement **OK PARTIEL** : les tests parser sont ignorés, pas déclarés réussis. L'ancienne commande `run_cf_regex_tests.py --calibrage-only` appelle désormais la suite complète. Les contrôles statiques restent disponibles sans parser.
 
@@ -26,7 +26,7 @@ CI GitHub : workflow **Validate PCD** sur chaque push/PR vers `main`.
 
 | Fichier | Rôle |
 |---------|------|
-| **`ops/11`** | 592 tests parser par CF ; les anciens titres Torr9 restent des régressions historiques, les trackers actuels sont C411, Gemini Tracker et TR4ker |
+| **`ops/11`** | 616 tests parser par CF ; les anciens titres Torr9 restent des régressions historiques, les trackers actuels sont C411, Gemini Tracker et TR4ker |
 | **`ops/12`** | 12 simulations profil (Momie, POI, …), toutes contrôlées par `test_profile_behaviour.py` ; régression HEVC complémentaire |
 
 Après modification SQL : **Pull → Compile** sur la base, puis revérifier les tests dans l’UI Profilarr.
@@ -125,7 +125,9 @@ Les **agents / contributeurs** qui modifient ce dépôt doivent appliquer cette 
 | 2.0.3 | Racine = `pcd.json` + `ops/` + `scripts/` | Ordre des qualités cible → fallback, pour autoriser les upgrades 720p → 1080p → 2160p |
 | 2.0.4 | Même structure | Audit étendu, plafonds HDTV 4K, langues/disques et validation complète .NET |
 | 2.0.5 | Même structure + échantillons `tests/fixtures/` | Préférence SpK79 sous QTZ, langue HYBRID corrigée et 26 exemples C411 testés |
-| **2.0.6 actuel** | Même structure + références de durées | Six équipes interdites sur dix profils ; douze tailles recalculées, bornes conservées |
+| 2.0.6 | Même structure + références de durées | Six équipes interdites sur dix profils ; douze tailles recalculées, bornes conservées |
+| 2.0.7 | Même structure | QTZ à 7500 et vérification des décisions de mise à niveau |
+| **2.0.8 actuel** | Même structure | Regex limitées au groupe ou aux tags, nom du film ignoré |
 
 Anciennes archives `backup/` : `git show <commit>:backup/...` (ex. `c1d52ee`).
 
