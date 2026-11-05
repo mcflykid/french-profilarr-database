@@ -82,3 +82,5 @@ Cas terrain documentés : `ops/11` (Damsel `MULTI` seul, *La Momie* TRUEFRENCH/H
 ---
 
 [← Index doc](../README.md) · [← README](../../README.md)
+
+**2.0.8** : FRENCH ou FRANCAIS seul ne compte qu'après l'année ou la saison, ou juste avant un tag technique. Un titre comme *French Kiss* n'est donc plus lu comme une VF.

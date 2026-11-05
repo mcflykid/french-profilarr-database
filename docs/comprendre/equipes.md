@@ -23,7 +23,7 @@ Validation : 37 cas synthétiques explicitement identifiés dans `ops/11` et 751
 | **Équipes** | `FR-Team-*` (18 groupes) | Bonus fort, calibrés sur releases réelles |
 | **Longue traîne** | `FR-Tier-01`, `FR-Tier-02` | Petits bonus (regex compacte) |
 
-Détection : suffixe **`-TEAM`** dans le titre (`(?<=^|[\s.-])TEAM\b`, insensible à la casse → `SLAY3R` = `Slay3R`).
+Détection : le nom doit figurer dans le titre **et** correspondre au groupe détecté, sans distinction de casse. Les paliers et les noms bannis ambigus (EXTREME, WAVES, LAMA, TBS, EVO, ETHEL, Telly) ne comptent qu'en fin de titre.
 
 On **n’utilise pas** le modèle [Profilarr-database-french-regex](https://github.com/Jojont54/Profilarr-database-french-regex) (~900 fichiers / team) : coût de maintenance >> gain sur les cas observés.
 
